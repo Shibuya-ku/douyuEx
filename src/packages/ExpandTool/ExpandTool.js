@@ -17,6 +17,7 @@ function initPkg_ExpandTool_Module() {
 	initPkg_ExpandTool_TabSwitch();
 	initPkg_ExpandTool_P2P();
 	initPkg_ExpandTool_FullScreen();
+	initPkg_ExpandTool_AutoBarrageColor();
 }
 
 function initPkg_ExpandTool_Dom() {
