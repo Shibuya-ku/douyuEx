@@ -43,15 +43,24 @@ function initPkg_ExpandTool_AutoBarrageColor_Set() {
 }
 
 function selectHighestUnlockedBarrageColor() {
+    // 避免重复进房/重复勾选时叠多个定时器
+    if (window.__exAutoBarrageColorTimer) {
+        clearInterval(window.__exAutoBarrageColorTimer);
+        window.__exAutoBarrageColorTimer = null;
+    }
+
     let count = 0;
-    let intID = setInterval(() => {
+    let opened = false;
+    window.__exAutoBarrageColorTimer = setInterval(() => {
         count++;
         if (count > 100) {
-            clearInterval(intID);
+            clearInterval(window.__exAutoBarrageColorTimer);
+            window.__exAutoBarrageColorTimer = null;
             return;
         }
-        let switcher = document.getElementsByClassName("FansBarrageSwitcher")[0];
+
         let isMatch = false;
+        let switcher = document.getElementsByClassName("FansBarrageSwitcher")[0];
         if (!switcher) {
             switcher = document.getElementsByClassName("MatchSystemFansBarrageSwitcher")[0];
             isMatch = true;
@@ -59,24 +68,34 @@ function selectHighestUnlockedBarrageColor() {
         if (!switcher) {
             return;
         }
-        clearInterval(intID);
 
         let itemClass = isMatch ? "MatchSystemFansBarrageColor-item" : "FansBarrageColor-item";
-        let items = document.getElementsByClassName(itemClass);
-        // 色板未展开时先点开
-        if (items.length === 0) {
+
+        // 与 BarrageLoop 一致：先点开粉丝色板，再等 DOM 渲染后选色
+        if (!opened) {
             switcher.click();
-            items = document.getElementsByClassName(itemClass);
+            opened = true;
+            return;
+        }
+
+        let items = document.getElementsByClassName(itemClass);
+        if (!items.length) {
+            // 面板可能仍在异步渲染，继续轮询
+            return;
         }
 
         let lastUnlocked = null;
         for (let i = 0; i < items.length; i++) {
-            if (items[i].className.indexOf("is-lock") === -1) {
+            if (!items[i].classList.contains("is-lock")) {
                 lastUnlocked = items[i];
             }
         }
-        if (lastUnlocked) {
-            lastUnlocked.click();
+        if (!lastUnlocked) {
+            return;
         }
-    }, 1000);
+
+        clearInterval(window.__exAutoBarrageColorTimer);
+        window.__exAutoBarrageColorTimer = null;
+        lastUnlocked.click();
+    }, 500);
 }
