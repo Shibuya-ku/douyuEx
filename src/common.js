@@ -356,10 +356,6 @@ function showExRightPanel(name) {
 			className: "livetool",
 		},
 		{
-			name: "全站抽奖信息",
-			className: "exlottery"
-		},
-		{
 			name: "弹幕小尾巴",
 			className: "ChatToolBar-DanmakuTail-Panel"
 		},
