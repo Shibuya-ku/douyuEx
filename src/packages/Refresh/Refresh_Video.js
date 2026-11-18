@@ -1,16 +1,23 @@
 let video_num = 0;
+let refreshVideoTimer = null;
+let refreshVideoReady = false;
 function initPkg_Refresh_Video() {
-    let timer = setInterval(() => {
+    if (refreshVideoTimer !== null || refreshVideoReady) return;
+    video_num = 0;
+    let timer = refreshVideoTimer = setInterval(() => {
         const controlbar = getValidDom([".right-e7ea5d", ".right-17e251"]);
         if (controlbar) {
             clearInterval(timer);
+            refreshVideoTimer = null;
             initPkg_Refresh_Video_Dom();
             initPkg_Refresh_Video_Func();
             initPkg_Refresh_Video_Set();
+            refreshVideoReady = true;
         }
         video_num++;
         if (video_num >= 100) {
             clearInterval(timer);
+            refreshVideoTimer = null;
         }
     }, 1500);
 }
@@ -23,7 +30,7 @@ function Refresh_Video_insertIcon() {
     a.id = "refresh-video";
     a.innerText = "隐藏礼物栏";
     let b = document.getElementsByClassName("menu-da2a9e")[0];
-    b.insertBefore(a, b.childNodes[b.childNodes.length -1]);
+    if (b) b.insertBefore(a, b.childNodes[b.childNodes.length -1]);
 
     if (!document.getElementById("refresh-video3")) {
         a = document.createElement("div");
@@ -70,6 +77,7 @@ function initPkg_Refresh_Video_Func() {
             chatPanel_isHidden = true;
         }
         const dom_player_toolbar = document.getElementById("js-player-toolbar");
+        if (!dom_player_toolbar) return;
         dom_player_toolbar.style = video_fullPage? "z-index:20" : "z-index:30";
         const dom_casebar = document.getElementsByClassName("case__f4yex")[0];
         if(dom_casebar){
@@ -137,7 +145,7 @@ function initPkg_Refresh_Video_Func() {
         let dom_video = getValidDom([".layout-Player-video", ".stream__T55I3"]);
         let dom_refresh = document.getElementById("refresh-video");
         let dom_refresh3 = document.getElementById("refresh-video3");
-        if (!dom_toolbar || !dom_video || !dom_refresh) return;
+        if (!dom_toolbar || !dom_video) return;
 
         if (dom_toolbar.style.visibility == "hidden") {
             dom_toolbar.style.visibility = "visible";
@@ -151,7 +159,7 @@ function initPkg_Refresh_Video_Func() {
                 dom_refresh3.style.pointerEvents = "none";
                 dom_refresh3.title = "点击隐藏礼物栏";
             }
-            dom_refresh.innerText = "隐藏礼物栏";
+            if (dom_refresh) dom_refresh.innerText = "隐藏礼物栏";
             updateRefreshSwitchUI(false);
             refresh_Video_removeStyle();
         } else {
@@ -160,7 +168,7 @@ function initPkg_Refresh_Video_Func() {
                 ExPanel_onGiftBarHide();
             }
             dom_video.style = "bottom:0;z-index:25";
-            dom_refresh.innerText = "✓ 隐藏礼物栏";
+            if (dom_refresh) dom_refresh.innerText = "✓ 隐藏礼物栏";
             if (dom_refresh3) dom_refresh3.title = "点击显示礼物栏";
             updateRefreshSwitchUI(true);
             
@@ -190,7 +198,8 @@ function initPkg_Refresh_Video_Func() {
         resizeWindow();
     }
 
-	document.getElementById("refresh-video").addEventListener("click", (e) => {
+    const menuEntry = document.getElementById("refresh-video");
+	if (menuEntry) menuEntry.addEventListener("click", (e) => {
         toggleRefreshVideo();
     });
 
@@ -218,6 +227,9 @@ function updateRefreshSwitchUI(isSimpleMode) {
 
 function refresh_Video_getStatus() {
     let dom_toolbar = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
+    if (!dom_toolbar || !refreshVideoReady) {
+        return !!Refresh_getSaved().video?.status;
+    }
     if (dom_toolbar.style.visibility == "hidden") {
         return true;
     } else {
@@ -226,44 +238,35 @@ function refresh_Video_getStatus() {
 }
 // FullPageFollowGuide
 function initPkg_Refresh_Video_Set() {
-    let ret = localStorage.getItem("ExSave_Refresh");
-    if (ret != null) {
-        let retJson = JSON.parse(ret);
-        if ("video" in retJson == false) {
-            retJson.video = {status: false};
-        }
-        if (retJson.video.status == true) {
-            let dom_toolbar = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
-            let dom_video = getValidDom([".layout-Player-video", ".stream__T55I3"]);
-            let dom_refresh = document.getElementById("refresh-video");
-            let dom_refresh3 = document.getElementById("refresh-video3");
-            let dom_player_toolbar = document.getElementById("js-player-toolbar");
-            dom_toolbar.style.visibility = "hidden";
-            dom_video.style = "bottom:0;z-index:25";
-            dom_player_toolbar.style = "z-index:30";
-            let ret = localStorage.getItem("ExSave_FullScreen");
-            if (ret != null) {
-                let retJson = JSON.parse(ret);
-                if (retJson.isFullScreen) {
-                    dom_player_toolbar.style = "z-index:20";
-                }
+    if (!Refresh_getSaved().video?.status) return;
+    const toolbar = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
+    const video = getValidDom([".layout-Player-video", ".stream__T55I3"]);
+    if (!toolbar || !video) return;
+    const menuEntry = document.getElementById("refresh-video");
+    const floatingEntry = document.getElementById("refresh-video3");
+    const playerToolbar = document.getElementById("js-player-toolbar");
+    toolbar.style.visibility = "hidden";
+    video.style = "bottom:0;z-index:25";
+    if (playerToolbar) {
+        playerToolbar.style = "z-index:30";
+        try {
+            if (JSON.parse(localStorage.getItem("ExSave_FullScreen"))?.isFullScreen) {
+                playerToolbar.style = "z-index:20";
             }
-            const isBeta = !!document.getElementsByClassName("live-next-body")[0];
-            if (isBeta) dom_player_toolbar.parentElement.style = "z-index:20";
-            if (dom_refresh3) {
-                dom_refresh3.style.opacity = "0";
-                dom_refresh3.style.transform = "scale(.9)";
-                dom_refresh3.style.pointerEvents = "none";
-                dom_refresh3.title = "点击显示礼物栏";
-            }
-            dom_refresh.innerText = "✓ 隐藏礼物栏";
-            refresh_Video_setStyle();
-            resizeWindow();
-            setTimeout(() => {
-                updateRefreshSwitchUI(true);
-            }, 500);
-        }
+        } catch (_) { }
+        const isBeta = !!document.getElementsByClassName("live-next-body")[0];
+        if (isBeta && playerToolbar.parentElement) playerToolbar.parentElement.style = "z-index:20";
     }
+    if (floatingEntry) {
+        floatingEntry.style.opacity = "0";
+        floatingEntry.style.transform = "scale(.9)";
+        floatingEntry.style.pointerEvents = "none";
+        floatingEntry.title = "点击显示礼物栏";
+    }
+    if (menuEntry) menuEntry.innerText = "✓ 隐藏礼物栏";
+    refresh_Video_setStyle();
+    resizeWindow();
+    setTimeout(() => updateRefreshSwitchUI(true), 500);
 }
 
 function refresh_Video_setStyle() {

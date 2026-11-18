@@ -1,10 +1,12 @@
 let barrageSpeed_count = 0;
+let barrageSpeed_timer = null;
 function initPkg_LiveTool_BarrageSpeed() {
-    // LiveTool_BarrageSpeed_Dom();
-    setInterval(() => {
+    if (barrageSpeed_timer !== null) return;
+    barrageSpeed_timer = setInterval(() => {
         let barrageSpeed = Number((barrageSpeed_count / 5) * 60).toFixed(0);
         barrageSpeed_count = 0;
         const dom = document.getElementsByClassName("ChatSend-txt")[0];
+        if (!dom) return;
         const text = `弹幕时速：${barrageSpeed }条/分`;
         dom.placeholder = text + " 按↑↓查看历史弹幕 视频ctrl+滚轮缩放";
         dom.setAttribute("data-placeholder", text);

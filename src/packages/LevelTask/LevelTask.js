@@ -1,78 +1,54 @@
-async function initPkg_LevelTask_Timer() {
-  checkLevelTask();
-  setInterval(checkLevelTask, 35 * 1000);
+let levelTaskTimer = null;
+let levelTaskChecking = false;
+
+function initPkg_LevelTask_Timer() {
+  if (levelTaskTimer !== null) return;
+  levelTaskTimer = setInterval(checkLevelTask, 35 * 1000);
+  return checkLevelTask();
 }
 
 async function checkLevelTask() {
-  let ids = await getLevelTaskIds(rid);
-  let tasks = await getLevelTasks(ids);
-  for (let i = 0; i < tasks.length; i++) {
-    const task = tasks[i];
-    const taskId = task.taskId;
-    const taskName = task.name
-    const taskStatus = task.taskStatus;
-    const prizeStatus = task.prizeStatus;
-    if (taskStatus == 1 && prizeStatus == 0) {
-      let result = await finishLevelTask(rid, taskId);
-      for (let j = 0; j < result.length; j++) {
-        showMessage(`【等级任务】${taskName} 获得${result[j].name}${result[j].num}`, "success");
+  if (levelTaskChecking) return;
+  levelTaskChecking = true;
+  try {
+    const ids = await getLevelTaskIds(rid);
+    if (!ids) return;
+    const tasks = await getLevelTasks(ids);
+    if (!Array.isArray(tasks)) return;
+    for (const task of tasks) {
+      if (task.taskStatus != 1 || task.prizeStatus != 0 || task.taskId == null) continue;
+      try {
+        const result = await finishLevelTask(rid, task.taskId);
+        for (const prize of result) {
+          showMessage(`【等级任务】${task.name} 获得${prize.name}${prize.num}`, "success");
+        }
+      } catch (error) {
+        console.warn("【等级任务】领取失败，下轮继续检查", error);
       }
     }
+  } catch (error) {
+    console.warn("【等级任务】检查失败，下轮重试", error);
+  } finally {
+    levelTaskChecking = false;
   }
 }
 
-function getLevelTaskIds(rid) {
-  return new Promise((resolve, reject) => {
-    fetch("https://www.douyu.com/japi/interactnc/web/userLevel/userLevelDetail?rid=" + rid, {
-        method: 'GET',
-        mode: 'no-cors',
-        credentials: 'include',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    }).then(res => {
-        return res.json();
-    }).then(ret => {
-        let ids = ret.data.taskIds.join(",");
-        resolve(ids);
-    }).catch(err => {
-        console.log("请求失败!", err);
-        reject(err);
-    })
-  })
+async function getLevelTaskIds(roomId) {
+  const ret = await signFetch("https://www.douyu.com/japi/interactnc/web/userLevel/userLevelDetail?rid=" + roomId);
+  return Array.isArray(ret?.data?.taskIds) ? ret.data.taskIds.join(",") : "";
 }
 
-function getLevelTasks(ids) {
-  return new Promise((resolve, reject) => {
-    fetch("https://www.douyu.com/japi/tasksys/userLevelTask/getTaskStatus?taskIds=" + ids, {
-        method: 'GET',
-        mode: 'no-cors',
-        credentials: 'include',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    }).then(res => {
-        return res.json();
-    }).then(ret => {
-        resolve(ret.data.list);
-    }).catch(err => {
-        console.log("请求失败!", err);
-        reject(err);
-    })
-  })
+async function getLevelTasks(ids) {
+  const ret = await signFetch("https://www.douyu.com/japi/tasksys/userLevelTask/getTaskStatus?taskIds=" + ids);
+  return ret?.data?.list;
 }
 
-function finishLevelTask(rid, taskid) {
-  return new Promise((resolve, reject) => {
-    fetch("https://www.douyu.com/japi/tasksys/userLevelTask/getPrize", {
-        method: 'POST',
-        mode: 'no-cors',
-        credentials: 'include',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `ctn=${getCCN()}&taskIds=${taskid}&roomId=${rid}`
-    }).then(res => {
-        return res.json();
-    }).then(ret => {
-        resolve(ret.data.list);
-    }).catch(err => {
-        console.log("请求失败!", err);
-        reject(err);
-    })
-  })
+async function finishLevelTask(roomId, taskId) {
+  const ret = await signFetch("https://www.douyu.com/japi/tasksys/userLevelTask/getPrize", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `ctn=${getCCN()}&taskIds=${taskId}&roomId=${roomId}`
+  });
+  if (!Array.isArray(ret?.data?.list)) throw new Error(ret?.msg || "未返回领奖结果");
+  return ret.data.list;
 }

@@ -1,5 +1,5 @@
 function initPkg_Menu() {
-    GM_registerMenuCommand(`检查更新`, () => {
-        Update_checkVersion(true);
-    })
+    GM_registerMenuCommand(`DouyuEx Lite ${curVersion}`, () => {
+        showMessage(`DouyuEx Lite ${curVersion}`, "info");
+    });
 }

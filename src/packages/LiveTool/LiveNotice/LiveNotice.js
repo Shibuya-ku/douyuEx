@@ -1,8 +1,3 @@
-let timer_closing;
-let closingNum = 0;
-function initPkg_LiveTool_LiveNotice() {
-}
-
 function initPkg_LiveTool_LiveNotice_Handle(text) {
     if (getType(text) == "rss") {
         let rid = getStrMiddle(text, "rid@=", "/");
@@ -14,18 +9,4 @@ function initPkg_LiveTool_LiveNotice_Handle(text) {
             });
         }
     }
-}
-
-function getRoomAvatar() {
-    fetch('https://www.douyu.com/betard/' + rid,{
-        method: 'GET',
-        mode: 'no-cors',
-        credentials: 'include'
-    }).then(res => {
-        return res.json();
-    }).then(ret => {
-        roomAvatar = ret.room.avatar.middle;
-    }).catch(err => {
-        console.log("请求失败!", err);
-    })
 }

@@ -1,6 +1,11 @@
 function initPkg_VideoTools_VideoSync() {
-    initPkg_VideoTools_VideoSync_Dom();
-    initPkg_VideoTools_VideoSync_Func();
+    const mount = () => {
+        if (!getValidDom([".left-d3671e", ".left-bfab3b"]) || document.getElementById("ex-videosync")) return;
+        initPkg_VideoTools_VideoSync_Dom();
+        initPkg_VideoTools_VideoSync_Func();
+    };
+    new DomHook(".left-d3671e, .left-bfab3b", false, mount);
+    mount();
 }
 
 function initPkg_VideoTools_VideoSync_Dom() {

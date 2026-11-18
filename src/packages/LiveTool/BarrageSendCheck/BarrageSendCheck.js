@@ -1,15 +1,23 @@
 let myLastBarrage = ""; // 浏览器弹幕框中的最后一条自己的弹幕内容
 let barrageSendCheckTimer = 0;
-let barrageSendCheckTimer2 = 0;
+let barrageSendCheckInitialized = false;
 async function initPkg_LiveTool_BarrageSendCheck() {
-  myName = await getUserName();
+  if (barrageSendCheckInitialized) return;
+  barrageSendCheckInitialized = true;
+  try {
+    myName = await getUserName();
+  } catch (error) {
+    barrageSendCheckInitialized = false;
+    throw error;
+  }
   let timer = setInterval(() => {
-    if (typeof document.getElementById("js-barrage-list") != "undefined") {
+    if (document.getElementById("js-barrage-list")) {
       clearInterval(timer);
       new DomHook("#js-barrage-list", false, (m) => {
         if (m.length <= 0) return;
         if (m[0].addedNodes.length <= 0) return;
         let dom = m[0].addedNodes[0];
+        if (!dom || !dom.getElementsByClassName) return;
         let isSelf = dom.getElementsByClassName("is-self").length > 0;
         if (!isSelf) return;
         const contentDom = dom.getElementsByClassName("Barrage-content");
@@ -25,6 +33,7 @@ async function initPkg_LiveTool_BarrageSendCheck() {
             }
             if (data.txt.replace(/\s+/g, " ") !== localLastBarrage.replace(/\s+/g, " ")) {
               let contentDom = dom.getElementsByClassName("Barrage-content")[0];
+              if (!contentDom) return;
               contentDom.style.textDecoration = "line-through gray 1px";
               if (contentDom && contentDom.parentNode) {
                 contentDom.parentNode.insertBefore(createBarrageFailDom(), contentDom.nextSibling);
@@ -50,7 +59,7 @@ function createBarrageFailDom() {
 
 function initPkg_LiveTool_BarrageSendCheck_Handle(text) {
   if (getType(text) == "chatmsg") {
-    if (!text.includes(myName)) return;
+    if (!myName || stt_deserialize(text).nn !== myName) return;
     myLastBarrage = text;
   }
 }

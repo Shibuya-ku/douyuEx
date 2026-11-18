@@ -1,15 +1,10 @@
+let barragePanelInitialized = false;
 function initPkg_BarragePanel() {
-	let timer = setInterval(() => {
-        if (document.getElementsByClassName("danmuTips-1ee820").length > 0) {
-            clearInterval(timer);
-            document.getElementsByClassName("danmuTips-1ee820")[0].parentElement.id = "Ex_BarragePanel";
-            setBarragePanelCallBack();
-        }
-    }, 1500);
-
+    if (barragePanelInitialized) return;
+    barragePanelInitialized = true;
+    setBarragePanelCallBack();
     initPkg_BarragePanel_Tip();
 }
-
 let barragePanel__isUpdating = false;
 
 function barragePanel__withGuard(fn) {
@@ -34,72 +29,24 @@ function barragePanel__replaceImageDanmakuInPanel() {
 }
 
 function setBarragePanelCallBack() {
-    let a = new DomHook("#Ex_BarragePanel", true, (m) => {
-        barragePanel__withGuard(() => {
-            let isAttributes = false;
-            if (m.length > 0) {
-                for (let i = 0; i < m.length; i++) {
-                    if (m[i].type == "attributes") {
-                        isAttributes = true;
-                        break;
-                    }
-                }
-                if (isAttributes == false) {
-                    let addedNodes = m[0].addedNodes;
-                    if (addedNodes.length > 0) {
-                        let barragePanel = addedNodes[0];
-                        if ("getElementsByClassName" in barragePanel == false) {
-                            return;
-                        }
-                        const barragePanelButton = barragePanel.getElementsByClassName("buttonGroup-de6b66")[0];
-                        let userNameDom = barragePanel.getElementsByClassName("danmuAuthor-3d7b4a");
-                        let id = "";
-                        if (userNameDom.length > 0) {
-                            id = userNameDom[0].innerText;
-                            setUserFansMedal(userNameDom[0], id);
-                            setReplyBarrageButton(barragePanelButton);
-                            setSearchBarrageButton(barragePanelButton);
-                            setBarragePanelButtonSplit(barragePanelButton);
-                            setMuteButton(barragePanelButton);
-                            setBarrgePanelFunc(barragePanelButton, id);
-                        }
-                    }
-                } else {
-                    let tmp = document.getElementsByClassName("barragePanel__funcPanel");
-                    if (tmp.length > 0) {
-                        tmp[0].remove();
-                    }
-                    let barragePanel = document.getElementsByClassName("danmudiv-32f498")[0];
-                    if (barragePanel == undefined) {
-                        return;
-                    }
-                    const barragePanelButton = barragePanel.getElementsByClassName("buttonGroup-de6b66")[0];
-                    let userNameDom = barragePanel.getElementsByClassName("danmuAuthor-3d7b4a");
-
-                    let id = "";
-                    if (userNameDom.length > 0) {
-                        id = userNameDom[0].innerText;
-                        setUserFansMedal(userNameDom[0], id);
-                        setReplyBarrageButton(barragePanelButton);
-                        setSearchBarrageButton(barragePanelButton);
-                        setBarragePanelButtonSplit(barragePanelButton);
-                        setMuteButton(barragePanelButton);
-                        setBarrgePanelFunc(barragePanelButton, id);
-                    }
-                    barragePanel__replaceImageDanmakuInPanel();
-                }
-            }
-        });
+    const update = () => barragePanel__withGuard(() => {
+        const panel = document.getElementsByClassName("danmudiv-32f498")[0];
+        if (!panel) return;
+        const buttons = panel.getElementsByClassName("buttonGroup-de6b66")[0];
+        const author = panel.getElementsByClassName("danmuAuthor-3d7b4a")[0];
+        if (buttons && author) {
+            const existingName = author.querySelector("#barragePanel__id");
+            const name = existingName ? existingName.textContent : author.innerText;
+            setUserFansMedal(author, name);
+            setReplyBarrageButton(buttons);
+            setBarrgePanelFunc(buttons, name);
+        }
+        barragePanel__replaceImageDanmakuInPanel();
     });
-
-    new DomHook("#Ex_BarragePanel", false, (m) => {
-        barragePanel__withGuard(() => {
-            barragePanel__replaceImageDanmakuInPanel();
-        });
-    })
-    
+    // The native popup can be replaced after player re-rendering.
+    new DomHook(":has(> .danmuTips-1ee820)", true, update);
+    update();
 }
-
 function getUserFansMedal(userName) {
     let ret = false;
     let barrageList = document.getElementsByClassName("Barrage-listItem");
@@ -144,7 +91,7 @@ function setUserFansMedal(dom, userName) {
         if (dom.childNodes && dom.childNodes.length > 0) dom.removeChild(dom.childNodes[0]);
         let userLevel = getUserLevelText(userName);
         let a = document.createElement("span");
-        a.innerHTML = userName;
+        a.textContent = userName;
         a.title = userLevel;
         a.id = "barragePanel__id";
         dom.insertBefore(a, dom.childNodes[0] || null);
@@ -166,57 +113,6 @@ function setUserFansMedal(dom, userName) {
     }
 }
 
-function setBarragePanelButtonSplit(dom) {
-    if (document.getElementById("barragePanel__split") != null) {
-        return;
-    }
-    let a = document.createElement("br");
-    a.id = "barragePanel__split";
-    dom.appendChild(a);
-}
-
-function setMuteButton(dom) {
-    if (document.getElementById("barragePanel__mute") != null) {
-        return;
-    }
-    if (document.getElementsByClassName("barragePanel__muteTime").length > 0) {
-        return;
-    }
-    let a = document.createElement("div");
-    a.style = "display:flex;align-items:center;width:100%;gap:8px;";
-    a.innerHTML = `
-        <div class="button-7e1395" id="barragePanel__mute" style="z-index:5">禁言</div>
-        <div class="barragePanel__muteTime" style="z-index:5">
-            <select id="barragePanel__muteSelect" style='width:55px'>
-                <option value="1">1分钟</option>
-                <option value="10">10分钟</option>
-                <option value="30">30分钟</option>
-                <option value="60">1小时</option>
-                <option value="480">8小时</option>
-                <option value="1440">1天</option>
-                <option value="4320">3天</option>
-                <option value="10080">7天</option>
-                <option value="43200">30天</option>
-                <option value="259200">180天</option>
-                <option value="518400">360天</option>
-            </select>
-        </div>
-    `
-    dom.appendChild(a);
-}
-
-function setSearchBarrageButton(dom) {
-    if (document.getElementById("barragePanel__search") != null) {
-        return;
-    }
-    let a = document.createElement("div");
-    a.className = "button-7e1395";
-    a.innerText = "查弹幕";
-    a.id = "barragePanel__search";
-    a.style = "z-index:5";
-    dom.appendChild(a);
-}
-
 function setReplyBarrageButton(dom) {
     if (document.getElementById("barragePanel__reply") != null) {
         return;
@@ -231,8 +127,10 @@ function setReplyBarrageButton(dom) {
 
 function setBarrgePanelFunc(parentDom, id) {
     document.getElementById("barragePanel__reply").onclick = () => {
-        let txt = document.getElementsByClassName("danmuContent-25f266")[0].innerText;
+        const content = document.getElementsByClassName("danmuContent-25f266")[0];
         const chatDom = document.getElementsByClassName("ChatSend-txt")[0];
+        if (!content || !chatDom) return;
+        const txt = content.innerText;
         const value = `@${ id }：${ txt }`;
         if (chatDom.tagName == "TEXTAREA") {
             chatDom.value = value;
@@ -242,88 +140,4 @@ function setBarrgePanelFunc(parentDom, id) {
         chatDom.focus();
     };
 
-    document.getElementById("barragePanel__mute").onclick = async () => {
-        let value = document.getElementById("barragePanel__muteSelect").value || "1";
-        let ret = await addMuteUser(rid, id, value);
-        if (ret.msg == "添加成功") {
-            showMessage(`【禁言】${id}已被禁言${value}分钟`, "success");
-        } else {
-            showMessage(ret.msg, "error");
-        }
-    };
-    
-    document.getElementById("barragePanel__search").onclick = async () => {
-        let uid = await getUserUid(id);
-        if (uid !== "") {
-            openPage(`https://www.doseeing.com/data/fan/${uid}?type=chat&dt=0`, true);
-        }
-    };
 }
-
-function insertBarragePanel_SearchBarrage_Dom(parentDom) {
-    let pMarginLeft = parseInt(parentDom.style.marginLeft);
-    let newMarginLeft = "-237px";
-    if (pMarginLeft > 237) {
-        newMarginLeft = "-237px";
-    } else {
-        newMarginLeft = "237px";
-    }
-    
-    let a = document.createElement("div");
-    a.className = "barragePanel__funcPanel";
-    a.style = `margin-left:${newMarginLeft}`;
-    a.innerHTML = `
-    <ul class="layui-timeline" id="barragePanel__searchPanel">
-        
-    </ul>
-    `;
-
-    parentDom.insertBefore(a, parentDom.childNodes[0]);
-}
-
-
-function getUserRecentBarrage(name) {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "http://dyapi.fz996.com/api/Wx/GetDataBarrage?keyword=" + name,
-            responseType: "json",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            onload: function(response) {
-                let ret = response.response;
-                resolve(ret);
-            }
-        });
-    });
-}
-
-function getUserUid(name) {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "https://www.doseeing.com/api/suggest_all?type=room&nickname=" + encodeURIComponent(name),
-            responseType: "json",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            onload: function(response) {
-                let ret = response.response;
-                let success = true;
-                if (!ret.suggest) success = false;
-                if (!ret.suggest.fan) success = false;
-                if (ret.suggest.fan.length === 0) success = false;
-                if (ret.suggest.fan[0].nickname !== name) success = false;
-                if (success) {
-                    resolve(ret.suggest.fan[0].user_id);
-                } else {
-                    resolve("");
-                    return;
-                }
-            }
-        });
-    });
-}
-
-

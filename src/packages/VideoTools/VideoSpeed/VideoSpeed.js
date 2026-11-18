@@ -1,6 +1,11 @@
 function initPkg_VideoTools_VideoSpeed() {
-    initPkg_VideoTools_VideoSpeed_Dom();
-    initPkg_VideoTools_VideoSpeed_Func();
+    const mount = () => {
+        if (!document.querySelector(".menu-da2a9e") || document.getElementById("ex-videospeed")) return;
+        initPkg_VideoTools_VideoSpeed_Dom();
+        initPkg_VideoTools_VideoSpeed_Func();
+    };
+    new DomHook(".menu-da2a9e", false, mount);
+    mount();
 }
 
 function initPkg_VideoTools_VideoSpeed_Dom() {

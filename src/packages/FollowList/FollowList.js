@@ -1,15 +1,21 @@
 let followListHook;
+const followListPending = new WeakMap();
+let followListInitTimer = null;
 function initPkg_FollowList() {
-    let intID = setInterval(() => {
+    if (followListHook || followListInitTimer !== null) return;
+    followListInitTimer = setInterval(() => {
         if (getValidDom([".Header-follow-content", "#js-backpack-enter"])) {
             followListHook = new DomHook(".Header-follow-content", false, handleFollowList);
-            clearInterval(intID);
+            clearInterval(followListInitTimer);
+            followListInitTimer = null;
         }
     }, 1000);
 }
 
 function handleFollowList(m) {
-    let active = document.getElementsByClassName("Header-follow-tab is-active")[0].innerText;
+    const activeTab = document.getElementsByClassName("Header-follow-tab is-active")[0];
+    if (!activeTab) return;
+    let active = activeTab.innerText;
     if (active === "特别关注" || active === "视频动态") {
         return;
     }
@@ -17,16 +23,24 @@ function handleFollowList(m) {
     if (panel.length == 0) {
         return;
     }
-    // panel[0].style.marginTop = "12px";
-    document.getElementsByClassName("Header-follow-listBox")[0].style.display = "none";
-    setNewFollowList(panel[0]);
+    return setNewFollowList(panel[0]).catch((error) => console.error("[DouyuEx Lite] 关注列表", error));
 }
-async function setNewFollowList(panel) {
+function setNewFollowList(panel) {
+    if (followListPending.has(panel)) return followListPending.get(panel);
+    const request = renderFollowList(panel).finally(() => followListPending.delete(panel));
+    followListPending.set(panel, request);
+    return request;
+}
+async function renderFollowList(panel) {
+    const activeTab = document.getElementsByClassName("Header-follow-tab is-active")[0];
+    const requestedTab = activeTab && activeTab.innerText;
     let loadInCurrentPage = await GM_getValue("Ex_LoadInCurrentPage", false);
     let followList = await getFollowList();
-    if (followList.error != "0") {
-        return;
-    }
+    const currentTab = document.getElementsByClassName("Header-follow-tab is-active")[0];
+    if (!panel.isConnected || !currentTab || currentTab.innerText !== requestedTab
+        || currentTab.innerText === "特别关注" || currentTab.innerText === "视频动态"
+        || document.getElementsByClassName("Header-follow-listWrap")[0] !== panel) return;
+    if (!followList || followList.error != "0" || !followList.data || !Array.isArray(followList.data.list)) return;
     const FOLLOWLIST_LIMIT = 10; // 关注列表最多显示个数
     let limit = 0;
     let html = `
@@ -51,7 +65,13 @@ async function setNewFollowList(panel) {
             break;
         }
     }
-    panel.innerHTML += html;
+    // Replace only our entries; reparsing the whole native panel drops its listeners.
+    const content = document.createElement("div");
+    content.innerHTML = html;
+    panel.querySelectorAll("#refreshFollowList, .ExFollowListItem").forEach((item) => item.remove());
+    while (content.firstChild) panel.appendChild(content.firstChild);
+    const originalList = document.getElementsByClassName("Header-follow-listBox")[0];
+    if (originalList) originalList.style.display = "none";
 
     const loadInCurrentPageCheckbox = panel.querySelector('#loadInCurrentPageCheckbox');
     if (loadInCurrentPageCheckbox) {
@@ -62,12 +82,13 @@ async function setNewFollowList(panel) {
         });
     }
 
-    let followListItems = document.getElementsByClassName("ExFollowListItem");
+    let followListItems = panel.querySelectorAll(".ExFollowListItem");
     for (let i = 0; i < followListItems.length; i++) {
         let cclick = new CClick(followListItems[i]);
         cclick.longClick(() => {
             createNewVideo(videoPlayerArr.length, followListItems[i].getAttribute("rid"), "Douyu");
-            document.querySelector(".Follow .public-DropMenu").className = "public-DropMenu";
+            const menu = document.querySelector(".Follow .public-DropMenu");
+            if (menu) menu.className = "public-DropMenu";
         });
         cclick.click(async (event) => {
             event.preventDefault();
@@ -89,16 +110,5 @@ async function setNewFollowList(panel) {
 }
 
 function getFollowList() {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/list?sort=1&cid1=0", {
-            method: 'GET',
-            mode: 'no-cors',
-            credentials: 'include',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        }).then(res => {
-            return res.json();
-        }).then(ret => {
-            resolve(ret);
-        })
-    })
+    return signFetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/list?sort=1&cid1=0");
 }

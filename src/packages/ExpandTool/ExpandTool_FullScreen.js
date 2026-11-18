@@ -1,3 +1,6 @@
+let exFullScreenTimer = null;
+let exHighestVideoQualityTimer = null;
+
 function initPkg_ExpandTool_FullScreen() {
     ExpandTool_FullScreen_insertDom();
     ExpandTool_FullScreen_insertFunc();
@@ -57,12 +60,16 @@ function initFullScreen() {
 }
 
 function fullScreen() {
+    if (exFullScreenTimer !== null) clearInterval(exFullScreenTimer);
     let count = 0;
-    let intID1 = setInterval(() => {
+    let intID1 = exFullScreenTimer = setInterval(() => {
         count++;
-        if (count > 100) clearInterval(intID1);
-        if (getValidDom([".wfs-2a8e83", ".icon-c8be96"])) {
+        if (count > 100) {
             clearInterval(intID1);
+            exFullScreenTimer = null;
+            return;
+        }
+        if (getValidDom([".wfs-2a8e83", ".icon-c8be96"])) {
             let dom = document.querySelector("div.wfs-2a8e83");
             if (dom) {
                 dom.click();
@@ -71,8 +78,12 @@ function fullScreen() {
                 if (dom.length >= 2) {
                     // 因为网页全屏按钮在倒数第二个
                     dom[dom.length - 2].click();
+                } else {
+                    return;
                 }
             }
+            clearInterval(intID1);
+            exFullScreenTimer = null;
         }
     }, 1000);
 }
@@ -117,15 +128,21 @@ function initHighestVideoQuality() {
 }
 
 function highestVideoQuality() {
+    if (exHighestVideoQualityTimer !== null) clearInterval(exHighestVideoQualityTimer);
     let count = 0;
-    let intID1 = setInterval(() => {
+    let intID1 = exHighestVideoQualityTimer = setInterval(() => {
         count++;
-        if (count > 100) clearInterval(intID1);
+        if (count > 100) {
+            clearInterval(intID1);
+            exHighestVideoQualityTimer = null;
+            return;
+        }
         const qualityContainer = document.querySelector('[class^="tipItem-"]:has([value^="画质"])') || document.querySelector('[class^="tip-"]:has([value^="画质"])');
         if (qualityContainer) {
-            clearInterval(intID1);
             const highestQualityOption = qualityContainer.querySelector('ul > li:first-child');
             if (highestQualityOption) {
+                clearInterval(intID1);
+                exHighestVideoQualityTimer = null;
                 const isAlreadySelected = highestQualityOption.matches('[class^="selected-"]');
                 if (!isAlreadySelected) highestQualityOption.click(); 
             }

@@ -23,7 +23,8 @@ class DyVideoSign {
             c = Math.floor(t.length / 8);
         for (o = 0; o < c; o++) l[o] = 255 & parseInt(t.substr(8 * o, 2), 16) | parseInt(t.substr(8 * o + 2, 2), 16) << 8 & 65280 | parseInt(t.substr(8 * o + 4, 2), 16) << 24 >>> 8 | parseInt(t.substr(8 * o + 6, 2), 16) << 24;
         var p = [];
-        p = 0 == s ? e86500e2(l, i) : 1 == s ? this.c30070a4(l, i) : d831eb20(l, i);
+        if (s !== 1) throw new Error("Unsupported replay signature format");
+        p = this.c30070a4(l, i);
         var h = [];
         for (o = 0; o < p.length; o++) {
             var f = 255 & p[o],

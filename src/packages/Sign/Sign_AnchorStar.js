@@ -1,70 +1,46 @@
 async function initPkg_Sign_AnchorStar() {
-  const roomListRes = await getAnchorStarRoomList().catch(() => {});
-  const roomList = roomListRes.data.rankItemList;
-  if (!roomList || (roomList && roomList.length == 0)) return;
-  for (let i = 0; i < 3; i++) {
-    const rid = roomList[i].rid;
-    if (!rid) continue;
-    await signAnchorStar(rid);
-    await sleep(500);
-  }
-  showMessage("【星推】签到任务完成", "success");
-  for (let i = 0; i < 5; i++) {
-    const rid = roomList[i].rid;
-    if (!rid) continue;
-    const res = await addFollowRoom(rid);
-    await sleep(500);
-    if (res.error == 1) {
-      // 已关注（再关注回来）
-      await removeFollowRoom(rid);
-      await sleep(500);
-      await addFollowRoom(rid);
-    } else {
-      await removeFollowRoom(rid);
+  const result = await getAnchorStarRoomList();
+  const rooms = result?.data?.rankItemList;
+  if (!Array.isArray(rooms) || !rooms.length) return;
+  for (const room of rooms.slice(0, 3)) {
+    if (!room?.rid) continue;
+    try {
+      const ret = await signAnchorStar(room.rid);
+      if (ret.error != null && ret.error != 0) showMessage(`【星推】${room.rid} ${ret.msg || "签到未成功"}`, "warning");
+    } catch (error) {
+      showMessage(`【星推】${room.rid}签到请求失败`, "error");
     }
     await sleep(500);
   }
-  showMessage("【星推】关注任务完成", "success");
+  showMessage("【星推】签到任务处理完成", "info");
+  for (const room of rooms.slice(0, 5)) {
+    if (!room?.rid) continue;
+    try {
+      const ret = await followRoom(room.rid);
+      await sleep(500);
+      if (ret.error == 1) {
+        await unfollowRoom(room.rid);
+        await sleep(500);
+        await followRoom(room.rid);
+      } else {
+        await unfollowRoom(room.rid);
+      }
+    } catch (error) {
+      showMessage(`【星推】${room.rid}关注任务请求失败`, "error");
+    }
+    await sleep(500);
+  }
+  showMessage("【星推】关注任务处理完成", "info");
 }
 
 function getAnchorStarRoomList() {
-  return new Promise((resolve, reject) => {
-    fetch(`https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/rank/info?rid=${rid}&type=5&track=3`, {
-      method: "GET",
-      mode: "no-cors",
-      credentials: "include"
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((ret) => {
-        resolve(ret);
-      })
-      .catch((err) => {
-        console.log("请求失败!", err);
-        reject(err);
-      });
-  });
+  return signFetch(`https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/rank/info?rid=${rid}&type=5&track=3`);
 }
 
-function signAnchorStar(rid) {
-  return new Promise((resolve, reject) => {
-    fetch("https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/user/task/report", {
-      method: "POST",
-      mode: "no-cors",
-      credentials: "include",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `ctn=${getCCN()}&type=5&rid=${rid}`
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((ret) => {
-        resolve(ret);
-      })
-      .catch((err) => {
-        console.log("请求失败!", err);
-        reject(err);
-      });
+function signAnchorStar(roomId) {
+  return signFetch("https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/user/task/report", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `ctn=${getCCN()}&type=5&rid=${roomId}`
   });
 }

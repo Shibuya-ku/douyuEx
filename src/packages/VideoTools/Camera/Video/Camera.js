@@ -54,9 +54,21 @@ function initPkg_VideoTools_Camera_Video_Func() {
   let imgBase64;
   let timer_timeout = 0;
   let isClosed = false;
+    let recording = false;
+    const cancelCapture = () => {
+        recording = false;
+        clearInterval(timer);
+        if (gif && typeof gif.abort === "function") {
+            try { gif.abort(); } catch (error) { }
+        }
+        gif = null;
+    };
+    window.addEventListener("blur", cancelCapture);
+    window.addEventListener("pagehide", cancelCapture);
 
   closeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
+        cancelCapture();
     if (confirm("是否7天内不再显示？")) {
       localStorage.setItem("ExSave_Camera_Hidden", Date.now() + 7 * 24 * 60 * 60 * 1000);
     } else {
@@ -92,13 +104,14 @@ function initPkg_VideoTools_Camera_Video_Func() {
     clearTimeout(timer_timeout);
   });
   if (dom_video) {
-    dom_video.addEventListener("mouseleave", () => {
+    if (dom_video) dom_video.addEventListener("mouseleave", () => {
       camera.style.display = "none";
       clearTimeout(timer_timeout);
     });
   }
   camera.addEventListener("mousedown", (e) => {
-    if (e.target.id === "ex-camera-close") return;
+    if (e.target.id === "ex-camera-close" || (e.button != null && e.button !== 0)) return;
+        recording = true;
     clearInterval(timer);
     if (gif && typeof gif.abort === "function") {
       try {
@@ -125,8 +138,9 @@ function initPkg_VideoTools_Camera_Video_Func() {
       cameraAddFrame(liveVideoNode, camera_canvas, gif, camera_fps);
     }, camera_fps);
   });
-  camera.addEventListener("mouseup", (e) => {
-    if (e.target.id === "ex-camera-close") return;
+  document.addEventListener("mouseup", (e) => {
+        if (!recording) return;
+        recording = false;
     let upTime = new Date().getTime();
     clearInterval(timer);
     if (upTime - downTime >= 800) {

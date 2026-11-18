@@ -2,7 +2,10 @@ let autoFishInfo = [];
 let baitId = null;
 let nextFishEndTime = 0;
 let isFishing = false;
-let timerAutoFish = 0;
+let timerAutoFish = null;
+let autoFishGeneration = 0;
+let autoFishBusy = false;
+let autoFishReady = false;
 
 function initPkg_ExpandTool_AutoFish() {
   ExpandTool_AutoFish_insertDom();
@@ -11,130 +14,144 @@ function initPkg_ExpandTool_AutoFish() {
 }
 
 function ExpandTool_AutoFish_insertDom() {
-  let html = "";
-  html += '<label><input id="extool__autofish_start" type="checkbox">自动钓鱼</label><br>';
-  html += '<label><input name="autofish_mode" type="radio" value="all" checked>全天</label>';
-  html += '<label style="margin-left:5px;"><input name="autofish_mode" type="radio" value="contest">钓鱼大赛</label>';
-
-  let a = document.createElement("div");
-  a.className = "extool__autofish";
-  a.innerHTML = html;
-  let b = document.getElementsByClassName("extool")[0];
-  b.insertBefore(a, b.childNodes[0]);
+  const section = document.createElement("div");
+  section.className = "extool__autofish";
+  section.innerHTML = '<label><input id="extool__autofish_start" type="checkbox">自动钓鱼</label><br>'
+    + '<label><input name="autofish_mode" type="radio" value="all" checked>全天</label>'
+    + '<label><input name="autofish_mode" type="radio" value="contest">钓鱼大赛</label>';
+  const panel = document.getElementsByClassName("extool")[0];
+  panel.insertBefore(section, panel.childNodes[0]);
 }
+
 function ExpandTool_AutoFish_insertFunc() {
-  document.querySelectorAll('input[name="autofish_mode"]').forEach(radio => {
+  document.querySelectorAll('input[name="autofish_mode"]').forEach((radio) => {
     radio.addEventListener("change", saveData_AutoFish);
   });
-  
-  document.getElementById("extool__autofish_start").addEventListener("click", async () => {
+  document.getElementById("extool__autofish_start").addEventListener("click", () => {
     saveData_AutoFish();
-    const isStart = document.getElementById("extool__autofish_start").checked;
-    AutoFish_lockMode(isStart);
-    if (!isStart) {
-      clearInterval(timerAutoFish);
-      return;
-    }
-    showMessage("【自动钓鱼】开始自动钓鱼", "info");
-    autoFishInfo = await AutoFish_getFishInfo();
-    const homepageRes = await AutoFish_getHomepageData();
-    if (homepageRes.data) {
-      let baitData = homepageRes.data.baits.find((item) => item.inUse);
-      if (!baitData) {
-        document.getElementById("extool__autofish_start").checked = false;
-        AutoFish_lockMode(false);
-        return showMessage("【自动钓鱼】请设置鱼饵", "error");
-      }
-      baitId = baitData.id;
-
-      const myCh = homepageRes.data.myCh;
-      if (!myCh) {
-        document.getElementById("extool__autofish_start").checked = false;
-        AutoFish_lockMode(false);
-        return showMessage("【自动钓鱼】请设置形象", "error");
-      }
+    if (document.getElementById("extool__autofish_start").checked) {
+      AutoFish_startLoop();
     } else {
-      document.getElementById("extool__autofish_start").checked = false;
-      AutoFish_lockMode(false);
-      return showMessage("【自动钓鱼】未能获取活动信息", "error");
+      AutoFish_stopLoop();
     }
-    saveData_AutoFish();
-
-    if (homepageRes.data.fishing.stat == 0) {
-      // 未开始钓鱼
-      isFishing = false;
-      nextFishEndTime = 0;
-    }
-
-    if (homepageRes.data.fishing.stat == 1) {
-      // 还在钓鱼中
-      isFishing = true;
-      nextFishEndTime = homepageRes.data.fishing.fishEtMs;
-    }
-
-    if (homepageRes.data.fishing.stat == 2) {
-      // 上一次未收杆
-      await endFish();
-      await sleep(1000);
-    }
-
-    timerAutoFish = setInterval(async () => {
-      // 检查是否在钓鱼大赛时间内
-      if (!isInFishingTime()) return;
-      
-      if (isFishing) {
-        // 正在钓鱼中，检测是否到时间收杆
-        const now = new Date().getTime();
-        if (now <= nextFishEndTime) return;
-        await endFish();
-      } else {
-        const fishRes = await AutoFish_startFish();
-        if (fishRes.error !== 0) {
-          showMessage(`【自动钓鱼】${fishRes.msg}`, "error");
-          console.log(fishRes, "钓鱼失败");
-          if (fishRes.error == 1001007) {
-            // 操作失败
-            await endFish();
-          }
-          if (fishRes.error == 1005003) {
-            // 鱼饵不足
-            clearInterval(timerAutoFish);
-          }
-          return;
-        }
-        isFishing = true;
-
-        nextFishEndTime = fishRes.data.fishing.fishEtMs;
-      }
-    }, 1500);
   });
 }
 
-async function endFish() {
-  const fishRes = await AutoFish_endFish();
-  if (fishRes.error !== 0) {
-    console.log(fishRes, "收杆失败");
-    const homepageRes = await AutoFish_getHomepageData();
-    if (homepageRes.data.fishing.stat == 0) {
-      // 钓鱼已完成
-      isFishing = false;
-      nextFishEndTime = 0;
-    }
+function AutoFish_isActive(generation) {
+  const checkbox = document.getElementById("extool__autofish_start");
+  return generation === autoFishGeneration && !!(checkbox && checkbox.checked);
+}
+
+function AutoFish_stopLoop() {
+  autoFishGeneration++;
+  if (timerAutoFish !== null) clearInterval(timerAutoFish);
+  timerAutoFish = null;
+  autoFishReady = false;
+  const checkbox = document.getElementById("extool__autofish_start");
+  if (checkbox) checkbox.checked = false;
+  AutoFish_lockMode(false);
+  saveData_AutoFish();
+}
+
+function AutoFish_startLoop() {
+  if (timerAutoFish !== null) clearInterval(timerAutoFish);
+  const generation = ++autoFishGeneration;
+  autoFishReady = false;
+  AutoFish_lockMode(true);
+  showMessage("【自动钓鱼】开始自动钓鱼", "info");
+  // 即使一次请求失败也保留后续检查；所有轮次共享请求锁，避免慢请求重叠。
+  timerAutoFish = setInterval(() => AutoFish_tick(generation), 1500);
+  AutoFish_tick(generation);
+}
+
+async function AutoFish_prepare(generation) {
+  const info = await AutoFish_getFishInfo();
+  if (!AutoFish_isActive(generation)) return;
+  autoFishInfo = Array.isArray(info) ? info : [];
+  const homepageRes = await AutoFish_getHomepageData();
+  if (!AutoFish_isActive(generation)) return;
+  const data = homepageRes && homepageRes.data;
+  if (!data || !data.fishing) {
+    throw new Error("未能获取活动信息");
+  }
+  const bait = Array.isArray(data.baits) && data.baits.find((item) => item.inUse);
+  if (!bait || !data.myCh) {
+    AutoFish_stopLoop();
+    showMessage(bait ? "【自动钓鱼】请设置形象" : "【自动钓鱼】请设置鱼饵", "error");
     return;
   }
-  let str = `【自动钓鱼】`;
-  let fishData = autoFishInfo.find((item) => item.fishId == fishRes.data.fish.id);
-  if (fishData) {
-    str += `获得${fishData.name}${fishRes.data.fish.wei}斤`;
+  baitId = bait.id;
+  isFishing = data.fishing.stat == 1;
+  nextFishEndTime = isFishing ? data.fishing.fishEtMs : 0;
+  if (data.fishing.stat == 2) {
+    // 恢复上一次已完成但未收竿的结果。
+    await endFish(generation);
+    if (!AutoFish_isActive(generation)) return;
+    await sleep(1000);
   }
-  if (fishRes.data.awards && fishRes.data.awards.length > 0) {
-    for (let i = 0; i < fishRes.data.awards.length; i++) {
-      let award = fishRes.data.awards[i];
-      str += `${fishData ? "，" : ""}获得${award.awardName}x${award.awardNum}`;
+  if (AutoFish_isActive(generation)) autoFishReady = true;
+}
+
+async function AutoFish_tick(generation) {
+  if (!AutoFish_isActive(generation) || autoFishBusy) return;
+  autoFishBusy = true;
+  try {
+    if (!autoFishReady) {
+      await AutoFish_prepare(generation);
+      return;
     }
+    if (!isInFishingTime()) return;
+    if (isFishing) {
+      if (Date.now() <= nextFishEndTime) return;
+      await endFish(generation);
+      return;
+    }
+    const fishRes = await AutoFish_startFish();
+    if (!AutoFish_isActive(generation)) return;
+    if (fishRes.error !== 0) {
+      showMessage("【自动钓鱼】" + fishRes.msg, "error");
+      if (fishRes.error == 1001007) await endFish(generation);
+      if (fishRes.error == 1005003) AutoFish_stopLoop();
+      return;
+    }
+    isFishing = true;
+    nextFishEndTime = fishRes.data.fishing.fishEtMs;
+  } catch (err) {
+    if (AutoFish_isActive(generation)) {
+      showMessage("【自动钓鱼】请求失败，将继续检查", "error");
+      console.log("自动钓鱼请求失败", err);
+    }
+  } finally {
+    autoFishBusy = false;
   }
-  if (str !== "【自动钓鱼】") showMessage(str, "success");
+}
+
+async function endFish(generation = autoFishGeneration) {
+  if (!AutoFish_isActive(generation)) return;
+  const fishRes = await AutoFish_endFish();
+  if (!AutoFish_isActive(generation)) return;
+  if (fishRes.error !== 0) {
+    const homepageRes = await AutoFish_getHomepageData();
+    if (!AutoFish_isActive(generation)) return;
+    const fishing = homepageRes.data && homepageRes.data.fishing;
+    if (!fishing) throw new Error("未能确认收竿状态");
+    isFishing = fishing.stat != 0;
+    nextFishEndTime = isFishing ? fishing.fishEtMs : 0;
+    return;
+  }
+  const fish = fishRes.data && fishRes.data.fish;
+  const fishData = fish && autoFishInfo.find((item) => item.fishId == fish.id);
+  let message = "【自动钓鱼】";
+  if (fishData) message += "获得" + fishData.name + fish.wei + "斤";
+  const awards = fishRes.data && fishRes.data.awards;
+  if (Array.isArray(awards)) {
+    awards.forEach((award) => {
+      message += (message !== "【自动钓鱼】" ? "，" : "") + "获得" + award.awardName + "x" + award.awardNum;
+    });
+  }
+  if (message !== "【自动钓鱼】") showMessage(message, "success");
   isFishing = false;
+  nextFishEndTime = 0;
 }
 
 function AutoFish_getSave() {
@@ -183,95 +200,45 @@ function ExpandTool_AutoFish_Set() {
   if (!data.rids.includes(rid)) return;
   
   // 设置模式（兼容旧版本，默认全天）
-  let mode = data.modes && data.modes[rid] ? data.modes[rid] : "all";
+  let mode = data.modes && data.modes[rid] === "contest" ? "contest" : "all";
   document.querySelector(`input[name="autofish_mode"][value="${mode}"]`).checked = true;
   
   document.getElementById("extool__autofish_start").click();
 }
 
-function AutoFish_getFishInfo() {
-  return new Promise((resolve) => {
-    fetch(`https://www.douyu.com/japi/revenuenc/web/actfans/achieve/accList?rid=${rid}&type=1&period=1`, {
-      method: "GET",
-      mode: "no-cors",
-      cache: "default",
-      credentials: "include"
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((ret) => {
-        if (ret.data) {
-          resolve(ret.data.accList);
-        } else {
-          resolve([]);
-        }
-      })
-      .catch((err) => {
-        console.log("请求失败!", err);
-      });
-  });
+async function AutoFish_request(url, options = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+  try {
+    const response = await fetch(url, { credentials: "include", ...options, signal: controller.signal });
+    return await response.json();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function AutoFish_getFishInfo() {
+  const ret = await AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/achieve/accList?rid=" + rid + "&type=1&period=1");
+  return ret.data && ret.data.accList || [];
 }
 
 function AutoFish_getHomepageData() {
-  return new Promise((resolve) => {
-    fetch(`https://www.douyu.com/japi/revenuenc/web/actfans/fishing/homePage?rid=${rid}&opt=1`, {
-      method: "GET",
-      mode: "no-cors",
-      cache: "default",
-      credentials: "include"
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((ret) => {
-        resolve(ret);
-      })
-      .catch((err) => {
-        console.log("请求失败!", err);
-      });
-  });
+  return AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/homePage?rid=" + rid + "&opt=1");
 }
 
 function AutoFish_startFish() {
-  return new Promise((resolve) => {
-    fetch("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/fishing", {
-      method: "POST",
-      mode: "no-cors",
-      credentials: "include",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `ctn=${getCCN()}&rid=${rid}&baitId=${baitId}&ver=1.1`
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((ret) => {
-        resolve(ret);
-      })
-      .catch((err) => {
-        console.log("请求失败!", err);
-      });
+  return AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/fishing", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "ctn=" + getCCN() + "&rid=" + rid + "&baitId=" + baitId + "&ver=1.1"
   });
 }
 
 function AutoFish_endFish() {
-  return new Promise((resolve) => {
-    fetch("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/reelIn", {
-      method: "POST",
-      mode: "no-cors",
-      credentials: "include",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `ctn=${getCCN()}&rid=${rid}`
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((ret) => {
-        resolve(ret);
-      })
-      .catch((err) => {
-        console.log("请求失败!", err);
-      });
+  return AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/reelIn", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "ctn=" + getCCN() + "&rid=" + rid
   });
 }
 

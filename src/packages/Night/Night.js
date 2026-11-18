@@ -39,6 +39,7 @@ function initPkg_Night_Set_Fast() {
             retJson.mode = 0;
         }
         if (retJson.mode == 1) {
+            currentMode = 1;
             setNightMode();
         }
     }
@@ -317,24 +318,77 @@ function getUserLevelNightModeStyle() {
     return ret;
 }
 
+const Night_parentOrigins = ["https://www.douyu.com", "https://douyu.com"];
+const Night_yubaOrigin = "https://yuba.douyu.com";
+const Night_boundFrames = new WeakSet();
+let Night_frameHook = null;
+let Night_embeddedStarted = false;
+
 function watchBottomIframe() {
-    let h = new DomHook(".BottomGroup", true, (m) => {
-        if (currentMode == 0) {
-            return;
-        }
-        if (m.length == 1) {
-            setNightModeIframe();
-        }
-    })
+    if (Night_frameHook) return;
+    window.addEventListener("message", (event) => {
+        if (event.origin !== Night_yubaOrigin || event.data?.type !== "douyuex:night-ready") return;
+        const iframe = Night_getBottomIframe();
+        if (iframe && event.source === iframe.contentWindow) Night_sendFrameMode(iframe);
+    });
+    Night_frameHook = new DomHook(".BottomGroup", true, () => Night_syncBottomIframe());
+    Night_syncBottomIframe();
+}
+
+function Night_getBottomIframe() {
+    const iframe = document.querySelector(".BottomGroup iframe");
+    if (!iframe) return null;
+    try {
+        const src = new URL(iframe.getAttribute("src") || "", location.href);
+        return src.origin === Night_yubaOrigin ? iframe : null;
+    } catch (_) {
+        return null;
+    }
+}
+
+function Night_sendFrameMode(iframe) {
+    if (iframe !== Night_getBottomIframe()) return;
+    iframe.contentWindow?.postMessage({ type: "douyuex:night-mode", mode: currentMode === 1 ? 1 : 0 }, Night_yubaOrigin);
+}
+
+function Night_syncBottomIframe(force = false) {
+    const iframe = Night_getBottomIframe();
+    if (!iframe) return;
+    const fresh = !Night_boundFrames.has(iframe);
+    if (fresh) {
+        Night_boundFrames.add(iframe);
+        iframe.addEventListener("load", () => Night_sendFrameMode(iframe));
+    }
+    if (fresh || force) Night_sendFrameMode(iframe);
 }
 
 function setNightModeIframe() {
-    // 设置底部鱼吧的夜间模式
-    let dom = document.getElementsByClassName("BottomGroup")[0].getElementsByTagName("iframe")[0];
-    if (dom == undefined) {
-        return
+    Night_syncBottomIframe(true);
+}
+
+function cancelNightModeIframe() {
+    Night_syncBottomIframe(true);
+}
+
+// Only the existing viewing-page iframe receives fixed local theme rules.
+// No CSS, selectors, commands or URLs are accepted from message payloads.
+function initPkg_Night_EmbeddedYuba() {
+    if (Night_embeddedStarted || window.parent === window || location.origin !== Night_yubaOrigin) return;
+    Night_embeddedStarted = true;
+    window.addEventListener("message", (event) => {
+        if (event.source !== window.parent || !Night_parentOrigins.includes(event.origin)) return;
+        const data = event.data;
+        if (data?.type !== "douyuex:night-mode" || (data.mode !== 0 && data.mode !== 1)) return;
+        if (data.mode === 1) StyleHook_set("Ex_Style_NightModeIframe", Night_getIframeStyles());
+        else StyleHook_remove("Ex_Style_NightModeIframe");
+    });
+    for (const origin of Night_parentOrigins) {
+        window.parent.postMessage({ type: "douyuex:night-ready" }, origin);
     }
-    StyleHook_setIframe(dom.contentWindow.document, "Ex_Style_NightModeIframe", `
+}
+
+function Night_getIframeStyles() {
+    return `
     body,#groupListBox,.mainbg,.wb_card-wbCardDetail-1wzCV,.video-imgWrap-3Mf6v{background: rgb(35,36,39) !important;}
     .wb_card-wbCardWrap-22KrE,.wb_card-topListItemBox-1ui_g{border-bottom: 1px solid rgb(47,48,53) !important;}
     .wb_card-wbInfo-19JiQ a,.wb_card-wbText-2fk2Y{color: rgb(204,204,204) !important;}
@@ -416,9 +470,5 @@ function setNightModeIframe() {
     .wb_card-groupnameAndGrouplevel-EbL7t{background: rgb(47,48,53)!important;color: rgb(125,125,125)!important;}
     .wb_handle-wbRowLine-6D3SZ a{background: rgb(47,48,53)!important;color: rgb(125,125,125)!important;}
     .wb_handle-line-Dd0zJ{color: rgb(125,125,125)!important;}
-    `)
-}
-
-function cancelNightModeIframe() {
-    StyleHook_removeIframe(document.getElementsByClassName("BottomGroup")[0].getElementsByTagName("iframe")[0].contentWindow.document, "Ex_Style_NightModeIframe")
+    `;
 }

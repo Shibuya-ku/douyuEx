@@ -1,3 +1,5 @@
+let tabSwitchHookEnabled = false;
+
 function initPkg_ExpandTool_TabSwitch() {
   enableIgnoreAutoPause();
   ExpandTool_TabSwitch_insertDom();
@@ -45,9 +47,7 @@ function ExpandTool_TabSwitch_insertFunc() {
   document.getElementById("extool__tabSwitch").addEventListener("click", function() {
       const enabled = document.getElementById("extool__tabSwitch").checked;
       setTabSwitchEnabled(enabled);
-      if (enabled) {
-        enableTabSwitch();
-      } else {
+      if (!enabled) {
         showMessage("已关闭页面防挂机，请刷新页面生效", "info");
         if (window.__pip_is_active__) {
           PictureInPictureControl_stopTabAntiFreeze();
@@ -72,6 +72,8 @@ function initPkg_ExpandTool_TabSwitch_Set() {
 }
 
 function enableTabSwitch() {
+  if (tabSwitchHookEnabled) return;
+  tabSwitchHookEnabled = true;
   Object.defineProperty(document, 'hidden', {value: false, writable: false});
   Object.defineProperty(document, 'visibilityState', {value: 'visible', writable: false});
   Object.defineProperty(document, 'webkitVisibilityState', {value: 'visible', writable: false});

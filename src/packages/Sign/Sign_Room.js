@@ -1,71 +1,56 @@
-
 function initPkg_Sign_Room(isAll) {
-	signAllRoom(isAll);
-}
-function signAllRoom(isAll) {
-    // 1. get page counts(1428)
-    // 2. for in all pages
-    // 3. sign each room
-    let pageCount = 0;
-    let signedCount = 0;
-    let count = 0;
-    fetch('https://www.douyu.com/wgapi/livenc/liveweb/follow/list?page=1428',{
-        method: 'GET',
-        mode: 'no-cors',
-        cache: 'default',
-        credentials: 'include',
-    }).then(res => {
-        return res.json();
-    }).then(ret => {
-        pageCount = Number(ret.data.pageCount);
-        for (let nowPage = 1; nowPage <= pageCount; nowPage++) {
-            fetch('https://www.douyu.com/wgapi/livenc/liveweb/follow/list?page=' + String(nowPage),{
-                method: 'GET',
-                mode: 'no-cors',
-                cache: 'default',
-                credentials: 'include',
-            }).then(res => {
-                return res.json();
-            }).then(ret1 => {
-                let roomCount = Number(ret1.data.list.length);
-                for (let i = 0; i < roomCount; i++) {
-                    if (isAll == false) {
-                        if (ret1.data.list[i].show_status == "1") {
-                            signRoom(ret1.data.list[i].room_id);
-                            signedCount++;
-                        }
-                    } else {
-                        signRoom(ret1.data.list[i].room_id);
-                        signedCount++;
-                    }
-                    count++;
-                    if (count == ret1.data.total && i == roomCount - 1) {
-                        let rest = Number(ret1.data.total) - signedCount;
-                        showMessage("【房间签到】" + String(signedCount) + "个房间签到已完成，" + String(rest) + "个房间未签到", "success");
-                    }
-                }
-            }).catch(err => {
-                console.log("请求失败!", err);
-            })
-        }
-        showMessage("【房间签到】" + ret.data.total + "个房间正在签到中...", "info");
-    }).catch(err => {
-        console.log("请求失败!", err);
-    })
+  return signAllRoom(isAll);
 }
 
-function signRoom(r) {
-	GM_xmlhttpRequest({
-		method: "POST",
-		url: "https://apiv2.douyucdn.cn/japi/roomuserlevel/apinc/checkIn?client_sys=android",
-		data: 'rid=' + r,
-		responseType: "json",
-		headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'token': dyToken,
-            'aid': 'android1'
-		},
-		onload: function(response) {
+async function signAllRoom(isAll) {
+  const base = "https://www.douyu.com/wgapi/livenc/liveweb/follow/list?page=";
+  const summary = await signFetch(base + "1428");
+  const pageCount = Number(summary?.data?.pageCount);
+  if (!Number.isSafeInteger(pageCount) || pageCount < 0) throw new Error(summary?.msg || "无法获取关注房间");
+  let signed = 0;
+  let skipped = 0;
+  let failed = 0;
+  let failedPages = 0;
+  for (let page = 1; page <= pageCount; page++) {
+    let rooms;
+    try {
+      const result = await signFetch(base + page);
+      rooms = result?.data?.list;
+      if (!Array.isArray(rooms)) throw new Error("关注房间列表无效");
+    } catch (error) {
+      failedPages++;
+      showMessage(`【房间签到】第${page}页获取失败，继续其他页`, "error");
+      console.warn("【房间签到】分页请求失败", page, error);
+      continue;
+    }
+    for (const room of rooms) {
+      if (!isAll && room.show_status != "1") {
+        skipped++;
+        continue;
+      }
+      try {
+        const ret = await signRoom(room.room_id);
+        if (ret.error != null && ret.error != 0) {
+          failed++;
+          showMessage(`【房间签到】${room.room_id} ${ret.msg || "未能签到"}`, "warning");
+        } else {
+          signed++;
         }
-	});
+      } catch (error) {
+        failed++;
+        console.warn("【房间签到】请求失败", room.room_id, error);
+      }
+    }
+  }
+  showMessage(`【房间签到】${signed}个房间已处理，${skipped}个未开播跳过，${failed}个失败${failedPages ? `，${failedPages}页未能获取` : ""}`, failed || failedPages ? "warning" : "success");
+}
+
+function signRoom(roomId) {
+  return signRequest({
+    method: "POST",
+    url: "https://apiv2.douyucdn.cn/japi/roomuserlevel/apinc/checkIn?client_sys=android",
+    data: "rid=" + roomId,
+    responseType: "json",
+    headers: { "Content-Type": "application/x-www-form-urlencoded", token: dyToken, aid: "android1" }
+  });
 }

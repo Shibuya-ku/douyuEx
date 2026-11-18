@@ -1,6 +1,7 @@
 let current_barrage_status = 0; // 0没被简化 1被简化
 
 function initPkg_Refresh_Barrage() {
+    if (document.getElementById("refresh-barrage")) return;
 	initPkg_Refresh_Barrage_Dom();
     initPkg_Refresh_Barrage_Func();
     initPkg_Refresh_Barrage_Set();
@@ -21,18 +22,8 @@ function Refresh_Barrage_insertIcon() {
 function initPkg_Refresh_Barrage_Func() {
 	document.getElementById("refresh-barrage").addEventListener("click", function() {
         if (current_barrage_status == 0) {
-            PostbirdAlertBox.confirm({
-                'title': '提示',
-                'content': '是否屏蔽弹幕前缀（如粉丝牌、钻粉、贵族等标志）',
-                'okBtn': '确定',
-                'cancelBtn': '取消',
-                'onConfirm': function () {
-                    setRefreshBarrage();
-                    saveData_Refresh();
-                },
-                'onCancel': function () {
-                }
-            });
+            setRefreshBarrage();
+            saveData_Refresh();
         } else {
             cancelRefreshBarrage();
             saveData_Refresh();
@@ -52,16 +43,7 @@ function refresh_Barrage_getStatus() {
 }
 
 function initPkg_Refresh_Barrage_Set() {
-    let ret = localStorage.getItem("ExSave_Refresh");
-    if (ret != null) {
-        let retJson = JSON.parse(ret);
-        if ("barrage" in retJson == false) {
-            retJson.barrage = {status: false};
-        }
-        if (retJson.barrage.status == true) {
-            setRefreshBarrage();
-        }
-    }
+    if (Refresh_getSaved().barrage?.status) setRefreshBarrage();
 }
  
 function setRefreshBarrage() {
@@ -73,25 +55,11 @@ function setRefreshBarrage() {
     `;
     StyleHook_set("Ex_Style_RefreshBarrage", cssText);
     current_barrage_status = 1;
-    document.getElementById("refresh-barrage").classList.add("ex-active");
-    document.getElementById("refresh-barrage__text").style.color = "#fff";
-    document.getElementById("refresh-barrage__text").innerText = "前缀";
-    let svg = document.getElementById("refresh-barrage__svg");
-    if (svg) {
-        let p = svg.getElementsByTagName("path")[0];
-        if (p) p.setAttribute("fill", "#ffffff");
-    }
+    Refresh_setButtonState("refresh-barrage", true);
 }
 
 function cancelRefreshBarrage() {
     StyleHook_remove("Ex_Style_RefreshBarrage");
     current_barrage_status = 0;
-    document.getElementById("refresh-barrage").classList.remove("ex-active");
-    document.getElementById("refresh-barrage__text").style.color = "";
-    document.getElementById("refresh-barrage__text").innerText = "前缀";
-    let svg = document.getElementById("refresh-barrage__svg");
-    if (svg) {
-        let p = svg.getElementsByTagName("path")[0];
-        if (p) p.setAttribute("fill", "#AFAFAF");
-    }
+    Refresh_setButtonState("refresh-barrage", false);
 }

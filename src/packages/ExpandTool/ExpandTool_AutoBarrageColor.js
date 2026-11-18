@@ -22,6 +22,9 @@ function ExpandTool_AutoBarrageColor_insertFunc() {
         saveData_AutoBarrageColor();
         if (getAutoBarrageColor()) {
             selectHighestUnlockedBarrageColor();
+        } else {
+            clearInterval(exAutoBarrageColorTimer);
+            exAutoBarrageColorTimer = null;
         }
     });
 }
@@ -73,7 +76,7 @@ function selectHighestUnlockedBarrageColor() {
 
         let itemClass = isMatch ? "MatchSystemFansBarrageColor-item" : "FansBarrageColor-item";
 
-        // 与 BarrageLoop 一致：先点开粉丝色板，再等 DOM 渲染后选色
+        // 先点开粉丝色板，再等 DOM 渲染后选色。
         if (!opened) {
             switcher.click();
             opened = true;

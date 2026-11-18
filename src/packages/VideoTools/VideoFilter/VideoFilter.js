@@ -11,6 +11,7 @@ let transformCss = {
     scale: "",
 }
 let panorama = null;
+let panoramaFrame = null;
 
 // 检测是否是 Edge 浏览器
 function isEdgeBrowser() {
@@ -95,6 +96,8 @@ function Filter_getPanelHtml() {
     `;
 }
 
+let filterContextMenuHook = null;
+
 function Filter_insertPanel() {
     const host = typeof VideoToolbarMenu_getFilterHost === "function"
         ? VideoToolbarMenu_getFilterHost()
@@ -106,8 +109,15 @@ function Filter_insertPanel() {
     wrap.innerHTML = Filter_getPanelHtml();
     host.appendChild(wrap.firstElementChild);
 
+    Filter_mountContextActions();
+    if (!filterContextMenuHook) {
+        filterContextMenuHook = new DomHook(".menu-da2a9e", false, Filter_mountContextActions);
+    }
+}
+
+function Filter_mountContextActions() {
     let b = document.getElementsByClassName("menu-da2a9e")[0];
-    if (!b) {
+    if (!b || b.querySelector("#filter__reset")) {
         return;
     }
 
@@ -136,6 +146,14 @@ function Filter_insertPanel() {
     b.insertBefore(domDivider, b.childNodes[1]);
 }
 
+function Filter_bindAction(id, callback) {
+    // 原生右键菜单按需创建和替换，委托监听不依赖它在初始化时存在。
+    document.addEventListener("click", (event) => {
+        const element = document.getElementById(id);
+        if (element && element.contains(event.target)) callback(event);
+    });
+}
+
 function Filter_insertEnhanceModal() {
     let modal = document.createElement("div");
     modal.className = "enhance-modal__panel-wrap";
@@ -149,7 +167,7 @@ function Filter_insertEnhanceModal() {
                     <br />
                     完成后，再<b>刷新</b>以恢复弹幕飘屏，该功能会<b>自动保存</b>
                     <br />
-                    <a style="color: #ff7700;" href="https://www.microsoft.com/zh-cn/edge/features/enhance-video?form=MT0160" target="_blank">没有增强图标？</a>
+                    <span>没有增强图标时，请检查浏览器的视频增强设置及设备支持情况。</span>
                 </div>
             </div>
         </div>
@@ -212,13 +230,13 @@ function initPkg_VideoTools_Filter_Func() {
         liveVideoNode.style.filter = `${ currentBrightness } ${ currentContrast } ${ currentSaturate }`;
     });
 
-    document.getElementById("filter__reset").addEventListener("click", () => {
+    Filter_bindAction("filter__reset", () => {
         resetVideoFilter();
     });
     document.getElementById("filter__reset2").addEventListener("click", () => {
         resetVideoFilter();
     });
-    document.getElementById("filter__mirror").addEventListener("click", () => {
+    Filter_bindAction("filter__mirror", () => {
         if (!isMirror) {
             isMirror = true;
             transformCss.rotateY = "rotateY(180deg)";
@@ -230,7 +248,7 @@ function initPkg_VideoTools_Filter_Func() {
         liveVideoNode.parentNode.style.transform = transformCss.rotateY + " " + transformCss.rotate + " " + transformCss.scale;
     });
 
-    document.getElementById("filter__rotate").addEventListener("click", () => {
+    Filter_bindAction("filter__rotate", () => {
         rotateAngle += 90;
         transformCss.rotate = `rotate(${String(rotateAngle)}deg)`;
         liveVideoNode.parentNode.style.transition = "all .5s";
@@ -315,11 +333,10 @@ function initPkg_VideoTools_Filter_Func() {
         }
     }
 
-    document.getElementById("filter__panorama").addEventListener("click", () => {
+    Filter_bindAction("filter__panorama", () => {
         let tmp = document.getElementById("ex-panorama");
         if (tmp) {
-            tmp.remove();
-            panorama = null;
+            stopPanorama();
         } else {
             let node = document.getElementById("__h5player");
             let dom = document.createElement("div");
@@ -350,6 +367,10 @@ function resetVideoFilter() {
     StyleHook_remove("Ex_Style_Filter");
     document.getElementById("filter__select").selectedIndex = 0;
     liveVideoNode.style.filter = "";
+    currentBrightness = "";
+    currentContrast = "";
+    currentSaturate = "";
+    isMirror = false;
     rotateAngle = 0;
     transformCss = {
         rotateY: "",
@@ -387,8 +408,7 @@ function resetVideoFilter() {
     // 重置全景
     let domPanorama = document.getElementById("ex-panorama");
     if (domPanorama) {
-        domPanorama.remove();
-        panorama = null;
+        stopPanorama();
     }
 
     // 重置缩放
@@ -404,11 +424,23 @@ function resetVideoFilter() {
     liveVideoNode.playbackRate = 1;
 }
 
-function panoramaAnimation(panorama) {
-    requestAnimationFrame(() => {
-        panoramaAnimation(panorama)
-    })
-    panorama.update();
+function stopPanorama() {
+    if (panoramaFrame !== null) cancelAnimationFrame(panoramaFrame);
+    panoramaFrame = null;
+    if (panorama && typeof panorama.destroy === "function") panorama.destroy();
+    panorama = null;
+    const container = document.getElementById("ex-panorama");
+    if (container) container.remove();
+}
+
+function panoramaAnimation(instance) {
+    if (panorama !== instance) return;
+    if (instance.domContainer.isConnected === false) {
+        stopPanorama();
+        return;
+    }
+    instance.update();
+    panoramaFrame = requestAnimationFrame(() => panoramaAnimation(instance));
 }
 
 function setVideoFilter(style) {

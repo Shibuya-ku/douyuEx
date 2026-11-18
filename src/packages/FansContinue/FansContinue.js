@@ -1,4 +1,5 @@
 function initPkg_FansContinue() {
+  if (document.querySelector('.fans-continue')) return;
   initPkg_FansContinue_Dom();
   initPkg_FansContinue_Func();
 }
@@ -16,106 +17,97 @@ function FansContinue_insertIcon() {
   b.insertBefore(a, b.childNodes[0]);
 }
 
+let fansContinueRunning = false;
+
 function initPkg_FansContinue_Func() {
   document.getElementsByClassName("fans-continue")[0].addEventListener("click", function () {
+    if (fansContinueRunning) {
+      showMessage("【续牌】上一轮仍在执行，请稍候", "info");
+      return;
+    }
     const saved = localStorage.getItem("ExSave_FansContinue");
-    const defValue = saved != null ? saved : "1";
     PostbirdAlertBox.prompt({
       title: "每个直播间赠送几根荧光棒？(输入0则平均赠送)",
       okBtn: "确定",
       cancelBtn: "取消",
-      defaultValue: defValue,
+      defaultValue: saved != null ? saved : "1",
       contentColor: "rgb(51,51,51)",
-      onConfirm: function (res) {
-        if (res == null) return;
-        let sendNum = Number(res);
-        if (Number.isNaN(sendNum) || sendNum < 0) return;
-        localStorage.setItem("ExSave_FansContinue", String(res));
-        FansContinue_startSend(sendNum);
+      onConfirm: function (value) {
+        if (value == null) return;
+        const text = String(value).trim();
+        const quantity = Number(text);
+        if (!/^\d+$/.test(text) || !Number.isSafeInteger(quantity)) {
+          showMessage("【续牌】请输入非负整数", "error");
+          return;
+        }
+        localStorage.setItem("ExSave_FansContinue", String(quantity));
+        return FansContinue_startSend(quantity);
       },
       onCancel: function () {}
     });
   });
 }
 
-function FansContinue_startSend(sendNum) {
-  let giftId = 0;
-  let conut = 0;
-
-  getBagGifts(rid, (ret) => {
-    let chunkNum = ret.data?.list?.length || 0;
-
-    if (chunkNum == 0) {
-      showMessage("背包礼物为空", "error");
+async function FansContinue_startSend(quantity) {
+  if (fansContinueRunning) return;
+  if (!Number.isSafeInteger(quantity) || quantity < 0) {
+    showMessage("【续牌】请输入非负整数", "error");
+    return;
+  }
+  fansContinueRunning = true;
+  try {
+    const bag = await getBagGifts(rid);
+    const gifts = bag?.data?.list;
+    if (!Array.isArray(gifts)) throw new Error(bag?.msg || "无法获取背包，请确认已登录");
+    const gift = gifts.find(item => (item.id == 268 || item.id == 2358) && Number(item.count) > 0);
+    if (!gift) {
+      showMessage("【续牌】背包中没有荧光棒", "error");
       return;
     }
-
-    for (let i = 0; i < chunkNum; i++) {
-      if (ret.data.list[i].id == 268 || ret.data.list[i].id == 2358) {
-        giftId = ret.data.list[i].id;
-        count = ret.data.list[i].count;
+    const count = Number(gift.count);
+    if (!Number.isSafeInteger(count)) throw new Error("背包数量无效");
+    const rooms = await getFansBadgeRooms();
+    if (!rooms.length) {
+      showMessage("【续牌】没有可续牌的房间", "info");
+      return;
+    }
+    const sendNum = quantity === 0 ? Math.floor(count / rooms.length) : quantity;
+    if (sendNum < 1) {
+      showMessage("【续牌】荧光棒不足，请减少数量或调整平均分配", "error");
+      return;
+    }
+    let remaining = count;
+    for (let index = 0; index < rooms.length; index++) {
+      if (remaining < sendNum) {
+        showMessage(`【续牌】荧光棒不足以赠送每房间 ${sendNum} 根，已跳过剩余 ${rooms.length - index} 个房间`, "warning");
         break;
       }
-    }
-
-    if (giftId == 0) {
-      showMessage("没有足够的道具", "error");
-      return;
-    }
-
-    fetch("https://www.douyu.com/member/cp/getFansBadgeList", {
-      method: "GET",
-      mode: "no-cors",
-      cache: "default",
-      credentials: "include"
-    })
-      .then((res) => {
-        return res.text();
-      })
-      .then(async (doc) => {
-        doc = new DOMParser().parseFromString(doc, "text/html");
-        let a = doc.getElementsByClassName("fans-badge-list")[0].lastElementChild;
-        let n = a.children.length;
-        if (sendNum == 0) sendNum = Math.floor(count / n);
-
-        for (let i = 0; i < n; i++) {
-          let rid = a.children[i].getAttribute("data-fans-room"); // 获取房间号
-          await sleep(250).then(() => {
-            sendGift_bag(giftId, sendNum, rid)
-              .then((data) => {
-                if (data.msg == "success") {
-                  showMessage("【续牌】" + rid + "赠送荧光棒成功", "success");
-                  // console.log(rid + "赠送一根荧光棒成功");
-                } else {
-                  showMessage("【续牌】" + rid + "赠送失败 " + data.msg, "error");
-                  // console.log(rid + "赠送失败");
-                  console.log(rid, data);
-                }
-              })
-              .catch((err) => {
-                showMessage("【续牌】" + rid + "赠送失败", "error");
-                console.log(rid, err);
-              });
-          });
+      const roomId = rooms[index];
+      await sleep(250);
+      try {
+        const data = await sendGift_bag(gift.id, sendNum, roomId);
+        if (data.msg === "success") {
+          remaining -= sendNum;
+          showMessage(`【续牌】${roomId}赠送荧光棒成功`, "success");
+        } else {
+          showMessage(`【续牌】${roomId}赠送失败 ${data.msg || "请求未成功"}`, "error");
         }
-      })
-      .catch((err) => {
-        console.log("请求失败!", err);
-      });
-  });
+      } catch (error) {
+        showMessage(`【续牌】${roomId}赠送失败`, "error");
+        console.warn("【续牌】赠送失败", error);
+      }
+    }
+  } catch (error) {
+    showMessage(`【续牌】${error.message || "请求失败"}`, "error");
+  } finally {
+    fansContinueRunning = false;
+  }
 }
 
-async function sendGift_bag(gid, count, rid) {
-  // 送背包里的东西
-  // gid: 268是荧光棒
-  // count: 数量
-  // rid: 房间号
-  const res = await fetch("https://www.douyu.com/japi/prop/donate/mainsite/v1", {
+function sendGift_bag(giftId, quantity, roomId) {
+  return signFetch("https://www.douyu.com/japi/prop/donate/mainsite/v1", {
     method: "POST",
-    mode: "no-cors",
-    credentials: "include",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: "propId=" + gid + "&propCount=" + count + "&roomId=" + rid + "&bizExt=%7B%22yzxq%22%3A%7B%7D%7D"
+    body: "propId=" + giftId + "&propCount=" + quantity + "&roomId=" + roomId + "&bizExt=%7B%22yzxq%22%3A%7B%7D%7D"
   });
-  return await res.json();
 }

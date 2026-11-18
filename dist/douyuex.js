@@ -1,10 +1,10 @@
 "use strict";
 // ==UserScript==
-// @name         DouyuEx-斗鱼直播间增强插件
+// @name         DouyuEx Lite-斗鱼直播间增强插件
 // @namespace    https://github.com/qianjiachun
 // @icon         data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTA4cHgiIGhlaWdodD0iMTA4cHgiIHZpZXdCb3g9IjAgMCAxMDggMTA4IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHRpdGxlPueyvueBteeQgzwvdGl0bGU+CiAgICA8ZyBpZD0i6aG16Z2iLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSLnsr7ngbXnkIMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuODMwNzY5LCAwLjgzMDc2OSkiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik01My4xNjkyMzA3LDEwNi4zMzg0NjEgQzIzLjgyNzY5MjIsMTA2LjMzODQ2MSAwLDgyLjUxMDc2OTIgMCw1My4xNjkyMzA3IEMwLDUxLjAwMzA3NjkgMS43NzIzMDc3NSw0OS4yMzA3NjkyIDMuOTM4NDYxNSw0OS4yMzA3NjkyIEwzMy40NzY5MjMsNDkuMjMwNzY5MiBDMzUuNjQzMDc2OSw0OS4yMzA3NjkyIDM3LjQxNTM4NDUsNTEuMDAzMDc3IDM3LjQxNTM4NDYsNTMuMTY5MjMwNyBDMzcuNDE1Mzg0Niw2MS44MzM4NDYxIDQ0LjUwNDYxNTQsNjguOTIzMDc2OSA1My4xNjkyMzA3LDY4LjkyMzA3NjkgQzYxLjgzMzg0NjEsNjguOTIzMDc2OSA2OC45MjMwNzY5LDYxLjgzMzg0NjEgNjguOTIzMDc2OSw1My4xNjkyMzA3IEM2OC45MjMwNzY5LDUxLjAwMzA3NjkgNzAuNjk1Mzg0Niw0OS4yMzA3NjkyIDcyLjg2MTUzODUsNDkuMjMwNzY5MiBMMTAyLjQsNDkuMjMwNzY5MiBDMTA0LjU2NjE1NCw0OS4yMzA3NjkyIDEwNi4zMzg0NjEsNTEuMDAzMDc3IDEwNi4zMzg0NjEsNTMuMTY5MjMwNyBDMTA2LjMzODQ2MSw4Mi41MTA3NjkyIDgyLjUxMDc2OTIsMTA2LjMzODQ2MSA1My4xNjkyMzA3LDEwNi4zMzg0NjEgWiIgaWQ9Iui3r+W+hCIgZmlsbD0iIzMzMzYzQSI+PC9wYXRoPgogICAgICAgICAgICA8cGF0aCBkPSJNOC4wNzM4NDYxMiw1Ny4xMDc2OTIyIEMxMC4wNDMwNzY5LDgwLjI0NjE1MzcgMjkuNTM4NDYxNSw5OC40NjE1Mzg1IDUzLjE2OTIzMDcsOTguNDYxNTM4NSBDNzYuOCw5OC40NjE1Mzg1IDk2LjI5NTM4NDYsODAuMjQ2MTUzOSA5OC4yNjQ2MTU0LDU3LjEwNzY5MjIgTDc2LjUwNDYxNTQsNTcuMTA3NjkyMiBDNzQuNjMzODQ2MSw2OC4yMzM4NDYxIDY0Ljg4NjE1MzksNzYuOCA1My4xNjkyMzA3LDc2LjggQzQxLjQ1MjMwNzYsNzYuOCAzMS43MDQ2MTU0LDY4LjIzMzg0NjEgMjkuODMzODQ2MSw1Ny4xMDc2OTIyIEw4LjA3Mzg0NjEyLDU3LjEwNzY5MjIgWiIgaWQ9Iui3r+W+hCIgZmlsbD0iI0ZGRkZGRiI+PC9wYXRoPgogICAgICAgICAgICA8cGF0aCBkPSJNNTMuMTY5MjMwOCwzLjkzODQ2MTUgQzI1Ljk5Mzg0NjEsMy45Mzg0NjE1IDMuOTM4NDYxNSwyNS45OTM4NDYxIDMuOTM4NDYxNSw1My4xNjkyMzA3IEwzMy40NzY5MjMsNTMuMTY5MjMwNyBDMzMuNDc2OTIzLDQyLjMzODQ2MTUgNDIuMzM4NDYxNSwzMy40NzY5MjMgNTMuMTY5MjMwOCwzMy40NzY5MjMgQzY0LDMzLjQ3NjkyMyA3Mi44NjE1Mzg1LDQyLjMzODQ2MTUgNzIuODYxNTM4NSw1My4xNjkyMzA3IEwxMDIuNCw1My4xNjkyMzA3IEMxMDIuNCwyNS45OTM4NDYxIDgwLjM0NDYxNTQsMy45Mzg0NjE1IDUzLjE2OTIzMDgsMy45Mzg0NjE1IFoiIGlkPSLot6/lvoQiIGZpbGw9IiNENjA5MDkiPjwvcGF0aD4KICAgICAgICAgICAgPHBhdGggZD0iTTEwMi40LDU3LjEwNzY5MjIgTDcyLjg2MTUzODUsNTcuMTA3NjkyMiBDNzAuNjk1Mzg0Niw1Ny4xMDc2OTIyIDY4LjkyMzA3Nyw1NS4zMzUzODQ1IDY4LjkyMzA3NjksNTMuMTY5MjMwNyBDNjguOTIzMDc2OSw0NC41MDQ2MTU0IDYxLjgzMzg0NjEsMzcuNDE1Mzg0NiA1My4xNjkyMzA3LDM3LjQxNTM4NDYgQzQ0LjUwNDYxNTQsMzcuNDE1Mzg0NiAzNy40MTUzODQ2LDQ0LjUwNDYxNTQgMzcuNDE1Mzg0Niw1My4xNjkyMzA3IEMzNy40MTUzODQ2LDU1LjMzNTM4NDYgMzUuNjQzMDc2OSw1Ny4xMDc2OTIyIDMzLjQ3NjkyMyw1Ny4xMDc2OTIyIEwzLjkzODQ2MTUsNTcuMTA3NjkyMiBDMS43NzIzMDc2Miw1Ny4xMDc2OTIyIDAsNTUuMzM1Mzg0NSAwLDUzLjE2OTIzMDcgQzAsMjMuODI3NjkyMiAyMy44Mjc2OTIzLDAgNTMuMTY5MjMwNywwIEM4Mi41MTA3NjkyLDAgMTA2LjMzODQ2MSwyMy44Mjc2OTIyIDEwNi4zMzg0NjEsNTMuMTY5MjMwNyBDMTA2LjMzODQ2MSw1NS4zMzUzODQ2IDEwNC41NjYxNTQsNTcuMTA3NjkyMiAxMDIuNCw1Ny4xMDc2OTIyIFoiIGlkPSLot6/lvoQiIGZpbGw9IiMzMzM2M0EiPjwvcGF0aD4KICAgICAgICAgICAgPHBhdGggZD0iTTc2LjUwNDYxNTQsNDkuMjMwNzY5MyBMOTguMzYzMDc2OSw0OS4yMzA3NjkzIEM5Ni4yOTUzODQ2LDI2LjA5MjMwNzYgNzYuOCw3Ljg3NjkyMyA1My4xNjkyMzA3LDcuODc2OTIzIEMyOS41Mzg0NjE1LDcuODc2OTIzIDEwLjA0MzA3NjksMjYuMDkyMzA3NiA4LjA3Mzg0NjEyLDQ5LjIzMDc2OTMgTDI5LjkzMjMwNzYsNDkuMjMwNzY5MyBDMzEuNzA0NjE1NCwzOC4xMDQ2MTU0IDQxLjQ1MjMwNzYsMjkuNTM4NDYxNSA1My4xNjkyMzA3LDI5LjUzODQ2MTUgQzY0Ljg4NjE1MzksMjkuNTM4NDYxNSA3NC42MzM4NDYxLDM4LjEwNDYxNTQgNzYuNTA0NjE1NCw0OS4yMzA3NjkzIEw3Ni41MDQ2MTU0LDQ5LjIzMDc2OTMgWiIgaWQ9Iui3r+W+hCIgZmlsbD0iI0Q2MDkwOSI+PC9wYXRoPgogICAgICAgICAgICA8cGF0aCBkPSJNNTMuMTY5MjMwNyw3Ni44IEM0MC4xNzIzMDc2LDc2LjggMjkuNTM4NDYxNSw2Ni4xNjYxNTM5IDI5LjUzODQ2MTUsNTMuMTY5MjMwNyBDMjkuNTM4NDYxNSw0MC4xNzIzMDc2IDQwLjE3MjMwNzYsMjkuNTM4NDYxNSA1My4xNjkyMzA3LDI5LjUzODQ2MTUgQzY2LjE2NjE1MzksMjkuNTM4NDYxNSA3Ni44LDQwLjE3MjMwNzYgNzYuOCw1My4xNjkyMzA3IEM3Ni44LDY2LjE2NjE1MzkgNjYuMTY2MTUzOSw3Ni44IDUzLjE2OTIzMDcsNzYuOCBaIiBpZD0i6Lev5b6EIiBmaWxsPSIjMzMzNjNBIj48L3BhdGg+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik01My4xNjkyMzA3LDM3LjQxNTM4NDYgQzQ0LjUwNDYxNTQsMzcuNDE1Mzg0NiAzNy40MTUzODQ2LDQ0LjUwNDYxNTQgMzcuNDE1Mzg0Niw1My4xNjkyMzA3IEMzNy40MTUzODQ2LDYxLjgzMzg0NjEgNDQuNTA0NjE1NCw2OC45MjMwNzY5IDUzLjE2OTIzMDcsNjguOTIzMDc2OSBDNjEuODMzODQ2MSw2OC45MjMwNzY5IDY4LjkyMzA3NjksNjEuODMzODQ2MSA2OC45MjMwNzY5LDUzLjE2OTIzMDcgQzY4LjkyMzA3NjksNDQuNTA0NjE1NCA2MS44MzM4NDYxLDM3LjQxNTM4NDYgNTMuMTY5MjMwNywzNy40MTUzODQ2IEw1My4xNjkyMzA3LDM3LjQxNTM4NDYgWiIgaWQ9Iui3r+W+hCIgZmlsbD0iI0ZGRkZGRiI+PC9wYXRoPgogICAgICAgICAgICA8cGF0aCBkPSJNNDMuMzIzMDc2OSw1My4xNjkyMzA3IEM0My4zMjMwNzY5LDU4LjYwNzExMTQgNDcuNzMxMzUwMSw2My4wMTUzODQ2IDUzLjE2OTIzMDcsNjMuMDE1Mzg0NiBDNTguNjA3MTExNCw2My4wMTUzODQ2IDYzLjAxNTM4NDYsNTguNjA3MTExNCA2My4wMTUzODQ2LDUzLjE2OTIzMDcgQzYzLjAxNTM4NDYsNDcuNzMxMzUwMSA1OC42MDcxMTE0LDQzLjMyMzA3NjkgNTMuMTY5MjMwNyw0My4zMjMwNzY5IEM0Ny43MzEzNTAxLDQzLjMyMzA3NjkgNDMuMzIzMDc2OSw0Ny43MzEzNTAxIDQzLjMyMzA3NjksNTMuMTY5MjMwNyBaIiBpZD0i6Lev5b6EIiBmaWxsPSIjMzMzNjNBIj48L3BhdGg+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=
-// @version      2026.08.07.01
-// @description  斗鱼直播间增强插件，功能：弹幕自动变色防检测循环发送 一键续牌 查看真实人数/查看主播数据 已播时长 一键签到(直播间/车队/鱼吧/客户端) 一键领取鱼粮(宝箱/气泡/任务) 一键寻宝 送出指定数量的礼物 一键清空背包 屏蔽广告 调节弹幕大小 自动更新 同屏画中画/多直播间小窗观看/可在斗鱼看多个平台直播(虎牙/b站) 获取真实直播流地址 自动抢礼物红包 背包信息扩展 简洁模式 夜间模式 开播提醒 幻神模式 关键词回复 关键词禁言 自动谢礼物 自动抢宝箱 弹幕右键信息扩展 防止下播自动跳转 影院模式 直播时间流控制 弹幕投票 直播滤镜 直播音频流 账号多开/切换 显示粉丝牌获取日期 月消费数据显示 弹幕时速 相机截图录制gif 全景播放器 斗鱼视频下载/弹幕ass下载 直播画面局部缩放 全站抽奖信息 直播音效增强 阻止P2P上传 显示贡献榜贡献值 恢复弹幕显示 斗鱼视频弹幕高能进度条 检测弹幕是否发送成功 查看主播配置信息 自动网页全屏 自动最高画质 弹幕无限收藏 收藏弹幕搜索 支持弹幕带图片 屏蔽弹幕背景 弹幕+1 房间VIP到期提醒 自动钓鱼 防止自动暂停直播 恢复已关闭鱼吧 弹幕小尾巴 屏蔽重复弹幕 画质增强 画中画增强
+// @version      2026.11.18.01
+// @description  保留直播观看增强、弹幕工具、画中画、斗鱼同屏、回放下载、一键签到、续牌、五项扩展偏好与钓鱼；后台观时/等级领奖持续检查，在线弹幕助手按需打开。
 // @author       小淳
 // @match			*://*.douyu.com/0*
 // @match			*://*.douyu.com/1*
@@ -18,14 +18,10 @@
 // @match			*://*.douyu.com/9*
 // @match			*://*.douyu.com/beta/*
 // @match			*://*.douyu.com/topic/*
-// @match        *://www.douyu.com/member/cp/getFansBadgeList
-// @match        *://passport.douyu.com/*
-// @match        *://msg.douyu.com/*
-// @match        *://yuba.douyu.com/*
-// @match        *://v.douyu.com/*
-// @match        *://cz.douyu.com/*
+// @match        *://v.douyu.com/show/*
+// Embedded Yuba is matched only to synchronize the live-room night theme.
+// @match        https://yuba.douyu.com/*
 // @require      https://registry.npmmirror.com/flv.js/1.6.2/files/dist/flv.min.js
-// @require      https://fastly.jsdelivr.net/npm/svgaplayerweb@2.3.1/build/svga.min.js
 // @require      https://registry.npmmirror.com/gif.js/0.2.0/files/dist/gif.js
 // @require      https://registry.npmmirror.com/three/0.80.0/files/build/three.min.js
 // @require      https://registry.npmmirror.com/xlsx/0.16.4/files/dist/xlsx.full.min.js
@@ -37,86 +33,46 @@
 // @grant        GM_getValue
 // @grant        GM_listValues
 // @grant        GM_deleteValue
-// @grant        GM_cookie
 // @grant        GM_registerMenuCommand
 // @grant        unsafeWindow
 // @connect      douyucdn.cn
 // @connect      douyu.com
-// @connect      122.51.5.63
-// @connect      qq.com
-// @connect      douyuex.com
-// @connect      bojianger.com
-// @connect      greasyfork.org
-// @connect      bilibili.com
-// @connect      huya.com
 // @connect      jsdelivr.net
-// @connect      shadiao.app
-// @connect      shadiao.pro
-// @connect      fz996.com
-// @connect      toubang.tv
-// @connect      doseeing.com
-// @antifeature  tracking
 // ==/UserScript==
+let liteEarlyInitialized = false;
+
+let liteRoomInitialized = false;
+
+function Lite_cleanupLegacyUi() {
+    if ("undefined" === typeof document || !document.querySelectorAll) return;
+    const selectors = [ ".ex-panel", ".extool", ".ex-icon", ".ex-sign", ".fans-continue", ".extool-icon", ".ex-monitor", "#refresh-barrage", "#refresh-barrage-frame" ];
+    for (var selector of selectors) document.querySelectorAll(selector).forEach(node => node.remove());
+}
+
+function runInitializers(initializers) {
+    for (const initializer of initializers) try {
+        const result = initializer();
+        if (result && "function" === typeof result.catch) result.catch(error => console.error(`[DouyuEx Lite] ` + initializer.name, error));
+    } catch (error) {
+        console.error(`[DouyuEx Lite] ` + initializer.name, error);
+    }
+}
+
 function init() {
-    initPkg_Shield_RemoveRepeatedDanmaku_ScriptHook();
-    initPkg_ShowDanmaku_ScriptHook();
-    initScriptHook();
-    initPkg_Night_Set_Fast();
-    initResponseHook();
-    initPkg_ShowDanmaku();
-    initKillP2P();
-    initFullScreen();
-    initHighestVideoQuality();
-    initPkg_NoLogin();
-    removeAD();
-    initPkg_Statistics();
-    initPkg_Console();
-    initPkg_Menu();
-    initPkg_Reset();
-    initPkg_FollowList();
+    if (liteEarlyInitialized) return;
+    liteEarlyInitialized = true;
+    runInitializers([ initPkg_Shield_RemoveRepeatedDanmaku_ScriptHook, initPkg_ShowDanmaku_ScriptHook, initScriptHook, initPkg_Night_Set_Fast, initResponseHook, initPkg_ShowDanmaku, initKillP2P, initFullScreen, initHighestVideoQuality, initPkg_NoLogin, removeAD, initPkg_Console, initPkg_Menu, initPkg_Reset, initPkg_FollowList ]);
 }
 
 function initPkg() {
-    initPkg_DanmakuTail();
-    initPkg_Night();
-    initPkg_ExIcon();
-    initPkg_ExPanel();
-    initPkg_RealAudience();
-    initPkg_CopyRealLive();
-    initPkg_AudioLine();
-    initPkg_RemoveAD();
-    initPkg_Shield();
-    initPkg_BagInfo();
-    initPkg_Update();
-    initPkg_AutoAnchorStar();
-    initPkg_Fkbuff();
-    initPkg_Monitor();
-    initPkg_Lottery();
-    initPkg_PopupPlayer();
-    initPkg_LiveTool();
-    initPkg_VideoTools();
-    initPkg_ExpandTool();
-    initPkg_Refresh();
-    initPkg_BarrageLoop();
-    initPkg_FansContinue();
-    initPkg_Sign();
-    initPkg_BarragePanel();
-    initPkg_AccountList();
-    initPkg_ChatTools();
-    initPkg_MonthCost();
-    initPkg_RoomVip();
-    initPkg_DanmakuCollect();
-    initPkg_RestoreYuba();
-    initPkg_ChangeDanmakuLengthLimit();
-    initPkg_CheckAnchorPocket();
-    initPkg_LastLiveTime();
-    initPkg_VolumeMouseScrolling();
+    if (liteRoomInitialized) return;
+    liteRoomInitialized = true;
+    Lite_cleanupLegacyUi();
+    runInitializers([ initPkg_DanmakuTail, initPkg_Night, initPkg_ExIcon, initPkg_ExPanel, initPkg_RealAudience, initPkg_CopyRealLive, initPkg_AudioLine, initPkg_RemoveAD, initPkg_Shield, initPkg_Monitor, initPkg_PopupPlayer, initPkg_LiveTool, initPkg_VideoTools, initPkg_ExpandTool, initPkg_Refresh, initPkg_FansContinue, initPkg_Sign, ExPanel_orderLiteTools, initPkg_BarragePanel, initPkg_ChatTools, initPkg_DanmakuCollect, initPkg_ChangeDanmakuLengthLimit, initPkg_LastLiveTime, initPkg_VolumeMouseScrolling ]);
 }
 
 function initPkg_Timer() {
-    initPkg_LevelTask_Timer();
-    initPkg_Sign_OPFOY_Timer();
-    initPkg_DisableCloseJump_Timer();
+    runInitializers([ initPkg_LevelTask_Timer, initPkg_Sign_OPFOY_Timer, initPkg_DisableCloseJump_Timer ]);
 }
 
 function initTimer() {
@@ -124,10 +80,26 @@ function initTimer() {
 }
 
 function initStyles() {
+    if (document.getElementById("douyuex-lite-styles")) return;
     let style = document.createElement("style");
+    style.id = "douyuex-lite-styles";
     style.appendChild(document.createTextNode(`
 		body{position:relative;}
-		#ex-accountList-wrap {    left: -152px;    top: -16px;    /* max-height: 330px;    overflow-y: scroll;    scrollbar-width: none;    -ms-overflow-style: none; */    -webkit-transition: all .2s cubic-bezier(.22,.58,.12,.98);    -o-transition: all cubic-bezier(.22,.58,.12,.98) .2s;    -moz-transition: all cubic-bezier(.22,.58,.12,.98) .2s;    transition: all .2s cubic-bezier(.22,.58,.12,.98);    -webkit-transform-origin: 80% 0;    -moz-transform-origin: 80% 0;    -ms-transform-origin: 80% 0;    -o-transform-origin: 80% 0;    transform-origin: 80% 0;    -webkit-animation: scale-in-ease .5s cubic-bezier(.22,.58,.12,.98);    -moz-animation: scale-in-ease cubic-bezier(.22,.58,.12,.98) .5s;    -o-animation: scale-in-ease cubic-bezier(.22,.58,.12,.98) .5s;    animation: scale-in-ease .5s cubic-bezier(.22,.58,.12,.98);}/* #ex-accountList-wrap::-webkit-scrollbar {    display: none;} */.ex-accountList-item {    padding: 10px;    display: flex;    border-radius: 10px;    align-items: center;}.ex-accountList-item:hover {    background-color: rgb(244,244,244);}#ex-accountList-iframe {    display: none;}#ex-accountList-iframe2 {    display: none;}#ex-accountList-item-add {    padding: 10px;    text-align: center;    margin-bottom:0px;    border-radius: 10px;}#ex-accountList-item-add:hover {    background-color: rgb(244,244,244);}.ex-accountList-item__imgWrap {    flex: 0 0 25%;}.ex-accountList-item__img {    width: 50px;    height: 50px;    border-radius: 50%;}.ex-accountList-item__name {    line-height: 50px;    flex: 0 0 55%;}.ex-accountList-item__btn {    height: 30px;    width: 50px;    border-radius: 10px;    align-items: center;    flex: auto;    text-align: center;    line-height: 28px;    color: white;    background-color: rgb(245,108,108);}.ex-accountList-item__btn:hover {    background-color: rgb(247,137,137);}#ex-accountList-icon:hover > #ex-accountList-wrap {    display: block;}#ex-accountList-content {    background-color: white;}#ex-audio-line {    cursor: pointer;}.live-next-body #ex-audio-line {    margin-left: 4px;}.bag-info {    position: absolute;    background-color: rgba(0, 0, 0, 0.6);    color: white;    width: 20px;    font-weight: 800;    height: 20px;    text-align: center;    z-index: 10;    bottom: 0;}.bag-button {    color: rgb(255, 255, 255);    text-align: center;    height: 15px;    line-height: 15px;    cursor: pointer;    margin-left: 5px;    background: rgb(70, 171, 255);    border-radius: 9px;    padding: 0px 10px;    right: 20px;}.bloop {	background-color: rgba(255,255,255,0.9);	width: 100%;	height: 200px;	position: relative;	bottom: 200px;	display: none;	z-index: 1428;	color: #333;}.bloop__switch {	position: absolute;	right: 0;	bottom: 0;}.bloop__mode {	display: inline-block;}#bloop__select {	width: 150px;}.barragePanel__funcPanel {    position: absolute;    width: 232px;    height: 270px;    display: block;    background: white;    overflow-y: scroll;}.barragePanel__funcPanel::-webkit-scrollbar {display:none}.barragePanel__muteTime {    /* position: absolute;    left: 25px;    top: 123px; */    z-index: 5;}.danmuContent-25f266 {    pointer-events: auto !important;}.thirdBtn-06cde5, .fourBtn-0845d4 {    /* 加宽按钮方便点击 */    margin-left: 0px !important;    margin-right: 0px !important;    padding: 0 17px !important;}#copy-real-live {    cursor: pointer;}.Title-row-span, .Title-row-icon  {    display: flex;    align-items: center;    justify-content: center;}.Title-row-icon {    margin-right: 4px;}.live-next-body #copy-real-live {    margin-left: 4px;}.ChatBarrageCollect .TagItem {  height: auto !important;}.ChatBarrageCollect .TagItem-txt {  overflow: auto !important;  white-space: normal !important;  text-overflow: clip !important;}.ChatToolBar-DanmakuTail {    display: inline-block;    vertical-align: middle;    width: 18px;    height: 18px;    -webkit-border-radius: 4px;    -moz-border-radius: 4px;    border-radius: 4px;    margin-right: 8px;    color: #bbb;    cursor: pointer;}[data-mantine-color-scheme=dark] .ChatToolBar-DanmakuTail-tip {    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAACklpQ0NQc1JHQiBJRUM2MTk2Ni0yLjEAAEiJnVN3WJP3Fj7f92UPVkLY8LGXbIEAIiOsCMgQWaIQkgBhhBASQMWFiApWFBURnEhVxILVCkidiOKgKLhnQYqIWotVXDjuH9yntX167+3t+9f7vOec5/zOec8PgBESJpHmomoAOVKFPDrYH49PSMTJvYACFUjgBCAQ5svCZwXFAADwA3l4fnSwP/wBr28AAgBw1S4kEsfh/4O6UCZXACCRAOAiEucLAZBSAMguVMgUAMgYALBTs2QKAJQAAGx5fEIiAKoNAOz0ST4FANipk9wXANiiHKkIAI0BAJkoRyQCQLsAYFWBUiwCwMIAoKxAIi4EwK4BgFm2MkcCgL0FAHaOWJAPQGAAgJlCLMwAIDgCAEMeE80DIEwDoDDSv+CpX3CFuEgBAMDLlc2XS9IzFLiV0Bp38vDg4iHiwmyxQmEXKRBmCeQinJebIxNI5wNMzgwAABr50cH+OD+Q5+bk4eZm52zv9MWi/mvwbyI+IfHf/ryMAgQAEE7P79pf5eXWA3DHAbB1v2upWwDaVgBo3/ldM9sJoFoK0Hr5i3k4/EAenqFQyDwdHAoLC+0lYqG9MOOLPv8z4W/gi372/EAe/tt68ABxmkCZrcCjg/1xYW52rlKO58sEQjFu9+cj/seFf/2OKdHiNLFcLBWK8ViJuFAiTcd5uVKRRCHJleIS6X8y8R+W/QmTdw0ArIZPwE62B7XLbMB+7gECiw5Y0nYAQH7zLYwaC5EAEGc0Mnn3AACTv/mPQCsBAM2XpOMAALzoGFyolBdMxggAAESggSqwQQcMwRSswA6cwR28wBcCYQZEQAwkwDwQQgbkgBwKoRiWQRlUwDrYBLWwAxqgEZrhELTBMTgN5+ASXIHrcBcGYBiewhi8hgkEQcgIE2EhOogRYo7YIs4IF5mOBCJhSDSSgKQg6YgUUSLFyHKkAqlCapFdSCPyLXIUOY1cQPqQ28ggMor8irxHMZSBslED1AJ1QLmoHxqKxqBz0XQ0D12AlqJr0Rq0Hj2AtqKn0UvodXQAfYqOY4DRMQ5mjNlhXIyHRWCJWBomxxZj5Vg1Vo81Yx1YN3YVG8CeYe8IJAKLgBPsCF6EEMJsgpCQR1hMWEOoJewjtBK6CFcJg4Qxwicik6hPtCV6EvnEeGI6sZBYRqwm7iEeIZ4lXicOE1+TSCQOyZLkTgohJZAySQtJa0jbSC2kU6Q+0hBpnEwm65Btyd7kCLKArCCXkbeQD5BPkvvJw+S3FDrFiOJMCaIkUqSUEko1ZT/lBKWfMkKZoKpRzame1AiqiDqfWkltoHZQL1OHqRM0dZolzZsWQ8ukLaPV0JppZ2n3aC/pdLoJ3YMeRZfQl9Jr6Afp5+mD9HcMDYYNg8dIYigZaxl7GacYtxkvmUymBdOXmchUMNcyG5lnmA+Yb1VYKvYqfBWRyhKVOpVWlX6V56pUVXNVP9V5qgtUq1UPq15WfaZGVbNQ46kJ1Bar1akdVbupNq7OUndSj1DPUV+jvl/9gvpjDbKGhUaghkijVGO3xhmNIRbGMmXxWELWclYD6yxrmE1iW7L57Ex2Bfsbdi97TFNDc6pmrGaRZp3mcc0BDsax4PA52ZxKziHODc57LQMtPy2x1mqtZq1+rTfaetq+2mLtcu0W7eva73VwnUCdLJ31Om0693UJuja6UbqFutt1z+o+02PreekJ9cr1Dund0Uf1bfSj9Rfq79bv0R83MDQINpAZbDE4Y/DMkGPoa5hpuNHwhOGoEctoupHEaKPRSaMnuCbuh2fjNXgXPmasbxxirDTeZdxrPGFiaTLbpMSkxeS+Kc2Ua5pmutG003TMzMgs3KzYrMnsjjnVnGueYb7ZvNv8jYWlRZzFSos2i8eW2pZ8ywWWTZb3rJhWPlZ5VvVW16xJ1lzrLOtt1ldsUBtXmwybOpvLtqitm63Edptt3xTiFI8p0in1U27aMez87ArsmuwG7Tn2YfYl9m32zx3MHBId1jt0O3xydHXMdmxwvOuk4TTDqcSpw+lXZxtnoXOd8zUXpkuQyxKXdpcXU22niqdun3rLleUa7rrStdP1o5u7m9yt2W3U3cw9xX2r+00umxvJXcM970H08PdY4nHM452nm6fC85DnL152Xlle+70eT7OcJp7WMG3I28Rb4L3Le2A6Pj1l+s7pAz7GPgKfep+Hvqa+It89viN+1n6Zfgf8nvs7+sv9j/i/4XnyFvFOBWABwQHlAb2BGoGzA2sDHwSZBKUHNQWNBbsGLww+FUIMCQ1ZH3KTb8AX8hv5YzPcZyya0RXKCJ0VWhv6MMwmTB7WEY6GzwjfEH5vpvlM6cy2CIjgR2yIuB9pGZkX+X0UKSoyqi7qUbRTdHF09yzWrORZ+2e9jvGPqYy5O9tqtnJ2Z6xqbFJsY+ybuIC4qriBeIf4RfGXEnQTJAntieTE2MQ9ieNzAudsmjOc5JpUlnRjruXcorkX5unOy553PFk1WZB8OIWYEpeyP+WDIEJQLxhP5aduTR0T8oSbhU9FvqKNolGxt7hKPJLmnVaV9jjdO31D+miGT0Z1xjMJT1IreZEZkrkj801WRNberM/ZcdktOZSclJyjUg1plrQr1zC3KLdPZisrkw3keeZtyhuTh8r35CP5c/PbFWyFTNGjtFKuUA4WTC+oK3hbGFt4uEi9SFrUM99m/ur5IwuCFny9kLBQuLCz2Lh4WfHgIr9FuxYji1MXdy4xXVK6ZHhp8NJ9y2jLspb9UOJYUlXyannc8o5Sg9KlpUMrglc0lamUycturvRauWMVYZVkVe9ql9VbVn8qF5VfrHCsqK74sEa45uJXTl/VfPV5bdra3kq3yu3rSOuk626s91m/r0q9akHV0IbwDa0b8Y3lG19tSt50oXpq9Y7NtM3KzQM1YTXtW8y2rNvyoTaj9nqdf13LVv2tq7e+2Sba1r/dd3vzDoMdFTve75TsvLUreFdrvUV99W7S7oLdjxpiG7q/5n7duEd3T8Wej3ulewf2Re/ranRvbNyvv7+yCW1SNo0eSDpw5ZuAb9qb7Zp3tXBaKg7CQeXBJ9+mfHvjUOihzsPcw83fmX+39QjrSHkr0jq/dawto22gPaG97+iMo50dXh1Hvrf/fu8x42N1xzWPV56gnSg98fnkgpPjp2Snnp1OPz3Umdx590z8mWtdUV29Z0PPnj8XdO5Mt1/3yfPe549d8Lxw9CL3Ytslt0utPa49R35w/eFIr1tv62X3y+1XPK509E3rO9Hv03/6asDVc9f41y5dn3m978bsG7duJt0cuCW69fh29u0XdwruTNxdeo94r/y+2v3qB/oP6n+0/rFlwG3g+GDAYM/DWQ/vDgmHnv6U/9OH4dJHzEfVI0YjjY+dHx8bDRq98mTOk+GnsqcTz8p+Vv9563Or59/94vtLz1j82PAL+YvPv655qfNy76uprzrHI8cfvM55PfGm/K3O233vuO+638e9H5ko/ED+UPPR+mPHp9BP9z7nfP78L/eE8/stRzjPAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAACxMAAAsTAQCanBgAAAIxSURBVFiF1dixS1tRFMfxT16fuomDHcQs4h8giMVFXPo/lDpI5y710T+gf0K5dOlcuhUKHZ2Di7QInUW6JDjYIXSLDulwk5Imz5f3EpO0P8jy3rn3fDnv3HNzTq3b7RpWlmVL2MUeDlDHFpaxipWRRfnq4Bfavd8VzvAd5yGEu+EFtWGgLMs28ArH2CzpuIo6+IlPeBtCaOYC9aJyiA8zAsnTDY7Q6EcrGXh5iPdzhIHHPZ+H/Qe1brcry7I6LnoGi1ALT0II14/a7fYS3uDpgmCIB+Xu9PS0kWIfz4qsQwi1h/KcZdnosY46xpcEO1ifB8yY/Taxl4h1pmxdmbUOUmyXtS4Id6EqRLmeYm0GG0+qrUQFoIfQmCgvJ+KR+xdgYDVVIaGLNhz3OUvm30paFqas42lVGaiKJjmVlYGyLOsWRWnS0jAx0KDTPLBpc+n/yqE5Xap/aaIcGn42CH6f4zI2EwENb17l3aDNfVCVgOZwl0nFLmBstR533IvWVTDvpGLfNPJfOs/5tPlRwu5Xgtti6Gq6L4olo9tO8cMDtz5T5Fo7QXOc1bTXQYX9rhKx157aQVnoArsOzmonJyf7+Gy+HWueWnieiB3rxwXDEIcP5/1WegNfLS5KN9gNITQTCCFc4wUuFwBziaP+WGZw+tHAS5F2Xmr1fDb6D/IGVnW8Fvv9dbPpalti3r7rfZ0/GgHqQS2JQ4gdsdXeFvu3NZON9G7FAtwUy8w3XOSN9H4DKHngjnga2TgAAAAASUVORK5CYII=) 50% / 18px 18px no-repeat;}.ChatToolBar-DanmakuTail-tip {    width: 18px;    height: 18px;    text-align: center;    line-height: 18px;    border-radius: 4px;    font-size: 12px;    color: #fff;    cursor: pointer;    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    box-sizing: border-box;    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAPFBMVEUAAADKy8zKy8zExMzKy83Ky83KzMzKzM7Kys3Ky8zKy83Jy8zJy83Ky8zLzMzJzMzIyM3MzMzKzMzKy8zUpkOsAAAAE3RSTlMA5PgF2qdrQ+rqysOOhzw3HBnqZkz8cgAAAN5JREFUOMuNlEkOAyEMBNs2y+xL/P+/JgoJaGCAqZOFSk0fLOOL7M7ONLBGeDCTdZsgcq6kdzAtBwLiSauMPoR5ow2Mx4dj1CZ0ArJoh1Ww/Quh5Be1w3F0apaD1a5kMSVJLyRphuknEYaGpIEXuC7pD4YWnaITuUiIdKRkVCRNRlUq+te+a0p4Ujy9ZkMpIaeUgJrEld6aYAxZJS2nF+hGwnUwmHOp/HSCzffybn1dubyZww47aQfaIGtPWgQ4O1Hj8fRgQPzYKOQFgWMhvlfWExHZnJ3M9RzSbN0eYt4fdzsuAVjiHAAAAABJRU5ErkJggg==) 50% / 18px 18px no-repeat;}.ChatToolBar-DanmakuTail-tip-active,.ChatToolBar-DanmakuTail-tip:hover {    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAPFBMVEUAAAD6aDP7ZTD2cUHxeU/pjGvmkHPfjnH4azj4bDruf1fshWHrhmLpjW3njm3kk3/ugFnugVn/XSP+YCg/+VboAAAAEnRSTlMA/P3z4XQyCPr5za2namIOx8bnayGzAAAA3klEQVQ4y43U2w6EIAxF0dNyc7xP+///Ook6EEHA/UTMSukDEUdhna0hVokpD8ZOy4aY/5I8pTT6iwRHUo1dOJD7SKOPO+5iaUYe2EbptAcs/4VQdo1aMWk0NTXDShdZmITkVkIGQ38SgRtIzhhaR3KlkGKnaGI3hFgHJVFBkkQVFfvXrmsivFk8fc0OJUJeiYAa0sreklJwtpKUJwY9INwPA0yOyksNbP4un57vXD7ezOiElaQTLQh7D40b4Duj2L/9YSA4bizkAs78SPpMdo/YtkzWDPffIRk7r+eYH6dAOJwNbfZEAAAAAElFTkSuQmCC) 50% / 18px 18px no-repeat;}.ChatToolBar-DanmakuTail-Panel {    background-color: rgba(255, 255, 255, 0.9);    width: 100%;    height: 140px;    position: relative;    display: none;    z-index: 1015;    color: #333;}.ChatToolBar-DanmakuTail-Panel__cell {    position: relative;    display: -webkit-box;    display: -webkit-flex;    display: flex;    box-sizing: border-box;    width: 100%;    padding: 10px 16px;    overflow: hidden;    color: #323233;    font-size: 14px;    line-height: 24px;    background-color: #fff;    border-bottom: 1px solid rgba(0, 0, 0, 0.2);    flex-wrap: wrap;    -webkit-flex-wrap: wrap;}.ChatToolBar-DanmakuTail-Panel__cell_title {    flex: 1;    -webkit-box-flex: 1;}.ChatToolBar-DanmakuTail-Panel__cell_option {    text-align: right;}.ChatToolBar-DanmakuTail-Panel__cell_switch {    float: right;}.ChatToolBar-DanmakuTail-title {    margin: 0 10px;    font-size: 16px;    font-weight: bold;}.DanmakuTail-input {    margin: 10px;    width: calc(100% - 20px);    height: 2.2em;}.DanmakuTail-checkbox-label,.DanmakuTail-option-label {    margin: 10px;    width: calc(100% - 20px);    display: block;    text-align: right;}.EnergyBarrageIcon {    margin-right: 8px;}.ex-icon {	display: inline-block;	vertical-align: middle;	margin-right: 8px;	-moz-user-select:none; /*火狐*/    -webkit-user-select:none; /*webkit浏览器*/    -ms-user-select:none; /*IE10*/    -khtml-user-select:none; /*早期浏览器*/    user-select:none;}.ex-icon a {    display: flex;    justify-items: center;    align-items: center;}.ex-icon svg:hover {    transform: scale(1.1);}.extool {	background-color: rgba(255,255,255,0.9);	width: 100%;	max-height: 320px;	position: relative;	bottom: 200px;	display: none;	z-index: 1428;	color: #333;	box-sizing: border-box;	padding: 8px 10px;	overflow: auto;	font-size: 13px;	line-height: 22px;}.extool[style*="display: block"] {	display: flex !important;	flex-wrap: wrap;	gap: 8px 10px;	align-items: flex-start;}.extool > div:not(.ex_giftAnimation):not(.extool__close) {	background: rgba(255,255,255,0.82);	border: 1px solid rgba(0,0,0,0.10);	border-radius: 10px;	padding: 10px 12px 12px;	box-sizing: border-box;	box-shadow: 0 2px 10px rgba(0,0,0,0.06);	display: flex;	flex-wrap: wrap;	gap: 6px 10px;	align-items: center;	min-width: 220px;}.extool__close {	position: absolute;	top: 8px;	right: 8px;	width: 26px;	height: 26px;	border-radius: 8px;	display: flex;	align-items: center;	justify-content: center;	cursor: pointer;	user-select: none;	background: rgba(0,0,0,0.06);	color: rgba(0,0,0,0.72);	font-size: 18px;	line-height: 26px;	z-index: 60;}.extool__close:hover {	background: rgba(0,0,0,0.10);}.extool__treasure,.extool__sendgift {	flex: 1 1 720px;}.extool__autofish {	flex: 1 1 520px;}.extool__redpacket_room,.extool__gold,.extool__clearbag,.extool__tabswitch,.extool__p2p,.extool__fullscreen {	flex: 1 1 260px;}.extool__treasure::before,.extool__sendgift::before,.extool__autofish::before,.extool__redpacket_room::before,.extool__gold::before,.extool__clearbag::before,.extool__tabswitch::before,.extool__p2p::before,.extool__fullscreen::before {	display: block;	width: 100%;	content: "";	font-weight: 700;	font-size: 12px;	letter-spacing: .4px;	color: rgba(0,0,0,0.72);	padding-bottom: 6px;	margin-bottom: 2px;	border-bottom: 1px dashed rgba(0,0,0,0.12);}.extool__treasure::before { content: "宝箱"; }.extool__sendgift::before { content: "送礼"; }.extool__autofish::before { content: "钓鱼"; }.extool__redpacket_room::before { content: "礼物红包"; }.extool__gold::before { content: "幻神/礼物"; }.extool__clearbag::before { content: "背包"; }.extool__tabswitch::before { content: "标签/切换"; }.extool__p2p::before { content: "网络"; }.extool__fullscreen::before { content: "播放器"; }.extool label {	white-space: nowrap;	margin-right: 8px;	line-height: 22px;}.extool input[type="text"] {	padding: 2px 6px;	border: 1px solid rgba(0,0,0,0.18);	border-radius: 6px;	outline: none;	background: rgba(255,255,255,0.95);	color: black;}.extool input[type="checkbox"], .extool input[type="radio"] {	vertical-align: middle;	margin-right: 4px;}.extool input[type="button"] {	border: 1px solid rgba(0,0,0,0.18);	border-radius: 8px;	padding: 2px 10px;	background: linear-gradient(#ffffff, #f4f6f8);	cursor: pointer;	color: black;}.extool input[type="button"]:hover {	background: linear-gradient(#ffffff, #e9eef3);}.extool input[type="button"]:active {	transform: translateY(1px);}.extool a {	text-decoration: none;}.extool .extool__hint {	margin-top: 6px;	color: #666;	font-size: 12px;}/* 兼容某些模块里使用 br 分行的写法，让它在 flex 下表现更一致 */.extool br {	flex-basis: 100%;	width: 0;	height: 0;}.extool__switch {	position: absolute;	right: 0;	bottom: 0;}.extool__bsize,.extool__sendgift {	margin-bottom: 5px;}/* 卡片内部已改为 flex，这里不再强制 inline-block */.ex_giftAnimation {	width: 100%;	height: 100%;	position: absolute;	z-index: 50;	pointer-events: none;}.ex-panel {	position: absolute;	bottom: 32px;	right: 0px;	background-color: rgba(255,255,255,0.9);	border: 2px rgb(234,173,26) solid;	z-index: 1428;	user-select: none;	display: none;	overflow: visible;}.ex-panel__close {	position: absolute;	top: -9px;	right: -9px;	z-index: 3;	width: 18px;	height: 18px;	padding: 0;	margin: 0;	border: none;	border-radius: 50%;	background: rgba(255, 255, 255, 0.95);	color: #64748b;	font-size: 14px;	line-height: 16px;	text-align: center;	cursor: pointer;	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	transition: color 0.15s ease, background-color 0.15s ease;}.ex-panel__close:hover {	color: #fff;	background: #f60;}.ex-panel__close:focus-visible {	outline: 2px solid #ff7700;	outline-offset: 1px;}/* 隐藏礼物栏时挂到播放器层，位置由 ExPanel_updateFloatingPosition 计算（视频工具条上方） */.ex-panel.ex-panel--floating {	position: fixed;	z-index: 10000;}.ex-panel__wrap {	display: flex;	align-items: center;	justify-content: center;	width: 100%;	height: 100%;	position: relative;	z-index: 1;}.ex-panel__icon {	margin: 0 10px;	display: block;	position: relative;	padding: 5px;	transition: 0.5s;}.ex-panel__icon:hover {	transform: scale(1.15);}.ex-panel__tip {	display:none;	background:#f00;	border-radius:50%;	width:8px;	height:8px;	top:0px;	right:0px;	position:absolute;}/* 新版斗鱼右侧弹幕Panel的bottom */.live-next-body .layout-Player-chat>* {	bottom: 0 !important;}.text-879f3e {  height: auto !important;  max-height: 48px !important;}.ex-image-danmaku {  height: 48px;  border-radius: 6px;  margin: 0 4px;}.danmuContent-25f266 .ex-image-danmaku {  max-height: 32px;}.barrageSpeed {    position: absolute;    right: 10px;    top: -20px;    color: rgba(0,0,0,0.5);    cursor: default;    z-index: 0;}.enter__panel {    width: 100%;    display: none;    margin-top: 4px;}#enter__title {    cursor: pointer;    user-select: none;    color: royalblue;}#enter__select {    width: 190px;}.enter__option {    margin-top: 5px;}#enter__enterId {    width: 40px;}#enter__reply {    width: 150px;}#enter__word {    width: 140px;}#enter__level {    width: 25px;    text-align: center;}#enter__export {    cursor: pointer;    color: royalblue;    margin-left: 10px;}#enter__import {    cursor: pointer;    color: royalblue;    margin-left: 5px;}.gift__panel {    width: 100%;    display: none;    margin-top: 4px;}#gift__title {    cursor: pointer;    user-select: none;    color: royalblue;}#gift__select {    width: 113px;}.gift__option {    margin-top: 5px;}#gift__giftId {    width: 40px;}#gift__reply {    width: 150px;}#gift__export {    cursor: pointer;    color: royalblue;    margin-left: 10px;}#gift__import {    cursor: pointer;    color: royalblue;    margin-left: 5px;}.livetool {	background-color: rgba(255,255,255,0.9);	width: 100%;	height: 290px;	position: relative;	bottom: 290px;	display: none;	z-index: 1428;}.livetool__cell {	position: relative;    display: -webkit-box;    display: -webkit-flex;    display: flex;    box-sizing: border-box;    width: 100%;    padding: 10px 16px;    overflow: hidden;    color: #323233;    font-size: 14px;    line-height: 24px;	background-color: #fff;	border-bottom: 1px solid rgba(0,0,0,0.2);	flex-wrap: wrap;    -webkit-flex-wrap: wrap;}.livetool__cell_title {	flex: 1;    -webkit-box-flex: 1;}.livetool__cell_option {	text-align: right;}.livetool__cell_switch {	float: right;}.mute__panel {    width: 100%;    display: none;    margin-top: 4px;}#mute__title {    cursor: pointer;    user-select: none;    color: royalblue;}#mute__idlist {    cursor: pointer;    color: royalblue;    margin-left: 10px;}#mute__export, #mute__import {    cursor: pointer;    color: royalblue;    margin-left: 5px;}#mute__select {    width: 110px;}.mute__option {    margin-top: 5px;}#mute__word {    width: 70px;}#mute__count {    width: 30px;}#mute__time {    width: 65px;}.exRankPoint {    position: absolute;    right: 16px;}.exRankPoint--top {    position: absolute;    bottom: -12px;    right: 0;    left: 0;}.reply__panel {    width: 100%;    display: none;    margin-top: 4px;}#reply__title {    cursor: pointer;    user-select: none;    color: royalblue;}#reply__select {    /* width: 190px; */    width: 100px;}#reply__time {    width: 35px;}.reply__option {    margin-top: 5px;}#reply__word {    width: 70px;}#reply__reply {    width: 147px;}#reply__export {    cursor: pointer;    color: royalblue;    margin-left: 10px;}#reply__import {    cursor: pointer;    color: royalblue;    margin-left: 5px;}.livetool__Treasure {    width: 100%;    position: relative;    z-index: 999;}.vote__panel {    width: 100%;    display: none;    margin-top: 4px;}#vote__title {    cursor: pointer;    user-select: none;    color: royalblue;}#vote__select {    width: 100px;}.vote__option {    margin-top: 5px;}#vote__theme {    width: 70px;}#vote__options {    width: 133px;}#vote__time {    width: 35px;}#vote__show-result {    cursor: pointer;    color: royalblue;    margin-left: 10px;}.vote__result {    position: absolute;    top: 0px;    width: 300px;    background: rgba(255,255,255,0.85);    left: 0px;    z-index: 999;    padding: 5px;    border-radius: 10px;    user-select: none;    display: none;    color: #333;}#vote__result-theme {    font-size: 20px;    font-weight: 600;    margin-bottom: 10px;}#vote__result-close {    position: absolute;    top: 5px;    right: 10px;    font-size: 14px;    cursor: pointer;    color: gray;}.vote__option-wrap {    margin-bottom: 10px;}.vote__option-choice {    display: inline-block;    font-size: 14px;}.vote__option-num {    float: right;    font-size: 14px;}.vote__progress {    width: 100%;    background-color: #ddd;    border-radius: 10px;}.vote__progress-bar {    width: 0%;    height: 14px;    background-color: #4CAF50;    text-align: center;    line-height: 30px;    border-radius: 10px;}.exlottery {	background-color: rgba(255,255,255,1);	width: 100%;	height: 250px;	position: relative;	bottom: 250px;	display: none;	z-index: 1428;    overflow: auto;    padding: 0 10px;    box-sizing: border-box;}.lottery__nodata {    z-index: 998;    position: absolute;    left:50%;    top:50%;    transform: translate(-50%, -50%);    color: #606266;}.lottery__wrap {    display: flex;    flex-direction: column;    z-index: 999;}.lottery__a:hover .lottery__item {    background-color: rgb(244,244,244);}.lottery__item {    display: flex;    padding: 5px 0;    border-bottom: 1px solid #d0d0d0;    color: #606266;}.lottery__img img {    width: 150px;    border-radius: 5px;}.lottery__anchor {    position: absolute;    background-color: rgba(255,255,255,0.9);    border-radius: 5px 0px 5px 0px;}.lottery__info {    display: flex;    justify-content: space-evenly;    flex-direction: column;    margin-left: 10px;    overflow: hidden;}.lottery__prize {    white-space: nowrap;    text-overflow: ellipsis;    word-break: break-all;    font-size: 14px;}.lottery__expireTime {    position: absolute;    margin-top: -18px;    background-color: rgba(255,255,255,0.9);    border-radius: 0px 5px 0px 5px;} /*滚动条样式*/.exlottery::-webkit-scrollbar {    width: 4px;    }.exlottery::-webkit-scrollbar-thumb {    border-radius: 10px;    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);    background: rgba(0,0,0,0.2);}.exlottery::-webkit-scrollbar-track {    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);    border-radius: 0;    background: rgba(0,0,0,0.1);}.lottery__func {    display: flex;    justify-content: space-between;    margin-top: 5px;    user-select: none;    border-bottom: 1px solid #d0d0d0;}.lottery__notice,#lottery-refresh {    cursor: pointer;    color: #606266;}.miniprogram__panel {    position: absolute;    right: 43px;    bottom: 100px;    animation: move-in 0.75s;    z-index: 101;    text-align: center;    display: none;}.miniprogram__wrap {    overflow: hidden;    background-color: white;    border-radius: 5%;    width: 200px;    box-shadow: 0px 2px 20px 0px #888888;    font-size: 14px;}.miniprogram__triangle {    width: 0px;    height: 0px;    border-color: white transparent transparent transparent;    border-style: solid;    border-width: 10px;    position: absolute;    left: 100px;}.month-cost {    margin-right: 5px;    cursor: default;    -moz-user-select:none;/*火狐*/    -webkit-user-select:none;/*webkit浏览器*/    -ms-user-select:none;/*IE10*/    -khtml-user-select:none;/*早期浏览器*/    user-select:none;    display: inline-block;    vertical-align: middle;}.monthcost__icon {    position: relative;    top: 3px;    cursor: pointer;    margin-left: 3px;}/* 隐藏登录的提示 */.multiBitRate-da4b60 {  display: none !important;}.exVideoDiv {    width: 500px;    height: 250px;    background-color: rgba(255, 255, 255, 0);    position: absolute;    z-index: 1428;}.exVideoPlayer {    width: 100%;    height: 100%;    cursor: move;}.exVideoScale {    width: 10px;    height: 10px;    overflow: hidden;    cursor: se-resize;    position: absolute;    right: 0;    bottom: 0;    background-color: rgb(231, 57, 57);}.exVideoInfo {    width: 100%;    height: 30px;    background-color: gray;    position: absolute;    top: -30px;    line-height: 30px;}.exVideoClose {    width: 30px;    float: right;    color: white;}.exVideoQn, .exVideoCDN {    margin-left: 5px;}.exVideoRID {    margin: 0px 5px;    font-weight: 800;    font-size: medium;}#popup-player__prompt {    display: none;}.postbird-box-header {    width: auto !important;}.postbird-box-dialog {    color: #333;}.real-audience {    cursor: pointer;    display: flex;    padding: 0 7px;    line-height: 33px;    color: rgb(153, 153, 153);}#Ex_EnterYuba {    width: 100%;}.Title-anchorPic-bottom i{    display: none !important;}#real-audience__total, #real-audience__barrage, #real-audience__money_yc, #real-audience__noble {    margin-left: 2px;}/* #refresh-video {    float: left;    width: 24px;    height: 24px;    margin-right: 5px;    cursor: pointer;    background-size: contain;} */.refresh-barrage {    display: inline-flex;    align-items: center;    vertical-align: top;    margin: 0 2px;    padding: 0 8px;    height: 22px;    line-height: 21px;    background-color: #fff;    border: 1px solid #e5e4e4;    -webkit-border-radius: 4px;    -moz-border-radius: 4px;    border-radius: 4px;    cursor: pointer;    user-select: none;}.refresh-barrage.ex-active {    background: linear-gradient(180deg, rgb(38, 169, 235), rgb(18, 150, 219));    border-color: rgb(18, 150, 219);    box-shadow: 0 0 0 2px rgba(18, 150, 219, .22), 0 8px 16px rgba(18, 150, 219, .28);    font-weight: 700;}.refresh-barrage.ex-active:hover {    box-shadow: 0 0 0 2px rgba(18, 150, 219, .28), 0 10px 18px rgba(18, 150, 219, .36);}.refresh-barrage.ex-active::after {    content: "";    width: 6px;    height: 6px;    margin-left: 6px;    border-radius: 999px;    background: rgba(255, 255, 255, .95);    box-shadow: 0 0 0 2px rgba(255, 255, 255, .22);}.live-next-body .refresh-barrage {    background-color: var(--front-background-color);    border: 1px solid var(--front-border-color);}#refresh-barrage__svg {    vertical-align: middle;}.top-0-important {    top: 0 !important;}.room-vip {  -moz-user-select:none;/*火狐*/  -webkit-user-select:none;/*webkit浏览器*/  -ms-user-select:none;/*IE10*/  -khtml-user-select:none;/*早期浏览器*/  user-select:none;  vertical-align: middle;  position: absolute;  left: 12px;}.repeated-danmaku {  opacity: 0 !important;  pointer-events: none !important;  visibility: hidden !important;}.danmu-fbb2a3 > div {  transition: font-size 0.5s ease !important;}.comment-dzjy-container > div {  z-index: 99 !important;}#ex-camera {    background: rgba(0,0,0,0.7);    position: absolute;    right: 20px;    bottom: 240px;    z-index: 10;    width: 60px;    height: 60px;    cursor: pointer;    -webkit-border-radius: 50%;    -moz-border-radius: 50%;    border-radius: 50%;    cursor: pointer;    display: none;    justify-content: center;    align-items: center;    border: 2px solid #2d2c2c;    box-sizing: border-box;}#ex-camera:hover > svg > path {    fill: rgb(252, 199, 84);}#ex-camera:active > svg > path {    fill: rgb(253, 60, 60);}#ex-camera-close {    position: absolute;    top: -8px;    right: -8px;    width: 20px;    height: 20px;    background: rgba(0,0,0,0.8);    border-radius: 50%;    display: flex;    justify-content: center;    align-items: center;    cursor: pointer;    color: #fff;    font-size: 12px;    line-height: 1;    border: 1px solid rgba(255,255,255,0.3);    z-index: 11;}#ex-camera-close:hover {    background: rgba(253, 60, 60, 0.9);}#ex-cinema:hover > .cinema__wrap {    display: block;}.cinema__wrap {    display: none;    margin: 0;    padding: 0;    border: 1px solid #e5e5e5;    background: #fff;    position: absolute;    left: 199px;    min-width: 100px;    top: 130px;}.cinema__panel {    position: absolute;    border: 1px solid #000;    border-radius: 4px;    transform: translateY(calc(-4px - 100%)) translateX(-50%);    left: 33%;    background-color: #000;    opacity: .75;    width: 70px;}.cinema__panel li {    padding: 0 2px;    white-space: nowrap;    color: #fff;    text-align: center;    cursor: pointer;}.cinema__panel li:hover {    background-color: rgb(85, 85, 85);}  /* Joysound 控件已并入 VideoToolbarMenu，样式见 VideoToolbarMenu.css */#exVideoDivFake {  display: none;}#ex-metadata:hover > .metadata__wrap {  display: block;}.metadata__wrap {  display: none;  margin: 0;  padding: 0;  border: 1px solid #e5e5e5;  background: #fff;  position: absolute;  left: 199px;  min-width: 100px;  top: 0px;  white-space: nowrap;  color: black;}.metadata__panel {  position: absolute;  border: 1px solid #000;  border-radius: 4px;  transform: translateY(calc(-4px - 100%)) translateX(-50%);  left: 33%;  background-color: #000;  opacity: .75;  width: 70px;}.metadata__panel li {  padding: 0 2px;  white-space: nowrap;  color: #fff;  text-align: center;  cursor: pointer;}.metadata__panel li:hover {  background-color: rgb(85, 85, 85);}  #ex-pip-menu-panel.ex-pip-menu-root {    position: fixed;    z-index: 10001;    opacity: 0;    visibility: hidden;    pointer-events: none;    transition: opacity 0.12s ease, visibility 0.12s ease;}#ex-pip-menu-panel.ex-pip-menu-root.is-visible {    opacity: 1;    visibility: visible;    pointer-events: auto;}#ex-pip-menu-panel.ex-pip-menu-root::after {    content: "";    position: absolute;    left: 0;    right: 0;    top: 100%;    height: 8px;}.ex-pip-menu {    box-sizing: border-box;    width: 196px;    padding: 4px 0;    border-radius: 6px;    font-family: "Microsoft YaHei", "PingFang SC", -apple-system, sans-serif;    font-size: 12px;    color: #e8e8e8;    background: #2c2c30;    border: 1px solid #1a1a1c;    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);    user-select: none;    pointer-events: auto;}.ex-pip-menu__list {    margin: 0;    padding: 0;    list-style: none;}.ex-pip-menu__list > li + li {    border-top: 1px solid rgba(255, 255, 255, 0.06);}#ex-pip-menu-panel.ex-pip-menu-root.is-measuring {    opacity: 0;    pointer-events: none;}.ex-pip-opt {    display: flex;    align-items: center;    gap: 10px;    width: 100%;    margin: 0;    padding: 8px 12px;    border: none;    border-radius: 0;    background: transparent;    color: inherit;    text-align: left;    cursor: pointer;    outline: none;    line-height: 1.4;}.ex-pip-opt:hover {    background: rgba(255, 255, 255, 0.06);}.ex-pip-opt:focus-visible {    background: rgba(255, 255, 255, 0.08);    outline: 1px solid rgba(255, 255, 255, 0.2);    outline-offset: -1px;}.ex-pip-opt__icon {    flex-shrink: 0;    display: flex;    align-items: center;    justify-content: center;    width: 24px;    height: 24px;    color: #9a9aa2;}.ex-pip-opt__icon svg {    display: block;    width: 24px;    height: 24px;}.ex-pip-opt--ex .ex-pip-opt__icon {    color: #c4c4cc;}.ex-pip-opt--ex:hover .ex-pip-opt__icon {    color: #e0e0e6;}.ex-pip-opt__body {    flex: 1;    min-width: 0;}.ex-pip-opt__row {    display: flex;    align-items: baseline;    justify-content: space-between;    gap: 8px;}.ex-pip-opt__label {    font-size: 12px;    color: #f0f0f0;}.ex-pip-opt__mark {    flex-shrink: 0;    font-size: 11px;    color: #8c8c94;}.ex-pip-opt--ex .ex-pip-opt__mark {    color: #ff7f3a;}.ex-pip-opt__hint {    display: block;    margin-top: 2px;    font-size: 11px;    color: #7a7a82;    line-height: 1.35;}.ex-pip-opt--ex:hover .ex-pip-opt__mark {    color: #ff9555;}@media (prefers-reduced-motion: reduce) {    .ex-pip-opt,    #ex-pip-menu-panel.ex-pip-menu-root {        transition: none;    }}.filter__wrap {    display: none;    position: relative;    border-radius: 4px;    -webkit-user-select: none;    -moz-user-select: none;    -ms-user-select: none;    user-select: none;}.filter__panel {    position: absolute;    border: 1px solid #000;    border-radius: 4px;    transform: translateY(calc(-4px - 100%)) translateX(-50%);    left: 33%;    background-color: #000;    opacity: .75;    width: 300px;    padding-top: 10px;    padding-left: 10px;    padding-right: 10px;}.filter__panel li {    padding: 0 2px;    white-space: nowrap;    color: #fff;    text-align: center;    cursor: pointer;}.filter__panel li:hover {    background-color: rgb(85, 85, 85);}.filter__scroll {    width: 100%;    height: 5px;    background: #ccc;    position: relative;    display: inline-block;}.filter__scroll-bar {    width: 15px;    height: 15px;    background: #369;    position: absolute;    top: -5px;    left: 100px;    cursor: pointer;    border-radius: 100%;}.filter__scroll-mask {    position: absolute;    left: 0;    top: 0;    background: #369;    width: 100px;    height: 5px;}.filter__title {    color: white;    display: inline-block;    cursor: initial;    margin-right: 2px;}.filter__enhance {    margin-bottom: 10px;    display: flex;    align-items: center;    justify-content: space-between;}.filter__switch {    width: 40px;    height: 20px;    background: #ccc;    position: relative;    display: inline-block;    border-radius: 10px;    cursor: pointer;    transition: background 0.3s;}.filter__switch-slider {    width: 18px;    height: 18px;    background: #fff;    position: absolute;    top: 1px;    left: 0px;    border-radius: 50%;    transition: left 0.3s;}#filter__select {    width: 100%;    float: right;}.filter__filter {    margin-top: 5px;}/* 增强画质提示弹窗样式 */.enhance-modal__panel-wrap {    width: 100%;    height: 100%;    z-index: 1000;    background-color: rgba(0, 0, 0, 0.9);    position: absolute;    top: 0;    left: 0;    display: none;    justify-content: center;    align-items: center;}.enhance-modal__panel {    height: 550px;    width: 600px;    background-color: white;    border-radius: 20px;    position: fixed;    top: 0;    left: 0;    right: 0;    bottom: 0;    margin: auto;    color: #333;}.enhance-modal__content {    position: relative;    top: 50%;    transform: translateY(-50%);    text-align: center;}.enhance-modal__text {    font-size: 18px;    margin-top: 20px;}.enhance-modal__img {    width: 720px;    margin-top: 20px;}.enhance-modal__close {    font-size: 30px;    font-weight: bold;    position: absolute;    right: 15px;    top: 10px;    cursor: pointer;    transition: all 0.2s;}.enhance-modal__close:hover {    color: #ff7700;}#ex-videospeed:hover > .videospeed__wrap {    display: block;}.videospeed__wrap {    display: none;    margin: 0;    padding: 0;    border: 1px solid #e5e5e5;    background: #fff;    position: absolute;    left: 199px;    min-width: 100px;    top: 120px;}.videospeed__panel {    position: absolute;    border: 1px solid #000;    border-radius: 4px;    transform: translateY(calc(-4px - 100%)) translateX(-50%);    left: 33%;    background-color: #000;    opacity: .75;    width: 70px;}.videospeed__panel li {    padding: 0 2px;    white-space: nowrap;    color: #fff;    text-align: center;    cursor: pointer;}.videospeed__panel li:hover {    background-color: rgb(85, 85, 85);}  #ex-videosync {    float: left;    width: 24px;    height: 24px;    margin-left: 20px;    cursor: pointer;    background-size: contain;}#ex-vtoolbar-menu {    float: left;    width: 24px;    height: 24px;    margin-right: 10px;    position: relative;    pointer-events: none;    -webkit-user-select: none;    user-select: none;    overflow: visible;}.vtoolbar-menu__trigger {    position: relative;    z-index: 2;    pointer-events: auto;    display: flex;    align-items: center;    justify-content: center;    width: 24px;    height: 24px;    padding: 0;    border: none;    background: transparent;    cursor: pointer;    border-radius: 6px;    transition: background-color 0.2s ease, transform 0.2s ease;}.vtoolbar-menu__trigger:hover {    background-color: rgba(255, 255, 255, 0.12);}.vtoolbar-menu__trigger:focus-visible {    outline: 2px solid #ff7700;    outline-offset: 2px;}#ex-vtoolbar-menu.is-open .vtoolbar-menu__trigger {    background-color: rgba(255, 119, 0, 0.2);}.vtoolbar-menu__trigger .icon {    display: block;    transition: transform 0.2s ease;}.vtoolbar-menu__trigger:hover .icon {    transform: scale(1.08);}.vtoolbar-menu__dropdown {    display: none;    position: absolute;    left: 50%;    bottom: calc(100% + 18px);    transform: translateX(-50%);    min-width: 188px;    padding: 4px;    border-radius: 10px;    background: rgba(15, 15, 35, 0.96);    border: 1px solid rgba(67, 56, 202, 0.35);    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;    z-index: 2;    pointer-events: auto;    backdrop-filter: blur(8px);}/* 仅连接菜单与精灵球之间的空隙，不遮挡工具条其他按钮 */.vtoolbar-menu__dropdown::before {    content: "";    position: absolute;    left: 50%;    transform: translateX(-50%);    top: 100%;    width: 200px;    height: 22px;    pointer-events: auto;}#ex-vtoolbar-menu.is-open .vtoolbar-menu__dropdown {    display: block;    animation: vtoolbar-menu-fade-in 0.2s ease;}@keyframes vtoolbar-menu-fade-in {    from {        opacity: 0;        transform: translateX(-50%) translateY(6px);    }    to {        opacity: 1;        transform: translateX(-50%) translateY(0);    }}@media (prefers-reduced-motion: reduce) {    #ex-vtoolbar-menu.is-open .vtoolbar-menu__dropdown {        animation: none;    }    .vtoolbar-menu__trigger,    .vtoolbar-menu__pokeball,    .vtoolbar-menu__item,    .vtoolbar-menu__switch {        transition: none;    }}.vtoolbar-menu__dropdown::after {    content: "";    position: absolute;    left: 50%;    bottom: -7px;    transform: translateX(-50%) rotate(45deg);    width: 10px;    height: 10px;    background: rgba(15, 15, 35, 0.96);    border-right: 1px solid rgba(67, 56, 202, 0.35);    border-bottom: 1px solid rgba(67, 56, 202, 0.35);    pointer-events: none;}.vtoolbar-menu__item {    display: flex;    align-items: center;    gap: 8px;    width: 100%;    padding: 7px 10px;    border: none;    border-radius: 8px;    background: transparent;    color: #f8fafc;    font-size: 12px;    line-height: 20px;    text-align: left;    cursor: pointer;    transition: background-color 0.2s ease, color 0.2s ease;}.vtoolbar-menu__item:hover {    background-color: rgba(67, 56, 202, 0.35);}.vtoolbar-menu__item:focus-visible {    outline: 2px solid #ff7700;    outline-offset: -2px;}.vtoolbar-menu__item-icon {    flex-shrink: 0;    display: flex;    align-items: center;    justify-content: center;    width: 20px;    height: 20px;    color: #a5b4fc;}.vtoolbar-menu__item-icon .icon,.vtoolbar-menu__item-icon svg,.vtoolbar-menu__item-icon img {    width: 20px;    height: 20px;    display: block;    flex-shrink: 0;}.vtoolbar-menu__item-icon--compact svg,.vtoolbar-menu__item-icon--compact .icon {    width: 16px;    height: 16px;}.vtoolbar-menu__item-icon .vtoolbar-menu__icon-pip {    width: 18px;    height: 18px;}.vtoolbar-menu__item-label {    flex: 1;    white-space: nowrap;    font-size: 12px;    line-height: 20px;}.vtoolbar-menu__item--filter.is-active {    background-color: rgba(255, 119, 0, 0.15);}.vtoolbar-menu__item--filter.is-active .vtoolbar-menu__chevron {    transform: rotate(90deg);    color: #ff7700;}.vtoolbar-menu__chevron {    flex-shrink: 0;    width: 14px;    height: 14px;    color: #94a3b8;    transition: transform 0.2s ease, color 0.2s ease;}.vtoolbar-menu__switch {    flex-shrink: 0;    width: 32px;    height: 18px;    border-radius: 10px;    background: #475569;    position: relative;    transition: background-color 0.2s ease;    pointer-events: none;}.vtoolbar-menu__switch.is-on {    background: linear-gradient(90deg, #f0cb95, #e9be80);}.vtoolbar-menu__switch-thumb {    position: absolute;    top: 2px;    left: 2px;    width: 14px;    height: 14px;    border-radius: 50%;    background: #fff;    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);    transition: left 0.2s ease;}.vtoolbar-menu__switch.is-on .vtoolbar-menu__switch-thumb {    left: 16px;}.vtoolbar-menu__filter-host {    display: none;    position: absolute;    left: 100%;    bottom: 0;    margin-left: -6px;    padding-left: 12px;    z-index: 2;    pointer-events: none;}.vtoolbar-menu__filter-host.is-visible {    pointer-events: auto;}.vtoolbar-menu__filter-host.is-visible {    display: block;}.vtoolbar-menu__filter-host .filter__wrap {    display: block;    position: static;    float: none;    right: auto;    bottom: auto;    margin: 0;    height: auto;}.vtoolbar-menu__filter-host .filter__panel {    position: relative;    transform: none;    left: auto;    opacity: 0.92;}.vtoolbar-menu__divider {    height: 1px;    margin: 4px 8px;    background: rgba(148, 163, 184, 0.2);}.menu-da2a9e {  z-index: 999 !important;} .volume-07c230.custom-muted .icon-c8be96 svg, .volume-07c230.custom-normal .icon-c8be96 svg {     display: none !important; } .volume-07c230.custom-muted .icon-c8be96::after, .volume-07c230.custom-normal .icon-c8be96::after {     content: '';     display: block;     width: 32px;     height: 32px;     background-size: contain;     background-repeat: no-repeat;     background-position: center; } /* 静音图标颜色控制 */ .volume-07c230.custom-muted .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 19l6-6M20 13l6 6" stroke="%23fff" stroke-width="2" stroke-linecap="round"></path></svg>'); } .volume-07c230.custom-muted:hover .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 19l6-6M20 13l6 6" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round"></path></svg>'); } /* 正常图标颜色控制 */ .volume-07c230.custom-normal .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21.736 23.517a8 8 0 00-.527-15.206M19.687 19.867a3.925 3.925 0 00-.258-7.46" stroke="%23fff" stroke-width="2" stroke-linecap="round"></path></svg>'); } .volume-07c230.custom-normal:hover .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21.736 23.517a8 8 0 00-.527-15.206M19.687 19.867a3.925 3.925 0 00-.258-7.46" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round"></path></svg>'); }.weeklypanel__panel-wrap {    width: 100%;    height: 100%;    z-index: 1000;    background-color: rgba(0, 0, 0, 0.9);    position: absolute;    top: 0;    left: 0;    display: flex;    justify-content: center;    align-items: center;}.weeklypanel__panel {    height: 600px;    width: 500px;    background-color: white;    border-radius: 20px;    position: fixed;    top: 0;    left: 0;    right: 0;    bottom: 0;    margin: auto;}.weeklypanel__content {    position: relative;    top: 50%;    transform: translateY(-50%);    text-align: center;}.weeklypanel__text {    font-size: 18px;}.weeklypanel__text a {    font-weight: bold;    font-size: 24px;}.weeklypanel__close {    font-size: 30px;    font-weight: bold;    position: absolute;    right: 15px;    cursor: pointer;}.noticejs-top{top:0;width:100% !important}.noticejs-top .item{border-radius:0 !important;margin:0 !important}.noticejs-topRight{top:10px;right:10px}.noticejs-topLeft{top:10px;left:10px}.noticejs-topCenter{top:10px;left:50%;transform:translate(-50%)}.noticejs-middleLeft,.noticejs-middleRight{right:10px;top:50%;transform:translateY(-50%)}.noticejs-middleLeft{left:10px}.noticejs-middleCenter{top:50%;left:50%;transform:translate(-50%,-50%)}.noticejs-bottom{bottom:0;width:100% !important}.noticejs-bottom .item{border-radius:0 !important;margin:0 !important}.noticejs-bottomRight{bottom:10px;right:10px}.noticejs-bottomLeft{bottom:10px;left:10px}.noticejs-bottomCenter{bottom:10px;left:50%;transform:translate(-50%)}.noticejs{font-family:Helvetica Neue,Helvetica,Arial,sans-serif}.noticejs .item{margin:0 0 10px;border-radius:3px;overflow:hidden}.noticejs .item .close{float:right;font-size:18px;font-weight:700;line-height:1;color:#fff;text-shadow:0 1px 0 #fff;opacity:1;margin-right:7px}.noticejs .item .close:hover{opacity:.5;color:#000}.noticejs .item a{color:#fff;border-bottom:1px dashed #fff}.noticejs .item a,.noticejs .item a:hover{text-decoration:none}.noticejs .success{background-color:#64ce83}.noticejs .success .noticejs-heading{background-color:#3da95c;color:#fff;padding:10px}.noticejs .success .noticejs-body{color:#fff;padding:10px}.noticejs .success .noticejs-body:hover{visibility:visible !important}.noticejs .success .noticejs-content{visibility:visible}.noticejs .info{background-color:#3ea2ff}.noticejs .info .noticejs-heading{background-color:#067cea;color:#fff;padding:10px}.noticejs .info .noticejs-body{color:#fff;padding:10px}.noticejs .info .noticejs-body:hover{visibility:visible !important}.noticejs .info .noticejs-content{visibility:visible}.noticejs .warning{background-color:#ff7f48}.noticejs .warning .noticejs-heading{background-color:#f44e06;color:#fff;padding:10px}.noticejs .warning .noticejs-body{color:#fff;padding:10px}.noticejs .warning .noticejs-body:hover{visibility:visible !important}.noticejs .warning .noticejs-content{visibility:visible}.noticejs .error{background-color:#e74c3c}.noticejs .error .noticejs-heading{background-color:#ba2c1d;color:#fff;padding:10px}.noticejs .error .noticejs-body{color:#fff;padding:10px}.noticejs .error .noticejs-body:hover{visibility:visible !important}.noticejs .error .noticejs-content{visibility:visible}.noticejs .progressbar{width:100%}.noticejs .progressbar .bar{width:1%;height:30px;background-color:#4caf50}.noticejs .success .noticejs-progressbar{width:100%;background-color:#64ce83;margin-top:-1px}.noticejs .success .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#3da95c}.noticejs .info .noticejs-progressbar{width:100%;background-color:#3ea2ff;margin-top:-1px}.noticejs .info .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#067cea}.noticejs .warning .noticejs-progressbar{width:100%;background-color:#ff7f48;margin-top:-1px}.noticejs .warning .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#f44e06}.noticejs .error .noticejs-progressbar{width:100%;background-color:#e74c3c;margin-top:-1px}.noticejs .error .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#ba2c1d}@keyframes noticejs-fadeOut{0%{opacity:1}to{opacity:0}}.noticejs-fadeOut{animation-name:noticejs-fadeOut}@keyframes noticejs-modal-in{to{opacity:.3}}@keyframes noticejs-modal-out{to{opacity:0}}.noticejs-rtl .noticejs-heading{direction:rtl}.noticejs-rtl .close{float:left !important;margin-left:7px;margin-right:0 !important}.noticejs-rtl .noticejs-content{direction:rtl}.noticejs{position:fixed;z-index:10050;width:320px}.noticejs::-webkit-scrollbar{width:8px}.noticejs::-webkit-scrollbar-button{width:8px;height:5px}.noticejs::-webkit-scrollbar-track{border-radius:10px}.noticejs::-webkit-scrollbar-thumb{background:hsla(0,0%,100%,.5);border-radius:10px}.noticejs::-webkit-scrollbar-thumb:hover{background:#fff}.noticejs-modal{position:fixed;width:100%;height:100%;background-color:#000;z-index:10000;opacity:.3;left:0;top:0}.noticejs-modal-open{opacity:0;animation:noticejs-modal-in .3s ease-out}.noticejs-modal-close{animation:noticejs-modal-out .3s ease-out;animation-fill-mode:forwards}.noticejs .special{background-color:rgb(160,37,160)}.noticejs .special .noticejs-heading{background-color:rgb(110,26,110);color:#fff;padding:10px}.noticejs .special .noticejs-body{color:#fff;padding:10px}.noticejs .special .noticejs-body:hover{visibility:visible !important}.noticejs .special .noticejs-content{visibility:visible}.noticejs .special .noticejs-progressbar{width:100%;background-color:rgb(160,37,160);margin-top:-1px}.noticejs .special .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:rgb(110,26,110)}/** * PostbirdAlertBox.js * -    原生javascript弹框插件 * Author:  Postbird - http://www.ptbird.cn * License: MIT * Date:    2017-09-23 */ .postbird-box-container {    width: 100%;    height: 100%;    overflow: hidden;    position: fixed;    top: 0;    left: 0;    z-index: 9999;    background-color: rgba(0, 0, 0, 0.2);    display: block;    -webkit-user-select: none;    -moz-user-select: none;    -ms-user-select: none;    user-select: none}.postbird-box-container.active {    display: block}.postbird-box-content {    min-width: 400px;    max-width: 600px;    min-height: 150px;    background-color: #fff;    border: solid 1px #dfdfdf;    position: absolute;    top: 50%;    left: 50%;    transform: translate(-50%, -50%);    margin-top: -100px}.postbird-box-header {    width: 100%;    padding: 10px 15px;    position: relative;    font-size: 1.1em;    letter-spacing: 2px}.postbird-box-close-btn {    cursor: pointer;    font-weight: 700;    color: #000;    float: right;    opacity: .5;    font-size: 1.3em;    margin-top: -3px;    display: none}.postbird-box-close-btn:hover {    opacity: 1}.postbird-box-text {    box-sizing: border-box;    width: 100%;    padding: 0 10%;    text-align: center;    line-height: 40px;    font-size: 20px;    letter-spacing: 1px}.postbird-box-footer {    width: 100%;    position: absolute;    padding: 0;    margin: 0;    bottom: 0;    display: flex;    display: -webkit-flex;    justify-content: space-around;    border-top: solid 1px #dfdfdf;    align-items: flex-end}.postbird-box-footer .btn-footer {    line-height: 44px;    border: 0;    cursor: pointer;    background-color: #fff;    color: #0e90d2;    font-size: 1.1em;    letter-spacing: 2px;    transition: background-color .5s;    -webkit-transition: background-color .5s;    -o-transition: background-color .5s;    -moz-transition: background-color .5s;    outline: 0}.postbird-box-footer .btn-footer:hover {    background-color: #e5e5e5}.postbird-box-footer .btn-block-footer {    width: 100%}.postbird-box-footer .btn-left-footer,.postbird-box-footer .btn-right-footer {    position: relative;    width: 100%}.postbird-box-footer .btn-left-footer::after {    content: "";    position: absolute;    right: 0;    top: 0;    background-color: #e5e5e5;    height: 100%;    width: 1px}.postbird-box-footer .btn-footer-cancel {    color: #333}.postbird-prompt-input {    width: 100%;    padding: 5px;    font-size: 16px;    border: 1px solid #ccc;    outline: 0}.onoffswitch {    position: relative; width: 45px;    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;}.onoffswitch-checkbox {    position: absolute;    opacity: 0;    pointer-events: none;}.onoffswitch-label {    display: block; overflow: hidden; cursor: pointer;    height: 20px; padding: 0; line-height: 20px;    border: 2px solid #E3E3E3; border-radius: 20px;    background-color: #FFFFFF;    transition: background-color 0.3s ease-in;}.onoffswitch-label:before {    content: "";    display: block; width: 20px; margin: 0px;    background: #FFFFFF;    position: absolute; top: 0; bottom: 0;    right: 23px;    border: 2px solid #E3E3E3; border-radius: 20px;    transition: all 0.3s ease-in 0s; }.onoffswitch-checkbox:checked + .onoffswitch-label {    background-color: #3AAD38;}.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {   border-color: #3AAD38;}.onoffswitch-checkbox:checked + .onoffswitch-label:before {    right: 0px; }.layui-timeline {    padding-left: 5px;}.layui-timeline-item {    position: relative;    padding-bottom: 20px;}li {    list-style: none;}.layui-timeline-item:first-child::before {    display: block;}.layui-timeline-item:last-child::before {    content: '';    position: absolute;    left: 5px;    top: 0;    z-index: 0;    width: 0;    height: 100%;}.layui-timeline-item::before {    content: '';    position: absolute;    left: 5px;    top: 0;    z-index: 0;    width: 1px;    height: 100%;}.layui-timeline-item::before,hr {    background-color: #e6e6e6;}.layui-timeline-axis {    position: absolute;    left: -5px;    top: 0;    z-index: 10;    width: 20px;    height: 20px;    line-height: 20px;    background-color: #fff;    color: #5FB878;    border-radius: 50%;    text-align: center;    cursor: pointer;}.layui-icon {    font-family: layui-icon !important;    font-size: 16px;    font-style: normal;}.layui-timeline-content {    padding-left: 25px;}.layui-text {    line-height: 22px;    font-size: 14px;    color: rgb(85,85,85);}.layui-timeline-title {    position: relative;}
+		#ex-audio-line {    cursor: pointer;}.live-next-body #ex-audio-line {    margin-left: 4px;}.danmuContent-25f266 {    pointer-events: auto !important;}.thirdBtn-06cde5, .fourBtn-0845d4 {    /* 加宽按钮方便点击 */    margin-left: 0px !important;    margin-right: 0px !important;    padding: 0 17px !important;}#copy-real-live {    cursor: pointer;}.Title-row-span, .Title-row-icon  {    display: flex;    align-items: center;    justify-content: center;}.Title-row-icon {    margin-right: 4px;}.live-next-body #copy-real-live {    margin-left: 4px;}.ChatBarrageCollect .TagItem {  height: auto !important;}.ChatBarrageCollect .TagItem-txt {  overflow: auto !important;  white-space: normal !important;  text-overflow: clip !important;}.ChatToolBar-DanmakuTail {    display: inline-block;    vertical-align: middle;    width: 18px;    height: 18px;    -webkit-border-radius: 4px;    -moz-border-radius: 4px;    border-radius: 4px;    margin-right: 8px;    color: #bbb;    cursor: pointer;}[data-mantine-color-scheme=dark] .ChatToolBar-DanmakuTail-tip {    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAACklpQ0NQc1JHQiBJRUM2MTk2Ni0yLjEAAEiJnVN3WJP3Fj7f92UPVkLY8LGXbIEAIiOsCMgQWaIQkgBhhBASQMWFiApWFBURnEhVxILVCkidiOKgKLhnQYqIWotVXDjuH9yntX167+3t+9f7vOec5/zOec8PgBESJpHmomoAOVKFPDrYH49PSMTJvYACFUjgBCAQ5svCZwXFAADwA3l4fnSwP/wBr28AAgBw1S4kEsfh/4O6UCZXACCRAOAiEucLAZBSAMguVMgUAMgYALBTs2QKAJQAAGx5fEIiAKoNAOz0ST4FANipk9wXANiiHKkIAI0BAJkoRyQCQLsAYFWBUiwCwMIAoKxAIi4EwK4BgFm2MkcCgL0FAHaOWJAPQGAAgJlCLMwAIDgCAEMeE80DIEwDoDDSv+CpX3CFuEgBAMDLlc2XS9IzFLiV0Bp38vDg4iHiwmyxQmEXKRBmCeQinJebIxNI5wNMzgwAABr50cH+OD+Q5+bk4eZm52zv9MWi/mvwbyI+IfHf/ryMAgQAEE7P79pf5eXWA3DHAbB1v2upWwDaVgBo3/ldM9sJoFoK0Hr5i3k4/EAenqFQyDwdHAoLC+0lYqG9MOOLPv8z4W/gi372/EAe/tt68ABxmkCZrcCjg/1xYW52rlKO58sEQjFu9+cj/seFf/2OKdHiNLFcLBWK8ViJuFAiTcd5uVKRRCHJleIS6X8y8R+W/QmTdw0ArIZPwE62B7XLbMB+7gECiw5Y0nYAQH7zLYwaC5EAEGc0Mnn3AACTv/mPQCsBAM2XpOMAALzoGFyolBdMxggAAESggSqwQQcMwRSswA6cwR28wBcCYQZEQAwkwDwQQgbkgBwKoRiWQRlUwDrYBLWwAxqgEZrhELTBMTgN5+ASXIHrcBcGYBiewhi8hgkEQcgIE2EhOogRYo7YIs4IF5mOBCJhSDSSgKQg6YgUUSLFyHKkAqlCapFdSCPyLXIUOY1cQPqQ28ggMor8irxHMZSBslED1AJ1QLmoHxqKxqBz0XQ0D12AlqJr0Rq0Hj2AtqKn0UvodXQAfYqOY4DRMQ5mjNlhXIyHRWCJWBomxxZj5Vg1Vo81Yx1YN3YVG8CeYe8IJAKLgBPsCF6EEMJsgpCQR1hMWEOoJewjtBK6CFcJg4Qxwicik6hPtCV6EvnEeGI6sZBYRqwm7iEeIZ4lXicOE1+TSCQOyZLkTgohJZAySQtJa0jbSC2kU6Q+0hBpnEwm65Btyd7kCLKArCCXkbeQD5BPkvvJw+S3FDrFiOJMCaIkUqSUEko1ZT/lBKWfMkKZoKpRzame1AiqiDqfWkltoHZQL1OHqRM0dZolzZsWQ8ukLaPV0JppZ2n3aC/pdLoJ3YMeRZfQl9Jr6Afp5+mD9HcMDYYNg8dIYigZaxl7GacYtxkvmUymBdOXmchUMNcyG5lnmA+Yb1VYKvYqfBWRyhKVOpVWlX6V56pUVXNVP9V5qgtUq1UPq15WfaZGVbNQ46kJ1Bar1akdVbupNq7OUndSj1DPUV+jvl/9gvpjDbKGhUaghkijVGO3xhmNIRbGMmXxWELWclYD6yxrmE1iW7L57Ex2Bfsbdi97TFNDc6pmrGaRZp3mcc0BDsax4PA52ZxKziHODc57LQMtPy2x1mqtZq1+rTfaetq+2mLtcu0W7eva73VwnUCdLJ31Om0693UJuja6UbqFutt1z+o+02PreekJ9cr1Dund0Uf1bfSj9Rfq79bv0R83MDQINpAZbDE4Y/DMkGPoa5hpuNHwhOGoEctoupHEaKPRSaMnuCbuh2fjNXgXPmasbxxirDTeZdxrPGFiaTLbpMSkxeS+Kc2Ua5pmutG003TMzMgs3KzYrMnsjjnVnGueYb7ZvNv8jYWlRZzFSos2i8eW2pZ8ywWWTZb3rJhWPlZ5VvVW16xJ1lzrLOtt1ldsUBtXmwybOpvLtqitm63Edptt3xTiFI8p0in1U27aMez87ArsmuwG7Tn2YfYl9m32zx3MHBId1jt0O3xydHXMdmxwvOuk4TTDqcSpw+lXZxtnoXOd8zUXpkuQyxKXdpcXU22niqdun3rLleUa7rrStdP1o5u7m9yt2W3U3cw9xX2r+00umxvJXcM970H08PdY4nHM452nm6fC85DnL152Xlle+70eT7OcJp7WMG3I28Rb4L3Le2A6Pj1l+s7pAz7GPgKfep+Hvqa+It89viN+1n6Zfgf8nvs7+sv9j/i/4XnyFvFOBWABwQHlAb2BGoGzA2sDHwSZBKUHNQWNBbsGLww+FUIMCQ1ZH3KTb8AX8hv5YzPcZyya0RXKCJ0VWhv6MMwmTB7WEY6GzwjfEH5vpvlM6cy2CIjgR2yIuB9pGZkX+X0UKSoyqi7qUbRTdHF09yzWrORZ+2e9jvGPqYy5O9tqtnJ2Z6xqbFJsY+ybuIC4qriBeIf4RfGXEnQTJAntieTE2MQ9ieNzAudsmjOc5JpUlnRjruXcorkX5unOy553PFk1WZB8OIWYEpeyP+WDIEJQLxhP5aduTR0T8oSbhU9FvqKNolGxt7hKPJLmnVaV9jjdO31D+miGT0Z1xjMJT1IreZEZkrkj801WRNberM/ZcdktOZSclJyjUg1plrQr1zC3KLdPZisrkw3keeZtyhuTh8r35CP5c/PbFWyFTNGjtFKuUA4WTC+oK3hbGFt4uEi9SFrUM99m/ur5IwuCFny9kLBQuLCz2Lh4WfHgIr9FuxYji1MXdy4xXVK6ZHhp8NJ9y2jLspb9UOJYUlXyannc8o5Sg9KlpUMrglc0lamUycturvRauWMVYZVkVe9ql9VbVn8qF5VfrHCsqK74sEa45uJXTl/VfPV5bdra3kq3yu3rSOuk626s91m/r0q9akHV0IbwDa0b8Y3lG19tSt50oXpq9Y7NtM3KzQM1YTXtW8y2rNvyoTaj9nqdf13LVv2tq7e+2Sba1r/dd3vzDoMdFTve75TsvLUreFdrvUV99W7S7oLdjxpiG7q/5n7duEd3T8Wej3ulewf2Re/ranRvbNyvv7+yCW1SNo0eSDpw5ZuAb9qb7Zp3tXBaKg7CQeXBJ9+mfHvjUOihzsPcw83fmX+39QjrSHkr0jq/dawto22gPaG97+iMo50dXh1Hvrf/fu8x42N1xzWPV56gnSg98fnkgpPjp2Snnp1OPz3Umdx590z8mWtdUV29Z0PPnj8XdO5Mt1/3yfPe549d8Lxw9CL3Ytslt0utPa49R35w/eFIr1tv62X3y+1XPK509E3rO9Hv03/6asDVc9f41y5dn3m978bsG7duJt0cuCW69fh29u0XdwruTNxdeo94r/y+2v3qB/oP6n+0/rFlwG3g+GDAYM/DWQ/vDgmHnv6U/9OH4dJHzEfVI0YjjY+dHx8bDRq98mTOk+GnsqcTz8p+Vv9563Or59/94vtLz1j82PAL+YvPv655qfNy76uprzrHI8cfvM55PfGm/K3O233vuO+638e9H5ko/ED+UPPR+mPHp9BP9z7nfP78L/eE8/stRzjPAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAACxMAAAsTAQCanBgAAAIxSURBVFiF1dixS1tRFMfxT16fuomDHcQs4h8giMVFXPo/lDpI5y710T+gf0K5dOlcuhUKHZ2Di7QInUW6JDjYIXSLDulwk5Imz5f3EpO0P8jy3rn3fDnv3HNzTq3b7RpWlmVL2MUeDlDHFpaxipWRRfnq4Bfavd8VzvAd5yGEu+EFtWGgLMs28ArH2CzpuIo6+IlPeBtCaOYC9aJyiA8zAsnTDY7Q6EcrGXh5iPdzhIHHPZ+H/Qe1brcry7I6LnoGi1ALT0II14/a7fYS3uDpgmCIB+Xu9PS0kWIfz4qsQwi1h/KcZdnosY46xpcEO1ifB8yY/Taxl4h1pmxdmbUOUmyXtS4Id6EqRLmeYm0GG0+qrUQFoIfQmCgvJ+KR+xdgYDVVIaGLNhz3OUvm30paFqas42lVGaiKJjmVlYGyLOsWRWnS0jAx0KDTPLBpc+n/yqE5Xap/aaIcGn42CH6f4zI2EwENb17l3aDNfVCVgOZwl0nFLmBstR533IvWVTDvpGLfNPJfOs/5tPlRwu5Xgtti6Gq6L4olo9tO8cMDtz5T5Fo7QXOc1bTXQYX9rhKx157aQVnoArsOzmonJyf7+Gy+HWueWnieiB3rxwXDEIcP5/1WegNfLS5KN9gNITQTCCFc4wUuFwBziaP+WGZw+tHAS5F2Xmr1fDb6D/IGVnW8Fvv9dbPpalti3r7rfZ0/GgHqQS2JQ4gdsdXeFvu3NZON9G7FAtwUy8w3XOSN9H4DKHngjnga2TgAAAAASUVORK5CYII=) 50% / 18px 18px no-repeat;}.ChatToolBar-DanmakuTail-tip {    width: 18px;    height: 18px;    text-align: center;    line-height: 18px;    border-radius: 4px;    font-size: 12px;    color: #fff;    cursor: pointer;    -webkit-box-sizing: border-box;    -moz-box-sizing: border-box;    box-sizing: border-box;    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAPFBMVEUAAADKy8zKy8zExMzKy83Ky83KzMzKzM7Kys3Ky8zKy83Jy8zJy83Ky8zLzMzJzMzIyM3MzMzKzMzKy8zUpkOsAAAAE3RSTlMA5PgF2qdrQ+rqysOOhzw3HBnqZkz8cgAAAN5JREFUOMuNlEkOAyEMBNs2y+xL/P+/JgoJaGCAqZOFSk0fLOOL7M7ONLBGeDCTdZsgcq6kdzAtBwLiSauMPoR5ow2Mx4dj1CZ0ArJoh1Ww/Quh5Be1w3F0apaD1a5kMSVJLyRphuknEYaGpIEXuC7pD4YWnaITuUiIdKRkVCRNRlUq+te+a0p4Ujy9ZkMpIaeUgJrEld6aYAxZJS2nF+hGwnUwmHOp/HSCzffybn1dubyZww47aQfaIGtPWgQ4O1Hj8fRgQPzYKOQFgWMhvlfWExHZnJ3M9RzSbN0eYt4fdzsuAVjiHAAAAABJRU5ErkJggg==) 50% / 18px 18px no-repeat;}.ChatToolBar-DanmakuTail-tip-active,.ChatToolBar-DanmakuTail-tip:hover {    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAPFBMVEUAAAD6aDP7ZTD2cUHxeU/pjGvmkHPfjnH4azj4bDruf1fshWHrhmLpjW3njm3kk3/ugFnugVn/XSP+YCg/+VboAAAAEnRSTlMA/P3z4XQyCPr5za2namIOx8bnayGzAAAA3klEQVQ4y43U2w6EIAxF0dNyc7xP+///Ook6EEHA/UTMSukDEUdhna0hVokpD8ZOy4aY/5I8pTT6iwRHUo1dOJD7SKOPO+5iaUYe2EbptAcs/4VQdo1aMWk0NTXDShdZmITkVkIGQ38SgRtIzhhaR3KlkGKnaGI3hFgHJVFBkkQVFfvXrmsivFk8fc0OJUJeiYAa0sreklJwtpKUJwY9INwPA0yOyksNbP4un57vXD7ezOiElaQTLQh7D40b4Duj2L/9YSA4bizkAs78SPpMdo/YtkzWDPffIRk7r+eYH6dAOJwNbfZEAAAAAElFTkSuQmCC) 50% / 18px 18px no-repeat;}.ChatToolBar-DanmakuTail-Panel {    background-color: rgba(255, 255, 255, 0.9);    width: 100%;    height: 140px;    position: relative;    display: none;    z-index: 1015;    color: #333;}.ChatToolBar-DanmakuTail-Panel__cell {    position: relative;    display: -webkit-box;    display: -webkit-flex;    display: flex;    box-sizing: border-box;    width: 100%;    padding: 10px 16px;    overflow: hidden;    color: #323233;    font-size: 14px;    line-height: 24px;    background-color: #fff;    border-bottom: 1px solid rgba(0, 0, 0, 0.2);    flex-wrap: wrap;    -webkit-flex-wrap: wrap;}.ChatToolBar-DanmakuTail-Panel__cell_title {    flex: 1;    -webkit-box-flex: 1;}.ChatToolBar-DanmakuTail-Panel__cell_option {    text-align: right;}.ChatToolBar-DanmakuTail-Panel__cell_switch {    float: right;}.ChatToolBar-DanmakuTail-title {    margin: 0 10px;    font-size: 16px;    font-weight: bold;}.DanmakuTail-input {    margin: 10px;    width: calc(100% - 20px);    height: 2.2em;}.DanmakuTail-checkbox-label,.DanmakuTail-option-label {    margin: 10px;    width: calc(100% - 20px);    display: block;    text-align: right;}.EnergyBarrageIcon {    margin-right: 8px;}.ex-icon {	display: inline-block;	vertical-align: middle;	margin-right: 8px;	-moz-user-select:none; /*火狐*/    -webkit-user-select:none; /*webkit浏览器*/    -ms-user-select:none; /*IE10*/    -khtml-user-select:none; /*早期浏览器*/    user-select:none;}.ex-icon a {    display: flex;    justify-items: center;    align-items: center;}.ex-icon svg:hover {    transform: scale(1.1);}.ex-panel {	position: absolute;	bottom: 32px;	right: 0px;	background-color: rgba(255,255,255,0.9);	border: 2px rgb(234,173,26) solid;	z-index: 1428;	user-select: none;	display: none;	overflow: visible;}.ex-panel__close {	position: absolute;	top: -9px;	right: -9px;	z-index: 3;	width: 18px;	height: 18px;	padding: 0;	margin: 0;	border: none;	border-radius: 50%;	background: rgba(255, 255, 255, 0.95);	color: #64748b;	font-size: 14px;	line-height: 16px;	text-align: center;	cursor: pointer;	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	transition: color 0.15s ease, background-color 0.15s ease;}.ex-panel__close:hover {	color: #fff;	background: #f60;}.ex-panel__close:focus-visible {	outline: 2px solid #ff7700;	outline-offset: 1px;}/* 隐藏礼物栏时挂到播放器层，位置由 ExPanel_updateFloatingPosition 计算（视频工具条上方） */.ex-panel.ex-panel--floating {	position: fixed;	z-index: 10000;}.ex-panel__wrap {	display: flex;	align-items: center;	justify-content: center;	width: 100%;	height: 100%;	position: relative;	z-index: 1;}.ex-panel__icon {	margin: 0 10px;	display: block;	position: relative;	padding: 5px;	transition: 0.5s;}.ex-panel__icon:hover {	transform: scale(1.15);}.ex-panel__tip {	display:none;	background:#f00;	border-radius:50%;	width:8px;	height:8px;	top:0px;	right:0px;	position:absolute;}/* 新版斗鱼右侧弹幕Panel的bottom */.live-next-body .layout-Player-chat>* {	bottom: 0 !important;}.extool {    background: rgba(255,255,255,0.95);    width: 100%;    max-height: 360px;    position: relative;    bottom: 200px;    display: none;    z-index: 1428;    color: #333;    box-sizing: border-box;    padding: 36px 14px 14px;    overflow: auto;    font-size: 13px;    line-height: 24px;}.extool > span {    display: block;    margin: 4px 0;}.extool label {    display: inline-block;    margin-right: 12px;    line-height: 26px;}.extool input[type="checkbox"], .extool input[type="radio"] {    vertical-align: middle;    margin-right: 5px;}.extool__autofish {    margin-top: 12px;    border-top: 1px solid rgba(0,0,0,0.12);    padding-top: 12px;}.extool__close {    position: absolute;    top: 6px;    right: 8px;    width: 26px;    height: 26px;    border-radius: 8px;    text-align: center;    cursor: pointer;    user-select: none;    background: rgba(0,0,0,0.06);    color: #555;    font-size: 18px;    line-height: 26px;}.extool__close:hover { background: rgba(0,0,0,0.12); }.text-879f3e {  height: auto !important;  max-height: 48px !important;}.ex-image-danmaku {  height: 48px;  border-radius: 6px;  margin: 0 4px;}.danmuContent-25f266 .ex-image-danmaku {  max-height: 32px;}.barrageSpeed {    position: absolute;    right: 10px;    top: -20px;    color: rgba(0,0,0,0.5);    cursor: default;    z-index: 0;}.exRankPoint {    position: absolute;    right: 16px;}.exRankPoint--top {    position: absolute;    bottom: -12px;    right: 0;    left: 0;}/* 隐藏登录的提示 */.multiBitRate-da4b60 {  display: none !important;}.exVideoDiv {    width: 500px;    height: 250px;    background-color: rgba(255, 255, 255, 0);    position: absolute;    z-index: 1428;}.exVideoPlayer {    width: 100%;    height: 100%;    cursor: move;}.exVideoScale {    width: 10px;    height: 10px;    overflow: hidden;    cursor: se-resize;    position: absolute;    right: 0;    bottom: 0;    background-color: rgb(231, 57, 57);}.exVideoInfo {    width: 100%;    height: 30px;    background-color: gray;    position: absolute;    top: -30px;    line-height: 30px;}.exVideoClose {    width: 30px;    float: right;    color: white;}.exVideoQn, .exVideoCDN {    margin-left: 5px;}.exVideoRID {    margin: 0px 5px;    font-weight: 800;    font-size: medium;}#popup-player__prompt {    display: none;}.postbird-box-header {    width: auto !important;}.postbird-box-dialog {    color: #333;}.real-audience {
+    display: flex;
+    gap: 8px;
+    padding: 0 7px;
+    line-height: 33px;
+    color: rgb(153, 153, 153);
+}
+
+.Title-anchorPic-bottom i {
+    display: none !important;
+}
+
+#real-audience__noble {
+    margin-left: 2px;
+}/* #refresh-video {    float: left;    width: 24px;    height: 24px;    margin-right: 5px;    cursor: pointer;    background-size: contain;} */.refresh-barrage {    display: inline-flex;    align-items: center;    vertical-align: top;    margin: 0 2px;    padding: 0 8px;    height: 22px;    line-height: 21px;    background-color: #fff;    border: 1px solid #e5e4e4;    -webkit-border-radius: 4px;    -moz-border-radius: 4px;    border-radius: 4px;    cursor: pointer;    user-select: none;}.refresh-barrage.ex-active {    background: linear-gradient(180deg, rgb(38, 169, 235), rgb(18, 150, 219));    border-color: rgb(18, 150, 219);    box-shadow: 0 0 0 2px rgba(18, 150, 219, .22), 0 8px 16px rgba(18, 150, 219, .28);    font-weight: 700;}.refresh-barrage.ex-active:hover {    box-shadow: 0 0 0 2px rgba(18, 150, 219, .28), 0 10px 18px rgba(18, 150, 219, .36);}.refresh-barrage.ex-active::after {    content: "";    width: 6px;    height: 6px;    margin-left: 6px;    border-radius: 999px;    background: rgba(255, 255, 255, .95);    box-shadow: 0 0 0 2px rgba(255, 255, 255, .22);}.live-next-body .refresh-barrage {    background-color: var(--front-background-color);    border: 1px solid var(--front-border-color);}#refresh-barrage__svg {    vertical-align: middle;}.top-0-important {    top: 0 !important;}.repeated-danmaku {  opacity: 0 !important;  pointer-events: none !important;  visibility: hidden !important;}.danmu-fbb2a3 > div {  transition: font-size 0.5s ease !important;}.comment-dzjy-container > div {  z-index: 99 !important;}#ex-camera {    background: rgba(0,0,0,0.7);    position: absolute;    right: 20px;    bottom: 240px;    z-index: 10;    width: 60px;    height: 60px;    cursor: pointer;    -webkit-border-radius: 50%;    -moz-border-radius: 50%;    border-radius: 50%;    cursor: pointer;    display: none;    justify-content: center;    align-items: center;    border: 2px solid #2d2c2c;    box-sizing: border-box;}#ex-camera:hover > svg > path {    fill: rgb(252, 199, 84);}#ex-camera:active > svg > path {    fill: rgb(253, 60, 60);}#ex-camera-close {    position: absolute;    top: -8px;    right: -8px;    width: 20px;    height: 20px;    background: rgba(0,0,0,0.8);    border-radius: 50%;    display: flex;    justify-content: center;    align-items: center;    cursor: pointer;    color: #fff;    font-size: 12px;    line-height: 1;    border: 1px solid rgba(255,255,255,0.3);    z-index: 11;}#ex-camera-close:hover {    background: rgba(253, 60, 60, 0.9);}#ex-cinema:hover > .cinema__wrap {    display: block;}.cinema__wrap {    display: none;    margin: 0;    padding: 0;    border: 1px solid #e5e5e5;    background: #fff;    position: absolute;    left: 199px;    min-width: 100px;    top: 130px;}.cinema__panel {    position: absolute;    border: 1px solid #000;    border-radius: 4px;    transform: translateY(calc(-4px - 100%)) translateX(-50%);    left: 33%;    background-color: #000;    opacity: .75;    width: 70px;}.cinema__panel li {    padding: 0 2px;    white-space: nowrap;    color: #fff;    text-align: center;    cursor: pointer;}.cinema__panel li:hover {    background-color: rgb(85, 85, 85);}  #exVideoDivFake {  display: none;}#ex-metadata:hover > .metadata__wrap {  display: block;}.metadata__wrap {  display: none;  margin: 0;  padding: 0;  border: 1px solid #e5e5e5;  background: #fff;  position: absolute;  left: 199px;  min-width: 100px;  top: 0px;  white-space: nowrap;  color: black;}.metadata__panel {  position: absolute;  border: 1px solid #000;  border-radius: 4px;  transform: translateY(calc(-4px - 100%)) translateX(-50%);  left: 33%;  background-color: #000;  opacity: .75;  width: 70px;}.metadata__panel li {  padding: 0 2px;  white-space: nowrap;  color: #fff;  text-align: center;  cursor: pointer;}.metadata__panel li:hover {  background-color: rgb(85, 85, 85);}  #ex-pip-menu-panel.ex-pip-menu-root {    position: fixed;    z-index: 10001;    opacity: 0;    visibility: hidden;    pointer-events: none;    transition: opacity 0.12s ease, visibility 0.12s ease;}#ex-pip-menu-panel.ex-pip-menu-root.is-visible {    opacity: 1;    visibility: visible;    pointer-events: auto;}#ex-pip-menu-panel.ex-pip-menu-root::after {    content: "";    position: absolute;    left: 0;    right: 0;    top: 100%;    height: 8px;}.ex-pip-menu {    box-sizing: border-box;    width: 196px;    padding: 4px 0;    border-radius: 6px;    font-family: "Microsoft YaHei", "PingFang SC", -apple-system, sans-serif;    font-size: 12px;    color: #e8e8e8;    background: #2c2c30;    border: 1px solid #1a1a1c;    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);    user-select: none;    pointer-events: auto;}.ex-pip-menu__list {    margin: 0;    padding: 0;    list-style: none;}.ex-pip-menu__list > li + li {    border-top: 1px solid rgba(255, 255, 255, 0.06);}#ex-pip-menu-panel.ex-pip-menu-root.is-measuring {    opacity: 0;    pointer-events: none;}.ex-pip-opt {    display: flex;    align-items: center;    gap: 10px;    width: 100%;    margin: 0;    padding: 8px 12px;    border: none;    border-radius: 0;    background: transparent;    color: inherit;    text-align: left;    cursor: pointer;    outline: none;    line-height: 1.4;}.ex-pip-opt:hover {    background: rgba(255, 255, 255, 0.06);}.ex-pip-opt:focus-visible {    background: rgba(255, 255, 255, 0.08);    outline: 1px solid rgba(255, 255, 255, 0.2);    outline-offset: -1px;}.ex-pip-opt__icon {    flex-shrink: 0;    display: flex;    align-items: center;    justify-content: center;    width: 24px;    height: 24px;    color: #9a9aa2;}.ex-pip-opt__icon svg {    display: block;    width: 24px;    height: 24px;}.ex-pip-opt--ex .ex-pip-opt__icon {    color: #c4c4cc;}.ex-pip-opt--ex:hover .ex-pip-opt__icon {    color: #e0e0e6;}.ex-pip-opt__body {    flex: 1;    min-width: 0;}.ex-pip-opt__row {    display: flex;    align-items: baseline;    justify-content: space-between;    gap: 8px;}.ex-pip-opt__label {    font-size: 12px;    color: #f0f0f0;}.ex-pip-opt__mark {    flex-shrink: 0;    font-size: 11px;    color: #8c8c94;}.ex-pip-opt--ex .ex-pip-opt__mark {    color: #ff7f3a;}.ex-pip-opt__hint {    display: block;    margin-top: 2px;    font-size: 11px;    color: #7a7a82;    line-height: 1.35;}.ex-pip-opt--ex:hover .ex-pip-opt__mark {    color: #ff9555;}@media (prefers-reduced-motion: reduce) {    .ex-pip-opt,    #ex-pip-menu-panel.ex-pip-menu-root {        transition: none;    }}.filter__wrap {    display: none;    position: relative;    border-radius: 4px;    -webkit-user-select: none;    -moz-user-select: none;    -ms-user-select: none;    user-select: none;}.filter__panel {    position: absolute;    border: 1px solid #000;    border-radius: 4px;    transform: translateY(calc(-4px - 100%)) translateX(-50%);    left: 33%;    background-color: #000;    opacity: .75;    width: 300px;    padding-top: 10px;    padding-left: 10px;    padding-right: 10px;}.filter__panel li {    padding: 0 2px;    white-space: nowrap;    color: #fff;    text-align: center;    cursor: pointer;}.filter__panel li:hover {    background-color: rgb(85, 85, 85);}.filter__scroll {    width: 100%;    height: 5px;    background: #ccc;    position: relative;    display: inline-block;}.filter__scroll-bar {    width: 15px;    height: 15px;    background: #369;    position: absolute;    top: -5px;    left: 100px;    cursor: pointer;    border-radius: 100%;}.filter__scroll-mask {    position: absolute;    left: 0;    top: 0;    background: #369;    width: 100px;    height: 5px;}.filter__title {    color: white;    display: inline-block;    cursor: initial;    margin-right: 2px;}.filter__enhance {    margin-bottom: 10px;    display: flex;    align-items: center;    justify-content: space-between;}.filter__switch {    width: 40px;    height: 20px;    background: #ccc;    position: relative;    display: inline-block;    border-radius: 10px;    cursor: pointer;    transition: background 0.3s;}.filter__switch-slider {    width: 18px;    height: 18px;    background: #fff;    position: absolute;    top: 1px;    left: 0px;    border-radius: 50%;    transition: left 0.3s;}#filter__select {    width: 100%;    float: right;}.filter__filter {    margin-top: 5px;}/* 增强画质提示弹窗样式 */.enhance-modal__panel-wrap {    width: 100%;    height: 100%;    z-index: 1000;    background-color: rgba(0, 0, 0, 0.9);    position: absolute;    top: 0;    left: 0;    display: none;    justify-content: center;    align-items: center;}.enhance-modal__panel {    height: 550px;    width: 600px;    background-color: white;    border-radius: 20px;    position: fixed;    top: 0;    left: 0;    right: 0;    bottom: 0;    margin: auto;    color: #333;}.enhance-modal__content {    position: relative;    top: 50%;    transform: translateY(-50%);    text-align: center;}.enhance-modal__text {    font-size: 18px;    margin-top: 20px;}.enhance-modal__img {    width: 720px;    margin-top: 20px;}.enhance-modal__close {    font-size: 30px;    font-weight: bold;    position: absolute;    right: 15px;    top: 10px;    cursor: pointer;    transition: all 0.2s;}.enhance-modal__close:hover {    color: #ff7700;}#ex-videospeed:hover > .videospeed__wrap {    display: block;}.videospeed__wrap {    display: none;    margin: 0;    padding: 0;    border: 1px solid #e5e5e5;    background: #fff;    position: absolute;    left: 199px;    min-width: 100px;    top: 120px;}.videospeed__panel {    position: absolute;    border: 1px solid #000;    border-radius: 4px;    transform: translateY(calc(-4px - 100%)) translateX(-50%);    left: 33%;    background-color: #000;    opacity: .75;    width: 70px;}.videospeed__panel li {    padding: 0 2px;    white-space: nowrap;    color: #fff;    text-align: center;    cursor: pointer;}.videospeed__panel li:hover {    background-color: rgb(85, 85, 85);}  #ex-videosync {    float: left;    width: 24px;    height: 24px;    margin-left: 20px;    cursor: pointer;    background-size: contain;}#ex-vtoolbar-menu {    float: left;    width: 24px;    height: 24px;    margin-right: 10px;    position: relative;    pointer-events: none;    -webkit-user-select: none;    user-select: none;    overflow: visible;}.vtoolbar-menu__trigger {    position: relative;    z-index: 2;    pointer-events: auto;    display: flex;    align-items: center;    justify-content: center;    width: 24px;    height: 24px;    padding: 0;    border: none;    background: transparent;    cursor: pointer;    border-radius: 6px;    transition: background-color 0.2s ease, transform 0.2s ease;}.vtoolbar-menu__trigger:hover {    background-color: rgba(255, 255, 255, 0.12);}.vtoolbar-menu__trigger:focus-visible {    outline: 2px solid #ff7700;    outline-offset: 2px;}#ex-vtoolbar-menu.is-open .vtoolbar-menu__trigger {    background-color: rgba(255, 119, 0, 0.2);}.vtoolbar-menu__trigger .icon {    display: block;    transition: transform 0.2s ease;}.vtoolbar-menu__trigger:hover .icon {    transform: scale(1.08);}.vtoolbar-menu__dropdown {    display: none;    position: absolute;    left: 50%;    bottom: calc(100% + 18px);    transform: translateX(-50%);    min-width: 188px;    padding: 4px;    border-radius: 10px;    background: rgba(15, 15, 35, 0.96);    border: 1px solid rgba(67, 56, 202, 0.35);    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;    z-index: 2;    pointer-events: auto;    backdrop-filter: blur(8px);}/* 仅连接菜单与精灵球之间的空隙，不遮挡工具条其他按钮 */.vtoolbar-menu__dropdown::before {    content: "";    position: absolute;    left: 50%;    transform: translateX(-50%);    top: 100%;    width: 200px;    height: 22px;    pointer-events: auto;}#ex-vtoolbar-menu.is-open .vtoolbar-menu__dropdown {    display: block;    animation: vtoolbar-menu-fade-in 0.2s ease;}@keyframes vtoolbar-menu-fade-in {    from {        opacity: 0;        transform: translateX(-50%) translateY(6px);    }    to {        opacity: 1;        transform: translateX(-50%) translateY(0);    }}@media (prefers-reduced-motion: reduce) {    #ex-vtoolbar-menu.is-open .vtoolbar-menu__dropdown {        animation: none;    }    .vtoolbar-menu__trigger,    .vtoolbar-menu__pokeball,    .vtoolbar-menu__item {        transition: none;    }}.vtoolbar-menu__dropdown::after {    content: "";    position: absolute;    left: 50%;    bottom: -7px;    transform: translateX(-50%) rotate(45deg);    width: 10px;    height: 10px;    background: rgba(15, 15, 35, 0.96);    border-right: 1px solid rgba(67, 56, 202, 0.35);    border-bottom: 1px solid rgba(67, 56, 202, 0.35);    pointer-events: none;}.vtoolbar-menu__item {    display: flex;    align-items: center;    gap: 8px;    width: 100%;    padding: 7px 10px;    border: none;    border-radius: 8px;    background: transparent;    color: #f8fafc;    font-size: 12px;    line-height: 20px;    text-align: left;    cursor: pointer;    transition: background-color 0.2s ease, color 0.2s ease;}.vtoolbar-menu__item:hover {    background-color: rgba(67, 56, 202, 0.35);}.vtoolbar-menu__item:focus-visible {    outline: 2px solid #ff7700;    outline-offset: -2px;}.vtoolbar-menu__item-icon {    flex-shrink: 0;    display: flex;    align-items: center;    justify-content: center;    width: 20px;    height: 20px;    color: #a5b4fc;}.vtoolbar-menu__item-icon .icon,.vtoolbar-menu__item-icon svg,.vtoolbar-menu__item-icon img {    width: 20px;    height: 20px;    display: block;    flex-shrink: 0;}.vtoolbar-menu__item-icon--compact svg,.vtoolbar-menu__item-icon--compact .icon {    width: 16px;    height: 16px;}.vtoolbar-menu__item-icon .vtoolbar-menu__icon-pip {    width: 18px;    height: 18px;}.vtoolbar-menu__item-label {    flex: 1;    white-space: nowrap;    font-size: 12px;    line-height: 20px;}.vtoolbar-menu__item--filter.is-active {    background-color: rgba(255, 119, 0, 0.15);}.vtoolbar-menu__item--filter.is-active .vtoolbar-menu__chevron {    transform: rotate(90deg);    color: #ff7700;}.vtoolbar-menu__chevron {    flex-shrink: 0;    width: 14px;    height: 14px;    color: #94a3b8;    transition: transform 0.2s ease, color 0.2s ease;}.vtoolbar-menu__filter-host {    display: none;    position: absolute;    left: 100%;    bottom: 0;    margin-left: -6px;    padding-left: 12px;    z-index: 2;    pointer-events: none;}.vtoolbar-menu__filter-host.is-visible {    pointer-events: auto;}.vtoolbar-menu__filter-host.is-visible {    display: block;}.vtoolbar-menu__filter-host .filter__wrap {    display: block;    position: static;    float: none;    right: auto;    bottom: auto;    margin: 0;    height: auto;}.vtoolbar-menu__filter-host .filter__panel {    position: relative;    transform: none;    left: auto;    opacity: 0.92;}.vtoolbar-menu__divider {    height: 1px;    margin: 4px 8px;    background: rgba(148, 163, 184, 0.2);}.menu-da2a9e {  z-index: 999 !important;} .volume-07c230.custom-muted .icon-c8be96 svg, .volume-07c230.custom-normal .icon-c8be96 svg {     display: none !important; } .volume-07c230.custom-muted .icon-c8be96::after, .volume-07c230.custom-normal .icon-c8be96::after {     content: '';     display: block;     width: 32px;     height: 32px;     background-size: contain;     background-repeat: no-repeat;     background-position: center; } /* 静音图标颜色控制 */ .volume-07c230.custom-muted .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 19l6-6M20 13l6 6" stroke="%23fff" stroke-width="2" stroke-linecap="round"></path></svg>'); } .volume-07c230.custom-muted:hover .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 19l6-6M20 13l6 6" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round"></path></svg>'); } /* 正常图标颜色控制 */ .volume-07c230.custom-normal .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21.736 23.517a8 8 0 00-.527-15.206M19.687 19.867a3.925 3.925 0 00-.258-7.46" stroke="%23fff" stroke-width="2" stroke-linecap="round"></path></svg>'); } .volume-07c230.custom-normal:hover .icon-c8be96::after {     background-image: url('data:image/svg+xml;utf8,<svg fill="none" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M5 10h5.5L16 6v20l-5.5-4H5V10z" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21.736 23.517a8 8 0 00-.527-15.206M19.687 19.867a3.925 3.925 0 00-.258-7.46" stroke="%23ff5d23" stroke-width="2" stroke-linecap="round"></path></svg>'); }.noticejs-top{top:0;width:100% !important}.noticejs-top .item{border-radius:0 !important;margin:0 !important}.noticejs-topRight{top:10px;right:10px}.noticejs-topLeft{top:10px;left:10px}.noticejs-topCenter{top:10px;left:50%;transform:translate(-50%)}.noticejs-middleLeft,.noticejs-middleRight{right:10px;top:50%;transform:translateY(-50%)}.noticejs-middleLeft{left:10px}.noticejs-middleCenter{top:50%;left:50%;transform:translate(-50%,-50%)}.noticejs-bottom{bottom:0;width:100% !important}.noticejs-bottom .item{border-radius:0 !important;margin:0 !important}.noticejs-bottomRight{bottom:10px;right:10px}.noticejs-bottomLeft{bottom:10px;left:10px}.noticejs-bottomCenter{bottom:10px;left:50%;transform:translate(-50%)}.noticejs{font-family:Helvetica Neue,Helvetica,Arial,sans-serif}.noticejs .item{margin:0 0 10px;border-radius:3px;overflow:hidden}.noticejs .item .close{float:right;font-size:18px;font-weight:700;line-height:1;color:#fff;text-shadow:0 1px 0 #fff;opacity:1;margin-right:7px}.noticejs .item .close:hover{opacity:.5;color:#000}.noticejs .item a{color:#fff;border-bottom:1px dashed #fff}.noticejs .item a,.noticejs .item a:hover{text-decoration:none}.noticejs .success{background-color:#64ce83}.noticejs .success .noticejs-heading{background-color:#3da95c;color:#fff;padding:10px}.noticejs .success .noticejs-body{color:#fff;padding:10px}.noticejs .success .noticejs-body:hover{visibility:visible !important}.noticejs .success .noticejs-content{visibility:visible}.noticejs .info{background-color:#3ea2ff}.noticejs .info .noticejs-heading{background-color:#067cea;color:#fff;padding:10px}.noticejs .info .noticejs-body{color:#fff;padding:10px}.noticejs .info .noticejs-body:hover{visibility:visible !important}.noticejs .info .noticejs-content{visibility:visible}.noticejs .warning{background-color:#ff7f48}.noticejs .warning .noticejs-heading{background-color:#f44e06;color:#fff;padding:10px}.noticejs .warning .noticejs-body{color:#fff;padding:10px}.noticejs .warning .noticejs-body:hover{visibility:visible !important}.noticejs .warning .noticejs-content{visibility:visible}.noticejs .error{background-color:#e74c3c}.noticejs .error .noticejs-heading{background-color:#ba2c1d;color:#fff;padding:10px}.noticejs .error .noticejs-body{color:#fff;padding:10px}.noticejs .error .noticejs-body:hover{visibility:visible !important}.noticejs .error .noticejs-content{visibility:visible}.noticejs .progressbar{width:100%}.noticejs .progressbar .bar{width:1%;height:30px;background-color:#4caf50}.noticejs .success .noticejs-progressbar{width:100%;background-color:#64ce83;margin-top:-1px}.noticejs .success .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#3da95c}.noticejs .info .noticejs-progressbar{width:100%;background-color:#3ea2ff;margin-top:-1px}.noticejs .info .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#067cea}.noticejs .warning .noticejs-progressbar{width:100%;background-color:#ff7f48;margin-top:-1px}.noticejs .warning .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#f44e06}.noticejs .error .noticejs-progressbar{width:100%;background-color:#e74c3c;margin-top:-1px}.noticejs .error .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:#ba2c1d}@keyframes noticejs-fadeOut{0%{opacity:1}to{opacity:0}}.noticejs-fadeOut{animation-name:noticejs-fadeOut}@keyframes noticejs-modal-in{to{opacity:.3}}@keyframes noticejs-modal-out{to{opacity:0}}.noticejs-rtl .noticejs-heading{direction:rtl}.noticejs-rtl .close{float:left !important;margin-left:7px;margin-right:0 !important}.noticejs-rtl .noticejs-content{direction:rtl}.noticejs{position:fixed;z-index:10050;width:320px}.noticejs::-webkit-scrollbar{width:8px}.noticejs::-webkit-scrollbar-button{width:8px;height:5px}.noticejs::-webkit-scrollbar-track{border-radius:10px}.noticejs::-webkit-scrollbar-thumb{background:hsla(0,0%,100%,.5);border-radius:10px}.noticejs::-webkit-scrollbar-thumb:hover{background:#fff}.noticejs-modal{position:fixed;width:100%;height:100%;background-color:#000;z-index:10000;opacity:.3;left:0;top:0}.noticejs-modal-open{opacity:0;animation:noticejs-modal-in .3s ease-out}.noticejs-modal-close{animation:noticejs-modal-out .3s ease-out;animation-fill-mode:forwards}.noticejs .special{background-color:rgb(160,37,160)}.noticejs .special .noticejs-heading{background-color:rgb(110,26,110);color:#fff;padding:10px}.noticejs .special .noticejs-body{color:#fff;padding:10px}.noticejs .special .noticejs-body:hover{visibility:visible !important}.noticejs .special .noticejs-content{visibility:visible}.noticejs .special .noticejs-progressbar{width:100%;background-color:rgb(160,37,160);margin-top:-1px}.noticejs .special .noticejs-progressbar .noticejs-bar{width:100%;height:5px;background:rgb(110,26,110)}/** * PostbirdAlertBox.js * -    原生javascript弹框插件 * Author:  Postbird - http://www.ptbird.cn * License: MIT * Date:    2017-09-23 */ .postbird-box-container {    width: 100%;    height: 100%;    overflow: hidden;    position: fixed;    top: 0;    left: 0;    z-index: 9999;    background-color: rgba(0, 0, 0, 0.2);    display: block;    -webkit-user-select: none;    -moz-user-select: none;    -ms-user-select: none;    user-select: none}.postbird-box-container.active {    display: block}.postbird-box-content {    min-width: 400px;    max-width: 600px;    min-height: 150px;    background-color: #fff;    border: solid 1px #dfdfdf;    position: absolute;    top: 50%;    left: 50%;    transform: translate(-50%, -50%);    margin-top: -100px}.postbird-box-header {    width: 100%;    padding: 10px 15px;    position: relative;    font-size: 1.1em;    letter-spacing: 2px}.postbird-box-close-btn {    cursor: pointer;    font-weight: 700;    color: #000;    float: right;    opacity: .5;    font-size: 1.3em;    margin-top: -3px;    display: none}.postbird-box-close-btn:hover {    opacity: 1}.postbird-box-text {    box-sizing: border-box;    width: 100%;    padding: 0 10%;    text-align: center;    line-height: 40px;    font-size: 20px;    letter-spacing: 1px}.postbird-box-footer {    width: 100%;    position: absolute;    padding: 0;    margin: 0;    bottom: 0;    display: flex;    display: -webkit-flex;    justify-content: space-around;    border-top: solid 1px #dfdfdf;    align-items: flex-end}.postbird-box-footer .btn-footer {    line-height: 44px;    border: 0;    cursor: pointer;    background-color: #fff;    color: #0e90d2;    font-size: 1.1em;    letter-spacing: 2px;    transition: background-color .5s;    -webkit-transition: background-color .5s;    -o-transition: background-color .5s;    -moz-transition: background-color .5s;    outline: 0}.postbird-box-footer .btn-footer:hover {    background-color: #e5e5e5}.postbird-box-footer .btn-block-footer {    width: 100%}.postbird-box-footer .btn-left-footer,.postbird-box-footer .btn-right-footer {    position: relative;    width: 100%}.postbird-box-footer .btn-left-footer::after {    content: "";    position: absolute;    right: 0;    top: 0;    background-color: #e5e5e5;    height: 100%;    width: 1px}.postbird-box-footer .btn-footer-cancel {    color: #333}.postbird-prompt-input {    width: 100%;    padding: 5px;    font-size: 16px;    border: 1px solid #ccc;    outline: 0}.onoffswitch {    position: relative; width: 45px;    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;}.onoffswitch-checkbox {    position: absolute;    opacity: 0;    pointer-events: none;}.onoffswitch-label {    display: block; overflow: hidden; cursor: pointer;    height: 20px; padding: 0; line-height: 20px;    border: 2px solid #E3E3E3; border-radius: 20px;    background-color: #FFFFFF;    transition: background-color 0.3s ease-in;}.onoffswitch-label:before {    content: "";    display: block; width: 20px; margin: 0px;    background: #FFFFFF;    position: absolute; top: 0; bottom: 0;    right: 23px;    border: 2px solid #E3E3E3; border-radius: 20px;    transition: all 0.3s ease-in 0s; }.onoffswitch-checkbox:checked + .onoffswitch-label {    background-color: #3AAD38;}.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {   border-color: #3AAD38;}.onoffswitch-checkbox:checked + .onoffswitch-label:before {    right: 0px; }.layui-timeline {    padding-left: 5px;}.layui-timeline-item {    position: relative;    padding-bottom: 20px;}li {    list-style: none;}.layui-timeline-item:first-child::before {    display: block;}.layui-timeline-item:last-child::before {    content: '';    position: absolute;    left: 5px;    top: 0;    z-index: 0;    width: 0;    height: 100%;}.layui-timeline-item::before {    content: '';    position: absolute;    left: 5px;    top: 0;    z-index: 0;    width: 1px;    height: 100%;}.layui-timeline-item::before,hr {    background-color: #e6e6e6;}.layui-timeline-axis {    position: absolute;    left: -5px;    top: 0;    z-index: 10;    width: 20px;    height: 20px;    line-height: 20px;    background-color: #fff;    color: #5FB878;    border-radius: 50%;    text-align: center;    cursor: pointer;}.layui-icon {    font-family: layui-icon !important;    font-size: 16px;    font-style: normal;}.layui-timeline-content {    padding-left: 25px;}.layui-text {    line-height: 22px;    font-size: 14px;    color: rgb(85,85,85);}.layui-timeline-title {    position: relative;}
 		`));
     document.head.appendChild(style);
 }
@@ -208,10 +180,6 @@ function formatSeconds2(value) {
     return value;
 }
 
-async function verifyFans(room_id, level) {
-    return true;
-}
-
 function getStrMiddle(str, before, after) {
     let m = str.match(new RegExp(before + "(.*?)" + after));
     return m ? m[1] : false;
@@ -258,25 +226,6 @@ function openPage(url, b = true) {
     });
 }
 
-function closePage() {
-    if (-1 != navigator.userAgent.indexOf("Firefox") || -1 != navigator.userAgent.indexOf("Chrome")) {
-        window.location.href = "about:blank";
-        window.close();
-    } else {
-        window.opener = null;
-        window.open("", "_self");
-        window.close();
-    }
-}
-
-function getQueryString(name) {
-    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    if (window.location.hash.indexOf("?") < 0) return null;
-    let r = window.location.hash.split("?")[1].match(reg);
-    if (null != r) return decodeURIComponent(r[2]);
-    return null;
-}
-
 function dateFormat(fmt, date) {
     let o = {
         "M+": date.getMonth() + 1,
@@ -320,20 +269,22 @@ function showMessageWindow(title, content, callback) {
     });
 }
 
-function getUserName() {
-    return new Promise(resovle => {
-        fetch("https://www.douyu.com/member/cp", {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include"
-        }).then(res => res.text()).then(txt => {
-            txt = new DOMParser().parseFromString(txt, "text/html");
-            let ret = txt.getElementsByClassName("uname_con")[0].title;
-            resovle(ret);
-        }).catch(err => {
-            console.error("请求失败", err);
+async function getUserName() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15e3);
+    try {
+        const response = await fetch("https://www.douyu.com/member/cp", {
+            credentials: "include",
+            signal: controller.signal
         });
-    });
+        const doc = new DOMParser().parseFromString(await response.text(), "text/html");
+        const name = doc.getElementsByClassName("uname_con")[0];
+        return name ? name.title : "";
+    } catch (_) {
+        return "";
+    } finally {
+        clearTimeout(timeout);
+    }
 }
 
 function getTextareaPosition(element) {
@@ -360,17 +311,8 @@ function getTextareaPosition(element) {
 
 function showExRightPanel(name) {
     let panels = [ {
-        name: "弹幕发送小助手",
-        className: "bloop"
-    }, {
         name: "扩展功能",
         className: "extool"
-    }, {
-        name: "直播间工具",
-        className: "livetool"
-    }, {
-        name: "全站抽奖信息",
-        className: "exlottery"
     }, {
         name: "弹幕小尾巴",
         className: "ChatToolBar-DanmakuTail-Panel"
@@ -380,39 +322,6 @@ function showExRightPanel(name) {
         let dom = document.getElementsByClassName(item.className)[0];
         if (dom) if (name === item.name) dom.style.display = "block" !== dom.style.display ? "block" : "none"; else dom.style.display = "none";
     }
-}
-
-function getTimeDiff(t1, t2) {
-    if (t1 < t2) return -1; else {
-        let ret = "";
-        let date3 = Math.abs(t1 - t2);
-        let days = Math.floor(date3 / (24 * 3600 * 1e3));
-        ret += days > 0 ? days + "天" : "";
-        let leave1 = date3 % (24 * 3600 * 1e3);
-        let hours = Math.floor(leave1 / (3600 * 1e3));
-        ret += hours > 0 ? hours + "时" : "";
-        let leave2 = leave1 % (3600 * 1e3);
-        let minutes = Math.floor(leave2 / (60 * 1e3));
-        ret += minutes > 0 ? minutes + "分" : "";
-        let leave3 = leave2 % (60 * 1e3);
-        let seconds = Math.round(leave3 / 1e3);
-        ret += seconds > 0 ? seconds + "秒" : "";
-        return ret;
-    }
-}
-
-function debounce(func, wait) {
-    let timer;
-    return function() {
-        let context = this;
-        let args = arguments;
-        if (timer) clearTimeout(timer);
-        let callNow = !timer;
-        timer = setTimeout(() => {
-            timer = null;
-        }, wait);
-        if (callNow) func.apply(context, args);
-    };
 }
 
 function exportJsonToExcel(header, body, fileName = "download.xlsx") {
@@ -511,8 +420,9 @@ function getCsrfToken() {
             },
             anonymous: false,
             withCredentials: true,
+            timeout: 3e4,
             onload: function(response) {
-                const setCookie = response.responseHeaders.match(/set-cookie:[^\n\r]+/gi);
+                const setCookie = String(response.responseHeaders || "").match(/set-cookie:[^\n\r]+/gi) || [];
                 let csrfToken = "";
                 for (var line of setCookie) {
                     const match = line.match(/cvl_csrf_token=([^;]+)/);
@@ -525,7 +435,9 @@ function getCsrfToken() {
             },
             onerror: function(err) {
                 resolve("");
-            }
+            },
+            ontimeout: () => resolve(""),
+            onabort: () => resolve("")
         });
     });
 }
@@ -537,330 +449,6 @@ function getValidDom(queryList) {
         if (dom) return dom;
     }
     return null;
-}
-
-function getValidDomList(queryList) {
-    for (var query of queryList) {
-        let dom = [];
-        if ("string" === typeof query) dom = document.querySelectorAll(query); else dom = query;
-        if (dom.length > 0) return dom;
-    }
-    return [];
-}
-
-let svg_accountList = `<svg t="1613993967937" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2122" width="16" height="16"><path d="M217.472 311.808l384.64 384.64-90.432 90.56-384.64-384.64z" fill="#8A8A8A" p-id="2123"></path><path d="M896.32 401.984l-384.64 384.64-90.56-90.496 384.64-384.64z" fill="#8A8A8A" p-id="2124"></path></svg>`;
-
-let cleanOverTimes = 0;
-
-function initPkg_AccountList() {
-    const isBeta = !!document.getElementsByClassName("live-next-body")[0];
-    if (isBeta) return;
-    initPkg_AccountList_Dom();
-    initPkg_AccountList_Func();
-}
-
-function initPkg_AccountList_Dom() {
-    AccountList_insertIcon();
-}
-
-function AccountList_insertIcon() {
-    let a = document.createElement("div");
-    a.style = "position: absolute;right: -14px;top: 32px;cursor: pointer;";
-    a.id = "ex-accountList-icon";
-    let html = `
-        <div id="ex-accountList-wrap" class="public-DropMenu-drop">
-            <div class="public-DropMenu-drop-main">
-                <div id="ex-accountList-iframe"></div>
-                <div id="ex-accountList-iframe2"></div>
-                <div id="ex-accountList-content" style="width: 300px;font-size: 14px;padding: 10px;">
-                </div>
-            </div>
-            <i></i>
-        </div>
-    `;
-    a.innerHTML = svg_accountList + html;
-    let b = document.getElementsByClassName("Header-right")[0];
-    b.appendChild(a);
-    addAccount();
-}
-
-function initPkg_AccountList_Func() {
-    setPassportCmd("null", my_uid);
-    unsafeWindow.addEventListener("message", event => {
-        switch (event.data) {
-          case "cleanOver":
-            setTimeout(() => {
-                window.location.reload();
-            }, 50);
-            break;
-
-          case "msgCleanOver":
-            cleanOverTimes++;
-            if (cleanOverTimes >= 5) {
-                cleanOverTimes = 0;
-                setTimeout(() => {
-                    window.location.reload();
-                }, 50);
-            }
-            break;
-
-          case "yubaCleanOver":
-            cleanOverTimes++;
-            if (cleanOverTimes >= 5) {
-                cleanOverTimes = 0;
-                setTimeout(() => {
-                    window.location.reload();
-                }, 50);
-            }
-            break;
-
-          case "videoCleanOver":
-            cleanOverTimes++;
-            if (cleanOverTimes >= 5) {
-                cleanOverTimes = 0;
-                setTimeout(() => {
-                    window.location.reload();
-                }, 50);
-            }
-            break;
-
-          case "czCleanOver":
-            cleanOverTimes++;
-            if (cleanOverTimes >= 5) {
-                cleanOverTimes = 0;
-                setTimeout(() => {
-                    window.location.reload();
-                }, 50);
-            }
-            break;
-
-          case "switchOver":
-            cleanOverTimes++;
-            if (cleanOverTimes >= 5) {
-                cleanOverTimes = 0;
-                setTimeout(() => {
-                    window.location.reload();
-                }, 50);
-            }
-            break;
-
-          case "deleteOver":
-            renderAccountList();
-            showMessage("【账号管理】删除完毕", "success");
-            break;
-
-          default:
-            break;
-        }
-    });
-}
-
-function renderAccountList(obj) {
-    document.getElementById("ex-accountList-content").innerHTML = getAccountListHtml(obj);
-    let items = document.getElementsByClassName("ex-accountList-item");
-    for (let i = 0; i < items.length; i++) {
-        let item = items[i];
-        let uid = item.getAttribute("uid");
-        item.addEventListener("click", () => {
-            showMessage("【账号管理】正在切换账号，请耐心等待...", "info");
-            switchAccount(uid, () => {});
-            setPassportCmd("switch", uid);
-            setYubaAndMsgAndVideoClean();
-        });
-        item.getElementsByClassName("ex-accountList-item__btn")[0].addEventListener("click", e => {
-            e.stopPropagation();
-            showMessage("【账号管理】正在删除...", "info");
-            deleteAccount(uid, () => {});
-            setPassportCmd("delete", uid);
-        });
-    }
-    document.getElementById("ex-accountList-item-add").addEventListener("click", () => {
-        cleanCookie(() => {});
-        setPassportCmd("clean", "null");
-    });
-}
-
-function getAccountListHtml(object) {
-    let obj = void 0 == object ? JSON.parse(GM_getValue("Ex_accountList") || "{}") : object;
-    let ret = "";
-    for (var key in obj) {
-        if ("null" == key) continue;
-        let item = obj[key];
-        ret += `
-        <div class="ex-accountList-item" uid="${item.uid}">
-            <div class="ex-accountList-item__imgWrap">
-                <img src=${decodeURIComponent(item.avatar) + "middle.jpg"} alt="" class="ex-accountList-item__img">
-            </div>
-            <div class="ex-accountList-item__name">${decodeURIComponent(item.nickname)}</div>
-            <div class="ex-accountList-item__btn">删除</div>
-        </div>`;
-    }
-    ret += `
-    <div id="ex-accountList-item-add">
-        <svg t="1613995373702" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2832" width="32" height="32"><path d="M577.088 0H448.96v448.512H0v128h448.96V1024h128.128V576.512H1024v-128H577.088z" p-id="2833" fill="#8A8A8A"></path></svg>
-    </div>
-    `;
-    return ret;
-}
-
-function switchAccount(uid, callback) {
-    JSON.parse(GM_getValue("Ex_accountList"));
-    let l = [];
-    let delock = 0;
-    GM_cookie("list", {
-        path: "/"
-    }, function(cookies) {
-        for (let i = 0; i < cookies.length; i++) GM_cookie("delete", {
-            name: cookies[i]["name"]
-        }, function(error) {
-            delock++;
-            if (delock >= cookies.length) {
-                let addlock = 0;
-                for (let i = 0; i < l.length; i++) GM_cookie("set", {
-                    name: l[i]["name"],
-                    value: l[i]["value"],
-                    domain: l[i]["domain"],
-                    path: l[i]["path"],
-                    secure: l[i]["secure"],
-                    httpOnly: l[i]["httpOnly"],
-                    sameSite: l[i]["sameSite"],
-                    expirationDate: l[i]["expirationDate"],
-                    hostOnly: l[i]["hostOnly"]
-                }, function(error) {
-                    addlock++;
-                    if (addlock >= l.length) callback();
-                });
-            }
-        });
-    });
-}
-
-function switchAccountPassport(uid, callback) {
-    let list = JSON.parse(GM_getValue("Ex_accountListPassport"));
-    let l = list[uid];
-    let delock = 0;
-    GM_cookie("list", {
-        path: "/"
-    }, function(cookies) {
-        for (let i = 0; i < cookies.length; i++) GM_cookie("delete", {
-            name: cookies[i]["name"]
-        }, function(error) {
-            delock++;
-            if (delock >= cookies.length) {
-                let addlock = 0;
-                for (let i = 0; i < l.length; i++) GM_cookie("set", {
-                    name: l[i]["name"],
-                    value: l[i]["value"],
-                    domain: l[i]["domain"],
-                    path: l[i]["path"],
-                    secure: l[i]["secure"],
-                    httpOnly: l[i]["httpOnly"],
-                    sameSite: l[i]["sameSite"],
-                    expirationDate: l[i]["expirationDate"],
-                    hostOnly: l[i]["hostOnly"]
-                }, function(error) {
-                    addlock++;
-                    if (addlock >= l.length) callback();
-                });
-            }
-        });
-    });
-}
-
-function addAccount() {
-    let accountListData = JSON.parse(GM_getValue("Ex_accountList") || "{}");
-    let item = {};
-    let uid = "";
-    GM_cookie("list", {
-        path: "/"
-    }, function(cookies) {
-        let c = [];
-        if (void 0 == cookies) {
-            document.getElementById("ex-accountList-content").innerHTML = "请升级Tampermonkey版本<br/><a href='https://www.crx4chrome.com/crx/1429/'>点我升级，选择Crx4Chrome</a>";
-            return;
-        }
-        for (let i = 0; i < cookies.length; i++) {
-            let name = cookies[i]["name"];
-            let value = cookies[i]["value"];
-            if ("acf_nickname" == name) item.nickname = value;
-            if ("acf_uid" == name) {
-                item.uid = value;
-                uid = value;
-            }
-            if ("acf_avatar" == name) item.avatar = value;
-            c.push(cookies[i]);
-        }
-        if ("" == uid) {
-            item.uid = "null";
-            uid = "null";
-        }
-        item.data = c;
-        item.update_time = String(new Date().getTime());
-        accountListData[uid] = item;
-        GM_setValue("Ex_accountList", JSON.stringify(accountListData));
-        renderAccountList(accountListData);
-    });
-}
-
-function addAccountPassport(uid) {
-    let accountListData = JSON.parse(GM_getValue("Ex_accountListPassport") || "{}");
-    let private_arr = [];
-    let global_arr = [];
-    GM_cookie("list", {
-        path: "/"
-    }, function(cookies) {
-        if (void 0 == cookies) return;
-        for (let i = 0; i < cookies.length; i++) if ("LTP0" == cookies[i]["name"]) private_arr.push(cookies[i]); else global_arr.push(cookies[i]);
-        if ("" == uid) uid = "null";
-        accountListData.global = null;
-        accountListData.global = global_arr;
-        accountListData[uid] = private_arr;
-        accountListData.update_time = String(new Date().getTime());
-        GM_setValue("Ex_accountListPassport", JSON.stringify(accountListData));
-    });
-}
-
-function cleanCookie(callback) {
-    let lock = 0;
-    GM_cookie("list", {
-        path: "/"
-    }, cookies => {
-        if (cookies) for (let i = 0; i < cookies.length; i++) GM_cookie("delete", {
-            name: cookies[i]["name"]
-        }, function(error) {
-            lock++;
-            if (lock >= cookies.length) callback();
-        }); else callback();
-    });
-}
-
-function setPassportCmd(cmd, uid) {
-    document.getElementById("ex-accountList-iframe").innerHTML = `
-    <iframe id="login-passport-frame" width="100%" height="100%" scrolling="no" frameborder="0" src="https://passport.douyu.com/index/error/show404?&exid=chun&cmd=${cmd}&uid=${uid}&domain=${encodeURIComponent(window.location.href)}&"></iframe>
-    `;
-}
-
-function setYubaAndMsgAndVideoClean() {
-    document.getElementById("ex-accountList-iframe2").innerHTML = `
-    <iframe id="ex-yuba-iframe" width="100%" height="100%" scrolling="no" frameborder="0" src="https://yuba.douyu.com/iframe/tab/6416853?exClean&domain=${encodeURIComponent(window.location.href)}&"></iframe>
-    <iframe id="ex-msg-iframe" width="100%" height="100%" scrolling="no" frameborder="0" src="https://msg.douyu.com/web/index.html?exClean&domain=${encodeURIComponent(window.location.href)}&"></iframe>
-    <iframe id="ex-video-iframe" width="100%" height="100%" scrolling="no" frameborder="0" src="https://v.douyu.com/show/0?exClean&domain=${encodeURIComponent(window.location.href)}&"></iframe>
-    <iframe id="ex-cz-iframe" width="100%" height="100%" scrolling="no" frameborder="0" src="https://cz.douyu.com/item/gold?exClean&domain=${encodeURIComponent(window.location.href)}&"></iframe>
-    `;
-}
-
-function deleteAccount(uid, callback) {
-    let obj = JSON.parse(GM_getValue("Ex_accountList") || "{}");
-    delete obj[uid];
-    GM_setValue("Ex_accountList", JSON.stringify(obj));
-    callback();
-}
-
-function deleteAccountPassport(uid, callback) {
-    let obj = JSON.parse(GM_getValue("Ex_accountListPassport") || "{}");
-    delete obj[uid];
-    GM_setValue("Ex_accountListPassport", JSON.stringify(obj));
-    callback();
 }
 
 function initPkg_AudioLine() {
@@ -896,398 +484,12 @@ function initPkg_AudioLine_Func() {
     document.getElementById("ex-audio-line").addEventListener("click", AudioLine_switch);
 }
 
-function initPkg_AutoAnchorStar() {
-    initPkg_AutoAnchorStar_Dom();
-    initPkg_AutoAnchorStar_Func();
-}
-
-function initPkg_AutoAnchorStar_Dom() {
-    AutoAnchorStar_insertIcon();
-}
-
-function AutoAnchorStar_insertIcon() {
-    let a = document.createElement("div");
-    a.className = "ex-auto-anchor-star";
-    a.innerHTML = `<a class="ex-panel__icon" title="全自动代抢星推荐红包"><img style="width:36px;height:36px;" src="https://shark2.douyucdn.cn/front-publish/live-new-anchor-support-master/assets/images/entryIcon_ee486a8.png"/></a>`;
-    let b = document.getElementsByClassName("ex-panel__wrap")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function initPkg_AutoAnchorStar_Func() {
-    document.getElementsByClassName("ex-auto-anchor-star")[0].addEventListener("click", function() {
-        openPage("https://xtj.douyuex.com/");
-    });
-}
-
-let timeout;
-
-let bagInfoDomHook = null;
-
-function initPkg_BagInfo() {
-    initPkg_BagInfo_Func();
-}
-
-function initPkg_BagInfo_Func() {
-    let backpackDom = getValidDom([ ".BackpackButton", "#js-backpack-enter" ]);
-    if (!backpackDom) return;
-    backpackDom.addEventListener("click", function() {
-        setTimeout(() => {
-            if (bagInfoDomHook) {
-                bagInfoDomHook.closeHook();
-                bagInfoDomHook = null;
-            }
-            let giftItemNum = document.querySelectorAll(".ToolbarBackpack-giftItem").length;
-            bagInfoDomHook = new DomHook(".BackpackExpandPanel-giftListWrap", true, e => {
-                if (giftItemNum != document.querySelectorAll(".ToolbarBackpack-giftItem").length) {
-                    backpackDom.click();
-                    backpackDom.click();
-                }
-            });
-        }, 500);
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            const isBeta = !!document.getElementsByClassName("BackpackExpandPanel")[0];
-            if (getValidDom([ ".Backpack.JS_Backpack", ".BackpackExpandPanel" ])) getBagGifts(rid, ret => {
-                let chunkNum = ret.data.list.length;
-                if (chunkNum > 0) {
-                    let totalPrice = 0;
-                    let totalIntimate = 0;
-                    for (let i = 0; i < chunkNum; i++) {
-                        let chunk = getValidDomList([ ".Backpack-prop", ".ToolbarBackpack-giftItem" ])[i];
-                        let isValuable = ret.data.list[i].isValuable;
-                        let expiry = ret.data.list[i].expiry;
-                        let price = ret.data.list[i].price;
-                        let intimate = ret.data.list[i].intimate;
-                        let count = ret.data.list[i].count;
-                        if ("1" == isValuable) totalPrice += Number(price) * Number(count);
-                        totalIntimate += Number(intimate) * Number(count);
-                        let expiryDiv = document.createElement("div");
-                        expiryDiv.className = "bag-info";
-                        if (isBeta) {
-                            expiryDiv.style.left = "8px";
-                            expiryDiv.style.bottom = "auto";
-                        }
-                        expiryDiv.innerHTML = expiry - 1;
-                        chunk.insertBefore(expiryDiv, chunk.childNodes[0]);
-                    }
-                    const headerDom = getValidDom([ ".BackpackHeader-extInfo", ".BackpackExpandPanel-backpackHeader" ]);
-                    if (isBeta) headerDom.innerHTML = headerDom.innerHTML + `<span style="width: 100%;display: flex;justify-content: space-between;align-items: center;flex: 1;margin-left: 12px;">
-                                <span>
-                                    <span>总价值:</span>
-                                    <span>￥${String(Number(totalPrice / 100).toFixed(2))}</span>
-                                    <span>总亲密度:</span>
-                                    <span>${String(totalIntimate)}</span>
-                                </span>
-                                <span class="bag-button" id="Backpack__clearbag" style="background: rgb(70, 171, 255) !important;color: white !important;">清空背包</span>
-                            </span>`; else headerDom.innerHTML = `<span style="float: left">` + "总价值：" + String(Number(totalPrice / 100).toFixed(2)) + " 总亲密度：" + String(totalIntimate) + `<span class="bag-button" id="Backpack__clearbag">清空背包</span></span>` + headerDom.innerHTML;
-                    document.getElementById("Backpack__clearbag").addEventListener("click", () => {
-                        if (true != confirm("确认清空？")) return;
-                        showMessage("【清空背包】执行中...", "info");
-                        getBagGifts(rid, ret => {
-                            clearBagGifts(ret, rid);
-                        });
-                    });
-                }
-            });
-        }, 500);
-    });
-}
-
-async function clearBagGifts(bagGiftsJson, room_id) {
-    let chunkNum = bagGiftsJson.data.list.length;
-    if (chunkNum > 0) {
-        for (let i = 0; i < chunkNum; i++) {
-            let gift_id = bagGiftsJson.data.list[i].id;
-            let gift_cnt = bagGiftsJson.data.list[i].count;
-            if (Object.keys(bagGiftsJson.data.list[i].batchInfo).length > 0) await sleep(100).then(() => {
-                sendGift_bag(gift_id, gift_cnt, room_id);
-            }); else for (let j = 0; j < gift_cnt; j++) await sleep(100).then(() => {
-                sendGift_bag(gift_id, 1, room_id);
-            });
-        }
-        showMessage("【清空背包】执行完毕！", "success");
-    } else showMessage("背包礼物为空", "error");
-}
-
-let barrageColorArr = [];
-
-let barrageArr = [];
-
-let barrageColorLength = 0;
-
-let barrageLength = 0;
-
-let bloopTimer;
-
-let barrageOffset = 0;
-
-let barrageColorOffset = 0;
-
-let isChangeColor = true;
-
-let isMatch = false;
-
-let bloopStopTimer;
-
-let barrageOptions = [];
-
-function initPkg_BarrageLoop() {
-    initPkg_BarrageLoop_Dom();
-    initPkg_BarrageLoop_Func();
-    initPkg_BarrageLoop_Set();
-}
-
-function BarrageLoop_insertModal() {
-    let html = "";
-    let a = document.createElement("div");
-    a.className = "bloop";
-    html += '<div style="display:inline-block"><label>弹幕：</label></div>';
-    html += `
-	<span style="float:right;margin-right:15px;">
-		<select id="bloop__select"></select>
-		<input style="margin-left:10px;" type="button" id="bloop__save" value="保存"/>
-		<input style="margin-left:10px;" type="button" id="bloop__delete" value="删除"/>
-	</span>
-	`;
-    html += '<textarea placeholder="一行一个，开启舔狗模式后此处不需要输入" id="bloop__textarea" rows="5" cols="50"></textarea>';
-    html += '<div><label>速度(ms)：</label><input id="bloop__text_speed1" type="text" style="width:50px;text-align:center;" value="2000" />~<input id="bloop__text_speed2" type="text" style="width:50px;text-align:center;" value="3000" /></div>';
-    html += '<div><label>限时(min)：</label><input id="bloop__text_stoptime" type="text" style="width:50px;text-align:center;" value="1" /></div>';
-    html += '<div><label><input id="bloop__checkbox_changeColor" type="checkbox" name="checkbox_changeColor" checked>自动变色</label><label><input id="bloop__checkbox_tiangou" type="checkbox">舔狗模式</label><label><input id="bloop__checkbox_random" type="checkbox">随机发送</label></div>';
-    html += '<div class="bloop__switch"><label><input id="bloop__checkbox_startSend" type="checkbox">开始发送</label></div>';
-    a.innerHTML = html;
-    let b = document.getElementsByClassName("layout-Player-chat")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function BarrageLoop_insertIcon() {
-    let a = document.createElement("div");
-    a.className = "bloop-icon";
-    a.innerHTML = '<a class="ex-panel__icon" title="弹幕发送小助手"><svg t="1578572568198" style="display: block;" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="55445" width="32" height="32"><path d="M511.99883605 1020.07740302c-68.78771655 0-135.53209458-13.47788003-198.38074083-40.06106453-60.69004402-25.67037725-115.18953131-62.41203655-161.98371328-109.20738247-46.79418197-46.79301803-83.53700523-101.29366926-109.20621853-161.98371328C15.84497778 645.97776043 2.36709774 579.23105337 2.36709774 510.4445019s13.47904398-135.53209458 40.06106453-198.38074083c25.6692133-60.69004402 62.41203655-115.18953131 109.20621853-161.98371328 46.79534706-46.79418197 101.29366926-83.53700523 161.98371328-109.20621853 62.84864739-26.5831845 129.59418937-40.06106453 198.38074083-40.06106453 68.78771655 0 135.53209458 13.47904398 198.38190592 40.06106453 60.69004402 25.6692133 115.18953131 62.41203655 161.98487723 109.20621853 46.79301803 46.79418197 83.53584128 101.29366926 109.20621853 161.98371328 26.5831845 62.84864739 40.06106453 129.59418937 40.06106453 198.38074083s-13.47788003 135.53325853-40.06106453 198.38074084c-25.67037725 60.69004402-62.41203655 115.19069525-109.20621853 161.98371328-46.79534706 46.79418197-101.29483435 83.53817031-161.98487723 109.20738247C647.53092949 1006.59952413 580.78655147 1020.07740302 511.99883605 1020.07740302zM511.99883605 57.86089358c-249.55500203 0-452.58244437 203.02744235-452.58244437 452.58244437s203.02744235 452.58244437 452.58244437 452.58244438c249.55616597 0 452.58360832-203.02744235 452.58360832-452.58244438C964.58244437 260.88949987 761.55500203 57.86089358 511.99883605 57.86089358z" p-id="55446" fill="#1296db" data-spm-anchor-id="a313x.7781069.0.i24"></path><path d="M322.42598685 461.65355293l-8.51099648 74.46598314 97.86947811 0c-2.85950862 76.59314973-4.9866752 127.6556379-6.38266595 153.18746454-1.42975431 51.06132423-27.65899321 75.16339541-78.72148139 72.33881542-18.45058333 1.39598962-35.47024839 2.12716658-51.06248818 2.12716658-2.85950862-17.02082901-6.38266595-34.77283613-10.63816419-53.19081984 18.41681863 0 35.43764878 0 51.06248817 0 25.53066155 2.82574393 38.99456967-7.77981952 40.42432399-31.9133275 1.39598962-9.9069861 2.12833166-25.53182663 2.12833166-46.80698994 1.39598962-21.27632725 2.12716658-36.86740309 2.12716658-46.80698994l-99.9966447 0 14.89366244-172.33546126 89.3584805 0 0-78.72148138-102.12497636 0 0-48.9353216 151.05913287 0 0 176.5909595L322.42598685 461.65355293zM450.08162475 580.79819435l0-242.54594504 74.46598314 0c-17.0219941-24.10090723-31.91449145-43.25006791-44.67982222-57.44515413l46.80698994-21.27632725c4.25433429 4.25549824 10.63699911 12.06675342 19.14799673 23.40349497 15.5910747 18.45058333 24.79948459 30.51733789 27.65899321 36.16882574l-42.5514917 19.14799673 80.84864796 0c25.53066155-38.29715741 41.8203136-64.5263963 48.93415652-78.72031744l53.19081984 14.89366244c-5.68525255 8.50983253-15.62483939 22.70491762-29.78732487 42.55149169-7.11384291 9.93958685-12.06675342 17.02082901-14.89249849 21.27516331l70.20931982 0 0 242.54594503L620.28991829 580.7970304l0 51.06248818 144.67646806 0 0 48.93415651L620.28991829 680.79367509l0 87.23131392-51.06132423 0 0-87.23131392L428.80646144 680.79367509l0-48.93415651 140.42213376 0 0-51.06248818L450.08162475 580.7970304zM501.14411293 385.0604032l0 53.18965475 68.08331718 0 0-53.18965475L501.14411293 385.0604032zM501.14411293 480.80154965l0 55.31682248 68.08331718 0L569.22743011 480.80154965 501.14411293 480.80154965zM688.37323549 385.0604032l-68.0833172 0 0 53.18965475 68.0833172 0L688.37323549 385.0604032zM620.28991829 480.80154965l0 55.31682248 68.0833172 0L688.37323549 480.80154965 620.28991829 480.80154965z" p-id="55447" fill="#1296db"></path></svg><i id="bloop__tip" class="ex-panel__tip"></i></a>';
-    let b = document.getElementsByClassName("ex-panel__wrap")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function getBarrageColorArr() {
-    barrageColorArr.length = 0;
-    barrageColorLength = 0;
-    let a = document.getElementsByClassName("FansBarrageSwitcher");
-    let nobleIcon = document.getElementsByClassName("NobleBarrageSwitcher is-active");
-    let isNoble = false;
-    if (nobleIcon.length > 0) isNoble = true;
-    if (0 == a.length) {
-        isMatch = true;
-        let b = document.getElementsByClassName("MatchSystemFansBarrageSwitcher")[0];
-        if (void 0 != b) {
-            b.click();
-            a = document.getElementsByClassName("MatchSystemFansBarrageColor-item");
-        } else isMatch = false;
-    } else {
-        a[0].click();
-        a = document.getElementsByClassName("FansBarrageColor-item");
-        isMatch = false;
-    }
-    for (let i = 0; i < a.length; i++) {
-        let itemClassName = a[i].className;
-        if (-1 == itemClassName.indexOf("is-lock")) {
-            barrageColorArr.push(i);
-            barrageColorLength++;
-        }
-    }
-    --barrageColorLength;
-    if (true == isNoble) document.getElementsByClassName("NobleBarrageSwitcher")[0].click();
-}
-
-function getBarrageArr() {
-    barrageArr.length = 0;
-    barrageLength = 0;
-    let a = document.getElementById("bloop__textarea").value;
-    barrageArr = a.split("\n");
-    barrageLength = barrageArr.length - 1;
-}
-
-function selectBarrageColor(index) {
-    let a;
-    if (false == isMatch) {
-        document.getElementsByClassName("FansBarrageSwitcher")[0].click();
-        a = document.getElementsByClassName("FansBarrageColor-item")[index];
-    } else {
-        document.getElementsByClassName("MatchSystemFansBarrageSwitcher")[0].click();
-        a = document.getElementsByClassName("MatchSystemFansBarrageColor-item")[index];
-    }
-    if (void 0 != a) a.click();
-}
-
-function sendBarrage(text) {
-    let chatDom = document.getElementsByClassName("ChatSend-txt")[0];
-    if ("TEXTAREA" == chatDom.tagName) chatDom.value = text; else chatDom.innerText = text;
-    document.getElementsByClassName("ChatSend-button")[0].click();
-}
-
-function getSpeed() {
-    let min = document.getElementById("bloop__text_speed1").value;
-    let max = document.getElementById("bloop__text_speed2").value;
-    let ret = getRandom(Number(min), Number(max));
-    return ret;
-}
-
-function saveData_BarrageLoop() {
-    let speed1 = document.getElementById("bloop__text_speed1").value;
-    let speed2 = document.getElementById("bloop__text_speed2").value;
-    let stopTime = document.getElementById("bloop__text_stoptime").value;
-    let tiangouMode = document.getElementById("bloop__checkbox_tiangou").checked;
-    if ("undefined" == speed1) speed1 = 2e3;
-    if ("undefined" == speed2) speed2 = 3e3;
-    if ("undefined" == stopTime) stopTime = 5;
-    let data = {
-        text: barrageOptions,
-        speed1: speed1,
-        speed2: speed2,
-        stopTime: stopTime,
-        isChangeColor: isChangeColor,
-        isTiangouMode: tiangouMode
-    };
-    localStorage.setItem("ExSave_BarrageLoopOptions", JSON.stringify(data).replace(/\\n/g, "\\r"));
-}
-
-function getStopTime() {
-    let a = document.getElementById("bloop__text_stoptime").value;
-    return 60 * Number(a) * 1e3;
-}
-
-async function doLoopBarrage() {
-    if (true == isChangeColor) {
-        selectBarrageColor(barrageColorOffset);
-        barrageColorOffset++;
-        if (barrageColorOffset > barrageColorLength) barrageColorOffset = 0;
-    }
-    if (true == document.getElementById("bloop__checkbox_tiangou").checked) {
-        let tiangouBarrage = await getBarrageTxt_Tiangou();
-        tiangouBarrage = String(tiangouBarrage).replace(/他/g, "她");
-        sendBarrage(tiangouBarrage);
-    } else {
-        if (true == document.getElementById("bloop__checkbox_random").checked) barrageOffset = Math.floor(Math.random() * barrageArr.length);
-        sendBarrage(barrageArr[barrageOffset]);
-        if (true != document.getElementById("bloop__checkbox_random").checked) {
-            barrageOffset++;
-            if (barrageOffset > barrageArr.length - 1) barrageOffset = 0;
-        }
-    }
-    bloopTimer = setTimeout(doLoopBarrage, getSpeed());
-}
-
-function initPkg_BarrageLoop_Func() {
-    document.getElementsByClassName("bloop-icon")[0].addEventListener("click", function() {
-        showExRightPanel("弹幕发送小助手");
-    });
-    document.getElementById("bloop__checkbox_changeColor").addEventListener("click", function() {
-        isChangeColor = document.getElementById("bloop__checkbox_changeColor").checked;
-    });
-    document.getElementById("bloop__checkbox_startSend").addEventListener("click", function() {
-        let ischecked = document.getElementById("bloop__checkbox_startSend").checked;
-        if (true == ischecked) {
-            getBarrageArr();
-            getBarrageColorArr();
-            if (true == document.getElementById("bloop__checkbox_random").checked) {
-                barrageOffset = Math.floor(Math.random() * barrageArr.length);
-                barrageColorOffset = Math.floor(Math.random() * barrageColorArr.length);
-            } else {
-                barrageOffset = 0;
-                barrageColorOffset = 0;
-            }
-            saveData_BarrageLoop();
-            bloopTimer = setTimeout(doLoopBarrage, getSpeed());
-            bloopStopTimer = setTimeout(() => {
-                document.getElementById("bloop__checkbox_startSend").checked = false;
-                clearTimeout(bloopTimer);
-            }, getStopTime());
-        } else {
-            clearTimeout(bloopTimer);
-            clearTimeout(bloopStopTimer);
-        }
-    });
-    document.getElementById("bloop__checkbox_tiangou").addEventListener("click", function() {
-        let ischecked = document.getElementById("bloop__checkbox_tiangou").checked;
-        if (true == ischecked) document.getElementById("bloop__textarea").disabled = true; else document.getElementById("bloop__textarea").disabled = false;
-        saveData_BarrageLoop();
-    });
-    document.getElementById("bloop__select").onclick = function() {
-        if (0 == this.options.length) return;
-        let area = document.getElementById("bloop__textarea");
-        let text = this.options[this.selectedIndex].text;
-        area.value = text;
-        area.value = area.value.replace(/\\r/g, "\r");
-    };
-    document.getElementById("bloop__save").addEventListener("click", () => {
-        let select_bloop = document.getElementById("bloop__select");
-        let text = document.getElementById("bloop__textarea").value;
-        if ("" == text) return;
-        barrageOptions.push(text);
-        select_bloop.options.add(new Option(text.replace(/\n/g, "\\r"), true));
-        saveData_BarrageLoop();
-    });
-    document.getElementById("bloop__delete").addEventListener("click", () => {
-        let select_bloop = document.getElementById("bloop__select");
-        let index = select_bloop.options[select_bloop.selectedIndex];
-        if (!index) return;
-        let text = index.text;
-        barrageOptions = barrageOptions.filter(item => item === text);
-        select_bloop.options.remove(select_bloop.selectedIndex);
-        saveData_BarrageLoop();
-    });
-}
-
-function initPkg_BarrageLoop_Dom() {
-    BarrageLoop_insertModal();
-    BarrageLoop_insertIcon();
-}
-
-function initPkg_BarrageLoop_Set() {
-    let ret = localStorage.getItem("ExSave_BarrageLoopOptions");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("speed1" in retJson == false) retJson.speed1 = 2e3;
-        if ("speed2" in retJson == false) retJson.speed2 = 3e3;
-        if ("stopTime" in retJson == false) retJson.stopTime = 5;
-        if ("isTiangouMode" in retJson == false) retJson.isTiangouMode = false;
-        let select_bloop = document.getElementById("bloop__select");
-        retJson.text.forEach(item => {
-            select_bloop.options.add(new Option(item.replace(/\r/g, "\\r"), ""));
-        });
-        barrageOptions = retJson.text;
-        document.getElementById("bloop__checkbox_changeColor").checked = retJson.isChangeColor;
-        isChangeColor = Boolean(retJson.isChangeColor);
-        document.getElementById("bloop__text_speed1").value = retJson.speed1;
-        document.getElementById("bloop__text_speed2").value = retJson.speed2;
-        document.getElementById("bloop__text_stoptime").value = retJson.stopTime;
-        if (true == retJson.isTiangouMode) {
-            document.getElementById("bloop__checkbox_tiangou").checked = retJson.isTiangouMode;
-            document.getElementById("bloop__textarea").disabled = true;
-        }
-    }
-}
-
-function getBarrageTxt_Tiangou() {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "https://api.shadiao.app/chp",
-            responseType: "json",
-            onload: function(response) {
-                let ret = response.response;
-                resolve(ret.data.text);
-            }
-        });
-    });
-}
+let barragePanelInitialized = false;
 
 function initPkg_BarragePanel() {
-    let timer = setInterval(() => {
-        if (document.getElementsByClassName("danmuTips-1ee820").length > 0) {
-            clearInterval(timer);
-            document.getElementsByClassName("danmuTips-1ee820")[0].parentElement.id = "Ex_BarragePanel";
-            setBarragePanelCallBack();
-        }
-    }, 1500);
+    if (barragePanelInitialized) return;
+    barragePanelInitialized = true;
+    setBarragePanelCallBack();
     initPkg_BarragePanel_Tip();
 }
 
@@ -1315,59 +517,22 @@ function barragePanel__replaceImageDanmakuInPanel() {
 }
 
 function setBarragePanelCallBack() {
-    new DomHook("#Ex_BarragePanel", true, m => {
-        barragePanel__withGuard(() => {
-            let isAttributes = false;
-            if (m.length > 0) {
-                for (let i = 0; i < m.length; i++) if ("attributes" == m[i].type) {
-                    isAttributes = true;
-                    break;
-                }
-                if (false == isAttributes) {
-                    let addedNodes = m[0].addedNodes;
-                    if (addedNodes.length > 0) {
-                        let barragePanel = addedNodes[0];
-                        if ("getElementsByClassName" in barragePanel == false) return;
-                        const barragePanelButton = barragePanel.getElementsByClassName("buttonGroup-de6b66")[0];
-                        let userNameDom = barragePanel.getElementsByClassName("danmuAuthor-3d7b4a");
-                        let id = "";
-                        if (userNameDom.length > 0) {
-                            id = userNameDom[0].innerText;
-                            setUserFansMedal(userNameDom[0], id);
-                            setReplyBarrageButton(barragePanelButton);
-                            setSearchBarrageButton(barragePanelButton);
-                            setBarragePanelButtonSplit(barragePanelButton);
-                            setMuteButton(barragePanelButton);
-                            setBarrgePanelFunc(barragePanelButton, id);
-                        }
-                    }
-                } else {
-                    let tmp = document.getElementsByClassName("barragePanel__funcPanel");
-                    if (tmp.length > 0) tmp[0].remove();
-                    let barragePanel = document.getElementsByClassName("danmudiv-32f498")[0];
-                    if (void 0 == barragePanel) return;
-                    const barragePanelButton = barragePanel.getElementsByClassName("buttonGroup-de6b66")[0];
-                    let userNameDom = barragePanel.getElementsByClassName("danmuAuthor-3d7b4a");
-                    let id = "";
-                    if (userNameDom.length > 0) {
-                        id = userNameDom[0].innerText;
-                        setUserFansMedal(userNameDom[0], id);
-                        setReplyBarrageButton(barragePanelButton);
-                        setSearchBarrageButton(barragePanelButton);
-                        setBarragePanelButtonSplit(barragePanelButton);
-                        setMuteButton(barragePanelButton);
-                        setBarrgePanelFunc(barragePanelButton, id);
-                    }
-                    barragePanel__replaceImageDanmakuInPanel();
-                }
-            }
-        });
+    const update = () => barragePanel__withGuard(() => {
+        const panel = document.getElementsByClassName("danmudiv-32f498")[0];
+        if (!panel) return;
+        const buttons = panel.getElementsByClassName("buttonGroup-de6b66")[0];
+        const author = panel.getElementsByClassName("danmuAuthor-3d7b4a")[0];
+        if (buttons && author) {
+            const existingName = author.querySelector("#barragePanel__id");
+            const name = existingName ? existingName.textContent : author.innerText;
+            setUserFansMedal(author, name);
+            setReplyBarrageButton(buttons);
+            setBarrgePanelFunc(buttons, name);
+        }
+        barragePanel__replaceImageDanmakuInPanel();
     });
-    new DomHook("#Ex_BarragePanel", false, m => {
-        barragePanel__withGuard(() => {
-            barragePanel__replaceImageDanmakuInPanel();
-        });
-    });
+    new DomHook(":has(> .danmuTips-1ee820)", true, update);
+    update();
 }
 
 function getUserFansMedal(userName) {
@@ -1409,7 +574,7 @@ function setUserFansMedal(dom, userName) {
         if (dom.childNodes && dom.childNodes.length > 0) dom.removeChild(dom.childNodes[0]);
         let userLevel = getUserLevelText(userName);
         let a = document.createElement("span");
-        a.innerHTML = userName;
+        a.textContent = userName;
         a.title = userLevel;
         a.id = "barragePanel__id";
         dom.insertBefore(a, dom.childNodes[0] || null);
@@ -1427,49 +592,6 @@ function setUserFansMedal(dom, userName) {
     }
 }
 
-function setBarragePanelButtonSplit(dom) {
-    if (null != document.getElementById("barragePanel__split")) return;
-    let a = document.createElement("br");
-    a.id = "barragePanel__split";
-    dom.appendChild(a);
-}
-
-function setMuteButton(dom) {
-    if (null != document.getElementById("barragePanel__mute")) return;
-    if (document.getElementsByClassName("barragePanel__muteTime").length > 0) return;
-    let a = document.createElement("div");
-    a.style = "display:flex;align-items:center;width:100%;gap:8px;";
-    a.innerHTML = `
-        <div class="button-7e1395" id="barragePanel__mute" style="z-index:5">禁言</div>
-        <div class="barragePanel__muteTime" style="z-index:5">
-            <select id="barragePanel__muteSelect" style='width:55px'>
-                <option value="1">1分钟</option>
-                <option value="10">10分钟</option>
-                <option value="30">30分钟</option>
-                <option value="60">1小时</option>
-                <option value="480">8小时</option>
-                <option value="1440">1天</option>
-                <option value="4320">3天</option>
-                <option value="10080">7天</option>
-                <option value="43200">30天</option>
-                <option value="259200">180天</option>
-                <option value="518400">360天</option>
-            </select>
-        </div>
-    `;
-    dom.appendChild(a);
-}
-
-function setSearchBarrageButton(dom) {
-    if (null != document.getElementById("barragePanel__search")) return;
-    let a = document.createElement("div");
-    a.className = "button-7e1395";
-    a.innerText = "查弹幕";
-    a.id = "barragePanel__search";
-    a.style = "z-index:5";
-    dom.appendChild(a);
-}
-
 function setReplyBarrageButton(dom) {
     if (null != document.getElementById("barragePanel__reply")) return;
     let a = document.createElement("div");
@@ -1482,46 +604,14 @@ function setReplyBarrageButton(dom) {
 
 function setBarrgePanelFunc(parentDom, id) {
     document.getElementById("barragePanel__reply").onclick = () => {
-        let txt = document.getElementsByClassName("danmuContent-25f266")[0].innerText;
+        const content = document.getElementsByClassName("danmuContent-25f266")[0];
         const chatDom = document.getElementsByClassName("ChatSend-txt")[0];
+        if (!content || !chatDom) return;
+        const txt = content.innerText;
         const value = `@${id}：` + txt;
         if ("TEXTAREA" == chatDom.tagName) chatDom.value = value; else chatDom.innerText = value;
         chatDom.focus();
     };
-    document.getElementById("barragePanel__mute").onclick = async () => {
-        let value = document.getElementById("barragePanel__muteSelect").value || "1";
-        let ret = await addMuteUser(rid, id, value);
-        if ("添加成功" == ret.msg) showMessage(`【禁言】${id}已被禁言${value}分钟`, "success"); else showMessage(ret.msg, "error");
-    };
-    document.getElementById("barragePanel__search").onclick = async () => {
-        let uid = await getUserUid(id);
-        if ("" !== uid) openPage(`https://www.doseeing.com/data/fan/${uid}?type=chat&dt=0`, true);
-    };
-}
-
-function getUserUid(name) {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "https://www.doseeing.com/api/suggest_all?type=room&nickname=" + encodeURIComponent(name),
-            responseType: "json",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            onload: function(response) {
-                let ret = response.response;
-                let success = true;
-                if (!ret.suggest) success = false;
-                if (!ret.suggest.fan) success = false;
-                if (0 === ret.suggest.fan.length) success = false;
-                if (ret.suggest.fan[0].nickname !== name) success = false;
-                if (success) resolve(ret.suggest.fan[0].user_id); else {
-                    resolve("");
-                    return;
-                }
-            }
-        });
-    });
 }
 
 function initPkg_BarragePanel_Tip() {
@@ -1538,11 +628,18 @@ function setBarragePanelTipCallBack() {
 }
 
 function renderBarragePanelTip() {
-    let a = document.createElement("div");
-    a.style.display = "inline-block";
+    if (document.getElementById("barrage-panel-tip__+1")) return;
     const labelDoms = document.getElementsByClassName("labelfisrt-407af4");
     if (0 === labelDoms.length) return;
     const dom = labelDoms[0].parentElement;
+    const children = dom && (dom.querySelectorAll ? dom.querySelectorAll("*") : dom.children || []);
+    if (children && Array.from(children).some(node => {
+        if ("barrage-panel-tip__+1" === node.id) return false;
+        const text = (node.innerText || node.textContent || "").trim();
+        return "+1" === text;
+    })) return;
+    let a = document.createElement("div");
+    a.style.display = "inline-block";
     dom.appendChild(a);
     a = document.createElement("p");
     a.className = "sugun-e3fbf6";
@@ -1556,10 +653,14 @@ function renderBarragePanelTip() {
 }
 
 function setBarragePanelTipFunc() {
-    document.getElementById("barrage-panel-tip__+1").onclick = () => {
+    const button = document.getElementById("barrage-panel-tip__+1");
+    if (!button) return;
+    button.onclick = () => {
         const dom = document.getElementById("comment-higher-container");
+        if (!dom) return;
         if (dom.getElementsByClassName("ex-image-danmaku").length > 0) {
             const textDom = dom.getElementsByClassName("text-879f3e")[0];
+            if (!textDom) return;
             sendBarrage(textDom.innerHTML.replace(/<a[^>]*><img\s+(?:.*?\s+)?src="(.*?)"[^>]*?\/?><\/a>/g, (match, src) => getImageDanmakuFromImgSrc(src)));
         } else sendBarrage(dom.innerText);
     };
@@ -1623,59 +724,6 @@ function setBarrageValue(txt) {
 
 function initPkg_ChatTools() {
     initPkg_ChatMemory();
-}
-
-let anchorPocketData = {
-    t: 0,
-    list: []
-};
-
-async function initPkg_CheckAnchorPocket() {
-    await updateAnchorPocketData();
-    new DomHook(".FansMedalPanel-enter", false, async m => {
-        const targetDom = document.querySelector(".FansMedalInfo-head");
-        if (!targetDom) return;
-        const currentDate = new Date();
-        const currentDay = currentDate.getDate();
-        const anchorDate = new Date(anchorPocketData.t);
-        const anchorDay = anchorDate.getDate();
-        if (currentDay > anchorDay) await updateAnchorPocketData();
-        const list = anchorPocketData.list;
-        if (0 === list.length) return;
-        const dom = document.createElement("div");
-        dom.innerHTML = `
-      <div style="display: flex; align-items: center;gap: 8px;margin-top: 4px;">
-        ${list.map(item => `
-          <div style="display: flex; align-items: center;">
-            <img style="width: 20px; height: 20px;margin-right: 4px;" src="${item.webIcon}" alt="${item.name}">
-            <span style="font-size: 12px;">${item.name}</span>
-          </div>
-        `).join("")}
-      </div>
-    `;
-        targetDom.appendChild(dom);
-    });
-}
-
-async function updateAnchorPocketData() {
-    const newList = await getAnchorPocketList(rid);
-    anchorPocketData.list = newList;
-    anchorPocketData.t = new Date().getTime();
-}
-
-async function getAnchorPocketList(rid) {
-    return new Promise((resolve, reject) => {
-        fetch(`https://www.douyu.com/japi/interact/cdn/pocket/effective?rid=` + rid, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include"
-        }).then(result => result.json()).then(res => {
-            if (!res.data) return resolve([]);
-            resolve(res.data.list);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
 }
 
 function initPkg_Console() {
@@ -1795,11 +843,7 @@ function initPkg_DanmakuCollect_Dom() {
             clearInterval(timer);
             new DomHook(".ChatBarrageCollect", false, m => {
                 const titleDom = document.getElementsByClassName("ChatBarrageCollectPop-title");
-                if (!titleDom) {
-                    document.getElementById("ex-danmaku-collect-search").removeEventListener("input", searchCollectDanmaku);
-                    return;
-                }
-                if (0 === titleDom.length) return;
+                if (0 === titleDom.length || document.getElementById("ex-danmaku-collect-search")) return;
                 let inputDom = document.createElement("input");
                 inputDom.id = "ex-danmaku-collect-search";
                 inputDom.placeholder = "搜索弹幕";
@@ -1813,7 +857,9 @@ function initPkg_DanmakuCollect_Dom() {
 
 function searchCollectDanmaku(e) {
     const searchText = e.target.value;
-    let parentDom = document.getElementsByClassName("ChatBarrageCollectPop-barrageContent")[0].parentElement;
+    const content = document.getElementsByClassName("ChatBarrageCollectPop-barrageContent")[0];
+    if (!content || !content.parentElement) return;
+    let parentDom = content.parentElement;
     let danmakuDoms = parentDom.getElementsByClassName("TagItem");
     for (let i = 0; i < danmakuDoms.length; i++) {
         let danmakuDom = danmakuDoms[i];
@@ -1999,159 +1045,130 @@ function initPkg_DanmakuTail_HandleFunc(checkboxSelector, inputSelector) {
     };
 }
 
+let disableCloseJumpTimer = null;
+
 function initPkg_DisableCloseJump_Timer() {
-    setInterval(() => {
+    if (null !== disableCloseJumpTimer) return;
+    disableCloseJumpTimer = setInterval(() => {
         const x = document.querySelector(".ClosingRecommend .dy-ModalRadius-close-x");
         if (!x) return;
         x.click();
     }, 1e3);
 }
 
-function getVideoStreamUrl(vid, sign) {
-    return new Promise(resolve => {
-        fetch("https://v.douyu.com/api/stream/getStreamUrl", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            body: sign + `&vid=` + vid
-        }).then(result => result.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
-function getVideoBarrageByTime(vid, pre = 0) {
-    if (pre < 0) return;
-    return new Promise(resolve => {
-        fetch(`https://v.douyu.com/wgapi/vod/center/getBarrageListByPage?vid=${vid}&offset=` + pre, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include"
-        }).then(result => result.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
 let dyVideoBarrage_domhook_videoChange = null;
 
-let dyVideoBarrage_hasRendered = false;
+let dyVideoBarrage_loadingId = "";
+
+let dyVideoBarrage_generation = 0;
 
 const dyVideoBarrage_domName = "ex-barrageLine";
 
+function DyVideoBarrage_getDom() {
+    const shadow = document.getElementsByTagName("demand-video")[0]?.shadowRoot;
+    const controls = shadow?.getElementById("demandcontroller-bar")?.shadowRoot;
+    const progress = controls?.querySelector("demand-video-controller-progress")?.shadowRoot;
+    const share = document.getElementsByTagName("demand-video-toolbar")[0]?.shadowRoot?.querySelector("share-hover");
+    return {
+        controls: controls,
+        progress: progress,
+        share: share
+    };
+}
+
 function initPkg_DyVideoBarrageLine() {
     let timer = setInterval(() => {
-        let progress = document.getElementsByTagName("demand-video")[0].shadowRoot.getElementById("demandcontroller-bar").shadowRoot.querySelector("demand-video-controller-progress").shadowRoot.querySelector(".ProgressBar-Sign");
-        let hashidShadow = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot;
-        let hashIdDom = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot;
-        if (progress && hashidShadow && hashIdDom) {
-            clearInterval(timer);
-            initPkg_DyVideoBarrageLine_Dom();
-            renderVideoBarrageLine();
-            let shareHoverDom = hashIdDom.querySelector("share-hover");
-            dyVideoBarrage_domhook_videoChange = new MutationObserver(function(mutations) {
-                renderVideoBarrageLine();
-            });
-            dyVideoBarrage_domhook_videoChange.observe(shareHoverDom, {
-                attributes: true,
-                childList: true,
-                subtree: false
-            });
-        }
+        const {
+            progress,
+            share
+        } = DyVideoBarrage_getDom();
+        if (!progress?.querySelector(".ProgressBar-Sign") || !share) return;
+        clearInterval(timer);
+        initPkg_DyVideoBarrageLine_Dom();
+        renderVideoBarrageLine();
+        dyVideoBarrage_domhook_videoChange = new MutationObserver(mutations => {
+            if (mutations.some(item => "hashid" === item.attributeName)) renderVideoBarrageLine();
+        });
+        dyVideoBarrage_domhook_videoChange.observe(share, {
+            attributes: true,
+            childList: false,
+            subtree: false
+        });
     }, 1e3);
 }
 
 function initPkg_DyVideoBarrageLine_Dom() {
-    let a = document.createElement("style");
-    a.innerHTML = `.no-hasLR #ex-barrageLine {
-        display: none !important;
-    }`;
-    let b = document.getElementsByTagName("demand-video")[0].shadowRoot.getElementById("demandcontroller-bar").shadowRoot.querySelector("demand-video-controller-progress").shadowRoot;
-    b.append(a);
+    const progress = DyVideoBarrage_getDom().progress;
+    if (!progress) return;
+    const style = document.createElement("style");
+    style.innerHTML = `.no-hasLR #ex-barrageLine { display: none !important; }`;
+    progress.append(style);
 }
 
 async function renderVideoBarrageLine() {
-    if (dyVideoBarrage_hasRendered) return;
-    dyVideoBarrage_hasRendered = true;
-    setTimeout(() => {
-        dyVideoBarrage_hasRendered = false;
-    }, 1e3);
+    const {
+        controls,
+        progress,
+        share
+    } = DyVideoBarrage_getDom();
+    const progressBar = progress?.querySelector(".ProgressBar");
+    const hashid = share?.getAttribute("hashid");
+    if (!progressBar || !hashid || dyVideoBarrage_loadingId === hashid) return;
+    const parts = controls.querySelector("#time-label")?.innerText.split("/");
+    const totalMs = parts?.length > 1 ? timeText2Ms(parts[1]) : 0;
+    if (!Number.isFinite(totalMs) || totalMs <= 0) return;
+    const generation = ++dyVideoBarrage_generation;
+    dyVideoBarrage_loadingId = hashid;
+    const old = progress.querySelector("#" + dyVideoBarrage_domName);
+    if (old) old.remove();
     showMessage("弹幕高能进度条加载中，请耐心等待", "info");
-    let progress = document.getElementsByTagName("demand-video")[0].shadowRoot.getElementById("demandcontroller-bar").shadowRoot.querySelector("demand-video-controller-progress").shadowRoot;
-    let progressBar = progress.querySelector(".ProgressBar");
-    let barrageLineDom = progress.querySelector("#" + dyVideoBarrage_domName);
-    if (barrageLineDom) barrageLineDom.remove();
-    let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
-    let xAxisStepNum = 100;
-    let progressTimeText = document.getElementsByTagName("demand-video")[0].shadowRoot.getElementById("demandcontroller-bar").shadowRoot.querySelector("#time-label").innerText;
-    let arr = progressTimeText.split("/");
-    if (arr.length <= 0) return;
-    let totalMs = timeText2Ms(arr[1]);
-    let msStep = totalMs / (xAxisStepNum - 1);
-    let list = new Array(xAxisStepNum).fill(0, 0, xAxisStepNum);
-    let pre = 0;
-    do {
-        let data = await getVideoBarrageByTime(hashid, pre);
-        pre = data.data.pre;
-        if (data.data.list) for (let i = 0; i < data.data.list.length; i++) {
-            let item = data.data.list[i];
-            let index = Math.floor(item.tl / msStep);
-            list[index]++;
+    try {
+        const list = new Array(100).fill(0);
+        const msStep = totalMs / 99;
+        const cursors = new Set();
+        let pre = 0;
+        do {
+            if (cursors.has(String(pre))) throw new Error("弹幕分页未前进");
+            cursors.add(String(pre));
+            const result = await getVideoBarrageByTime(hashid, pre);
+            if (generation !== dyVideoBarrage_generation || share.getAttribute("hashid") !== hashid) return;
+            if (!result?.data || !Array.isArray(result.data.list)) throw new Error("弹幕数据不可用");
+            pre = Number(result.data.pre);
+            if (!Number.isFinite(pre)) throw new Error("弹幕分页无效");
+            for (var item of result.data.list) {
+                const time = Number(item.tl);
+                if (!Number.isFinite(time) || time < 0 || time > totalMs) continue;
+                list[Math.min(99, Math.floor(time / msStep))]++;
+            }
+        } while (pre >= 0);
+        const maximum = Math.max(...list);
+        const points = list.map((count, index) => [ 10 * index, maximum ? count / maximum * 100 : 0 ]);
+        let path = "M 0 100 L 0 80 ";
+        for (let i = 0; i < points.length - 1; i++) {
+            const [ x1, y1 ] = points[i];
+            const [ x2, y2 ] = points[i + 1];
+            const middle = 80 - (y1 + y2) / 2;
+            path += `C ${x1} ${middle}, ${x2} ${middle}, ${x2} ${80 - y2} `;
         }
-    } while (pre >= 0);
-    let xStep = 1e3 / list.length;
-    let yStep = Math.max(...list) / 100;
-    let positionArray = [];
-    for (let i = 0; i < list.length; i++) {
-        let barrageNum = list[i];
-        let x = i * xStep;
-        let y = barrageNum / yStep;
-        positionArray.push([ x, y ]);
+        path += "L 1000 100 Z";
+        const line = document.createElement("div");
+        line.id = dyVideoBarrage_domName;
+        line.style = "position:absolute;width:100%;height:30px;bottom:0px;pointer-events:none;cursor:default;";
+        line.innerHTML = `<svg preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.3)" d="${path}" /></svg>`;
+        progressBar.insertBefore(line, progressBar.childNodes[0]);
+    } catch (error) {
+        if (generation === dyVideoBarrage_generation) showMessage("弹幕高能进度条加载失败：" + error.message, "error");
+    } finally {
+        if (generation === dyVideoBarrage_generation) dyVideoBarrage_loadingId = "";
     }
-    let d = "M 0 100 L 0 80 ";
-    let c = "";
-    for (let i = 0; i < positionArray.length - 1; i++) {
-        let current = positionArray[i];
-        let next = positionArray[i + 1];
-        let [ x1, y1 ] = current;
-        let [ x2, y2 ] = next;
-        let cx1 = x1;
-        let cy1 = (y1 + y2) / 2;
-        let cx2 = x2;
-        let cy2 = (y1 + y2) / 2;
-        c += "C ";
-        c += `${cx1} ${80 - cy1}, ${cx2} ${80 - cy2}, ${x2} ${80 - y2} `;
-    }
-    c += "L 1000 100 Z";
-    let path = d + c;
-    let html = `
-    <svg preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 1000 100" >
-        <path fill="rgba(255,255,255,0.3)" d="${path}" />
-    </svg>`;
-    if (-1 !== path.indexOf("NaN")) {
-        console.log(path);
-        showMessage("弹幕高能进度条加载失败", "error");
-    }
-    let a = document.createElement("div");
-    a.id = dyVideoBarrage_domName;
-    a.style = "position:absolute;width:100%;height:30px;bottom:0px;pointer-events:none;cursor: default;";
-    a.innerHTML = html;
-    progressBar.insertBefore(a, progressBar.childNodes[0]);
 }
 
 function initPkg_DyVideoDownload() {
     let timer = setInterval(() => {
-        let toolBarShadow = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot;
-        if (toolBarShadow) {
+        let toolBarShadow = document.getElementsByTagName("demand-video-toolbar")[0]?.shadowRoot;
+        const toolbar = toolBarShadow?.querySelector(".ToolBar-positiveUl");
+        if (toolbar) {
             clearInterval(timer);
-            let toolbar = toolBarShadow.querySelector(".ToolBar-positiveUl");
             initPkg_DyVideoDownload_Style();
             initPkg_DyVideoDownload_Dom(toolbar);
             initPkg_DyVideoDownload_Func();
@@ -2224,7 +1241,7 @@ function initPkg_DyVideoDownload_Func() {
     document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#btn-download").addEventListener("click", () => {
         if ("下载完成" === domDownloadText.innerText) showMessage("请刷新页面后再下载", "warning");
     });
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__default").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__default", async () => {
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         let vid = $DATA.ROOM.vid;
         if (hashid !== vid) {
@@ -2253,13 +1270,13 @@ function initPkg_DyVideoDownload_Func() {
                 showMessage("视频下载完成", "success");
             }).on("error", message => {
                 domDownloadText.innerText = "下载失败";
-                showMessage(message, "success");
+                showMessage(message, "error");
             }).on("aborted", () => {
                 domDownloadText.innerText = "下载中止";
             });
         } else showMessage("获取m3u8链接失败", "error");
     });
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__copy").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__copy", async () => {
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         let vid = $DATA.ROOM.vid;
         if (hashid !== vid) {
@@ -2281,47 +1298,87 @@ function initPkg_DyVideoDownload_Func() {
             showMessage("复制成功，可将链接复制到第三方下载器中下载", "success");
         } else showMessage("获取m3u8链接失败", "error");
     });
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__barrage").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__barrage", async () => {
         let videoTitle = document.getElementsByTagName("demand-video-title")[0].shadowRoot.querySelector(".Title-Main").innerText;
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         showMessage("正在获取弹幕数据，请勿切换页面...", "info");
-        let pre = 0;
-        let header = [ "vid", "hashid", "uid", "昵称", "弹幕", "时间", "发送时间" ];
-        let body = [];
-        do {
-            let data = await getVideoBarrageByTime(hashid, pre);
-            pre = data.data.pre;
-            for (let i = 0; i < data.data.list.length; i++) {
-                let item = data.data.list[i];
-                body.push([ item.vid, hashid, item.uid, item.nn, item.ctt, formatSeconds2(item.tl / 1e3), dateFormat("yyyy-MM-dd hh:mm:ss", new Date(1e3 * item.sts)) ]);
-            }
-        } while (pre >= 0);
+        const list = await DyVideoDownload_readBarrages(hashid);
+        const header = [ "vid", "hashid", "uid", "昵称", "弹幕", "时间", "发送时间" ];
+        const body = list.map(item => [ item.vid, hashid, item.uid, item.nn, item.ctt, formatSeconds2(item.tl / 1e3), dateFormat("yyyy-MM-dd hh:mm:ss", new Date(1e3 * item.sts)) ]);
         exportJsonToExcel(header, body, `【${videoTitle}】弹幕数据.xlsx`);
     });
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__barrageass").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__barrageass", async () => {
         let videoTitle = document.getElementsByTagName("demand-video-title")[0].shadowRoot.querySelector(".Title-Main").innerText;
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         showMessage("正在获取弹幕数据，请勿切换页面...", "info");
-        let pre = 0;
-        let ass = new ASS({
+        const ass = new ASS({
             title: videoTitle
         });
-        let list = [];
-        do {
-            let data = await getVideoBarrageByTime(hashid, pre);
-            pre = data.data.pre;
-            for (let i = 0; i < data.data.list.length; i++) {
-                let item = data.data.list[i];
-                list.push({
-                    time: Number(item.tl),
-                    txt: item.ctt,
-                    color: item.col
-                });
-            }
-        } while (pre >= 0);
+        const rows = await DyVideoDownload_readBarrages(hashid);
+        const list = rows.map(item => ({
+            time: Number(item.tl),
+            txt: item.ctt,
+            color: item.col
+        }));
         let result = ass.generate(list);
         downloadFile(videoTitle + `.ass`, result);
     });
+}
+
+function DyVideoDownload_bindAction(selector, action) {
+    const button = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector(selector);
+    let running = false;
+    button.addEventListener("click", async () => {
+        if (running) return;
+        running = true;
+        try {
+            await action();
+        } catch (error) {
+            showMessage("回放下载失败：" + (error.message || error), "error");
+        } finally {
+            running = false;
+        }
+    });
+}
+
+async function DyVideoDownload_readBarrages(hashid) {
+    const list = [];
+    const cursors = new Set();
+    let pre = 0;
+    do {
+        if (cursors.has(String(pre))) throw new Error("弹幕分页未前进，请稍后重试");
+        cursors.add(String(pre));
+        const result = await getVideoBarrageByTime(hashid, pre);
+        if (!result?.data || !Array.isArray(result.data.list)) throw new Error("弹幕数据不可用");
+        pre = Number(result.data.pre);
+        if (!Number.isFinite(pre)) throw new Error("弹幕分页无效");
+        list.push(...result.data.list);
+    } while (pre >= 0);
+    return list;
+}
+
+function getVideoStreamUrl(vid, sign) {
+    return fetch("https://v.douyu.com/api/stream/getStreamUrl", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: sign + `&vid=` + encodeURIComponent(vid)
+    }).then(response => response.json());
+}
+
+function getVideoBarrageByTime(vid, pre = 0) {
+    if (pre < 0) return Promise.resolve({
+        data: {
+            pre: -1,
+            list: []
+        }
+    });
+    return fetch(`https://v.douyu.com/wgapi/vod/center/getBarrageListByPage?vid=${encodeURIComponent(vid)}&offset=` + encodeURIComponent(pre), {
+        method: "GET",
+        credentials: "include"
+    }).then(response => response.json());
 }
 
 const PokeballIcon_svg = `<svg class="icon" width="24" height="24" viewBox="0 0 108 108" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -2339,43 +1396,236 @@ const PokeballIcon_svg = `<svg class="icon" width="24" height="24" viewBox="0 0 
     </g>
 </svg>`;
 
+let ExIcon_root = null;
+
+let ExIcon_hostHooks = [];
+
 function initPkg_ExIcon() {
-    initPkg_ExIcon_insertDom();
-    initPkg_ExIcon_Func();
+    if (!ExIcon_root) {
+        initPkg_ExIcon_insertDom();
+        initPkg_ExIcon_Func();
+    }
+    ExIcon_mount();
+    if (!ExIcon_hostHooks.length) ExIcon_hostHooks = [ new DomHook(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth", false, ExIcon_mount), new DomHook(".ToolbarGiftArea-container, .PlayerToolbar-ContentRow, .room-Player-Box", false, ExIcon_mount) ];
 }
 
 function initPkg_ExIcon_insertDom() {
     let a = document.createElement("div");
     a.className = "ex-icon";
     a.innerHTML = `<a title="DouyuEx ver.${curVersion}">${PokeballIcon_svg}<i id="ex-icon__tip" class="ex-panel__tip"></i></a>`;
-    let b = document.querySelector(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth");
-    if (b) b.insertBefore(a, b.childNodes[0]); else {
-        a.className += " ToolbarGiftArea-backpack";
-        a.style.width = "52px";
-        b = document.querySelector(".ToolbarGiftArea-container");
-        b.appendChild(a);
-    }
+    ExIcon_root = a;
+}
+
+function ExIcon_mount() {
+    const primary = document.querySelector(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth");
+    const host = primary || document.querySelector(".ToolbarGiftArea-container") || document.querySelector(".PlayerToolbar-ContentRow") || document.querySelector(".room-Player-Box");
+    if (!ExIcon_root || !host) return;
+    ExIcon_root.classList.toggle("ToolbarGiftArea-backpack", !primary);
+    ExIcon_root.style.width = primary ? "" : "52px";
+    const duplicate = host.querySelector(".ex-icon");
+    if (duplicate && duplicate !== ExIcon_root) duplicate.remove();
+    if (ExIcon_root.parentNode !== host) host.insertBefore(ExIcon_root, host.childNodes[0]);
 }
 
 function initPkg_ExIcon_Func() {
-    document.getElementsByClassName("ex-icon")[0].addEventListener("click", showExPanel);
+    ExIcon_root.addEventListener("click", showExPanel);
+}
+
+let ExPanel_anchorParent = null;
+
+let ExPanel_anchorNextSibling = null;
+
+let ExPanel_root = null;
+
+let ExPanel_hostHooks = [];
+
+function initPkg_ExPanel() {
+    if (ExPanel_root) {
+        ExPanel_syncHost();
+        return;
+    }
+    initPkg_ExPanel_insertDom();
+    let exPanelDOM = ExPanel_root;
+    exPanelDOM.addEventListener(`mouseenter`, () => {
+        clearTimeout(exPanelTimer);
+    });
+    exPanelDOM.addEventListener(`mouseleave`, () => {
+        clearTimeout(exPanelTimer);
+        exPanelTimer = setTimeout(autoCloseExPanelHandle, 800);
+    });
+    const closeBtn = exPanelDOM.querySelector(".ex-panel__close");
+    if (closeBtn) closeBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        hideExPanel();
+    });
+    [ ".PlayerToolbar-ContentCell .PlayerToolbar-Wealth", ".PlayerToolbar-ContentRow, .ToolbarGiftArea-container", "#js-player-dialog", ".room-Player-Box" ].forEach(selector => {
+        ExPanel_hostHooks.push(new DomHook(selector, false, ExPanel_syncHost));
+    });
+}
+
+function ExPanel_getGiftBarAnchor() {
+    return document.querySelector(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth") || document.querySelector(".PlayerToolbar-ContentRow") || document.querySelector(".ToolbarGiftArea-container");
+}
+
+function ExPanel_getPanel() {
+    return ExPanel_root || document.querySelector(".ex-panel");
+}
+
+function ExPanel_isGiftBarHidden() {
+    const row = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
+    return !!(row && "hidden" === row.style.visibility);
+}
+
+function ExPanel_getFloatingHost() {
+    return document.getElementById("js-player-dialog") || document.getElementsByClassName("room-Player-Box")[0] || document.body;
+}
+
+function ExPanel_saveAnchor(panel) {
+    if (!ExPanel_anchorParent) {
+        ExPanel_anchorParent = panel.parentNode;
+        ExPanel_anchorNextSibling = panel.nextSibling;
+    }
+}
+
+function ExPanel_updateFloatingPosition() {
+    const panel = document.querySelector(".ex-panel.ex-panel--floating");
+    if (!panel) return;
+    const playerToolbar = document.getElementById("js-player-toolbar");
+    const vtoolbarMenu = document.getElementById("ex-vtoolbar-menu");
+    const gap = 8;
+    panel.style.position = "fixed";
+    panel.style.top = "auto";
+    if (vtoolbarMenu) {
+        const menuRect = vtoolbarMenu.getBoundingClientRect();
+        panel.style.bottom = window.innerHeight - menuRect.top + gap + `px`;
+        const panelWidth = panel.offsetWidth || panel.scrollWidth || 320;
+        let left = menuRect.left + menuRect.width / 2 - panelWidth / 2;
+        left = Math.max(8, Math.min(left, window.innerWidth - panelWidth - 8));
+        panel.style.left = left + `px`;
+        panel.style.right = "auto";
+    } else if (playerToolbar) {
+        const toolbarRect = playerToolbar.getBoundingClientRect();
+        panel.style.bottom = window.innerHeight - toolbarRect.top + gap + `px`;
+        const panelWidth = panel.offsetWidth || panel.scrollWidth || 320;
+        let left = toolbarRect.left + toolbarRect.width / 2 - panelWidth / 2;
+        left = Math.max(8, Math.min(left, window.innerWidth - panelWidth - 8));
+        panel.style.left = left + `px`;
+        panel.style.right = "auto";
+    } else {
+        panel.style.bottom = "72px";
+        panel.style.right = "12px";
+        panel.style.left = "";
+    }
+}
+
+function ExPanel_attachToFloatingHost() {
+    const panel = ExPanel_getPanel();
+    if (!panel) return;
+    ExPanel_saveAnchor(panel);
+    const host = ExPanel_getFloatingHost();
+    if (panel.parentNode !== host) host.appendChild(panel);
+    panel.classList.add("ex-panel--floating");
+    ExPanel_updateFloatingPosition();
+}
+
+function ExPanel_restoreToGiftBar() {
+    const panel = ExPanel_getPanel();
+    const anchor = ExPanel_getGiftBarAnchor();
+    if (!panel || !anchor) return;
+    const duplicate = anchor.querySelector(".ex-panel");
+    if (duplicate && duplicate !== panel) duplicate.remove();
+    if (panel.parentNode !== anchor) if (ExPanel_anchorNextSibling && ExPanel_anchorNextSibling.parentNode === anchor) anchor.insertBefore(panel, ExPanel_anchorNextSibling); else anchor.insertBefore(panel, anchor.childNodes[0]);
+    ExPanel_anchorParent = anchor;
+    ExPanel_anchorNextSibling = panel.nextSibling;
+    panel.classList.remove("ex-panel--floating");
+    panel.style.position = "";
+    panel.style.top = "";
+    panel.style.left = "";
+    panel.style.right = "";
+    const toolbar = document.querySelector(".PlayerToolbar");
+    panel.style.bottom = toolbar ? toolbar.offsetHeight + "px" : "76px";
+}
+
+function ExPanel_orderLiteTools() {
+    const wrap = document.querySelector(".ex-panel__wrap");
+    if (!wrap) return;
+    [ ".ex-sign", ".fans-continue", ".extool-icon", ".ex-monitor" ].forEach(selector => {
+        const item = wrap.querySelector(selector);
+        if (item) wrap.appendChild(item);
+    });
+}
+
+function ExPanel_syncHost() {
+    if (ExPanel_isGiftBarHidden() || !ExPanel_getGiftBarAnchor()) ExPanel_attachToFloatingHost(); else ExPanel_restoreToGiftBar();
+}
+
+function ExPanel_onGiftBarHide() {
+    const panel = document.querySelector(".ex-panel");
+    if (panel && "block" === panel.style.display) {
+        ExPanel_attachToFloatingHost();
+        ExPanel_updateFloatingPosition();
+    }
+}
+
+function ExPanel_onGiftBarShow() {
+    ExPanel_restoreToGiftBar();
+}
+
+function initPkg_ExPanel_insertDom() {
+    let a = document.createElement("div");
+    a.className = "ex-panel";
+    a.innerHTML = `<button type="button" class="ex-panel__close" title="关闭工具条" aria-label="关闭 DouyuEx 工具条">×</button><div class="ex-panel__wrap"></div>`;
+    ExPanel_root = a;
+    let b = ExPanel_getGiftBarAnchor();
+    if (!b) {
+        b = ExPanel_getFloatingHost();
+        a.classList.add("ex-panel--floating");
+    } else {
+        const domPlayerToolbar = document.querySelector(".PlayerToolbar");
+        if (domPlayerToolbar) a.style.bottom = domPlayerToolbar.offsetHeight + "px"; else a.style.bottom = "76px";
+    }
+    b.insertBefore(a, b.childNodes[0]);
+    ExPanel_saveAnchor(a);
+    if (ExPanel_isGiftBarHidden()) ExPanel_attachToFloatingHost();
+}
+
+function hideExPanel() {
+    const exPanelDOM = document.querySelector(".ex-panel");
+    if (!exPanelDOM) return;
+    clearTimeout(exPanelTimer);
+    exPanelTimer = null;
+    exPanelDOM.style.display = "none";
+}
+
+function autoCloseExPanelHandle() {
+    hideExPanel();
+}
+
+function showExPanel() {
+    let a = ExPanel_getPanel();
+    if (!a) return;
+    ExPanel_syncHost();
+    if ("block" !== a.style.display) {
+        a.style.display = "block";
+        clearTimeout(exPanelTimer);
+        if (a.classList.contains("ex-panel--floating")) ExPanel_updateFloatingPosition();
+    } else {
+        a.style.display = "none";
+        clearTimeout(exPanelTimer);
+    }
 }
 
 function initPkg_ExpandTool() {
+    if (document.querySelector(".extool")) return;
     initPkg_ExpandTool_Dom();
     initPkg_ExpandTool_Func();
     initPkg_ExpandTool_Module();
 }
 
 function initPkg_ExpandTool_Module() {
-    initPkg_ExpandTool_Treasure();
-    initPkg_ExpandTool_Gold();
-    initPkg_ExpandTool_RedPacket_Room();
     initPkg_ExpandTool_AutoFish();
-    initPkg_ExpandTool_ClearBag();
-    initPkg_ExpandTool_SendGift();
-    initPkg_ExpandTool_TabSwitch();
     initPkg_ExpandTool_P2P();
+    initPkg_ExpandTool_TabSwitch();
     initPkg_ExpandTool_FullScreen();
     initPkg_ExpandTool_AutoBarrageColor();
 }
@@ -2389,7 +1639,7 @@ function ExpandTool_insertModal() {
     let a = document.createElement("div");
     a.className = "extool";
     a.innerHTML = `<div class="extool__close" title="关闭">×</div>`;
-    let b = document.getElementsByClassName("layout-Player-chat")[0];
+    let b = document.getElementsByClassName("layout-Player-chat")[0] || document.body;
     b.insertBefore(a, b.childNodes[0]);
 }
 
@@ -2435,7 +1685,10 @@ function getAutoBarrageColor() {
 function ExpandTool_AutoBarrageColor_insertFunc() {
     document.getElementById("extool__autobarragecolor").addEventListener("click", function() {
         saveData_AutoBarrageColor();
-        if (getAutoBarrageColor()) selectHighestUnlockedBarrageColor();
+        if (getAutoBarrageColor()) selectHighestUnlockedBarrageColor(); else {
+            clearInterval(exAutoBarrageColorTimer);
+            exAutoBarrageColorTimer = null;
+        }
     });
 }
 
@@ -2503,7 +1756,13 @@ let nextFishEndTime = 0;
 
 let isFishing = false;
 
-let timerAutoFish = 0;
+let timerAutoFish = null;
+
+let autoFishGeneration = 0;
+
+let autoFishBusy = false;
+
+let autoFishReady = false;
 
 function initPkg_ExpandTool_AutoFish() {
     ExpandTool_AutoFish_insertDom();
@@ -2512,106 +1771,132 @@ function initPkg_ExpandTool_AutoFish() {
 }
 
 function ExpandTool_AutoFish_insertDom() {
-    let html = "";
-    html += '<label><input id="extool__autofish_start" type="checkbox">自动钓鱼</label><br>';
-    html += '<label><input name="autofish_mode" type="radio" value="all" checked>全天</label>';
-    html += '<label style="margin-left:5px;"><input name="autofish_mode" type="radio" value="contest">钓鱼大赛</label>';
-    let a = document.createElement("div");
-    a.className = "extool__autofish";
-    a.innerHTML = html;
-    let b = document.getElementsByClassName("extool")[0];
-    b.insertBefore(a, b.childNodes[0]);
+    const section = document.createElement("div");
+    section.className = "extool__autofish";
+    section.innerHTML = '<label><input id="extool__autofish_start" type="checkbox">自动钓鱼</label><br>' + '<label><input name="autofish_mode" type="radio" value="all" checked>全天</label>' + '<label><input name="autofish_mode" type="radio" value="contest">钓鱼大赛</label>';
+    const panel = document.getElementsByClassName("extool")[0];
+    panel.insertBefore(section, panel.childNodes[0]);
 }
 
 function ExpandTool_AutoFish_insertFunc() {
     document.querySelectorAll('input[name="autofish_mode"]').forEach(radio => {
         radio.addEventListener("change", saveData_AutoFish);
     });
-    document.getElementById("extool__autofish_start").addEventListener("click", async () => {
+    document.getElementById("extool__autofish_start").addEventListener("click", () => {
         saveData_AutoFish();
-        const isStart = document.getElementById("extool__autofish_start").checked;
-        AutoFish_lockMode(isStart);
-        if (!isStart) {
-            clearInterval(timerAutoFish);
-            return;
-        }
-        showMessage("【自动钓鱼】开始自动钓鱼", "info");
-        autoFishInfo = await AutoFish_getFishInfo();
-        const homepageRes = await AutoFish_getHomepageData();
-        if (homepageRes.data) {
-            let baitData = homepageRes.data.baits.find(item => item.inUse);
-            if (!baitData) {
-                document.getElementById("extool__autofish_start").checked = false;
-                AutoFish_lockMode(false);
-                return showMessage("【自动钓鱼】请设置鱼饵", "error");
-            }
-            baitId = baitData.id;
-            const myCh = homepageRes.data.myCh;
-            if (!myCh) {
-                document.getElementById("extool__autofish_start").checked = false;
-                AutoFish_lockMode(false);
-                return showMessage("【自动钓鱼】请设置形象", "error");
-            }
-        } else {
-            document.getElementById("extool__autofish_start").checked = false;
-            AutoFish_lockMode(false);
-            return showMessage("【自动钓鱼】未能获取活动信息", "error");
-        }
-        saveData_AutoFish();
-        if (0 == homepageRes.data.fishing.stat) {
-            isFishing = false;
-            nextFishEndTime = 0;
-        }
-        if (1 == homepageRes.data.fishing.stat) {
-            isFishing = true;
-            nextFishEndTime = homepageRes.data.fishing.fishEtMs;
-        }
-        if (2 == homepageRes.data.fishing.stat) {
-            await endFish();
-            await sleep(1e3);
-        }
-        timerAutoFish = setInterval(async () => {
-            if (!isInFishingTime()) return;
-            if (isFishing) {
-                const now = new Date().getTime();
-                if (now <= nextFishEndTime) return;
-                await endFish();
-            } else {
-                const fishRes = await AutoFish_startFish();
-                if (0 !== fishRes.error) {
-                    showMessage(`【自动钓鱼】` + fishRes.msg, "error");
-                    console.log(fishRes, "钓鱼失败");
-                    if (1001007 == fishRes.error) await endFish();
-                    if (1005003 == fishRes.error) clearInterval(timerAutoFish);
-                    return;
-                }
-                isFishing = true;
-                nextFishEndTime = fishRes.data.fishing.fishEtMs;
-            }
-        }, 1500);
+        if (document.getElementById("extool__autofish_start").checked) AutoFish_startLoop(); else AutoFish_stopLoop();
     });
 }
 
-async function endFish() {
-    const fishRes = await AutoFish_endFish();
-    if (0 !== fishRes.error) {
-        console.log(fishRes, "收杆失败");
-        const homepageRes = await AutoFish_getHomepageData();
-        if (0 == homepageRes.data.fishing.stat) {
-            isFishing = false;
-            nextFishEndTime = 0;
-        }
+function AutoFish_isActive(generation) {
+    const checkbox = document.getElementById("extool__autofish_start");
+    return generation === autoFishGeneration && !!(checkbox && checkbox.checked);
+}
+
+function AutoFish_stopLoop() {
+    autoFishGeneration++;
+    if (null !== timerAutoFish) clearInterval(timerAutoFish);
+    timerAutoFish = null;
+    autoFishReady = false;
+    const checkbox = document.getElementById("extool__autofish_start");
+    if (checkbox) checkbox.checked = false;
+    AutoFish_lockMode(false);
+    saveData_AutoFish();
+}
+
+function AutoFish_startLoop() {
+    if (null !== timerAutoFish) clearInterval(timerAutoFish);
+    const generation = ++autoFishGeneration;
+    autoFishReady = false;
+    AutoFish_lockMode(true);
+    showMessage("【自动钓鱼】开始自动钓鱼", "info");
+    timerAutoFish = setInterval(() => AutoFish_tick(generation), 1500);
+    AutoFish_tick(generation);
+}
+
+async function AutoFish_prepare(generation) {
+    const info = await AutoFish_getFishInfo();
+    if (!AutoFish_isActive(generation)) return;
+    autoFishInfo = Array.isArray(info) ? info : [];
+    const homepageRes = await AutoFish_getHomepageData();
+    if (!AutoFish_isActive(generation)) return;
+    const data = homepageRes && homepageRes.data;
+    if (!data || !data.fishing) throw new Error("未能获取活动信息");
+    const bait = Array.isArray(data.baits) && data.baits.find(item => item.inUse);
+    if (!bait || !data.myCh) {
+        AutoFish_stopLoop();
+        showMessage(bait ? "【自动钓鱼】请设置形象" : "【自动钓鱼】请设置鱼饵", "error");
         return;
     }
-    let str = `【自动钓鱼】`;
-    let fishData = autoFishInfo.find(item => item.fishId == fishRes.data.fish.id);
-    if (fishData) str += `获得${fishData.name}${fishRes.data.fish.wei}斤`;
-    if (fishRes.data.awards && fishRes.data.awards.length > 0) for (let i = 0; i < fishRes.data.awards.length; i++) {
-        let award = fishRes.data.awards[i];
-        str += `${fishData ? "，" : ""}获得${award.awardName}x` + award.awardNum;
+    baitId = bait.id;
+    isFishing = 1 == data.fishing.stat;
+    nextFishEndTime = isFishing ? data.fishing.fishEtMs : 0;
+    if (2 == data.fishing.stat) {
+        await endFish(generation);
+        if (!AutoFish_isActive(generation)) return;
+        await sleep(1e3);
     }
-    if ("【自动钓鱼】" !== str) showMessage(str, "success");
+    if (AutoFish_isActive(generation)) autoFishReady = true;
+}
+
+async function AutoFish_tick(generation) {
+    if (!AutoFish_isActive(generation) || autoFishBusy) return;
+    autoFishBusy = true;
+    try {
+        if (!autoFishReady) {
+            await AutoFish_prepare(generation);
+            return;
+        }
+        if (!isInFishingTime()) return;
+        if (isFishing) {
+            if (Date.now() <= nextFishEndTime) return;
+            await endFish(generation);
+            return;
+        }
+        const fishRes = await AutoFish_startFish();
+        if (!AutoFish_isActive(generation)) return;
+        if (0 !== fishRes.error) {
+            showMessage("【自动钓鱼】" + fishRes.msg, "error");
+            if (1001007 == fishRes.error) await endFish(generation);
+            if (1005003 == fishRes.error) AutoFish_stopLoop();
+            return;
+        }
+        isFishing = true;
+        nextFishEndTime = fishRes.data.fishing.fishEtMs;
+    } catch (err) {
+        if (AutoFish_isActive(generation)) {
+            showMessage("【自动钓鱼】请求失败，将继续检查", "error");
+            console.log("自动钓鱼请求失败", err);
+        }
+    } finally {
+        autoFishBusy = false;
+    }
+}
+
+async function endFish(generation = autoFishGeneration) {
+    if (!AutoFish_isActive(generation)) return;
+    const fishRes = await AutoFish_endFish();
+    if (!AutoFish_isActive(generation)) return;
+    if (0 !== fishRes.error) {
+        const homepageRes = await AutoFish_getHomepageData();
+        if (!AutoFish_isActive(generation)) return;
+        const fishing = homepageRes.data && homepageRes.data.fishing;
+        if (!fishing) throw new Error("未能确认收竿状态");
+        isFishing = 0 != fishing.stat;
+        nextFishEndTime = isFishing ? fishing.fishEtMs : 0;
+        return;
+    }
+    const fish = fishRes.data && fishRes.data.fish;
+    const fishData = fish && autoFishInfo.find(item => item.fishId == fish.id);
+    let message = "【自动钓鱼】";
+    if (fishData) message += "获得" + fishData.name + fish.wei + "斤";
+    const awards = fishRes.data && fishRes.data.awards;
+    if (Array.isArray(awards)) awards.forEach(award => {
+        message += ("【自动钓鱼】" !== message ? "，" : "") + "获得" + award.awardName + "x" + award.awardNum;
+    });
+    if ("【自动钓鱼】" !== message) showMessage(message, "success");
     isFishing = false;
+    nextFishEndTime = 0;
 }
 
 function AutoFish_getSave() {
@@ -2651,74 +1936,52 @@ function saveData_AutoFish() {
 function ExpandTool_AutoFish_Set() {
     let data = AutoFish_getSave();
     if (!data.rids.includes(rid)) return;
-    let mode = data.modes && data.modes[rid] ? data.modes[rid] : "all";
+    let mode = data.modes && "contest" === data.modes[rid] ? "contest" : "all";
     document.querySelector(`input[name="autofish_mode"][value="${mode}"]`).checked = true;
     document.getElementById("extool__autofish_start").click();
 }
 
-function AutoFish_getFishInfo() {
-    return new Promise(resolve => {
-        fetch(`https://www.douyu.com/japi/revenuenc/web/actfans/achieve/accList?rid=${rid}&type=1&period=1`, {
-            method: "GET",
-            mode: "no-cors",
-            cache: "default",
-            credentials: "include"
-        }).then(res => res.json()).then(ret => {
-            if (ret.data) resolve(ret.data.accList); else resolve([]);
-        }).catch(err => {
-            console.log("请求失败!", err);
+async function AutoFish_request(url, options = {}) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2e4);
+    try {
+        const response = await fetch(url, {
+            credentials: "include",
+            ...options,
+            signal: controller.signal
         });
-    });
+        return await response.json();
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+async function AutoFish_getFishInfo() {
+    const ret = await AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/achieve/accList?rid=" + rid + "&type=1&period=1");
+    return ret.data && ret.data.accList || [];
 }
 
 function AutoFish_getHomepageData() {
-    return new Promise(resolve => {
-        fetch(`https://www.douyu.com/japi/revenuenc/web/actfans/fishing/homePage?rid=${rid}&opt=1`, {
-            method: "GET",
-            mode: "no-cors",
-            cache: "default",
-            credentials: "include"
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
+    return AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/homePage?rid=" + rid + "&opt=1");
 }
 
 function AutoFish_startFish() {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/fishing", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&rid=${rid}&baitId=${baitId}&ver=1.1`
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
+    return AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/fishing", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "ctn=" + getCCN() + "&rid=" + rid + "&baitId=" + baitId + "&ver=1.1"
     });
 }
 
 function AutoFish_endFish() {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/reelIn", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
+    return AutoFish_request("https://www.douyu.com/japi/revenuenc/web/actfans/fishing/reelIn", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "ctn=" + getCCN() + "&rid=" + rid
     });
 }
 
@@ -2732,72 +1995,9 @@ function isInFishingTime() {
     return hour >= 12 && minute < 30 || 0 === hour && minute < 30;
 }
 
-function initPkg_ExpandTool_ClearBag() {
-    ExpandTool_ClearBag_insertDom();
-    ExpandTool_ClearBag_insertFunc();
-}
+let exFullScreenTimer = null;
 
-function ExpandTool_ClearBag_insertDom() {
-    let html = "";
-    html += '<label>背包送礼：[速度并不快,间隔>0.1s]</label><a id="extool__clearbag_showid" style="margin-left:10px;color:blue;" href="javascript:void(0);">礼物id示例</a><br />';
-    html += '<label>礼物ID：</label><input id="extool__clearbag_id" type="text" style="width:50px;text-align:center;margin-right:10px;" value="268" />';
-    html += '<label>数量：</label><input id="extool__clearbag_cnt" type="text" style="width:30px;text-align:center;" value="1" />';
-    html += '<input style="margin-left:10px;" type="button" id="extool__clearbag_sendbtn" value="送出" />';
-    let a = document.createElement("div");
-    a.className = "extool__clearbag";
-    a.innerHTML = html;
-    let b = document.getElementsByClassName("extool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function ExpandTool_ClearBag_insertFunc() {
-    document.getElementById("extool__clearbag_sendbtn").addEventListener("click", async function() {
-        if (true != confirm("确认送出？")) return;
-        let id = document.getElementById("extool__clearbag_id").value;
-        let n = Number(document.getElementById("extool__clearbag_cnt").value);
-        showMessage("【背包送礼】执行中...", "info");
-        for (let i = 0; i < n; i++) await sleep(100).then(() => {
-            sendGift_bag(id, 1, rid).then(data => {
-                if ("success" != data.msg) {
-                    showMessage("【背包送礼】" + rid + "赠送失败 " + data.msg, "error");
-                    console.log(rid, data);
-                }
-            }).catch(err => {
-                showMessage("【背包送礼】" + rid + "赠送失败", "error");
-                console.log(rid, err);
-            });
-        });
-        showMessage("【背包送礼】执行完毕！", "success");
-    });
-    document.getElementById("extool__clearbag_showid").addEventListener("click", function() {
-        getBagGifts(rid, ret => {
-            let chunkNum = ret.data.list.length;
-            if (chunkNum > 0) {
-                for (let i = 0; i < chunkNum; i++) {
-                    let gift_id = ret.data.list[i].id;
-                    let gift_name = ret.data.list[i].name;
-                    console.log("【" + gift_name + "】 id:" + gift_id);
-                }
-                showMessage("请按F12到控制台(console)查看背包礼物id", "success");
-            } else showMessage("背包礼物为空", "error");
-        });
-    });
-}
-
-function getBagGifts(room_id, callback) {
-    fetch("https://www.douyu.com/japi/prop/backpack/web/v5?rid=" + room_id, {
-        method: "GET",
-        mode: "no-cors",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    }).then(result => result.json()).then(ret => {
-        callback(ret);
-    }).catch(err => {
-        console.log("请求失败!", err);
-    });
-}
+let exHighestVideoQualityTimer = null;
 
 function initPkg_ExpandTool_FullScreen() {
     ExpandTool_FullScreen_insertDom();
@@ -2849,17 +2049,23 @@ function initFullScreen() {
 }
 
 function fullScreen() {
+    if (null !== exFullScreenTimer) clearInterval(exFullScreenTimer);
     let count = 0;
-    let intID1 = setInterval(() => {
+    let intID1 = exFullScreenTimer = setInterval(() => {
         count++;
-        if (count > 100) clearInterval(intID1);
-        if (getValidDom([ ".wfs-2a8e83", ".icon-c8be96" ])) {
+        if (count > 100) {
             clearInterval(intID1);
+            exFullScreenTimer = null;
+            return;
+        }
+        if (getValidDom([ ".wfs-2a8e83", ".icon-c8be96" ])) {
             let dom = document.querySelector("div.wfs-2a8e83");
             if (dom) dom.click(); else {
                 dom = document.querySelectorAll(".icon-c8be96");
-                if (dom.length >= 2) dom[dom.length - 2].click();
+                if (dom.length >= 2) dom[dom.length - 2].click(); else return;
             }
+            clearInterval(intID1);
+            exFullScreenTimer = null;
         }
     }, 1e3);
 }
@@ -2899,245 +2105,26 @@ function initHighestVideoQuality() {
 }
 
 function highestVideoQuality() {
+    if (null !== exHighestVideoQualityTimer) clearInterval(exHighestVideoQualityTimer);
     let count = 0;
-    let intID1 = setInterval(() => {
+    let intID1 = exHighestVideoQualityTimer = setInterval(() => {
         count++;
-        if (count > 100) clearInterval(intID1);
+        if (count > 100) {
+            clearInterval(intID1);
+            exHighestVideoQualityTimer = null;
+            return;
+        }
         const qualityContainer = document.querySelector('[class^="tipItem-"]:has([value^="画质"])') || document.querySelector('[class^="tip-"]:has([value^="画质"])');
         if (qualityContainer) {
-            clearInterval(intID1);
             const highestQualityOption = qualityContainer.querySelector("ul > li:first-child");
             if (highestQualityOption) {
+                clearInterval(intID1);
+                exHighestVideoQualityTimer = null;
                 const isAlreadySelected = highestQualityOption.matches('[class^="selected-"]');
                 if (!isAlreadySelected) highestQualityOption.click();
             }
         }
     }, 1e3);
-}
-
-let user_name;
-
-let animationNum = 0;
-
-let goldBarrageHook;
-
-let goldBarrageListHook;
-
-let goldGiftHook;
-
-function initPkg_ExpandTool_Gold() {
-    ExpandTool_Gold_insertDom();
-    ExpandTool_Gold_insertGiftDom();
-    ExpandTool_Gold_insertFunc();
-    ExpandTool_Gold_Set();
-}
-
-function ExpandTool_Gold_insertDom() {
-    let html = "";
-    html += '<label><input id="extool__gold_start" type="checkbox">幻神模式</label>';
-    html += '<label><input id="extool__goldGift_start" type="checkbox">荧光棒变超火</label>';
-    let a = document.createElement("div");
-    a.className = "extool__gold";
-    a.innerHTML = html;
-    let b = document.getElementsByClassName("extool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function ExpandTool_Gold_insertGiftDom() {
-    let a = document.createElement("div");
-    a.className = "ex_giftAnimation";
-    let b = document.getElementsByClassName("Barrage-main")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function ExpandTool_Gold_insertFunc() {
-    document.getElementById("extool__gold_start").addEventListener("click", async function() {
-        let ischecked = document.getElementById("extool__gold_start").checked;
-        if (true == ischecked) {
-            goldBarrageHook = new DomHook(".danmu-e7f029", true, goldBarrage);
-            goldBarrageListHook = new DomHook(".Barrage-list", true, goldBarrageList);
-            goldFansMedal();
-        } else {
-            goldBarrageHook.closeHook();
-            goldBarrageListHook.closeHook();
-        }
-        saveData_Gold();
-    });
-    document.getElementById("extool__goldGift_start").addEventListener("click", async function() {
-        user_name = await getUserName();
-        let ischecked = document.getElementById("extool__goldGift_start").checked;
-        if (true == ischecked) goldGiftHook = new DomHook(".BarrageBanner", true, fansToSuperRocket); else goldGiftHook.closeHook();
-        saveData_GoldGift();
-    });
-}
-
-function saveData_Gold() {
-    let isGold = document.getElementById("extool__gold_start").checked;
-    let data = {
-        isGold: isGold
-    };
-    localStorage.setItem("ExSave_Gold", JSON.stringify(data));
-}
-
-function saveData_GoldGift() {
-    let isGoldGift = document.getElementById("extool__goldGift_start").checked;
-    let data = {
-        isGoldGift: isGoldGift
-    };
-    localStorage.setItem("ExSave_GoldGift", JSON.stringify(data));
-}
-
-function ExpandTool_Gold_Set() {
-    let ret = localStorage.getItem("ExSave_Gold");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if (true == retJson.isGold) document.getElementById("extool__gold_start").click();
-    }
-    ret = localStorage.getItem("ExSave_GoldGift");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if (true == retJson.isGoldGift) document.getElementById("extool__goldGift_start").click();
-    }
-}
-
-function goldBarrageList(m) {
-    if (0 == m.length) return;
-    if (0 == m[0].addedNodes.length) return;
-    let itemNode = m[0].addedNodes[0];
-    let chatArea = itemNode.lastElementChild;
-    if (null != chatArea && -1 != chatArea.innerHTML.indexOf("is-self")) {
-        let barrageListTimeout = setTimeout(() => {
-            itemNode.className = "Barrage-listItem js-noblefloating-barrage";
-            chatArea.className = "js-noblefloating-barragecont Barrage-notice--noble";
-            chatArea.setAttribute("style", "background-color: #fff3df");
-            let nickNameObj = chatArea.getElementsByClassName("Barrage-nickName")[0];
-            nickNameObj.setAttribute("class", "Barrage-nickName is-self js-nick");
-            let userLevelObj = chatArea.querySelector(".UserLevel");
-            if (null != userLevelObj) {
-                userLevelObj.className = "UserLevel UserLevel--150";
-                userLevelObj.setAttribute("title", "用户等级：150");
-            }
-            let roomLevelObj = chatArea.querySelector(".RoomLevel");
-            if (null != roomLevelObj) {
-                roomLevelObj.className = "RoomLevel RoomLevel--18";
-                roomLevelObj.setAttribute("title", "房间等级：18");
-            }
-            let fansMedal = itemNode.querySelector(".FansMedal");
-            if (null != fansMedal) fansMedal.style = "display:none;";
-            let fansMedalName = document.getElementsByClassName("FansMedal-name")[0];
-            document.getElementsByClassName("DiamondsFansRankList-item DiamondsFansRankList-item--top")[0];
-            if (fansMedalName) {
-                let fansTag = document.createElement("div");
-                let fansSpan = document.createElement("span");
-                fansTag.className = "FansMedal level-50 js-fans-dysclick Barrage-icon";
-                fansSpan.className = "FansMedal-name js-fans-dysclick";
-                fansSpan.innerHTML = fansMedalName.innerText;
-                fansTag.appendChild(fansSpan);
-                chatArea.insertBefore(fansTag, chatArea.querySelector(".UserLevel"));
-            } else {
-                let fansTag2 = document.createElement("div");
-                fansTag2.className = "FansMedal level-50 js-fans-dysclick Barrage-icon";
-                fansTag2.setAttribute("data-rid", "4042402");
-                let fansSpan2 = document.createElement("span");
-                fansSpan2.className = "FansMedal-name js-fans-dysclick";
-                fansSpan2.setAttribute("data-rid", "4042402");
-                fansSpan2.innerHTML = "二九汪";
-                fansTag2.appendChild(fansSpan2);
-                chatArea.insertBefore(fansTag2, chatArea.querySelector(".UserLevel"));
-            }
-            let nobleIconObj = itemNode.querySelector(".Barrage-nobleImg");
-            if (null != nobleIconObj) {
-                nobleIconObj.src = "//res.douyucdn.cn/resource/2019/08/15/common/4e85776071ffbae2867bb9d116e9a43c.gif";
-                nobleIconObj.title = "幻神";
-            } else {
-                let royalTag = document.createElement("span");
-                let royalImg = document.createElement("img");
-                royalTag.className = "Barrage-icon Barrage-noble";
-                royalImg.className = "Barrage-nobleImg";
-                royalImg.setAttribute("src", "//res.douyucdn.cn/resource/2019/08/15/common/4e85776071ffbae2867bb9d116e9a43c.gif");
-                royalImg.setAttribute("title", "幻神");
-                royalTag.appendChild(royalImg);
-                chatArea.insertBefore(royalTag, chatArea.firstElementChild);
-            }
-            clearTimeout(barrageListTimeout);
-        }, 100);
-    }
-}
-
-function goldFansMedal() {
-    document.getElementsByClassName("FansMedalEnter-enterContent")[0].setAttribute("data-medal-level", "50");
-}
-
-function goldBarrage(m) {
-    if (0 == m.length) return;
-    if (0 == m[0].addedNodes.length) return;
-    let itemNode = m[0].addedNodes[0];
-    if (-1 == itemNode.className.indexOf("noble-d35c82") && -1 != itemNode.innerHTML.indexOf("border: 2px solid rgb(2, 255, 255)")) {
-        itemNode.style.zIndex = "30";
-        itemNode.className = "danmuItem-f8e204 noble-d35c82";
-        let nobleImgTag = document.createElement("img");
-        nobleImgTag.className = "super-noble-icon-54c62c";
-        nobleImgTag.setAttribute("src", "https://shark2.douyucdn.cn/front-publish/live_player-master/assets/images/h1_dcd226.png");
-        nobleImgTag.setAttribute("style", "margin-left: -57px; margin-top: -4px;");
-        itemNode.insertBefore(nobleImgTag, itemNode.firstElementChild);
-        let userIconTag = document.createElement("img");
-        userIconTag.className = "super-user-icon-253711";
-        let userIconObj = document.getElementsByClassName("Avatar is-circle")[0];
-        if (void 0 != userIconObj) {
-            userIconObj = userIconObj.getElementsByTagName("img")[0].getAttribute("src");
-            userIconTag.setAttribute("src", userIconObj.replace(new RegExp("_middle"), "_small"));
-        }
-        itemNode.insertBefore(userIconTag, itemNode.firstElementChild);
-        let tailTag = itemNode.getElementsByClassName("afterpic-f864c2")[0];
-        tailTag.remove();
-        let textContent = itemNode.getElementsByClassName("text-edf4e7")[0];
-        textContent.className = "super-text-188279";
-        textContent.setAttribute("style", "font: bold 23px SimHei, 'Microsoft JhengHei', Arial, Helvetica, sans-serif; color: rgb(255, 255, 255); background: url('https://shark2.douyucdn.cn/front-publish/live_player-master/assets/images/h2_8e5e64.png'); height: 44px;");
-        let afterpicTag = document.createElement("div");
-        afterpicTag.setAttribute("class", "afterpic-f864c2");
-        afterpicTag.setAttribute("style", "margin-top: 7px; margin-left: -1px;");
-        textContent.appendChild(afterpicTag);
-        let superTailImg = document.createElement("img");
-        superTailImg.className = "super-tail-6a0446";
-        superTailImg.setAttribute("src", "https://shark2.douyucdn.cn/front-publish/live_player-master/assets/images/h3_fd2e5b.png");
-        itemNode.appendChild(superTailImg);
-        console.log(superTailImg);
-    }
-}
-
-function fansToSuperRocket(m) {
-    if (0 == m.length) return;
-    if (0 == m[0].addedNodes.length) return;
-    let dom_gift = m[0].addedNodes[0];
-    if (dom_gift.getElementsByClassName("Banner4gift-senderName")[0].title == user_name) {
-        let giftName = dom_gift.getElementsByClassName("Banner4gift-objectName")[0].title;
-        if ("粉丝荧光棒" == giftName) {
-            dom_gift.className = "Banner4gift Banner4gift--size2";
-            dom_gift.getElementsByClassName("Banner4gift-bg")[0].src = "https://gfs-op.douyucdn.cn/dygift/2019/03/15/6651f2de52dd359c7b553a77b9d00020.png";
-            dom_gift.getElementsByClassName("Banner4gift-objectName")[0].title = "超级火箭";
-            dom_gift.getElementsByClassName("Banner4gift-objectName")[0].innerText = "超级火箭";
-            dom_gift.getElementsByClassName("Banner4gift-headerImg")[0].src = "https://gfs-op.douyucdn.cn/dygift/2018/11/27/3adbb0c17d9886c1440d55c9711f4c79.gif";
-            if (document.getElementsByClassName("ex_giftAnimation_exist").length > 0) return;
-            animationNum++;
-            let a = document.createElement("div");
-            let idName = "ex_giftAnimation_" + String(animationNum);
-            a.id = idName;
-            a.className = "ex_giftAnimation_exist";
-            let b = document.getElementsByClassName("ex_giftAnimation")[0];
-            b.appendChild(a);
-            let player = new SVGA.Player("#" + idName);
-            let parser = new SVGA.Parser("#" + idName);
-            parser.load("https://gfs-op.douyucdn.cn/dygift/2018/11/27/6c6349672e662750ad5c019b240d57f2.svga", videoItem => {
-                player.setVideoItem(videoItem);
-                player.startAnimation();
-                setTimeout(() => {
-                    player = null;
-                    parser = null;
-                    document.getElementById(idName).remove();
-                }, 4e3);
-            });
-        }
-    }
 }
 
 function initPkg_ExpandTool_P2P() {
@@ -3198,173 +2185,7 @@ function killP2P() {
     }
 }
 
-let redpackets_room_arr = [];
-
-let redpacket_room_timer;
-
-function initPkg_ExpandTool_RedPacket_Room() {
-    ExpandTool_RedPacket_Room_insertDom();
-    ExpandTool_RedPacket_Room_insertFunc();
-    ExpandTool_RedPacket_Room_Set();
-}
-
-function ExpandTool_RedPacket_Room_insertDom() {
-    let html = "";
-    html += '<label><input id="extool__redpacekt_room_start" type="checkbox">自动抢礼物红包</label>';
-    let a = document.createElement("div");
-    a.className = "extool__redpacket_room";
-    a.innerHTML = html;
-    let b = document.getElementsByClassName("extool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function ExpandTool_RedPacket_Room_insertFunc() {
-    document.getElementById("extool__redpacekt_room_start").addEventListener("click", function() {
-        verifyFans("5189167", 6).then(r => {
-            if (true == r) {
-                let ischecked = document.getElementById("extool__redpacekt_room_start").checked;
-                if (true == ischecked) redpacket_room_timer = setInterval(() => {
-                    getRoomRedPacketsList(rid);
-                }, 6e4); else clearInterval(redpacket_room_timer);
-                saveData_RedPacket_Room();
-            } else {
-                document.getElementById("extool__redpacekt_room_start").checked = false;
-                showMessage("本功能需拥有6级歆崽粉丝牌(5189167)才可使用", "error");
-            }
-        });
-    });
-}
-
-function getRoomRedPacketsList(room_id) {
-    fetch("https://www.douyu.com/japi/interactnc/web/propredpacket/getPrpList?type_id=1&room_id=" + room_id, {
-        method: "GET",
-        mode: "no-cors",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-    }).then(res => res.json()).then(ret => {
-        if (ret.data.list.length > 0) for (let i = 0; i < ret.data.list.length; i++) {
-            let rpid = ret.data.list[i].activityid;
-            let offset = redpackets_room_arr.indexOf(rpid);
-            let startTime = ret.data.list[i].startTime;
-            let to = Number(startTime) - Math.round(new Date().getTime() / 1e3);
-            to = 1e3 * to - 2e3;
-            if (-1 == offset) {
-                redpackets_room_arr.push(ret.data.list[i].activityid);
-                if (to > 0) setTimeout(() => {
-                    getRoomRedPacket(rpid);
-                    getRoomRedPacket(rpid);
-                    getRoomRedPacket(rpid);
-                    showMessage("【礼物红包】抢红包执行完毕！", "success");
-                }, to); else {
-                    getRoomRedPacket(rpid);
-                    getRoomRedPacket(rpid);
-                    getRoomRedPacket(rpid);
-                    showMessage("【礼物红包】抢红包执行完毕！", "success");
-                }
-            }
-        }
-    }).catch(err => {
-        console.log("请求失败!", err);
-    });
-}
-
-function getRoomRedPacket(rpid) {
-    fetch("https://www.douyu.com/japi/interactnc/web/propredpacket/grab_prp", {
-        method: "POST",
-        mode: "no-cors",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "activityid=" + rpid + "&ctn=" + getCCN()
-    }).then(res => res.json()).then(ret => {
-        if (2 == ret.data.isSuc) getRoomRedPacket(rpid);
-    });
-}
-
-function saveData_RedPacket_Room() {
-    let isGetRedPacket = document.getElementById("extool__redpacekt_room_start").checked;
-    let data = {
-        isGetRedPacket: isGetRedPacket
-    };
-    localStorage.setItem("ExSave_RedPacket_Room", JSON.stringify(data));
-}
-
-function ExpandTool_RedPacket_Room_Set() {
-    let ret = localStorage.getItem("ExSave_RedPacket_Room");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if (true == retJson.isGetRedPacket) verifyFans("5189167", 6).then(r => {
-            if (true == r) document.getElementById("extool__redpacekt_room_start").click(); else {
-                let data = {
-                    isGetRedPacket: false
-                };
-                localStorage.setItem("ExSave_RedPacket_Room", JSON.stringify(data));
-                showMessage("本功能需拥有6级歆崽粉丝牌(5189167)才可使用", "error");
-            }
-        });
-    }
-}
-
-function initPkg_ExpandTool_SendGift() {
-    ExpandTool_SendGift_insertDom();
-    ExpandTool_SendGift_insertFunc();
-}
-
-function ExpandTool_SendGift_insertDom() {
-    let html = "";
-    html += '<label>送礼：[用于打榜,例如送出999个飞机]</label><a style="margin-left:10px;color:blue;" href="http://open.douyucdn.cn/api/RoomApi/room/' + rid + '" target="_blank">礼物id示例</a><br />';
-    html += '<label>礼物ID：</label><input id="extool__sendgift_id" type="text" style="width:50px;text-align:center;margin-right:10px;" value="20000" />';
-    html += '<label>数量：</label><input id="extool__sendgift_cnt" type="text" style="width:30px;text-align:center;margin-right:10px;" value="1" />';
-    html += '<br/><label>间隔ms：</label><input id="extool__sendgift_delay" type="text" style="width:30px;text-align:center;" value="0" />';
-    html += '<input style="margin-left:10px;" type="button" id="extool__sendgift_btn" value="送出" />';
-    let a = document.createElement("div");
-    a.className = "extool__sendgift";
-    a.innerHTML = html;
-    let b = document.getElementsByClassName("extool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function ExpandTool_SendGift_insertFunc() {
-    document.getElementById("extool__sendgift_btn").addEventListener("click", async () => {
-        if (true != confirm("确认送出？")) return;
-        let gid = document.getElementById("extool__sendgift_id").value;
-        let gcnt = document.getElementById("extool__sendgift_cnt").value;
-        let delay = Number(document.getElementById("extool__sendgift_delay").value);
-        let t_num = 0;
-        let t_price = 0;
-        for (let i = 0; i < Number(gcnt); i++) {
-            sendGift_any(gid, 1, rid).then(ret => {
-                if (null != ret.data) if ("鱼翅不足" != ret.msg) {
-                    t_num += 1;
-                    t_price += Number(ret.data.priceType);
-                } else console.log("【送礼】" + gid + ret.msg); else console.log("【送礼】" + gid + ret.msg);
-                if (i == Number(gcnt) - 1) {
-                    showMessage("【送礼】赠送完毕！详细信息可以在F12控制台查看", "success");
-                    console.log("【送礼】赠送完毕！详细信息可以在F12控制台查看");
-                }
-            }).catch(err => {
-                console.log("请求失败!", err);
-            });
-            if (delay > 0) await sleep(delay);
-        }
-        showMessage("【送礼】执行中...", "info");
-    });
-}
-
-function sendGift_any(gid, count, rid) {
-    return fetch("https://www.douyu.com/japi/gift/donate/mainsite/v1", {
-        method: "POST",
-        mode: "no-cors",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "giftId=" + gid + "&giftCount=" + count + "&roomId=" + rid + "&bizExt=%7B%22yzxq%22%3A%7B%7D%7D"
-    }).then(res => res.json());
-}
+let tabSwitchHookEnabled = false;
 
 function initPkg_ExpandTool_TabSwitch() {
     enableIgnoreAutoPause();
@@ -3402,7 +2223,7 @@ function ExpandTool_TabSwitch_insertFunc() {
     document.getElementById("extool__tabSwitch").addEventListener("click", function() {
         const enabled = document.getElementById("extool__tabSwitch").checked;
         setTabSwitchEnabled(enabled);
-        if (enabled) enableTabSwitch(); else {
+        if (!enabled) {
             showMessage("已关闭页面防挂机，请刷新页面生效", "info");
             if (window.__pip_is_active__) PictureInPictureControl_stopTabAntiFreeze();
         }
@@ -3421,6 +2242,8 @@ function initPkg_ExpandTool_TabSwitch_Set() {
 }
 
 function enableTabSwitch() {
+    if (tabSwitchHookEnabled) return;
+    tabSwitchHookEnabled = true;
     Object.defineProperty(document, "hidden", {
         value: false,
         writable: false
@@ -3446,274 +2269,8 @@ function enableIgnoreAutoPause() {
     localStorage.setItem("freetimed", "1");
 }
 
-var isGetTreasure = false;
-
-function initPkg_ExpandTool_Treasure() {
-    ExpandTool_Treasure_insertDom();
-    ExpandTool_Treasure_insertFunc();
-    ExpandTool_Treasure_Set();
-}
-
-function ExpandTool_Treasure_insertDom() {
-    let html = "";
-    html += '<label><input style="margin-top:5px" id="extool__treasure_start" type="checkbox">半自动抢宝箱</label>';
-    html += '<label style="margin-left:10px;">延迟(抢得过快请调高)：</label><input id="extool__treasure_delay" type="text" style="width:50px;text-align:center;" value="3200" />ms';
-    html += '<div class="extool__hint">说明：遇到验证码会自动弹出验证框，需要手动完成后才能领取。</div>';
-    let a = document.createElement("div");
-    a.className = "extool__treasure";
-    a.innerHTML = html;
-    let b = document.getElementsByClassName("extool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function ExpandTool_Treasure_insertFunc() {
-    document.getElementById("extool__treasure_start").addEventListener("click", function() {
-        verifyFans("5189167", 9).then(r => {
-            if (true == r) {
-                let ischecked = document.getElementById("extool__treasure_start").checked;
-                if (true == ischecked) {
-                    isGetTreasure = true;
-                    getTreasure_Existing();
-                } else isGetTreasure = false;
-                saveData_Treasure();
-            } else {
-                document.getElementById("extool__treasure_start").checked = false;
-                showMessage("本功能需拥有9级歆崽粉丝牌(5189167)才可使用", "error");
-            }
-        });
-    });
-}
-
-function saveData_Treasure() {
-    isGetTreasure = document.getElementById("extool__treasure_start").checked;
-    let delay = document.getElementById("extool__treasure_delay").value;
-    let data = {
-        isGetTreasure: isGetTreasure,
-        treasureDelay: delay
-    };
-    localStorage.setItem("ExSave_Treasure", JSON.stringify(data));
-}
-
-function ExpandTool_Treasure_Set() {
-    let ret = localStorage.getItem("ExSave_Treasure");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("treasureDelay" in retJson == true) document.getElementById("extool__treasure_delay").value = retJson.treasureDelay; else document.getElementById("extool__treasure_delay").value = "3200";
-        if (true == retJson.isGetTreasure) verifyFans("5189167", 9).then(r => {
-            if (true == r) document.getElementById("extool__treasure_start").click(); else {
-                let data = {
-                    isGetTreasure: false
-                };
-                localStorage.setItem("ExSave_Treasure", JSON.stringify(data));
-                showMessage("本功能需拥有9级歆崽粉丝牌(5189167)才可使用", "error");
-            }
-        });
-    }
-}
-
-function getTreasureDelay() {
-    let ret = document.getElementById("extool__treasure_delay").value;
-    return Number(ret);
-}
-
-function getTreasure_Existing() {
-    getTslist(data => {
-        if (null == data) return;
-        for (let i = 0; i < data.list.length - 1; i++) {
-            let item = data.list[i];
-            let rpid = item.rpid;
-            let ot = item.ot;
-            let did = getCookieValue("dy_did");
-            let timeout = Number(ot) - Math.floor(Date.now() / 1e3);
-            let a = document.createElement("div");
-            let idName = "Ex_Geetest_no" + String(treasureNum);
-            a.id = idName;
-            let b = document.getElementById("Ex_Geetest");
-            b.appendChild(a);
-            if (timeout >= 0) {
-                timeout = 1e3 * timeout + getTreasureDelay();
-                treasureNum++;
-                setTimeout(() => {
-                    getTreasure(rid, rpid, did, idName);
-                }, timeout);
-            } else getTreasure(rid, rpid, did, idName);
-        }
-    });
-}
-
-function getTslist(callback) {
-    unsafeWindow.socketProxy.socketStream.subscribe("tslist", callback);
-}
-
-let ExPanel_anchorParent = null;
-
-let ExPanel_anchorNextSibling = null;
-
-function initPkg_ExPanel() {
-    initPkg_ExPanel_insertDom();
-    let exPanelDOM = document.querySelector(`.ex-panel`);
-    exPanelDOM.addEventListener(`mouseenter`, () => {
-        clearTimeout(exPanelTimer);
-    });
-    exPanelDOM.addEventListener(`mouseleave`, () => {
-        clearTimeout(exPanelTimer);
-        exPanelTimer = setTimeout(autoCloseExPanelHandle, 800);
-    });
-    const closeBtn = exPanelDOM.querySelector(".ex-panel__close");
-    if (closeBtn) closeBtn.addEventListener("click", e => {
-        e.stopPropagation();
-        hideExPanel();
-    });
-}
-
-function ExPanel_getGiftBarAnchor() {
-    return document.querySelector(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth") || document.querySelector(".PlayerToolbar-ContentRow");
-}
-
-function ExPanel_isGiftBarHidden() {
-    const row = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
-    return !!(row && "hidden" === row.style.visibility);
-}
-
-function ExPanel_getFloatingHost() {
-    return document.getElementById("js-player-dialog") || document.getElementsByClassName("room-Player-Box")[0] || document.body;
-}
-
-function ExPanel_saveAnchor(panel) {
-    if (!ExPanel_anchorParent) {
-        ExPanel_anchorParent = panel.parentNode;
-        ExPanel_anchorNextSibling = panel.nextSibling;
-    }
-}
-
-function ExPanel_updateFloatingPosition() {
-    const panel = document.querySelector(".ex-panel.ex-panel--floating");
-    if (!panel) return;
-    const playerToolbar = document.getElementById("js-player-toolbar");
-    const vtoolbarMenu = document.getElementById("ex-vtoolbar-menu");
-    const gap = 8;
-    panel.style.position = "fixed";
-    panel.style.top = "auto";
-    if (vtoolbarMenu) {
-        const menuRect = vtoolbarMenu.getBoundingClientRect();
-        panel.style.bottom = window.innerHeight - menuRect.top + gap + `px`;
-        const panelWidth = panel.offsetWidth || panel.scrollWidth || 320;
-        let left = menuRect.left + menuRect.width / 2 - panelWidth / 2;
-        left = Math.max(8, Math.min(left, window.innerWidth - panelWidth - 8));
-        panel.style.left = left + `px`;
-        panel.style.right = "auto";
-    } else if (playerToolbar) {
-        const toolbarRect = playerToolbar.getBoundingClientRect();
-        panel.style.bottom = window.innerHeight - toolbarRect.top + gap + `px`;
-        const panelWidth = panel.offsetWidth || panel.scrollWidth || 320;
-        let left = toolbarRect.left + toolbarRect.width / 2 - panelWidth / 2;
-        left = Math.max(8, Math.min(left, window.innerWidth - panelWidth - 8));
-        panel.style.left = left + `px`;
-        panel.style.right = "auto";
-    } else {
-        panel.style.bottom = "72px";
-        panel.style.right = "12px";
-        panel.style.left = "";
-    }
-}
-
-function ExPanel_attachToFloatingHost() {
-    const panel = document.querySelector(".ex-panel");
-    if (!panel || panel.classList.contains("ex-panel--floating")) {
-        ExPanel_updateFloatingPosition();
-        return;
-    }
-    ExPanel_saveAnchor(panel);
-    ExPanel_getFloatingHost().appendChild(panel);
-    panel.classList.add("ex-panel--floating");
-    ExPanel_updateFloatingPosition();
-}
-
-function ExPanel_restoreToGiftBar() {
-    const panel = document.querySelector(".ex-panel");
-    const anchor = ExPanel_getGiftBarAnchor();
-    if (!panel || !anchor || !panel.classList.contains("ex-panel--floating")) return;
-    if (ExPanel_anchorNextSibling && ExPanel_anchorNextSibling.parentNode === anchor) anchor.insertBefore(panel, ExPanel_anchorNextSibling); else anchor.insertBefore(panel, anchor.childNodes[0]);
-    panel.classList.remove("ex-panel--floating");
-}
-
-function ExPanel_syncHost() {
-    if (ExPanel_isGiftBarHidden()) ExPanel_attachToFloatingHost(); else ExPanel_restoreToGiftBar();
-}
-
-function ExPanel_onGiftBarHide() {
-    const panel = document.querySelector(".ex-panel");
-    if (panel && "block" === panel.style.display) {
-        ExPanel_attachToFloatingHost();
-        ExPanel_updateFloatingPosition();
-    }
-}
-
-function ExPanel_onGiftBarShow() {
-    ExPanel_restoreToGiftBar();
-}
-
-function initPkg_ExPanel_insertDom() {
-    let a = document.createElement("div");
-    a.className = "ex-panel";
-    a.innerHTML = `<button type="button" class="ex-panel__close" title="关闭工具条" aria-label="关闭 DouyuEx 工具条">×</button><div class="ex-panel__wrap"></div>`;
-    let b = ExPanel_getGiftBarAnchor();
-    if (!b) {
-        b = ExPanel_getFloatingHost();
-        a.classList.add("ex-panel--floating");
-    } else {
-        const domPlayerToolbar = document.querySelector(".PlayerToolbar");
-        if (domPlayerToolbar) a.style.bottom = domPlayerToolbar.offsetHeight + "px"; else a.style.bottom = "76px";
-    }
-    b.insertBefore(a, b.childNodes[0]);
-    ExPanel_saveAnchor(a);
-    if (ExPanel_isGiftBarHidden()) ExPanel_attachToFloatingHost();
-}
-
-function hideExPanel() {
-    const exPanelDOM = document.querySelector(".ex-panel");
-    if (!exPanelDOM) return;
-    clearTimeout(exPanelTimer);
-    exPanelTimer = null;
-    exPanelDOM.style.display = "none";
-}
-
-function autoCloseExPanelHandle() {
-    hideExPanel();
-}
-
-function showExPanel() {
-    let a = document.getElementsByClassName("ex-panel")[0];
-    if (!a) return;
-    ExPanel_syncHost();
-    if ("block" !== a.style.display) {
-        a.style.display = "block";
-        clearTimeout(exPanelTimer);
-        if (a.classList.contains("ex-panel--floating")) ExPanel_updateFloatingPosition();
-    } else {
-        a.style.display = "none";
-        clearTimeout(exPanelTimer);
-    }
-}
-
-function initPkg_FansBadgeList() {
-    let nowTime = new Date().getTime();
-    let items = document.querySelectorAll(".fans-badge-list tr");
-    if (items.length <= 1) return;
-    for (let i = 1; i < items.length; i++) {
-        let item = items[i];
-        let tt = 1e3 * Number(item.getAttribute("data-fans-gbdgts"));
-        let ttStr = dateFormat("yyyy-MM-dd hh:mm:ss", new Date(tt));
-        let days = Math.floor((nowTime - tt) / 864e5);
-        let style = days >= 300 ? "font-weight:600;color:red;" : "";
-        let td = item.getElementsByTagName("td")[1];
-        td.innerHTML += `
-        已获取 <span style="${style}">${days}</span> 天<br/>
-        ` + ttStr;
-    }
-}
-
 function initPkg_FansContinue() {
+    if (document.querySelector(".fans-continue")) return;
     initPkg_FansContinue_Dom();
     initPkg_FansContinue_Func();
 }
@@ -3730,135 +2287,143 @@ function FansContinue_insertIcon() {
     b.insertBefore(a, b.childNodes[0]);
 }
 
+let fansContinueRunning = false;
+
 function initPkg_FansContinue_Func() {
     document.getElementsByClassName("fans-continue")[0].addEventListener("click", function() {
+        if (fansContinueRunning) {
+            showMessage("【续牌】上一轮仍在执行，请稍候", "info");
+            return;
+        }
         const saved = localStorage.getItem("ExSave_FansContinue");
-        const defValue = null != saved ? saved : "1";
         PostbirdAlertBox.prompt({
             title: "每个直播间赠送几根荧光棒？(输入0则平均赠送)",
             okBtn: "确定",
             cancelBtn: "取消",
-            defaultValue: defValue,
+            defaultValue: null != saved ? saved : "1",
             contentColor: "rgb(51,51,51)",
-            onConfirm: function(res) {
-                if (null == res) return;
-                let sendNum = Number(res);
-                if (Number.isNaN(sendNum) || sendNum < 0) return;
-                localStorage.setItem("ExSave_FansContinue", String(res));
-                FansContinue_startSend(sendNum);
+            onConfirm: function(value) {
+                if (null == value) return;
+                const text = String(value).trim();
+                const quantity = Number(text);
+                if (!/^\d+$/.test(text) || !Number.isSafeInteger(quantity)) {
+                    showMessage("【续牌】请输入非负整数", "error");
+                    return;
+                }
+                localStorage.setItem("ExSave_FansContinue", String(quantity));
+                return FansContinue_startSend(quantity);
             },
             onCancel: function() {}
         });
     });
 }
 
-function FansContinue_startSend(sendNum) {
-    let giftId = 0;
-    getBagGifts(rid, ret => {
-        let chunkNum = ret.data?.list?.length || 0;
-        if (0 == chunkNum) {
-            showMessage("背包礼物为空", "error");
+async function FansContinue_startSend(quantity) {
+    if (fansContinueRunning) return;
+    if (!Number.isSafeInteger(quantity) || quantity < 0) {
+        showMessage("【续牌】请输入非负整数", "error");
+        return;
+    }
+    fansContinueRunning = true;
+    try {
+        const bag = await getBagGifts(rid);
+        const gifts = bag?.data?.list;
+        if (!Array.isArray(gifts)) throw new Error(bag?.msg || "无法获取背包，请确认已登录");
+        const gift = gifts.find(item => (268 == item.id || 2358 == item.id) && Number(item.count) > 0);
+        if (!gift) {
+            showMessage("【续牌】背包中没有荧光棒", "error");
             return;
         }
-        for (let i = 0; i < chunkNum; i++) if (268 == ret.data.list[i].id || 2358 == ret.data.list[i].id) {
-            giftId = ret.data.list[i].id;
-            count = ret.data.list[i].count;
-            break;
-        }
-        if (0 == giftId) {
-            showMessage("没有足够的道具", "error");
+        const count = Number(gift.count);
+        if (!Number.isSafeInteger(count)) throw new Error("背包数量无效");
+        const rooms = await getFansBadgeRooms();
+        if (!rooms.length) {
+            showMessage("【续牌】没有可续牌的房间", "info");
             return;
         }
-        fetch("https://www.douyu.com/member/cp/getFansBadgeList", {
-            method: "GET",
-            mode: "no-cors",
-            cache: "default",
-            credentials: "include"
-        }).then(res => res.text()).then(async doc => {
-            doc = new DOMParser().parseFromString(doc, "text/html");
-            let a = doc.getElementsByClassName("fans-badge-list")[0].lastElementChild;
-            let n = a.children.length;
-            if (0 == sendNum) sendNum = Math.floor(count / n);
-            for (let i = 0; i < n; i++) {
-                let rid = a.children[i].getAttribute("data-fans-room");
-                await sleep(250).then(() => {
-                    sendGift_bag(giftId, sendNum, rid).then(data => {
-                        if ("success" == data.msg) showMessage("【续牌】" + rid + "赠送荧光棒成功", "success"); else {
-                            showMessage("【续牌】" + rid + "赠送失败 " + data.msg, "error");
-                            console.log(rid, data);
-                        }
-                    }).catch(err => {
-                        showMessage("【续牌】" + rid + "赠送失败", "error");
-                        console.log(rid, err);
-                    });
-                });
+        const sendNum = 0 === quantity ? Math.floor(count / rooms.length) : quantity;
+        if (sendNum < 1) {
+            showMessage("【续牌】荧光棒不足，请减少数量或调整平均分配", "error");
+            return;
+        }
+        let remaining = count;
+        for (let index = 0; index < rooms.length; index++) {
+            if (remaining < sendNum) {
+                showMessage(`【续牌】荧光棒不足以赠送每房间 ${sendNum} 根，已跳过剩余 ${rooms.length - index} 个房间`, "warning");
+                break;
             }
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
+            const roomId = rooms[index];
+            await sleep(250);
+            try {
+                const data = await sendGift_bag(gift.id, sendNum, roomId);
+                if ("success" === data.msg) {
+                    remaining -= sendNum;
+                    showMessage(`【续牌】${roomId}赠送荧光棒成功`, "success");
+                } else showMessage(`【续牌】${roomId}赠送失败 ` + (data.msg || "请求未成功"), "error");
+            } catch (error) {
+                showMessage(`【续牌】${roomId}赠送失败`, "error");
+                console.warn("【续牌】赠送失败", error);
+            }
+        }
+    } catch (error) {
+        showMessage(`【续牌】` + (error.message || "请求失败"), "error");
+    } finally {
+        fansContinueRunning = false;
+    }
 }
 
-async function sendGift_bag(gid, count, rid) {
-    const res = await fetch("https://www.douyu.com/japi/prop/donate/mainsite/v1", {
+function sendGift_bag(giftId, quantity, roomId) {
+    return signFetch("https://www.douyu.com/japi/prop/donate/mainsite/v1", {
         method: "POST",
-        mode: "no-cors",
-        credentials: "include",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: "propId=" + gid + "&propCount=" + count + "&roomId=" + rid + "&bizExt=%7B%22yzxq%22%3A%7B%7D%7D"
-    });
-    return await res.json();
-}
-
-function initPkg_Fkbuff() {
-    initPkg_Fkbuff_Dom();
-    initPkg_Fkbuff_Func();
-}
-
-function initPkg_Fkbuff_Dom() {
-    Fkbuff_insertIcon();
-}
-
-function Fkbuff_insertIcon() {
-    let a = document.createElement("div");
-    a.className = "ex-fkbuff";
-    a.innerHTML = `<a class="ex-panel__icon" title="FKBUFF - CS饰品议价交流工具"><img style="width:36px;height:36px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAC91BMVEUAAAABAQImIyMzMTASERAbFxUCAgMLDAwVFRUCAgIDAwMDAwQCAgIGBgYEBAQNDg4GBgYdFhMcGhkeHBwKCwsEBAQFBQYICQkUEQ8EBAUFBQUICAkKCgoLCwsTExNVJhIIBwcKCwsGBwcHBwcHBwgICAlSJRMICAhNKRlOJBMJCQlQKBhPJxdLKBsAAAACAgE+Pj0/Pz48PDs8PDz+5Mg6OjpAQD/+5Mb948X94sf948k4OTk5Ojk3ODcxMjEwMDADAwP+4sQzMzMuLi42NjYFBQUKCgr+48b+5Mo0NTQNDQ0sLCwHBwcQEBAaGxoTFBQXGBf/5skqKiokJSUnKCjKfl8dHh3/5cYiIyIgICDJfF3Nf2DGel3/5szBeFz/6Mn83sL+j7D+4sb23sLy2r4JBQT9k7PMgWTQgmK8eWAQCwr+4sH+lK0dEhD/6cz+5si0pI/Gf2I0IhwpGBLFtZ6ml4V6b2JzSjk6NjInHR4gFhX91M7o0bbTimzShWWwcVhoRjhZOixPMyhGLiQYEhL7173s1rn9mbThyrDVwKi8dFeWX0h5Tz5JRD0xLCn+ztD+5sr8oLb8nLbcxq79iaisnoqekH5cVU4+Jx/81MPjzrSLgXKEeGvCfWFvZVmobVX7wcD7vLf9j6bNu6L9haLPh2llXVSdZE2raUyBVUJsQzL93Mn7yrahaFJUTkYYDAn7z73+lbb7sLTkf5r1gJbWfZSTiHiMXEg/OjWWSSwoJiP7ycD8prj/ia/5rK2uZHjYlHW1dVx3R1GzbU5FPzljPzA2Mi3////3xaz6manwiaS8q5b2e4rScYnke4afXXFdOEBUMjn8r7z5hJ/4hobBc4XgoYJOSkSsWzqeVjlILTSLQicxHyRAHg/+4M36lKX3p570lpSvXmaMVGOZX1SCT1BvQEby8vHn6Oevr6/mtaDRsJzarpO7aYDMaHLGjnF8dm7GhWd9SjU8Ky2goKCYe3C3hGp8NxrV1dTpwL/arrGMjIzPooh7AvHQAAAALnRSTlMA+wsGNyHtURv35N3ystZHqi4VEWHOuHU/yL5+bVkm/p1npJaQiOqDYseMmZBTeywgmAAAGAtJREFUeNrEVttO20AQJQ0hARpIKZcWSgWliLdNCvLTeh3LN8nXWLZlJf//I50zS7ZIvCSB0APZrEHJOXNmZnd2NkSXsPOf0O31L26G5+fD0c3Dbf/L4IOFnFyPDjpjsURn7+j87se33qedj0H39KxDtG4YEbJwKeTz4fl9v/cBVny92xcinLWN73ie5/hV3ZZ55movDoYXu1s2ovt7LLI2jQMVBEoybBk46ZxUwIzx3uXF7jZ92N0TYRPHJECB25YA75TTFEkoCHvD297OttDvCDcvmpj4bcuybAN6eLSCaT3LUCCHv7dlQ+9QgKCSEoSPoMWCN72RTj0LYcPoeBvV0PtxAP58KsH4RC9aAV4hgbyQfpugL4bH7+zCp+MbxJ+VTUz8T5PJ04Q46Z1AK0CaOC1xnY9Jwq/d9+y/6/PPVOVJ68cK8U8mfyavAVNYQ8ASDh4G70V/+r2D/kf5KY6fBBgF2PHCidDlQC4gEWf97nuY378EfZkq26aOA7/m/YMFeOEHcoNMSOktqCX273pvb/7RPuh9ZS0L3kSu+Z/3RoCRMC1dMuH4je5fUeW7ZRpQ5+uqNwKebTAbs9MKLClVHVFLXnTfEv4lFVPSBEoidt1xL9wGDGAIv2kPYILtlGPRuTvZ/O6j8MPW4YOPqA0mZvO8fdUOEICGUAtKw2iwYfU9UPbzKgg4fI6dLeDF0ukADwN/XNJjj4OS89BQLV7+3Cj9Ny5l3wmUovSDU1NrTpQjh8k3ga0fGVrPsmJJQZpspuDkF9m/4JtPlx9+rZeAwwEhxuVssqTZIQo77gYoGKzNPxIiqwN8t7ltEC9DxdOqXhTlLM8TIM9nZTtvfA8ywClt7AB8BgpGX9fM/w3xNwgf/Lqi8NUqcCqaP6LQFa8wdrNkVtSppySA3LBu9mB8v17937siq8Cvc8yrJb2mpQnM8IVhFmlkoWsUudFsUWkRrACOpJn4fL2OgNt9ETaK+S36ocglzRtlpFk40nlT0WQYowbimObDtFkUswTyWERZT3F46UJVsnbF0Zc1zp8D4c4DxQnQSce0w2GHSTmvHHSmqUuUm+5KW3k0ICYhD4jZrHa4PZA5VVAZfFq5AIZjUcRagCQD46qMwE7ktR/r8lr2/hPvTW9i4QHRhYaorAKbD+XAy0XndOUEdEQyhQBIUN48d3kSalFe9vJUYtAQYpRgw4Avgd8+f2ruET+1axOKsxV7cXDEw2/AcBbJGLEUVawktwQfvGYUYnr9YE4qflkqbSPkImqnqBOvFOJqNQFXY1F6urymiwjWUzaV7qslmwE/v4a+C+KGZ9So8GPPo044XOlA/HkoopQExLEzT3gMrPQgDnPN5QtMDP5tzX/0sSn9giW0vuMUsGA1A1qH+L0Gg11W+By8vg6YgEmMArN/+cQmcIc8WlMtYZFWkTgarFQBWfWXEWtbaRgIoggq3qpUvIL44AdMBNEXbRNsEqiSCykU/f8f8Uxm97gxie15sWNhz5nZmdmZzhGxOrFJiG3eExC0X178P9RwH31COAlR8VXLzhbd6CKROp7Pv3KRqGpmnIRCdjrt+VsFtKjAgDgsKvUGCfGwuQdcSbKKW/fz1XKm9H7i+EtB00CL4VAJLh/fGk2nSI4PtlhAPz41+ZIyxiSAKcOleXt4jxEGTENfDCsCEtJvTYXDjTPqnUi5zuB+OwiC38P79mgkpKFFdYRXgBhqQi4KKJicb3gGJ5IVCW4/1uQzAbxuHAlrXABNwofBFKTq2eR+0wIcIfzr1NoOBQDm0ZgA/LUr6gpghdqYrJlwefOfgLND0UnIxnB3Ab265+mhwRToCwD8tjKvRI7+q8Vr7RkN+C33CQoIYmB6uhUwfAvsjdhb14nsjyuY3op8LFD83H8CATR4Ji8o+GJEAreVt1U2/iZML0WKGG8eo0+QhdADXZVqtY9rsCRwvyjgNf0WuR7pAeCv3q3zdpj4wcOWH4Cvb0cyu0NYjaYTSHOZDO6LN6eO3zfewFdj5y7UAQckG0x8HPpZ4E55ruT0fMj/45b/+QkCeLWh327C1QYBqKGTjr4WXESCBZplwRrhYbUc7Q28grfgx8AXFj/vGgCFsivn8l1/Iy3rouBS0sTLmdvR/A26pkX89qRS9qcDBRhJwfiHmW5B1tFc2TH2lkXulwMiynL9BTd9BfQQntITAKzlZLffg/EKNqTvCFBy8z1euZlbkf0QZiYvTkRBGEdwwQVF8SLu/8BrwZZe3DrRjBlHZozaOnZ3clBDLxAxiRoVs7aIdqIIogYx5iAxC4Y5xtwShoDgXWYYvHlSQRTUiwer+kmrJOIj5JKE7/eqXn2vqjMmMcxRiAMdBmjPPnli3+9pcueQb1KE02T5sBuuW00OH/yz/j0Dg75qL1WfGmOojpUo5JrFXJR5dPv+7WcXXz/Mv00kLfohjiR7wce9HmLIDnZME2b98BFYSabcOfyvPg/1MfYHxycmqbqVyJcG9XitVmvORJ+eC7OhU6HzZxsL82a19RYh6DgwDmaCx/EPgt9mepwwm0YCeAbkJQKnHUw87W6lmF2qVuL1LMh/zkWtJ2dZQeA4jhX7C/Nybfb7fLtZuBag48A+2I6XBqyC/wAsWQEA+BOv8nfSrhLkj01JuHe7mY3rum5G0ul0Jc/ceCiwPA/yHBv+tNDVas73biUe73fyMULHATcKFOFPgtEAW1aQo3gEqFm4jgLqoD8+cRRbymuDdtaUVV3vpTOZdLZMrl5gWY7nBCBgz3/sdiM1ZWHBiePKpmIBiuBuybMVwPg3wNqlZNLtvT3Po66z7+QRlM9V+81mRFVrb95kMplikrx8FhI5nudZjMH5W/NdJ2N82VpUZVmO65XWwB5zEfwQBc/YaBh2jgZYvAoAKC6VpzPlMWyjYrmq2bFboJ8GfUMuWdKjWyEB9XnhEM+J4XON7qyRSZGyhgSyWiy03xUsAlfr8YOA4F5ZXg4QYPvwRbCcnKQ9EL1nXNfzYw9l5dvmu0Lyi6aqvTe9TMbJS9aTcyEB5c8IgsBzwXvit25Dz9Sj0aLhAjjJRD9etyF40tQEzPLeYQT90QD4b8jpXRgtevbd508HphjCJDpmNhdLFhVZ7fXShlFPkKuXBEg/BfBBDMTg+R/dOV3/fJXYMg1BSbJNPd5J4Gx10g/dNSWgTd1IgO2EHKcBcM0Poj9+4jBsP5c1O4loYVZRZAPkldIMufMs5Omf8fnOCFwwfH9+TtZ7T4lVN2QFVqRM8hpUTCqGM9GEWw/eE+YTo4xoI2FO4OhNA4DFNw0BTML2B9ZMKoK7Ug2jYTPW5Zv0+MESBJ/g8/kEkT3XmJPl3odJYisIoGntGDNQoGirhQAEYZqmgQJABKRhgG1EmgAA+Ba63+6DfujdGLtqtsvRcl2m+pHUDLn7QGDRfCjArwXn8NOcIqdfPSWBpor6Ea0UkFoq5KPSvIaPu/Gep/bmAmweNQ/sp1Xg6Qfy/UonOdNyXH1DLSbI2PP7EH5crj536BAv8gIrsuGPc4qafvXhNIk1UB/WgImm4EQoctWWoNM78Nvnp8miZUPPZTeQMf8ehMT62+uflMiRnFkpxcpFTVMU2H+1ECV3L50NoToFgMiLh0R8Bdnw9VkEePE1QMoO6MPqF0i0pcmKppilGzhqQRZogBFg+CrAyxDrEPuc8ZOgn6pUcomSowCALEMhkGuXH4ddcQoAbwAAECLLBoPCZ80AgPdXCCk4GuZAc2xGyjuYkDiUDglM74UU4zpNFq0ZYYQ/CbXOmKaiKByNMzHGveKKcf65708TWoy2pbZiJ63VUhWKKU7QoqhAcQvGPSKK26jEBaJRHHFg4sIBCIIxMe69Na44/vidd/FZ6QU/UyzlvX7fGffc8857DnRXfCY4DDP2cWnTJq1ImzdhwuhR8ReWL5gisXG5KUsXq50+J9ED4Ifv8aI30XFvR02c8/pb2r1xTFqYdmkBcGA+DN94YfQo6JmHXMT1FsKAtT4S/YDgiiiGpnJUf2igpZu/bduOHSOmzVuetnD6lHFYS9QHZK0q3LoeKnweEoC9APUAAlS0HyXOmRiPDfkQjlWgwyt1xb74MQjI/MlMsg+Seyu7oCNqh7nMwEG887CY4MZJ8csu7E1bBO5aMGZd3rNhqd/pIdM1kRGRkbQonGuWfJi475COCXAI22j8pEkrYNZwubeKEfSEfVCHqN8FP12+TZ+3bN+njZP/stqoAVVG1LrgyuPQQOuBtsShTv+M7asOzl1u5GNasyMmxm6nYXrNGbrUA1jQ+DpzFFnoEHTFrVAGqONGAR4pseDefQdSQ6wxx7pkuId7lecF7IUzZycmJvr9fo0/pdDGxi2fe0JiOjMNkS0Wi8FCcGHUQaAN7WAQUaQBdJQ5/LqgYWdmxUCEHOAyMtOKtFSJKcCoyFADrVZrcY808c+trvT0kycvrswtBAsJSEPdl9kVAeBXkJpFsjF91JpYl4aClhTDQJJnQwA26kKDbrcQMcdgrYFuywqg2x+/0Tbc5bIYOMh+9BKAycoU2DB+dOlYL1FDhuci4ACvhDk3C4EpFvzEzGGIJfslQP7J/orJmu4l62U3yQLcDtkO76tXt41KMLVRw+jiVNSQDSG4TewfSDY3vnFwDRAAu5E+DYWi1Evs8tGyAreNfz7wRcmLX44/AjAxdbAWnQQCbIOHDdParbX8arfIjh8cxfld6BDEAnQON9HTwVwA9xSlyscXJSWv7DXx9BpQZTq3DZsOdkGVGOw2K4bXpFmsYrz8rcP5AVKYAGSfi/P/OVTxFEj3vCwp+VLjWslsE44HmraADUbOrMDshulRCr0BOUUQuN883KLwA9xTfw/JfVnyMpYp6NxMNBxqwYCTs5QY0C1rLfi5AtC7YnRienK/HHyFX/ZU6GG5379w53lXWuu6d9O1AWOFmxNvM4A71SDzcwWUU5Ig+vIPM9wfyu+1hgm1g5/w0b/Bzhp0rGNKf3GzM25zrk1xP/FzAcrqCwVEVjx9+iyIEh/Kb4Cn6looe2Y741Iwn2gtnNLHzPBoVHGa4xQ+h4XYFQFyTkm1wFhlaXV19XPGYsD/J1XcNn6kSMF2P7bvuC0S6yN8SCmXttjA1BQjDarBj6LF+bUWh07Eb3z86OGj6scmTBYhgGeql3tKLOG4UwMBm0+x9uEzon5MN9NHTYZvhpnZUC7AT6AEgFEifpZRXqBWPyyfzqRY+J/KdO06pdOFnAAGZ4QqWuXZw5o0EnTFphlyv+dcZ2cmCgDnh/08/AKLnoE/cLj6GQ0XtWS+28ETUwjkFRgCgQjfVvSE4QLwZx8JUCWmI6v+CtCiPxVHNfhGr1dHqB++n4ITwB+y+sQCTm12qgIB1dQtYW050JtZUyAACGzHqoEAngMWMkoc0+0JevXQiMCV0ufUdWuV1ScGVQPNmjVrVNFTZ4k80JWxrb6IgEqVf3+9FXtGFIdbaBTPgKWwHy1xwiNygddAnhJzKykQd/9+tCo6slA0JevUgqUv9gQiM1ev/rGKSV5eA2OFRvEa8DVJL/fGmuLS8/jVJtXJL2ciFK/LBKKnLvFiFYhuVhmP+wL3VwNbadsUlZTQEnj+SpLMHxF5uKh8I+MI4w095fxNLmCrJPUWVMJuuD7f7YvOhICfGcgCXlLE/EDFo2xcmSMGqkj1w1IEAag/A4LHzmSuzsyfOsMuWoVwQSvG0pf6KAabZkm4axJrqoe/snwnAkAK0J0fLip9nFW/Avzl2a4j+Zn5zt2rGAqhCN0xrHet9zvz8z2vPyOoxnr5ryZgOKPRYBmoNOpiKMhQFIjPuXN012GP0z8T23IHZIAIjTCuNxWmLPZ4sm8FGYfwu6zPy6sKaDpEF8gIgTr7QVFRWaWxnlPY3bK8nf51M2k37tK4zhs2HRgkpM9amlR8TqiAfxS8UVRVnKDXYEDEx1R6fcGuqryiJ3clxiHgv5W3c8PFkUjq5j3ruXnapp/cluxJyn7w7i7jqM1vqijLy7uajSKoxwugGUnCzl05OTlHn9w1shAoZ+kqy/KKsy/iXYPO3ep9uK5139SWzdnJxKSCXccqrCwcpjvnqnJykk9T/kEB/sM/CEjYmTx2LCTcqMySWG0EnxSBf0kGa9Kr6X+eZ+rfY0DjVsy+Tp9U8KDq3J3J7B9YM56/u3b27NhkrAByP3fBULzFu9Nrx49PTk5+cOxGRUZob2/MOF+Wl3MkO+k6v1VUP35Xb3UvTUZhfC2nlX1JX5aVpWVltW4G2/tebRd1RmT13nTsYvgylzeGCm1jwS5zzgvFzTbRiUwFb4TygyRUEkIGKmEIEnTbdRD0D/R7nrPKuzW1oB/7VPT3ez7Oc97zvOdcr77Os4KEgpWx1c33319gfYktS/cann9+vzT7EvTgNzWCR8kQ9IJ22eBGsovRsrr55eP35y8A/iNEbNQ0ZeYPNlBYr1VftVy4ZR+WHk9r5wy8uvpmc2l9fX3p6weQgx3oyiIBCdyjouUx1un01cwuJpOJZBI6pltWZ98As6vIjRWY3+pp/lT41jlSoK7Ceu2JvaeZhljr1MzTsTGo+I2WlpbFKROmK3rqzuhoUwj0aXR8msxuLCaUBISDMLbybrSzFRGS3fd5TVwwBay2utf2h+PSRQrMqZmup2D9helEFvRwgNC4TQ7z80/d6/U1GY7JBWiACKhIJBZnRhc6TTVUfHNue62lEG5U37CUVD+zIwac5hSI7EwiOc3oSmwsMD2H3skNIi+LgP1en5761m+QPyYHFUxw41/wjCUDbykChVPgJryAPlMu6ncJITSS0GoOLmSBhalBE9/9VH+Esh9ux/zOAnx6+q59Qvfq3DcCJat0+VU/UW/q4KZAAdjq6mwQcB1Ny7Qk4cIlQLkFWh7CSbZz5KlJBffHwrh0CZM7kBoOfhf4LUJF/8eLFHRfLLyL9MZVVMPKvWiZRWLCRfdD4AMGjTnOPV2j6oOIex1ETi0qo60tFoqg/vTEhcZNOxYgODvAjkdT6g5dhPz5bjq7e05qLgKY4XZ8ht/BD0KIor5gX1+7wXDGgpnIPVr2DAkN2shwgC5VuImHABhDuSL20gFHDtobu6WLAXrMN6DmzIfNZLa3z9cXiA7Fu4OpzEAvX7j0hgJ+DeAJEkFx5ruo9M0Vxt4RazE7OmuxUA0IpYA8IWAYmS+EDtNIQFswMt/46MFdt6q3vZk4ZwgLcPLAZHL4RHcYqQb7geJOG9iwoy/jEsTMPgepcFLKIcXZQF9bZksXaSAU9fgxPFULWwc9P6CB1Brj6E6fLYqfGxYPOiSNYAqiE1HV0BYFNYD8a+9r6+6Zn5/vjXwayazFTeGnDBVOjRSo0kA+YPj60cCuKfrMyRW3vTEoaSSQGbBcdwoyy6sk+Hy+5mg0Ggs0O6UDYxUDHr6HBnIWxx5v5DMkYA96IrbiN3YfRV5RRSYfYLIhKG568sMhyUjOEioN7C4qkYLZHRD8k//wdo6b7DupFFBDWuMoYMphZtYB88BG4aGBysURQuEEQbzkfahB/vWD/8D2DjnYzmA5uSappOpQwPclsLTMgwRQUPI3b2iYwmgqv/hAYjWCEcxtmx8K4IP7aVPA9zAJVCh/fcoBHGHwQgFe/bh/ly/LeCMB8BdESVcIXdHy7fIjCsiDO+GoZJdy/Dn0gAoC57oGAcSPnysBgt0PHQbPDydKdnLCpH4/WndrLkNTnAywAGqoU2XUyOSf45O+IxkA6Qwuo31/6PwODzjS3p5wXEqNeYnBq5zBLFBB5EwPOUoVTRiOpugwNhKXVh2z7BAVh/ZgNKRjUhIT2a/mO11ZrT6yDq7RGAQ0Xo1AKEctUYR/x7CehRPckTQ6fLCfrVblSUcGMj1RokgLNVMKIY1AavkezK/fpaNe52tLMd3kMv0uw2AJqDU05ZAAzkKMBrwInjuFdMbn3oJ+/6FKy66hsoaWbI8mOqLtTQYPdtjK5RagCZABDVLG1kYa3aA/WWbd1dOmlTWlfJdoItXfbBhSeDD3szfwQnI8EmiOd4zk7vBpw92lZwkl9YeRjjj31BMOjUcDHmk0MdrwlGYgHgyFex6rI5+1laD/C9h3rqYcGkDRML88EM6kUx1AKj03PPIq8lhdmuwpP3rcZvl7sJXVni791QW4TXBvOYV9+tI/OP58rOT4pTPlpfvdSoeiPnjgxNGqsgqr5R/Buq/iyLmLp6ou11+qv1x16nhZie2Y5T/FD20ZaW0SClivAAAAAElFTkSuQmCC"/></a>`;
-    let b = document.getElementsByClassName("ex-panel__wrap")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function initPkg_Fkbuff_Func() {
-    document.getElementsByClassName("ex-fkbuff")[0].addEventListener("click", function() {
-        openPage("https://fkbuff.com/");
+        body: "propId=" + giftId + "&propCount=" + quantity + "&roomId=" + roomId + "&bizExt=%7B%22yzxq%22%3A%7B%7D%7D"
     });
 }
 
 let followListHook;
 
+const followListPending = new WeakMap();
+
+let followListInitTimer = null;
+
 function initPkg_FollowList() {
-    let intID = setInterval(() => {
+    if (followListHook || null !== followListInitTimer) return;
+    followListInitTimer = setInterval(() => {
         if (getValidDom([ ".Header-follow-content", "#js-backpack-enter" ])) {
             followListHook = new DomHook(".Header-follow-content", false, handleFollowList);
-            clearInterval(intID);
+            clearInterval(followListInitTimer);
+            followListInitTimer = null;
         }
     }, 1e3);
 }
 
 function handleFollowList(m) {
-    let active = document.getElementsByClassName("Header-follow-tab is-active")[0].innerText;
+    const activeTab = document.getElementsByClassName("Header-follow-tab is-active")[0];
+    if (!activeTab) return;
+    let active = activeTab.innerText;
     if ("特别关注" === active || "视频动态" === active) return;
     let panel = document.getElementsByClassName("Header-follow-listWrap");
     if (0 == panel.length) return;
-    document.getElementsByClassName("Header-follow-listBox")[0].style.display = "none";
-    setNewFollowList(panel[0]);
+    return setNewFollowList(panel[0]).catch(error => console.error("[DouyuEx Lite] 关注列表", error));
 }
 
-async function setNewFollowList(panel) {
+function setNewFollowList(panel) {
+    if (followListPending.has(panel)) return followListPending.get(panel);
+    const request = renderFollowList(panel).finally(() => followListPending.delete(panel));
+    followListPending.set(panel, request);
+    return request;
+}
+
+async function renderFollowList(panel) {
+    const activeTab = document.getElementsByClassName("Header-follow-tab is-active")[0];
+    const requestedTab = activeTab && activeTab.innerText;
     let loadInCurrentPage = await GM_getValue("Ex_LoadInCurrentPage", false);
     let followList = await getFollowList();
-    if ("0" != followList.error) return;
+    const currentTab = document.getElementsByClassName("Header-follow-tab is-active")[0];
+    if (!panel.isConnected || !currentTab || currentTab.innerText !== requestedTab || "特别关注" === currentTab.innerText || "视频动态" === currentTab.innerText || document.getElementsByClassName("Header-follow-listWrap")[0] !== panel) return;
+    if (!followList || "0" != followList.error || !followList.data || !Array.isArray(followList.data.list)) return;
     const FOLLOWLIST_LIMIT = 10;
     let limit = 0;
     let html = `
@@ -3879,19 +2444,25 @@ async function setNewFollowList(panel) {
         }
         if (limit >= FOLLOWLIST_LIMIT) break;
     }
-    panel.innerHTML += html;
+    const content = document.createElement("div");
+    content.innerHTML = html;
+    panel.querySelectorAll("#refreshFollowList, .ExFollowListItem").forEach(item => item.remove());
+    while (content.firstChild) panel.appendChild(content.firstChild);
+    const originalList = document.getElementsByClassName("Header-follow-listBox")[0];
+    if (originalList) originalList.style.display = "none";
     const loadInCurrentPageCheckbox = panel.querySelector("#loadInCurrentPageCheckbox");
     if (loadInCurrentPageCheckbox) loadInCurrentPageCheckbox.addEventListener("change", async e => {
         const isChecked = e.target.checked;
         await GM_setValue("Ex_LoadInCurrentPage", isChecked);
         showMessage(`【关注列表】已${isChecked ? "开启" : "关闭"}当前页加载功能（${isChecked ? "当前页面直接加载关注的直播间" : "使用新网页打开关注的直播间"}）`, "info");
     });
-    let followListItems = document.getElementsByClassName("ExFollowListItem");
+    let followListItems = panel.querySelectorAll(".ExFollowListItem");
     for (let i = 0; i < followListItems.length; i++) {
         let cclick = new CClick(followListItems[i]);
         cclick.longClick(() => {
             createNewVideo(videoPlayerArr.length, followListItems[i].getAttribute("rid"), "Douyu");
-            document.querySelector(".Follow .public-DropMenu").className = "public-DropMenu";
+            const menu = document.querySelector(".Follow .public-DropMenu");
+            if (menu) menu.className = "public-DropMenu";
         });
         cclick.click(async event => {
             event.preventDefault();
@@ -3906,22 +2477,11 @@ async function setNewFollowList(panel) {
 }
 
 function getFollowList() {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/list?sort=1&cid1=0", {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        });
-    });
+    return signFetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/list?sort=1&cid1=0");
 }
 
 function getImageDanmakuHtml(str) {
-    if (!isValidImageFile(str)) return "";
+    if (!/^[a-z0-9]+\.[a-z]+$/i.test(str) || !isValidImageFile(str)) return "";
     const split = str.split(".");
     const url = decompressImageUrl(split[0]);
     const realImageUrl = DOMPurify.sanitize(`https://img.douyucdn.cn/data/yuba/weibo/${url.slice(0, 4) + "/" + url.slice(4, 6) + "/" + url.slice(6, 8) + "/" + url}.200x0.` + split[1]);
@@ -4100,96 +2660,85 @@ function initPkg_LastLiveTime_Dom() {
     }, 1e3);
 }
 
-async function initPkg_LevelTask_Timer() {
-    checkLevelTask();
-    setInterval(checkLevelTask, 35 * 1e3);
+let levelTaskTimer = null;
+
+let levelTaskChecking = false;
+
+function initPkg_LevelTask_Timer() {
+    if (null !== levelTaskTimer) return;
+    levelTaskTimer = setInterval(checkLevelTask, 35 * 1e3);
+    return checkLevelTask();
 }
 
 async function checkLevelTask() {
-    let ids = await getLevelTaskIds(rid);
-    let tasks = await getLevelTasks(ids);
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        const taskId = task.taskId;
-        const taskName = task.name;
-        const taskStatus = task.taskStatus;
-        const prizeStatus = task.prizeStatus;
-        if (1 == taskStatus && 0 == prizeStatus) {
-            let result = await finishLevelTask(rid, taskId);
-            for (let j = 0; j < result.length; j++) showMessage(`【等级任务】${taskName} 获得` + result[j].name + result[j].num, "success");
+    if (levelTaskChecking) return;
+    levelTaskChecking = true;
+    try {
+        const ids = await getLevelTaskIds(rid);
+        if (!ids) return;
+        const tasks = await getLevelTasks(ids);
+        if (!Array.isArray(tasks)) return;
+        for (var task of tasks) {
+            if (1 != task.taskStatus || 0 != task.prizeStatus || null == task.taskId) continue;
+            try {
+                const result = await finishLevelTask(rid, task.taskId);
+                for (var prize of result) showMessage(`【等级任务】${task.name} 获得` + prize.name + prize.num, "success");
+            } catch (error) {
+                console.warn("【等级任务】领取失败，下轮继续检查", error);
+            }
         }
+    } catch (error) {
+        console.warn("【等级任务】检查失败，下轮重试", error);
+    } finally {
+        levelTaskChecking = false;
     }
 }
 
-function getLevelTaskIds(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/interactnc/web/userLevel/userLevelDetail?rid=" + rid, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        }).then(res => res.json()).then(ret => {
-            let ids = ret.data.taskIds.join(",");
-            resolve(ids);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
-    });
+async function getLevelTaskIds(roomId) {
+    const ret = await signFetch("https://www.douyu.com/japi/interactnc/web/userLevel/userLevelDetail?rid=" + roomId);
+    return Array.isArray(ret?.data?.taskIds) ? ret.data.taskIds.join(",") : "";
 }
 
-function getLevelTasks(ids) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/tasksys/userLevelTask/getTaskStatus?taskIds=" + ids, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        }).then(res => res.json()).then(ret => {
-            resolve(ret.data.list);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
-    });
+async function getLevelTasks(ids) {
+    const ret = await signFetch("https://www.douyu.com/japi/tasksys/userLevelTask/getTaskStatus?taskIds=" + ids);
+    return ret?.data?.list;
 }
 
-function finishLevelTask(rid, taskid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/tasksys/userLevelTask/getPrize", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&taskIds=${taskid}&roomId=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret.data.list);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
+async function finishLevelTask(roomId, taskId) {
+    const ret = await signFetch("https://www.douyu.com/japi/tasksys/userLevelTask/getPrize", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&taskIds=${taskId}&roomId=` + roomId
     });
+    if (!Array.isArray(ret?.data?.list)) throw new Error(ret?.msg || "未返回领奖结果");
+    return ret.data.list;
 }
 
 let myLastBarrage = "";
 
 let barrageSendCheckTimer = 0;
 
+let barrageSendCheckInitialized = false;
+
 async function initPkg_LiveTool_BarrageSendCheck() {
-    myName = await getUserName();
+    if (barrageSendCheckInitialized) return;
+    barrageSendCheckInitialized = true;
+    try {
+        myName = await getUserName();
+    } catch (error) {
+        barrageSendCheckInitialized = false;
+        throw error;
+    }
     let timer = setInterval(() => {
-        if ("undefined" != typeof document.getElementById("js-barrage-list")) {
+        if (document.getElementById("js-barrage-list")) {
             clearInterval(timer);
             new DomHook("#js-barrage-list", false, m => {
                 if (m.length <= 0) return;
                 if (m[0].addedNodes.length <= 0) return;
                 let dom = m[0].addedNodes[0];
+                if (!dom || !dom.getElementsByClassName) return;
                 let isSelf = dom.getElementsByClassName("is-self").length > 0;
                 if (!isSelf) return;
                 const contentDom = dom.getElementsByClassName("Barrage-content");
@@ -4203,6 +2752,7 @@ async function initPkg_LiveTool_BarrageSendCheck() {
                         if (data.txt.includes(`[DouyuEx图片`)) data.txt = data.txt.replace(/\[DouyuEx图片[^\]]+\]/g, "").trim();
                         if (data.txt.replace(/\s+/g, " ") !== localLastBarrage.replace(/\s+/g, " ")) {
                             let contentDom = dom.getElementsByClassName("Barrage-content")[0];
+                            if (!contentDom) return;
                             contentDom.style.textDecoration = "line-through gray 1px";
                             if (contentDom && contentDom.parentNode) contentDom.parentNode.insertBefore(createBarrageFailDom(), contentDom.nextSibling);
                         }
@@ -4226,18 +2776,22 @@ function createBarrageFailDom() {
 
 function initPkg_LiveTool_BarrageSendCheck_Handle(text) {
     if ("chatmsg" == getType(text)) {
-        if (!text.includes(myName)) return;
+        if (!myName || stt_deserialize(text).nn !== myName) return;
         myLastBarrage = text;
     }
 }
 
 let barrageSpeed_count = 0;
 
+let barrageSpeed_timer = null;
+
 function initPkg_LiveTool_BarrageSpeed() {
-    setInterval(() => {
+    if (null !== barrageSpeed_timer) return;
+    barrageSpeed_timer = setInterval(() => {
         let barrageSpeed = Number(barrageSpeed_count / 5 * 60).toFixed(0);
         barrageSpeed_count = 0;
         const dom = document.getElementsByClassName("ChatSend-txt")[0];
+        if (!dom) return;
         const text = `弹幕时速：${barrageSpeed}条/分`;
         dom.placeholder = text + " 按↑↓查看历史弹幕 视频ctrl+滚轮缩放";
         dom.setAttribute("data-placeholder", text);
@@ -4246,456 +2800,6 @@ function initPkg_LiveTool_BarrageSpeed() {
 
 function initPkg_LiveTool_BarrageSpeed_Handle(text) {
     if ("chatmsg" == getType(text)) barrageSpeed_count++;
-}
-
-let isEnterOn = false;
-
-let enterWordList = [];
-
-function initPkg_LiveTool_Enter() {
-    LiveTool_Enter_insertDom();
-    LiveTool_Enter_insertFunc();
-    initPkg_Enter_Set();
-}
-
-function LiveTool_Enter_insertDom() {
-    let a = document.createElement("div");
-    a.className = "livetool__cell";
-    let cell = `
-        <div class='livetool__cell_title'>
-            <span id='enter__title'>进场欢迎</span>
-            <span id='enter__export'>导出</span>
-            <span id='enter__import'>导入</span>
-        </div>
-        <div class='livetool__cell_option'>
-            <div class="onoffswitch livetool__cell_switch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="enter__switch" tabindex="0" checked>
-                <label class="onoffswitch-label" for="enter__switch"></label>
-            </div>
-        </div>
-    `;
-    let panel = `
-        <div class='enter__panel'>
-            <select id='enter__select'>
-            </select>
-            <input style="width:40px;margin-left:10px;" type="button" id="enter__add" value="添加"/>
-            <input style="width:40px;margin-left:10px;" type="button" id="enter__del" value="删除"/>
-            <div class="enter__option">
-                <label>等级≥<input id="enter__level" type="text" value="1"/></label>
-                <label>当前欢迎词：<input id="enter__word" type="text" placeholder="欢迎<id>光临直播间"/></label>
-            </div>
-        </div>
-    `;
-    a.innerHTML = cell + panel;
-    let b = document.getElementsByClassName("livetool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function LiveTool_Enter_insertFunc() {
-    document.getElementById("enter__export").addEventListener("click", () => {
-        GM_setClipboard(JSON.stringify(enterWordList));
-        showMessage("【进场欢迎】导出完毕，已复制到剪贴板", "success");
-    });
-    document.getElementById("enter__import").addEventListener("click", () => {
-        PostbirdAlertBox.prompt({
-            title: "请输入json文本（会覆盖原来的设置）",
-            okBtn: "确定",
-            onConfirm: function(data) {
-                let select_wordList = document.getElementById("enter__select");
-                let obj = JSON.parse(data || "{}") || {};
-                if ("object" == typeof obj) {
-                    enterWordList = {
-                        ...obj
-                    };
-                    select_wordList.options.length = 0;
-                    for (var key in enterWordList) if (enterWordList.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-                    saveData_Enter();
-                }
-                showMessage("【进场欢迎】导入完毕", "success");
-            },
-            onCancel: function(data) {}
-        });
-    });
-    document.getElementById("enter__switch").addEventListener("click", () => {
-        let ischecked = document.getElementById("enter__switch").checked;
-        if (true == ischecked) isEnterOn = true; else isEnterOn = false;
-        saveData_isEnter();
-    });
-    document.getElementById("enter__title").addEventListener("click", () => {
-        let a = document.getElementsByClassName("enter__panel")[0];
-        if ("block" != a.style.display) {
-            a.style.display = "block";
-            if ("block" == document.getElementsByClassName("mute__panel")[0].style.display) document.getElementsByClassName("mute__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("reply__panel")[0].style.display) document.getElementsByClassName("reply__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("gift__panel")[0].style.display) document.getElementsByClassName("gift__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("vote__panel")[0].style.display) document.getElementsByClassName("vote__panel")[0].style.display = "none";
-        } else a.style.display = "none";
-    });
-    document.getElementById("enter__select").onclick = function() {
-        if (0 == this.options.length) return;
-        let word = this.options[this.selectedIndex].text;
-        let level = enterWordList[word].enter;
-        document.getElementById("enter__word").value = word;
-        document.getElementById("enter__level").value = level;
-        localStorage.setItem("ExSave_LastEnterWord", word);
-    };
-    document.getElementById("enter__add").addEventListener("click", () => {
-        document.getElementById("enter__select");
-        let word = document.getElementById("enter__word").value;
-        let level = document.getElementById("enter__level").value;
-        if ("" == word) return;
-        if ("" == level) return;
-        let isExist = false;
-        for (var item of enterWordList) if (Number(level) === Number(item.level)) {
-            isExist = true;
-            break;
-        }
-        if (isExist) {
-            showMessage("【进场欢迎】等级已存在", "error");
-            return;
-        }
-        enterWordList.push({
-            level: level,
-            word: word
-        });
-        enterWordList.sort((a, b) => b.level - a.level);
-        refreshEnterSelectOptions();
-        saveData_Enter();
-    });
-    document.getElementById("enter__del").addEventListener("click", () => {
-        let select_wordList = document.getElementById("enter__select");
-        select_wordList.options[select_wordList.selectedIndex].text;
-        enterWordList.splice(select_wordList.selectedIndex, 1);
-        enterWordList.sort((a, b) => b.level - a.level);
-        refreshEnterSelectOptions();
-        saveData_Enter();
-    });
-}
-
-function saveData_Enter() {
-    let data = enterWordList;
-    localStorage.setItem("ExSave_Enter", JSON.stringify(data));
-}
-
-function saveData_isEnter() {
-    let ridArr = [];
-    let ret = localStorage.getItem("ExSave_isEnter");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-    }
-    let index = ridArr.indexOf(rid);
-    if (true == isEnterOn) {
-        if (-1 == index) ridArr.push(rid);
-    } else ridArr.splice(index, 1);
-    let data = {
-        rooms: ridArr
-    };
-    localStorage.setItem("ExSave_isEnter", JSON.stringify(data));
-}
-
-function refreshEnterSelectOptions() {
-    let select_wordList = document.getElementById("enter__select");
-    select_wordList.options.length = 0;
-    for (var item of enterWordList) select_wordList.options.add(new Option(`【${item.level}级】` + item.word, ""));
-}
-
-function initPkg_Enter_Set() {
-    let ret = localStorage.getItem("ExSave_Enter");
-    if ("" == ret) return;
-    document.getElementById("enter__select");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if (!Array.isArray(retJson)) {
-            retJson = [];
-            saveData_Enter();
-        }
-        enterWordList = retJson;
-        refreshEnterSelectOptions();
-    }
-    ret = localStorage.getItem("ExSave_isEnter");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        let ridArr = [];
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-        if (-1 == ridArr.indexOf(rid)) isEnterOn = false; else isEnterOn = true;
-        document.getElementById("enter__switch").checked = isEnterOn;
-    } else {
-        isEnterOn = false;
-        document.getElementById("enter__switch").checked = isEnterOn;
-    }
-}
-
-function initPkg_LiveTool_Enter_Handle(text) {
-    if (false == isEnterOn) return;
-    if ("uenter" == getType(text)) {
-        let uid = getStrMiddle(text, "uid@=", "/");
-        if (uid == my_uid) return;
-        let nn = getStrMiddle(text, "nn@=", "/");
-        let level = getStrMiddle(text, "level@=", "/");
-        for (var item of enterWordList) if (Number(level) >= Number(item.level)) {
-            reply = String(item.word).replace(/<id>/g, nn);
-            sendBarrage(reply);
-            break;
-        }
-    }
-}
-
-let isGiftOn = false;
-
-let giftWordList = {};
-
-function initPkg_LiveTool_Gift() {
-    LiveTool_Gift_insertDom();
-    LiveTool_Gift_insertFunc();
-    initPkg_Gift_Set();
-}
-
-function LiveTool_Gift_insertDom() {
-    let a = document.createElement("div");
-    a.className = "livetool__cell";
-    let cell = `
-        <div class='livetool__cell_title'>
-            <span id='gift__title'>自动谢礼物</span>
-            <span id='gift__export'>导出</span>
-            <span id='gift__import'>导入</span>
-        </div>
-        <div class='livetool__cell_option'>
-            <div class="onoffswitch livetool__cell_switch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="gift__switch" tabindex="0" checked>
-                <label class="onoffswitch-label" for="gift__switch"></label>
-            </div>
-        </div>
-    `;
-    let panel = `
-        <div class='gift__panel'>
-            <select id='gift__select'>
-            </select>
-            <input style="width:40px;margin-left:10px;" type="button" id="gift__add" value="添加"/>
-            <input style="width:40px;margin-left:10px;" type="button" id="gift__del" value="删除"/>
-            <input style="width:64px;margin-left:10px;" type="button" id="gift__template" value="生成模板"/>
-            <div class="gift__option">
-                <label><a id="reply__show_gid" style="color:blue;" href="javascript:void(0);">礼物id：</a><input id="gift__giftId" type="text"/></label>
-                <label>回复：<input id="gift__reply" type="text" placeholder="<id>=用户名 <cnt>个数"/></label>
-            </div>
-        </div>
-    `;
-    a.innerHTML = cell + panel;
-    let b = document.getElementsByClassName("livetool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function LiveTool_Gift_insertFunc() {
-    document.getElementById("reply__show_gid").addEventListener("click", () => {
-        console.log(`
-背包礼物：http://webconf.douyucdn.cn/resource/common/prop_gift_list/prop_gift_config.json
-鱼翅礼物：http://open.douyucdn.cn/api/RoomApi/room/4042402
-`);
-        showMessage("请按F12到控制台(console)查看礼物id", "success");
-    });
-    document.getElementById("gift__switch").addEventListener("click", () => {
-        let ischecked = document.getElementById("gift__switch").checked;
-        if (true == ischecked) isGiftOn = true; else isGiftOn = false;
-        saveData_isGift();
-    });
-    document.getElementById("gift__title").addEventListener("click", () => {
-        let a = document.getElementsByClassName("gift__panel")[0];
-        if ("block" != a.style.display) {
-            a.style.display = "block";
-            if ("block" == document.getElementsByClassName("mute__panel")[0].style.display) document.getElementsByClassName("mute__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("enter__panel")[0].style.display) document.getElementsByClassName("enter__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("reply__panel")[0].style.display) document.getElementsByClassName("reply__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("vote__panel")[0].style.display) document.getElementsByClassName("vote__panel")[0].style.display = "none";
-        } else a.style.display = "none";
-    });
-    document.getElementById("gift__select").onclick = function() {
-        if (0 == this.options.length) return;
-        let giftId = this.options[this.selectedIndex].text;
-        let reply = giftWordList[giftId].reply;
-        document.getElementById("gift__giftId").value = giftId;
-        document.getElementById("gift__reply").value = reply;
-    };
-    document.getElementById("gift__add").addEventListener("click", () => {
-        let select_wordList = document.getElementById("gift__select");
-        let giftId = document.getElementById("gift__giftId").value;
-        let reply = document.getElementById("gift__reply").value;
-        if ("" == giftId) return;
-        giftWordList[giftId] = {
-            reply: reply
-        };
-        select_wordList.options.add(new Option(giftId, ""));
-        saveData_Gift();
-    });
-    document.getElementById("gift__del").addEventListener("click", () => {
-        let select_wordList = document.getElementById("gift__select");
-        let giftId = select_wordList.options[select_wordList.selectedIndex].text;
-        delete giftWordList[giftId];
-        select_wordList.options.remove(select_wordList.selectedIndex);
-        saveData_Gift();
-    });
-    document.getElementById("gift__export").addEventListener("click", () => {
-        GM_setClipboard(JSON.stringify(giftWordList));
-        showMessage("【自动谢礼物】导出完毕，已复制到剪贴板", "success");
-    });
-    document.getElementById("gift__import").addEventListener("click", () => {
-        PostbirdAlertBox.prompt({
-            title: "请输入json文本（会覆盖原来的设置）",
-            okBtn: "确定",
-            onConfirm: function(data) {
-                let select_wordList = document.getElementById("gift__select");
-                let obj = JSON.parse(data || "{}") || {};
-                if ("object" == typeof obj) {
-                    giftWordList = {
-                        ...obj
-                    };
-                    select_wordList.options.length = 0;
-                    for (var key in giftWordList) if (giftWordList.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-                    saveData_Gift();
-                }
-                showMessage("【自动谢礼物】导入完毕", "success");
-            },
-            onCancel: function(data) {}
-        });
-    });
-    document.getElementById("gift__template").addEventListener("click", () => {
-        setAllGiftTemplate();
-    });
-}
-
-function saveData_Gift() {
-    let data = giftWordList;
-    localStorage.setItem("ExSave_Gift", JSON.stringify(data));
-}
-
-function saveData_isGift() {
-    let ridArr = [];
-    let ret = localStorage.getItem("ExSave_isGift");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-    }
-    let index = ridArr.indexOf(rid);
-    if (true == isGiftOn) {
-        if (-1 == index) ridArr.push(rid);
-    } else ridArr.splice(index, 1);
-    let data = {
-        rooms: ridArr
-    };
-    localStorage.setItem("ExSave_isGift", JSON.stringify(data));
-}
-
-function initPkg_Gift_Set() {
-    let ret = localStorage.getItem("ExSave_Gift");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        giftWordList = retJson;
-        let select_wordList = document.getElementById("gift__select");
-        for (var key in retJson) if (retJson.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-    }
-    ret = localStorage.getItem("ExSave_isGift");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        let ridArr = [];
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-        if (-1 == ridArr.indexOf(rid)) isGiftOn = false; else isGiftOn = true;
-        document.getElementById("gift__switch").checked = isGiftOn;
-    } else {
-        isGiftOn = false;
-        document.getElementById("gift__switch").checked = isGiftOn;
-    }
-}
-
-function initPkg_LiveTool_Gift_Handle(text) {
-    if (false == isGiftOn) return;
-    let typeName = getType(text);
-    if ("dgb" === typeName) {
-        let uid = getStrMiddle(text, "uid@=", "/");
-        if (uid == my_uid) return;
-        let nn = getStrMiddle(text, "nn@=", "/");
-        let gfid = getStrMiddle(text, "gfid@=", "/");
-        let gfcnt = getStrMiddle(text, "gfcnt@=", "/");
-        if (gfid in giftWordList) {
-            let reply = giftWordList[gfid].reply;
-            reply = String(reply).replace(/<id>/g, nn);
-            reply = String(reply).replace(/<cnt>/g, gfcnt);
-            sendBarrage(reply);
-        }
-    } else if ("dfobc" === typeName || "dfrbc" === typeName) {
-        let uid = getStrMiddle(text, "uid@=", "/");
-        if (uid == my_uid) return;
-        let nn = getStrMiddle(text, "nick@=", "/");
-        let gfid = "dfobc" === typeName ? "开通钻粉" : "续费钻粉";
-        let gfcnt = "1";
-        if (gfid in giftWordList) {
-            let reply = giftWordList[gfid].reply;
-            reply = String(reply).replace(/<id>/g, nn);
-            reply = String(reply).replace(/<cnt>/g, gfcnt);
-            sendBarrage(reply);
-        }
-    }
-}
-
-async function setAllGiftTemplate() {
-    let ret = {};
-    let roomGiftObj = {};
-    let roomGift = await getRoomGiftTemplate();
-    for (let i = 0; i < roomGift.data.gift.length; i++) {
-        let item = roomGift.data.gift[i];
-        roomGiftObj[item.id] = {
-            reply: `感谢<id>赠送的${item.name}x<cnt>`
-        };
-    }
-    let bagGift = await getBagGiftTemplate();
-    let bagGiftObj = {};
-    bagGift = bagGift.substring(0, bagGift.length - 2);
-    bagGift = bagGift.replace("DYConfigCallback(", "");
-    bagGift = JSON.parse(bagGift || "{}") || {};
-    for (var key in bagGift.data) bagGiftObj[key] = {
-        reply: `感谢<id>赠送的${bagGift.data[key].name}x<cnt>`
-    };
-    let diamondObj = {
-        "开通钻粉": {
-            reply: `感谢<id>开通钻粉`
-        },
-        "续费钻粉": {
-            reply: `感谢<id>续费钻粉`
-        }
-    };
-    ret = {
-        ...roomGiftObj,
-        ...bagGiftObj,
-        ...diamondObj
-    };
-    GM_setClipboard(JSON.stringify(ret));
-    showMessage("【自动谢礼物】礼物模板生成完毕，已复制到剪贴板，可直接导入", "success");
-}
-
-function getRoomGiftTemplate() {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "http://open.douyucdn.cn/api/RoomApi/room/" + rid,
-            responseType: "json",
-            onload: function(response) {
-                let ret = response.response;
-                resolve(ret);
-            }
-        });
-    });
-}
-
-function getBagGiftTemplate() {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "http://webconf.douyucdn.cn/resource/common/prop_gift_list/prop_gift_config.json",
-            responseType: "text",
-            onload: function(response) {
-                let ret = response.response;
-                resolve(ret);
-            }
-        });
-    });
 }
 
 function initPkg_LiveTool_LiveNotice_Handle(text) {
@@ -4709,376 +2813,40 @@ function initPkg_LiveTool_LiveNotice_Handle(text) {
     }
 }
 
+let liveToolSocket = null;
+
+let liveToolInitialized = false;
+
 function initPkg_LiveTool() {
-    initPkg_LiveTool_Dom();
-    initPkg_LiveTool_Module();
-    initPkg_LiveTool_Func();
-    initPkg_LiveTool_HandleFunc();
-}
-
-function initPkg_LiveTool_Dom() {
-    LiveTool_insertModal();
-    LiveTool_insertIcon();
-}
-
-function initPkg_LiveTool_Module() {
-    initPkg_LiveTool_Vote();
-    initPkg_LiveTool_Enter();
-    initPkg_LiveTool_Mute();
-    initPkg_LiveTool_Gift();
-    initPkg_LiveTool_Reply();
-    initPkg_LiveTool_Treasure();
+    if (liveToolInitialized) return;
+    liveToolInitialized = true;
     initPkg_LiveTool_BarrageSpeed();
     initPkg_LiveTool_RankList();
-    initPkg_LiveTool_BarrageSendCheck();
-}
-
-function LiveTool_insertModal() {
-    let a = document.createElement("div");
-    a.className = "livetool";
-    let b = document.getElementsByClassName("layout-Player-chat")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function LiveTool_insertIcon() {
-    let a = document.createElement("div");
-    a.className = "livetool-icon";
-    a.innerHTML = '<a class="ex-panel__icon" title="直播间工具"><svg t="1590294900594" style="display:block;" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20028" width="36" height="36"><path d="M352.2 245.3c-5.1 0-10.2-2-14.1-5.9L196.6 98c-7.8-7.8-7.8-20.5 0-28.3s20.5-7.8 28.3 0l141.4 141.4c7.8 7.8 7.8 20.5 0 28.3-3.9 3.9-9 5.9-14.1 5.9zM477.1 245.3c-5.1 0-10.2-2-14.1-5.9-7.8-7.8-7.8-20.5 0-28.3L604.3 69.7c7.8-7.8 20.5-7.8 28.3 0 7.8 7.8 7.8 20.5 0 28.3L491.2 239.4c-3.9 3.9-9 5.9-14.1 5.9z" fill="#0C2B4A" p-id="20029"></path><path d="M703.9 194.8H124.2c-33 0-60 27-60 60v453c0 33 27 60 60 60h418c1.7-122.5 99.6-221.8 221.7-225.5V254.8c0-33-27-60-60-60zM533.4 522.9L356.3 625.2c-24 13.9-54-3.5-54-31.2V389.5c0-27.7 30-45 54-31.2l177.1 102.2c24 13.9 24 48.6 0 62.4zM815.2 776.4c0 21.9-17.8 39.7-39.7 39.7-21.9 0-39.7-17.8-39.7-39.7 0-21.9 17.8-39.7 39.7-39.7 21.9 0 39.7 17.8 39.7 39.7z" fill="#0C2B4A" p-id="20030"></path><path d="M775.5 591C673.6 591 591 673.6 591 775.5S673.6 960 775.5 960 960 877.4 960 775.5 877.4 591 775.5 591zM879 819l-15.6 27c-2.1 3.6-6.8 4.9-10.4 2.8l-15.5-8.9c-2.7-1.6-6.1-1.3-8.5 0.6-7.5 5.9-15.9 10.6-25.1 13.8-3 1.1-5.1 4-5.1 7.2v18.7c0 4.2-3.4 7.6-7.6 7.6H760c-4.2 0-7.6-3.4-7.6-7.6v-18.5c0-3.3-2.1-6.2-5.1-7.2-9.3-3.2-17.9-7.8-25.5-13.7-2.4-1.9-5.8-2.2-8.5-0.6l-15.2 8.8c-3.6 2.1-8.3 0.9-10.4-2.8l-15.6-27c-2.1-3.6-0.8-8.3 2.8-10.4l12.2-7.1c3-1.7 4.5-5.2 3.7-8.5-1.7-6.8-2.6-13.8-2.6-21.1 0-4.1 0.3-8.2 0.9-12.2 0.4-3.1-1-6.1-3.7-7.7l-10.5-6.1c-3.6-2.1-4.9-6.8-2.8-10.4l15.6-27c2.1-3.6 6.8-4.9 10.4-2.8l7.8 4.5c2.9 1.7 6.6 1.3 9-1.1 9.1-8.7 20-15.5 32.2-19.7 3.1-1 5.1-4 5.1-7.2v-7.9c0-4.2 3.4-7.6 7.6-7.6H791c4.2 0 7.6 3.4 7.6 7.6v8.1c0 3.2 2 6.1 5.1 7.2 12.1 4.2 22.9 10.9 31.9 19.6 2.4 2.4 6.1 2.8 9.1 1.1l8.2-4.7c3.6-2.1 8.3-0.8 10.4 2.8l15.6 27c2.1 3.6 0.9 8.3-2.8 10.4l-11 6.3c-2.7 1.6-4.1 4.6-3.7 7.7 0.6 3.9 0.8 8 0.8 12.1 0 7.2-0.9 14.1-2.5 20.8-0.8 3.3 0.7 6.7 3.6 8.3l12.8 7.4c3.7 2.1 5 6.8 2.9 10.4z" fill="#0C2B4A" p-id="20031"></path></svg><i id="LiveTool__tip" class="ex-panel__tip"></i></a>';
-    let b = document.getElementsByClassName("ex-panel__wrap")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function initPkg_LiveTool_Func() {
-    document.getElementsByClassName("livetool-icon")[0].addEventListener("click", function() {
-        showExRightPanel("直播间工具");
+    initPkg_LiveTool_BarrageSendCheck().catch(error => console.log("弹幕发送检查初始化失败", error));
+    initPkg_LiveTool_HandleFunc();
+    window.addEventListener("pagehide", () => {
+        if (liveToolSocket) liveToolSocket.close();
+        liveToolSocket = null;
+    });
+    window.addEventListener("pageshow", () => {
+        initPkg_LiveTool_HandleFunc();
     });
 }
 
 function initPkg_LiveTool_HandleFunc() {
-    new Ex_WebSocket_UnLogin(rid, ret => {
-        initPkg_LiveTool_LiveNotice_Handle(ret);
-        initPkg_LiveTool_Mute_Handle(ret);
-        initPkg_LiveTool_Reply_Handle(ret);
-        initPkg_LiveTool_Gift_Handle(ret);
-        initPkg_LiveTool_Treasure_Handle(ret);
-        initPkg_LiveTool_Enter_Handle(ret);
-        initPkg_LiveTool_Vote_Handle(ret);
-        initPkg_LiveTool_BarrageSpeed_Handle(ret);
-        initPkg_LiveTool_RankList_Handle(ret);
-        initPkg_LiveTool_BarrageSendCheck_Handle(ret);
-        initPkg_RealAudience_Handle(ret);
+    if (liveToolSocket) return;
+    liveToolSocket = new Ex_WebSocket_UnLogin(rid, ret => {
+        const handlers = [ initPkg_LiveTool_LiveNotice_Handle, initPkg_LiveTool_BarrageSpeed_Handle, initPkg_LiveTool_RankList_Handle, initPkg_LiveTool_BarrageSendCheck_Handle, initPkg_RealAudience_Handle ];
+        for (var handle of handlers) try {
+            handle(ret);
+        } catch (error) {
+            console.log("观看消息处理失败", error);
+        }
     });
 }
 
 function getType(str) {
     return getStrMiddle(str, "type@=", "/");
-}
-
-function selectOptionByValue(selectId, checkValue) {
-    let select = document.getElementById(selectId);
-    for (let i = 0; i < select.options.length; i++) if (select.options[i].value == checkValue) {
-        select.options[i].selected = true;
-        break;
-    }
-}
-
-let isMuteOn = false;
-
-let muteWordList = {};
-
-let muteIdList = {};
-
-let muteIdListShow = [];
-
-function initPkg_LiveTool_Mute() {
-    LiveTool_Mute_insertDom();
-    LiveTool_Mute_insertFunc();
-    initPkg_Mute_Set();
-}
-
-function LiveTool_Mute_insertDom() {
-    let a = document.createElement("div");
-    a.className = "livetool__cell";
-    let cell = `
-        <div class='livetool__cell_title'>
-            <span id='mute__title'>关键词禁言</span>
-            <span id='mute__idlist'>名单</span>
-            <span id='mute__export'>导出</span>
-            <span id='mute__import'>导入</span>
-        </div>
-        <div class='livetool__cell_option'>
-            <div class="onoffswitch livetool__cell_switch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="mute__switch" tabindex="0" checked>
-                <label class="onoffswitch-label" for="mute__switch"></label>
-            </div>
-        </div>
-    `;
-    let panel = `
-        <div class='mute__panel'>
-            <select id='mute__select'>
-            </select>
-            <input style="width:40px;margin-left:10px;" type="button" id="mute__add" value="添加"/>
-            <input style="width:40px;margin-left:10px;" type="button" id="mute__del" value="删除"/>
-            <input style="width:65px;margin-left:10px;" type="button" id="mute__delmute" value="一键解禁"/>
-            <div class="mute__option">
-                <label>词：<input id="mute__word" type="text" placeholder="re(式)=结果"/></label>
-                <label>次数：<input id="mute__count" type="number" value="5"/></label>
-                <label>时间：
-                    <select id='mute__time'>
-                        <option value="1">1分钟</option>
-                        <option value="10">10分钟</option>
-                        <option value="30">30分钟</option>
-                        <option value="60">1小时</option>
-                        <option value="480">8小时</option>
-                        <option value="1440">1天</option>
-                        <option value="4320">3天</option>
-                        <option value="10080">7天</option>
-                        <option value="43200">30天</option>
-                        <option value="259200">180天</option>
-                        <option value="518400">360天</option>
-                    </select>
-                </label>
-            </div>
-        </div>
-    `;
-    a.innerHTML = cell + panel;
-    let b = document.getElementsByClassName("livetool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function LiveTool_Mute_insertFunc() {
-    document.getElementById("mute__export").addEventListener("click", () => {
-        GM_setClipboard(JSON.stringify(muteWordList));
-        showMessage("【关键词禁言】导出完毕，已复制到剪贴板", "success");
-    });
-    document.getElementById("mute__import").addEventListener("click", () => {
-        PostbirdAlertBox.prompt({
-            title: "请输入json文本（会覆盖原来的设置）",
-            okBtn: "确定",
-            onConfirm: function(data) {
-                let select_wordList = document.getElementById("mute__select");
-                let obj = JSON.parse(data || "{}") || {};
-                if ("object" == typeof obj) {
-                    muteWordList = {
-                        ...obj
-                    };
-                    select_wordList.options.length = 0;
-                    for (var key in muteWordList) if (muteWordList.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-                    saveData_Mute();
-                }
-                showMessage("【关键词禁言】导入完毕", "success");
-            },
-            onCancel: function(data) {}
-        });
-    });
-    document.getElementById("mute__idlist").addEventListener("click", () => {
-        if (0 == muteIdListShow.length) {
-            showMessage("暂无禁言名单", "warning");
-            return;
-        }
-        console.log("【禁言名单】");
-        for (let i = 0; i < muteIdListShow.length; i++) {
-            let item = muteIdListShow[i];
-            console.log("id:【" + item.id + "】 | uid:" + item.uid + " | 弹幕:" + item.barrage + " | 检测次数:" + item.count + " | 禁言时长:" + item.time + "分钟 | 禁言时间:" + item.ts);
-        }
-        showMessage("禁言名单已经输出在控制台，请按F12查看", "success");
-    });
-    document.getElementById("mute__delmute").addEventListener("click", async () => {
-        if (0 == muteIdListShow.length) {
-            showMessage("暂无禁言名单", "warning");
-            return;
-        }
-        if (true != confirm("是否解禁名单上所有的id？")) return;
-        for (let i = 0; i < muteIdListShow.length; i++) {
-            let item = muteIdListShow[i];
-            await deleteMuteUser(rid, item.uid);
-        }
-        showMessage("解除禁言完毕", "success");
-    });
-    document.getElementById("mute__switch").addEventListener("click", () => {
-        let ischecked = document.getElementById("mute__switch").checked;
-        if (true == ischecked) isMuteOn = true; else isMuteOn = false;
-        saveData_isMute();
-    });
-    document.getElementById("mute__title").addEventListener("click", () => {
-        let a = document.getElementsByClassName("mute__panel")[0];
-        if ("block" != a.style.display) {
-            a.style.display = "block";
-            if ("block" == document.getElementsByClassName("reply__panel")[0].style.display) document.getElementsByClassName("reply__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("enter__panel")[0].style.display) document.getElementsByClassName("enter__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("gift__panel")[0].style.display) document.getElementsByClassName("gift__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("vote__panel")[0].style.display) document.getElementsByClassName("vote__panel")[0].style.display = "none";
-        } else a.style.display = "none";
-    });
-    document.getElementById("mute__select").onclick = function() {
-        if (0 == this.options.length) return;
-        let word = this.options[this.selectedIndex].text;
-        let count = muteWordList[word].count;
-        let time = muteWordList[word].time;
-        document.getElementById("mute__word").value = word;
-        document.getElementById("mute__count").value = count;
-        selectOptionByValue("mute__time", time);
-    };
-    document.getElementById("mute__add").addEventListener("click", () => {
-        let select_time = document.getElementById("mute__time");
-        let select_wordList = document.getElementById("mute__select");
-        let word = document.getElementById("mute__word").value;
-        let count = document.getElementById("mute__count").value;
-        let time = select_time.options[select_time.selectedIndex].value;
-        if ("" == word) return;
-        muteWordList[word] = {
-            count: count,
-            time: time
-        };
-        select_wordList.options.add(new Option(word, ""));
-        saveData_Mute();
-    });
-    document.getElementById("mute__del").addEventListener("click", () => {
-        let select_wordList = document.getElementById("mute__select");
-        let word = select_wordList.options[select_wordList.selectedIndex].text;
-        delete muteWordList[word];
-        select_wordList.options.remove(select_wordList.selectedIndex);
-        saveData_Mute();
-    });
-}
-
-function saveData_Mute() {
-    let data = muteWordList;
-    localStorage.setItem("ExSave_Mute", JSON.stringify(data));
-}
-
-function saveData_isMute() {
-    let ridArr = [];
-    let ret = localStorage.getItem("ExSave_isMute");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-    }
-    let index = ridArr.indexOf(rid);
-    if (true == isMuteOn) {
-        if (-1 == index) ridArr.push(rid);
-    } else ridArr.splice(index, 1);
-    let data = {
-        rooms: ridArr
-    };
-    localStorage.setItem("ExSave_isMute", JSON.stringify(data));
-}
-
-async function initPkg_Mute_Set() {
-    let ret = localStorage.getItem("ExSave_Mute");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        muteWordList = retJson;
-        let select_wordList = document.getElementById("mute__select");
-        for (var key in retJson) if (retJson.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-    }
-    ret = localStorage.getItem("ExSave_isMute");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        let ridArr = [];
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-        if (-1 == ridArr.indexOf(rid)) isMuteOn = false; else isMuteOn = true;
-        document.getElementById("mute__switch").checked = isMuteOn;
-    } else {
-        isMuteOn = false;
-        document.getElementById("mute__switch").checked = isMuteOn;
-    }
-}
-
-async function initPkg_LiveTool_Mute_Handle(text) {
-    if (false == isMuteOn) return;
-    if ("chatmsg" == getType(text)) {
-        let uid = getStrMiddle(text, "uid@=", "/");
-        if (uid == my_uid) return;
-        let nn = getStrMiddle(text, "nn@=", "/");
-        let txt = getStrMiddle(text, "txt@=", "/");
-        let isConform = false;
-        for (var key in muteWordList) {
-            if ("" == key) continue;
-            if (-1 != key.indexOf("re(")) {
-                let regStr = getStrMiddle(key, "re(", ")=");
-                let strArr = key.split("=");
-                if (strArr.length > 1) {
-                    let str = strArr[1];
-                    let regObj = new RegExp(regStr, "g");
-                    let result = regObj.exec(txt);
-                    if (result.length > 0) if (result[0] == str) isConform = true; else isConform = false;
-                }
-            } else if (-1 == String(txt).indexOf(key)) isConform = false; else isConform = true;
-            if (true == isConform) {
-                let maxCount = muteWordList[key].count;
-                let time = muteWordList[key].time;
-                if (muteIdList.hasOwnProperty(nn)) {
-                    let nextCount = Number(muteIdList[nn].count) + 1;
-                    if (nextCount >= maxCount) {
-                        await addMuteUser(rid, nn, time);
-                        showMessageWindow("禁言信息", "【" + nn + "】已被禁言" + time + "分钟" + "\n弹幕：" + txt, () => {});
-                        let obj = {
-                            id: nn,
-                            uid: uid,
-                            barrage: txt,
-                            time: time,
-                            count: 1,
-                            ts: String(dateFormat("yyyy年MM月dd日hh时mm分ss秒 ", new Date()))
-                        };
-                        muteIdListShow.push(obj);
-                        muteIdList[nn].count = 0;
-                    } else muteIdList[nn].count = String(nextCount);
-                } else {
-                    let nextCount = 1;
-                    if (nextCount >= maxCount) {
-                        await addMuteUser(rid, nn, time);
-                        showMessageWindow("禁言信息", "【" + nn + "】已被禁言" + time + "分钟" + "\n弹幕：" + txt, () => {});
-                        let obj = {
-                            id: nn,
-                            uid: uid,
-                            barrage: txt,
-                            time: time,
-                            count: 1,
-                            ts: String(dateFormat("yyyy年MM月dd日hh时mm分ss秒 ", new Date()))
-                        };
-                        muteIdListShow.push(obj);
-                    } else muteIdList[nn] = {
-                        uid: uid,
-                        count: 1
-                    };
-                }
-                break;
-            }
-        }
-    }
-}
-
-function addMuteUser(roomid, name, ban_time) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/room/roomSetting/addMuteUser", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: "ban_nickname=" + name + "&room_id=" + roomid + "&ban_time=" + ban_time + "&reason=7"
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        });
-    });
-}
-
-function deleteMuteUser(roomid, uid) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/room/roomSetting/deleteMuteUser", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: "room_id=" + roomid + "&uid=" + uid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        });
-    });
 }
 
 let rankListData = {
@@ -5130,759 +2898,9 @@ function getRankListData(list) {
     return obj;
 }
 
-let isReplyOn = false;
-
-let replyWordList = {};
-
-let isReplyCD = false;
-
-let replyCd = 0;
-
-function initPkg_LiveTool_Reply() {
-    LiveTool_Reply_insertDom();
-    LiveTool_Reply_insertFunc();
-    initPkg_Reply_Set();
-}
-
-function LiveTool_Reply_insertDom() {
-    let a = document.createElement("div");
-    a.className = "livetool__cell";
-    let cell = `
-        <div class='livetool__cell_title'>
-            <span id='reply__title'>关键词回复</span>
-            <span id='reply__export'>导出</span>
-            <span id='reply__import'>导入</span>
-        </div>
-        <div class='livetool__cell_option'>
-            <div class="onoffswitch livetool__cell_switch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="reply__switch" tabindex="0" checked>
-                <label class="onoffswitch-label" for="reply__switch"></label>
-            </div>
-        </div>
-    `;
-    let panel = `
-        <div class='reply__panel'>
-            <select id='reply__select'>
-            </select>
-            <input style="width:40px;margin-left:10px;" type="button" id="reply__add" value="添加"/>
-            <input style="width:40px;margin-left:10px;" type="button" id="reply__del" value="删除"/>
-            <label style="margin-left:5px">CD：<input id="reply__time" type="text" placeholder="秒" /></label>
-            <div class="reply__option">
-                <label>词：<input id="reply__word" type="text" placeholder="re(式)=结果"/></label>
-                <label>回复：<input id="reply__reply" type="text" placeholder="<id>用户名 <txt>弹幕"/></label>
-            </div>
-        </div>
-    `;
-    a.innerHTML = cell + panel;
-    let b = document.getElementsByClassName("livetool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function LiveTool_Reply_insertFunc() {
-    document.getElementById("reply__export").addEventListener("click", () => {
-        GM_setClipboard(JSON.stringify(replyWordList));
-        showMessage("【关键词回复】导出完毕，已复制到剪贴板", "success");
-    });
-    document.getElementById("reply__import").addEventListener("click", () => {
-        PostbirdAlertBox.prompt({
-            title: "请输入json文本（会覆盖原来的设置）",
-            okBtn: "确定",
-            onConfirm: function(data) {
-                let select_wordList = document.getElementById("reply__select");
-                let obj = JSON.parse(data || "{}") || {};
-                if ("object" == typeof obj) {
-                    replyWordList = {
-                        ...obj
-                    };
-                    select_wordList.options.length = 0;
-                    for (var key in replyWordList) if (replyWordList.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-                    saveData_Reply();
-                }
-                showMessage("【关键词回复】导入完毕", "success");
-            },
-            onCancel: function(data) {}
-        });
-    });
-    document.getElementById("reply__switch").addEventListener("click", () => {
-        replyCd = String(document.getElementById("reply__time").value) || 0;
-        let ischecked = document.getElementById("reply__switch").checked;
-        if (true == ischecked) isReplyOn = true; else isReplyOn = false;
-        saveData_isReply();
-        saveData_ReplyCd();
-    });
-    document.getElementById("reply__title").addEventListener("click", () => {
-        let a = document.getElementsByClassName("reply__panel")[0];
-        if ("block" != a.style.display) {
-            a.style.display = "block";
-            if ("block" == document.getElementsByClassName("mute__panel")[0].style.display) document.getElementsByClassName("mute__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("enter__panel")[0].style.display) document.getElementsByClassName("enter__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("gift__panel")[0].style.display) document.getElementsByClassName("gift__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("vote__panel")[0].style.display) document.getElementsByClassName("vote__panel")[0].style.display = "none";
-        } else a.style.display = "none";
-    });
-    document.getElementById("reply__select").onclick = function() {
-        if (0 == this.options.length) return;
-        let word = this.options[this.selectedIndex].text;
-        let reply = replyWordList[word].reply;
-        document.getElementById("reply__word").value = word;
-        document.getElementById("reply__reply").value = reply;
-    };
-    document.getElementById("reply__add").addEventListener("click", () => {
-        let select_wordList = document.getElementById("reply__select");
-        let word = document.getElementById("reply__word").value;
-        let reply = document.getElementById("reply__reply").value;
-        if ("" == word) return;
-        replyWordList[word] = {
-            reply: reply
-        };
-        select_wordList.options.add(new Option(word, ""));
-        saveData_Reply();
-    });
-    document.getElementById("reply__del").addEventListener("click", () => {
-        let select_wordList = document.getElementById("reply__select");
-        let word = select_wordList.options[select_wordList.selectedIndex].text;
-        delete replyWordList[word];
-        select_wordList.options.remove(select_wordList.selectedIndex);
-        saveData_Reply();
-    });
-}
-
-function saveData_Reply() {
-    let data = replyWordList;
-    localStorage.setItem("ExSave_Reply", JSON.stringify(data));
-}
-
-function saveData_ReplyCd() {
-    let data = document.getElementById("reply__time").value;
-    localStorage.setItem("ExSave_ReplyCd", data);
-}
-
-function saveData_isReply() {
-    let ridArr = [];
-    let ret = localStorage.getItem("ExSave_isReply");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-    }
-    let index = ridArr.indexOf(rid);
-    if (true == isReplyOn) {
-        if (-1 == index) ridArr.push(rid);
-    } else ridArr.splice(index, 1);
-    let data = {
-        rooms: ridArr
-    };
-    localStorage.setItem("ExSave_isReply", JSON.stringify(data));
-}
-
-function initPkg_Reply_Set() {
-    let ret = localStorage.getItem("ExSave_Reply");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        replyWordList = retJson;
-        let select_wordList = document.getElementById("reply__select");
-        for (var key in retJson) if (retJson.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-    }
-    ret = localStorage.getItem("ExSave_isReply");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        let ridArr = [];
-        if ("rooms" in retJson == true) ridArr = retJson.rooms;
-        if (-1 == ridArr.indexOf(rid)) isReplyOn = false; else isReplyOn = true;
-        document.getElementById("reply__switch").checked = isReplyOn;
-    } else {
-        isReplyOn = false;
-        document.getElementById("reply__switch").checked = isReplyOn;
-    }
-    ret = localStorage.getItem("ExSave_ReplyCd");
-    if (null != ret) document.getElementById("reply__time").value = ret;
-}
-
-function initPkg_LiveTool_Reply_Handle(text) {
-    if (false == isReplyOn) return;
-    if ("chatmsg" == getType(text)) {
-        let uid = getStrMiddle(text, "uid@=", "/");
-        if (uid == my_uid) return;
-        let nn = getStrMiddle(text, "nn@=", "/");
-        let txt = getStrMiddle(text, "txt@=", "/");
-        let isConform = false;
-        for (var key in replyWordList) {
-            if ("" == key) continue;
-            if (-1 != key.indexOf("re(")) {
-                let regStr = getStrMiddle(key, "re(", ")=");
-                let strArr = key.split("=");
-                if (strArr.length > 1) {
-                    let str = strArr[1];
-                    let regObj = new RegExp(regStr, "g");
-                    let result = regObj.exec(txt);
-                    if (result.length > 0) if (result[0] == str) isConform = true; else isConform = false;
-                }
-            } else if (-1 != String(txt).indexOf(key)) isConform = true; else isConform = false;
-            if (true == isConform) {
-                let reply = replyWordList[key].reply;
-                reply = String(reply).replace(/<id>/g, nn);
-                reply = String(reply).replace(/<txt>/g, txt);
-                if (false == isReplyCD) {
-                    sendBarrage(reply);
-                    if (replyCd > 0) {
-                        isReplyCD = true;
-                        setTimeout(() => {
-                            isReplyCD = false;
-                        }, 1e3 * replyCd);
-                    }
-                }
-                break;
-            }
-        }
-    }
-}
-
-var treasureNum = 0;
-
-function initPkg_LiveTool_Treasure() {
-    LiveTool_Treasure_insertModal();
-}
-
-function LiveTool_Treasure_insertModal() {
-    let a = document.createElement("div");
-    a.className = "livetool__Treasure";
-    a.id = "Ex_Geetest";
-    let b = document.getElementsByClassName("Barrage-main")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function initPkg_LiveTool_Treasure_Handle(text) {
-    if (false == isGetTreasure) return;
-    if ("tsboxb" == getType(text)) {
-        let ot = getStrMiddle(text, "ot@=", "/");
-        let rpid = getStrMiddle(text, "rpid@=", "/");
-        let rid = getStrMiddle(text, "rid@=", "/");
-        let did = getCookieValue("dy_did");
-        let timeout = Number(ot) - Math.floor(Date.now() / 1e3);
-        timeout = 1e3 * timeout + getTreasureDelay();
-        treasureNum++;
-        let a = document.createElement("div");
-        let idName = "Ex_Geetest_no" + String(treasureNum);
-        a.id = idName;
-        let b = document.getElementById("Ex_Geetest");
-        b.appendChild(a);
-        setTimeout(() => {
-            getTreasure(rid, rpid, did, idName);
-        }, timeout);
-    }
-}
-
-function getTreasure(roomid, rpid, deviceid, idName) {
-    GM_xmlhttpRequest({
-        method: "POST",
-        url: "https://pcapi.douyucdn.cn/h5nc/member/getRedPacket?token=" + dyToken,
-        data: "room_id=" + roomid + "&package_room_id=" + roomid + "&device_id=" + deviceid + "&packerid=" + rpid + "&version=1",
-        responseType: "json",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        onload: function(response) {
-            let ret = response.response;
-            if ("-1" == ret.data.code && "0" != ret.data.validate) {
-                let v = JSON.parse(ret.data.geetest.validate_str);
-                let success = v.success;
-                let challenge = v.challenge;
-                let gt = v.gt;
-                let handler = e => {
-                    let idDiv = document.getElementById(idName);
-                    e.appendTo("#" + idName);
-                    e.onSuccess(() => {
-                        let result = e.getValidate();
-                        let geetest_challenge = result.geetest_challenge;
-                        let geetest_seccode = result.geetest_seccode;
-                        let geetest_validate = result.geetest_validate;
-                        let data = "room_id=" + roomid + "&package_room_id=" + roomid + "&device_id=" + deviceid + "&packerid=" + rpid + "&version=1";
-                        data = data + "&geetest_challenge=" + geetest_challenge + "&geetest_validate=" + geetest_validate + "&geetest_seccode=" + encodeURIComponent(geetest_seccode);
-                        GM_xmlhttpRequest({
-                            method: "POST",
-                            url: "https://pcapi.douyucdn.cn/h5nc/member/getRedPacket?token=" + dyToken,
-                            data: data,
-                            responseType: "json",
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded"
-                            },
-                            onload: function(response) {
-                                let ret = response.response;
-                                let msg = "";
-                                if ("" == ret.data.prop_id) msg = "鱼丸x" + ret.data.silver; else msg = ret.data.prop_name + "x" + ret.data.prop_count;
-                                if ("" != msg) showMessage("【宝箱】获得" + msg, "success");
-                                if (null != idDiv) idDiv.remove();
-                            }
-                        });
-                    });
-                };
-                if (void 0 != unsafeWindow.initGeetest) unsafeWindow.initGeetest({
-                    gt: gt,
-                    challenge: challenge,
-                    offline: !success,
-                    product: "float"
-                }, handler); else showMessage("宝箱验证初始化失败", "error");
-            } else if ("领取失败" != ret.data.msg && "验证码不正确" != ret.data.msg) {
-                let msg = "";
-                if ("" == ret.data.prop_id) msg = "鱼丸x" + ret.data.silver; else msg = ret.data.prop_name + "x" + ret.data.prop_count;
-                if ("" != msg) showMessage("【宝箱】获得" + msg, "success");
-            } else showMessage("【宝箱】领取失败", "error");
-        }
-    });
-}
-
-let isVoteOn = false;
-
-let voteList = {};
-
-let voteNameList = {};
-
-let voteWordList = {};
-
-let voteTotalNum = 0;
-
-let timer_Vote;
-
-let isRepeat = false;
-
-function initPkg_LiveTool_Vote() {
-    LiveTool_Vote_insertDom();
-    LiveTool_Vote_insertDom_VotePanel();
-    LiveTool_Vote_insertFunc();
-    initPkg_Vote_Set();
-}
-
-function LiveTool_Vote_insertDom() {
-    let a = document.createElement("div");
-    a.className = "livetool__cell";
-    let cell = `
-        <div class='livetool__cell_title'>
-            <span id='vote__title'>弹幕投票</span><span id='vote__show-result'>面板</span>
-        </div>
-        <div class='livetool__cell_option'>
-            <label style="margin-right:10px;"><input id="vote__repeat" type="checkbox">重复投票</label>
-            <div class="onoffswitch livetool__cell_switch">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="vote__switch" tabindex="0" checked>
-                <label class="onoffswitch-label" for="vote__switch"></label>
-            </div>
-        </div>
-    `;
-    let panel = `
-        <div class='vote__panel'>
-            <select id='vote__select'>
-            </select>
-            <input style="width:40px;margin-left:10px;" type="button" id="vote__add" value="添加"/>
-            <input style="width:40px;margin-left:10px;" type="button" id="vote__del" value="删除"/>
-            <label style="margin-left:5px">限时：<input id="vote__time" type="text" placeholder="秒" /></label>
-            <div class="vote__option">
-                <label>主题：<input id="vote__theme" type="text"/></label>
-                <label>选项：<input id="vote__options" type="text" placeholder="用空格隔开每个选项"/></label>
-            </div>
-        </div>
-    `;
-    a.innerHTML = cell + panel;
-    let b = document.getElementsByClassName("livetool")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function LiveTool_Vote_insertFunc() {
-    document.getElementById("vote__switch").addEventListener("click", () => {
-        let ischecked = document.getElementById("vote__switch").checked;
-        let selectDom = document.getElementById("vote__select");
-        let title = selectDom.options[selectDom.selectedIndex].text;
-        let options = voteList[title].options;
-        let time = voteList[title].time;
-        if (true == ischecked) {
-            let arr = String(options).split(" ");
-            for (let i = 0; i < arr.length; i++) voteWordList[arr[i]] = {
-                num: 0,
-                index: i
-            };
-            document.getElementById("vote__repeat").disabled = true;
-            voteTotalNum = 0;
-            initVoteOptionsPanel(title, options);
-            isRepeat = document.getElementById("vote__repeat").checked;
-            isVoteOn = true;
-            timer_Vote = setTimeout(() => {
-                voteNameList = {};
-                voteWordList = {};
-                isVoteOn = false;
-                document.getElementById("vote__repeat").disabled = false;
-                document.getElementById("vote__switch").checked = false;
-            }, 1e3 * time);
-            document.getElementsByClassName("vote__result")[0].style.display = "block";
-        } else {
-            clearTimeout(timer_Vote);
-            voteNameList = {};
-            voteWordList = {};
-            isVoteOn = false;
-            document.getElementById("vote__repeat").disabled = false;
-        }
-    });
-    document.getElementById("vote__title").addEventListener("click", () => {
-        let a = document.getElementsByClassName("vote__panel")[0];
-        if ("block" != a.style.display) {
-            a.style.display = "block";
-            if ("block" == document.getElementsByClassName("mute__panel")[0].style.display) document.getElementsByClassName("mute__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("enter__panel")[0].style.display) document.getElementsByClassName("enter__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("gift__panel")[0].style.display) document.getElementsByClassName("gift__panel")[0].style.display = "none";
-            if ("block" == document.getElementsByClassName("reply__panel")[0].style.display) document.getElementsByClassName("reply__panel")[0].style.display = "none";
-        } else a.style.display = "none";
-    });
-    document.getElementById("vote__select").onclick = function() {
-        if (0 == this.options.length) return;
-        let title = this.options[this.selectedIndex].text;
-        let options = voteList[title].options;
-        let time = voteList[title].time;
-        document.getElementById("vote__theme").value = title;
-        document.getElementById("vote__options").value = options;
-        document.getElementById("vote__time").value = time;
-    };
-    document.getElementById("vote__add").addEventListener("click", () => {
-        let select_wordList = document.getElementById("vote__select");
-        let title = document.getElementById("vote__theme").value;
-        let options = document.getElementById("vote__options").value;
-        let time = document.getElementById("vote__time").value;
-        if ("" == title || "" == options || "" == time) return;
-        voteList[title] = {
-            options: options,
-            time: time
-        };
-        select_wordList.options.add(new Option(title, ""));
-        saveDate_Vote();
-    });
-    document.getElementById("vote__del").addEventListener("click", () => {
-        let select_wordList = document.getElementById("vote__select");
-        let title = select_wordList.options[select_wordList.selectedIndex].text;
-        delete voteList[title];
-        select_wordList.options.remove(select_wordList.selectedIndex);
-        saveDate_Vote();
-    });
-    document.getElementById("vote__show-result").addEventListener("click", () => {
-        let a = document.getElementsByClassName("vote__result")[0];
-        if ("block" != a.style.display) a.style.display = "block"; else a.style.display = "none";
-    });
-}
-
-function initPkg_Vote_Set() {
-    document.getElementById("vote__switch").checked = isReplyOn;
-    let ret = localStorage.getItem("ExSave_Vote");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        voteList = retJson;
-        let select_wordList = document.getElementById("vote__select");
-        for (var key in retJson) if (retJson.hasOwnProperty(key)) select_wordList.options.add(new Option(key, ""));
-    }
-}
-
-function initPkg_LiveTool_Vote_Handle(text) {
-    if (false == isVoteOn) return;
-    if ("chatmsg" == getType(text)) {
-        let uid = getStrMiddle(text, "uid@=", "/");
-        let txt = getStrMiddle(text, "txt@=", "/");
-        if (isRepeat) {
-            if (Object(voteWordList).hasOwnProperty(txt)) {
-                voteWordList[txt].num++;
-                voteTotalNum++;
-                changeOptionsData();
-            }
-        } else if (false == Object(voteNameList).hasOwnProperty(uid)) if (Object(voteWordList).hasOwnProperty(txt)) {
-            voteNameList[uid] = 0;
-            voteWordList[txt].num++;
-            voteTotalNum++;
-            changeOptionsData();
-        }
-    }
-}
-
-function saveDate_Vote() {
-    let data = voteList;
-    localStorage.setItem("ExSave_Vote", JSON.stringify(data));
-}
-
-function LiveTool_Vote_insertDom_VotePanel() {
-    let a = document.createElement("div");
-    a.className = "vote__result";
-    let panel = `
-        <div id="vote__result-theme">投票主题</div>
-        <div id="vote__result-close">X</div>
-        <div id="vote__result-options"></div>
-    `;
-    a.innerHTML = panel;
-    let b = getValidDom([ ".layout-Player-main", "main" ]);
-    b.insertBefore(a, b.childNodes[0]);
-    let box = document.getElementsByClassName("vote__result")[0];
-    box.onmousedown = function(event) {
-        event.stopPropagation();
-        let xx = event.clientX - box.offsetLeft;
-        let yy = event.clientY - box.offsetTop;
-        let mouseX;
-        let mouseY;
-        document.onmousemove = function(event) {
-            event.stopPropagation();
-            mouseX = event.clientX - xx;
-            mouseY = event.clientY - yy;
-            box.style.left = mouseX + "px";
-            box.style.top = mouseY + "px";
-        };
-        document.onmouseup = function(event) {
-            event.stopPropagation();
-            document.onmousemove = null;
-            document.onmouseup = null;
-        };
-    };
-    document.getElementById("vote__result-close").addEventListener("click", () => {
-        document.getElementsByClassName("vote__result")[0].style.display = "none";
-    });
-}
-
-function initVoteOptionsPanel(theme, options) {
-    document.getElementById("vote__result-theme").innerText = theme;
-    document.getElementById("vote__result-options").innerHTML = "";
-    setVoteOptionsDom(options);
-}
-
-function setVoteOptionsDom(options) {
-    let arr = options.split(" ");
-    let b = document.getElementById("vote__result-options");
-    for (let i = 0; i < arr.length; i++) {
-        let a = document.createElement("div");
-        a.className = "vote__option-wrap";
-        a.innerHTML = `
-            <div class="vote__option-choice">${arr[i]}</div>
-            <div class="vote__option-num"></div>
-            <div class="vote__progress">
-                <div class="vote__progress-bar"></div>
-            </div>
-        `;
-        b.appendChild(a);
-    }
-}
-
-function changeOptionsData() {
-    for (var key in voteWordList) {
-        let item = voteWordList[key];
-        let domNum = document.getElementsByClassName("vote__option-num")[item.index];
-        let domBar = document.getElementsByClassName("vote__progress-bar")[item.index];
-        let percent = String(Number(100 * Number(item.num / voteTotalNum)).toFixed(1)) + "%";
-        domNum.innerText = `${item.num}（${percent}）`;
-        domBar.style.width = percent;
-    }
-}
-
-let myFansBadgeList = [];
-
-let lotteryHasNoticed = {};
-
-let lotteryHTML = "";
-
-let isLotteryNotice = false;
-
-let timer_lottery = 0;
-
-function initPkg_Lottery() {
-    setFansBadgeList();
-    initPkg_Lottery_Dom();
-    initPkg_Lottery_Func();
-    Lottery_Set();
-    timer_lottery = setInterval(() => {
-        initPkg_Lottery_Timer();
-    }, 6e4);
-}
-
-function initPkg_Lottery_Dom() {
-    Lottery_insertModal();
-    Lottery_insertIcon();
-}
-
-function Lottery_insertIcon() {
-    let a = document.createElement("div");
-    a.className = "ex-lottery";
-    a.innerHTML = '<a class="ex-panel__icon" title="全站抽奖信息"><svg style="display:block;" t="1636332741708" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19181" width="32" height="32"><path d="M508.858182 986.042182c-261.748364 0-473.925818-212.177455-473.925818-473.925818S247.109818 38.190545 508.858182 38.190545s473.925818 212.177455 473.925818 473.925819-212.200727 473.925818-473.925818 473.925818m0-981.690182C228.421818 4.352 1.093818 231.703273 1.093818 512.116364s227.351273 507.764364 507.764364 507.764363c280.413091 0 507.787636-227.351273 507.787636-507.764363S789.271273 4.352 508.858182 4.352" fill="#FF4517" p-id="19182"></path><path d="M322.536727 512.302545l0.023273-1.326545-313.064727-1.931636c0 1.093818-0.093091 2.164364-0.093091 3.281454 0 90.88 24.785455 175.918545 67.84 248.925091l270.173091-155.997091a185.274182 185.274182 0 0 1-24.878546-92.951273zM416.791273 350.440727L264.029091 82.013091A492.986182 492.986182 0 0 0 77.498182 262.981818l270.173091 155.997091a186.717091 186.717091 0 0 1 69.12-68.538182zM602.856727 351.697455l151.831273-259.211637A488.261818 488.261818 0 0 0 508.718545 21.690182l0.023273 304.453818c34.350545 0 66.513455 9.355636 94.114909 25.553455zM258.536727 939.450182a488.471273 488.471273 0 0 0 241.710546 63.674182c2.839273 0 5.632-0.139636 8.448-0.186182V698.507636a185.064727 185.064727 0 0 1-94.068364-25.553454l-156.090182 266.496zM927.325091 270.452364l-257.466182 148.666181a185.204364 185.204364 0 0 1 25.041455 93.207273l-0.046546 1.070546 296.168727 1.838545c0.023273-0.977455 0.069818-1.931636 0.069819-2.909091 0-87.994182-23.249455-170.496-63.767273-241.873454zM600.855273 674.094545l148.573091 261.073455a492.776727 492.776727 0 0 0 178.106181-181.387636l-257.466181-148.642909a187.042909 187.042909 0 0 1-69.213091 68.95709z" fill="#FF4517" p-id="19183"></path><path d="M644.142545 512.302545a135.400727 135.400727 0 0 0-135.424-135.400727l-84.619636-160.791273 20.642909 173.824c-42.658909 22.784-71.400727 70.609455-71.400727 122.368a135.447273 135.447273 0 0 0 270.801454 0z m-133.492363 70.097455a68.491636 68.491636 0 1 1 0.023273-136.96 68.491636 68.491636 0 0 1-0.023273 136.96z" fill="#FF4517" p-id="19184"></path></svg><i id="lottery__tip" class="ex-panel__tip"></i></a>';
-    let b = document.getElementsByClassName("ex-panel__wrap")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function Lottery_insertModal() {
-    let a = document.createElement("div");
-    a.className = "exlottery";
-    a.innerHTML = `
-        <div class="lottery__func">
-            <div id="lottery-refresh">
-                <svg t="1636115506027" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2454" width="16" height="16"><path d="M927.999436 531.028522a31.998984 31.998984 0 0 0-31.998984 31.998984c0 51.852948-10.147341 102.138098-30.163865 149.461048a385.47252 385.47252 0 0 1-204.377345 204.377345c-47.32295 20.016524-97.6081 30.163865-149.461048 30.163865s-102.138098-10.147341-149.461048-30.163865a385.47252 385.47252 0 0 1-204.377345-204.377345c-20.016524-47.32295-30.163865-97.6081-30.163865-149.461048s10.147341-102.138098 30.163865-149.461048a385.47252 385.47252 0 0 1 204.377345-204.377345c47.32295-20.016524 97.6081-30.163865 149.461048-30.163865a387.379888 387.379888 0 0 1 59.193424 4.533611l-56.538282 22.035878A31.998984 31.998984 0 1 0 537.892156 265.232491l137.041483-53.402685a31.998984 31.998984 0 0 0 18.195855-41.434674L639.723197 33.357261a31.998984 31.998984 0 1 0-59.630529 23.23882l26.695923 68.502679a449.969005 449.969005 0 0 0-94.786785-10.060642c-60.465003 0-119.138236 11.8488-174.390489 35.217667a449.214005 449.214005 0 0 0-238.388457 238.388457c-23.361643 55.252253-35.22128 113.925486-35.22128 174.390489s11.8488 119.138236 35.217668 174.390489a449.214005 449.214005 0 0 0 238.388457 238.388457c55.252253 23.368867 113.925486 35.217667 174.390489 35.217667s119.138236-11.8488 174.390489-35.217667A449.210393 449.210393 0 0 0 924.784365 737.42522c23.368867-55.270316 35.217667-113.925486 35.217667-174.390489a31.998984 31.998984 0 0 0-32.002596-32.006209z" fill="" p-id="2455"></path></svg>
-            </div>
-            <div class="lottery__notice">
-                <label class="lottery__notice"><input class="lottery__notice" id="lottery-notice" type="checkbox">开启提醒</label>
-            </div>
-        </div>
-        <div class="lottery__nodata">暂无数据</div>
-        <div class="lottery__wrap"></div>
-    `;
-    let b = document.getElementsByClassName("layout-Player-chat")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function initPkg_Lottery_Func() {
-    let dom_notice = document.getElementById("lottery-notice");
-    document.getElementsByClassName("ex-lottery")[0].addEventListener("click", () => {
-        showExRightPanel("全站抽奖信息");
-        let dom = document.getElementsByClassName("lottery__wrap")[0];
-        if (dom) dom.innerHTML = lotteryHTML;
-    });
-    document.getElementById("lottery-refresh").addEventListener("click", debounce(() => {
-        initPkg_Lottery_Timer();
-    }, 3e3));
-    dom_notice.addEventListener("click", () => {
-        let ischecked = dom_notice.checked;
-        if (true == ischecked) isLotteryNotice = true; else isLotteryNotice = false;
-        saveData_Lottery();
-    });
-}
-
-async function initPkg_Lottery_Timer() {
-    if (Object.keys(lotteryHasNoticed).length > 100) lotteryHasNoticed = {};
-    let html = "";
-    let lotteryList = await getExLotteryList();
-    if (!lotteryList.data.list) return;
-    for (let i = 0; i < lotteryList.data.list.length; i++) {
-        let item = lotteryList.data.list[i];
-        if (0 !== item.status) continue;
-        let lotteryInfo = await getExLotteryInfo(item.room_id);
-        let condition = lotteryInfo.data.join_condition;
-        let joinText = "command_content" in condition ? `发送弹幕` : `赠送 ${condition.gift_name}（${condition.gift_price}）x` + condition.gift_num;
-        let expireTime = Number(lotteryInfo.data.start_at) + Number(lotteryInfo.data.join_condition.expire_time);
-        let expireText = getTimeDiff(1e3 * expireTime, new Date().getTime());
-        expireText = -1 == expireText ? "已结束" : "距结束：" + expireText;
-        let canJoin = -1 !== myFansBadgeList.indexOf(String(item.room_id)) || condition.lottery_range <= 1;
-        if (canJoin && isLotteryNotice) {
-            let keyName = lotteryInfo.data.prize_name + `|` + lotteryInfo.data.start_at;
-            if (!(keyName in lotteryHasNoticed)) {
-                lotteryHasNoticed[keyName] = 1;
-                showMessage(`<a style="font-size:14px;border:none;" target="_blank" href="https://www.douyu.com/${item.room_id}">【${lotteryInfo.data.prize_name}x${lotteryInfo.data.prize_num}】${joinText}</a>`, "special", {
-                    timeout: 100
-                });
-            }
-        }
-        html += `
-            <a class="lottery__a" href="https://www.douyu.com/${item.room_id}" target="_blank">
-                <div class="lottery__item">
-                    <div class="lottery__img">
-                        <div class="lottery__anchor">${item.anchor_name}</div>
-                        <img loading="lazy" src="${item.verticalSrc}"/>
-                        <div class="lottery__expireTime">${expireText}</div>
-                    </div>
-                    <div class="lottery__info">
-                        <div class="lottery__prize">${lotteryInfo.data.prize_name}x${lotteryInfo.data.prize_num}</div>
-                        <div class="lottery__jointext">${joinText}</div>
-                        <div style="color:${canJoin ? "#64ce83" : "#e74c3c"}" class="lottery__condition">${getJoinCondition(condition)}</div>
-                    </div>
-                </div>
-            </a>
-        `;
-    }
-    let domNodata = document.getElementsByClassName("lottery__nodata")[0];
-    if ("" !== html.trim()) domNodata.style.display = "none"; else domNodata.style.display = "block";
-    lotteryHTML = html;
-    let dom = document.getElementsByClassName("lottery__wrap")[0];
-    if (dom) dom.innerHTML = lotteryHTML;
-}
-
-function getJoinCondition(condition) {
-    let ret = "";
-    switch (condition.lottery_range) {
-      case 0:
-        ret = "所有人可参与";
-        break;
-
-      case 1:
-        ret = "关注主播";
-        break;
-
-      case 2:
-        ret = "成为粉丝";
-        break;
-
-      case 3:
-        ret = "关注主播+成为粉丝";
-        break;
-
-      default:
-        break;
-    }
-    return ret;
-}
-
-function getExLotteryList() {
-    return new Promise((resolve, reject) => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "https://www.douyu.com/lapi/interact/lottery/getHallList",
-            responseType: "json",
-            onload: response => {
-                let ret = response.response;
-                resolve(ret);
-            },
-            onerror: err => {
-                reject(err);
-            }
-        });
-    });
-}
-
-function getExLotteryInfo(room_id) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/member/lottery/activity_info?room_id=" + room_id, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            reject(err);
-        });
-    });
-}
-
-async function setFansBadgeList() {
-    let ret = [];
-    let doc = await fetch("https://www.douyu.com/member/cp/getFansBadgeList", {
-        method: "GET",
-        mode: "no-cors",
-        cache: "default",
-        credentials: "include"
-    }).then(res => res.text()).catch(err => {
-        console.log("请求失败!", err);
-    });
-    doc = new DOMParser().parseFromString(doc, "text/html");
-    let a = doc.getElementsByClassName("fans-badge-list")[0].lastElementChild;
-    let n = a.children.length;
-    for (let i = 0; i < n; i++) {
-        let rid = a.children[i].getAttribute("data-fans-room");
-        ret.push(rid);
-    }
-    myFansBadgeList = ret;
-}
-
-function saveData_Lottery() {
-    let data = {
-        isNotice: isLotteryNotice
-    };
-    localStorage.setItem("ExSave_Lottery", JSON.stringify(data));
-}
-
-function Lottery_Set() {
-    let ret = localStorage.getItem("ExSave_Lottery");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if (true == retJson.isNotice) document.getElementById("lottery-notice").click();
-    }
-}
-
 function initPkg_Menu() {
-    GM_registerMenuCommand(`检查更新`, () => {
-        Update_checkVersion(true);
+    GM_registerMenuCommand(`DouyuEx Lite ` + curVersion, () => {
+        showMessage(`DouyuEx Lite ` + curVersion, "info");
     });
 }
 
@@ -5907,262 +2925,6 @@ function initPkg_Monitor_Func() {
     document.getElementsByClassName("ex-monitor")[0].addEventListener("click", function() {
         openPage("https://www.douyuex.com/" + String(rid));
     });
-}
-
-const MONTH_COST_CACHE_KEY = "ExSave_MonthCost";
-
-const MONTH_COST_SEE_STATUS_KEY = "ExSave_MonthCost_SeeStatus";
-
-let totalMonthCost = 0;
-
-let typeDetail = [];
-
-let svg_see = `<svg t="1619141525444" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4635" width="16" height="16" style="/* display: inline-block; */"><path d="M1009.592 531.212C863.184 730.624 696.96 832 512 832c-184.96 0-351.184-101.376-497.592-300.788C10.384 525.864 8 519.212 8 512s2.384-13.864 6.408-19.212C160.816 293.376 327.04 192 512 192c184.96 0 351.184 101.376 497.592 300.788 4.024 5.348 6.408 12 6.408 19.212s-2.384 13.864-6.408 19.212zM512 768c156.864 0 300.54-84.332 432.012-256C812.54 340.332 668.864 256 512 256c-156.864 0-300.54 84.332-432.012 256C211.46 683.668 355.136 768 512 768z m0-64c-106.04 0-192-85.96-192-192s85.96-192 192-192 192 85.96 192 192-85.96 192-192 192z m0-64c70.692 0 128-57.308 128-128s-57.308-128-128-128-128 57.308-128 128 57.308 128 128 128z" p-id="4636" fill="#707070"></path></svg>`;
-
-let svg_unsee = `<svg t="1619143157694" class="icon" viewBox="0 0 1186 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1733" width="16" height="16"><path d="M591.707784 915.740462A642.870487 642.870487 0 0 1 2.965954 526.459025a39.298888 39.298888 0 0 1 0-28.91805 632.489649 632.489649 0 0 1 584.292899-388.539948h8.897862a630.265183 630.265183 0 0 1 584.292899 388.539948 39.298888 39.298888 0 0 1 0 28.91805 637.680068 637.680068 0 0 1-336.635757 337.377245 646.577929 646.577929 0 0 1-252.106073 51.904192zM77.856287 512.370744a565.755688 565.755688 0 0 0 1026.961505 0 556.116338 556.116338 0 0 0-508.661077-329.220872h-8.897862a556.857827 556.857827 0 0 0-509.402566 329.220872z" p-id="1734" fill="#707070"></path><path d="M590.966296 732.592814a218.739093 218.739093 0 1 1 222.446535-218.739093 218.739093 218.739093 0 0 1-222.446535 218.739093z m0-362.587852a144.590248 144.590248 0 1 0 148.29769 143.848759 148.29769 148.29769 0 0 0-148.29769-143.848759z" p-id="1735" fill="#707070"></path><path d="M1137.443284 1023.997776a37.074423 37.074423 0 0 1-24.469119-8.897862L20.761677 65.253208A37.074423 37.074423 0 0 1 68.958426 8.900086l1092.212489 946.880752a37.074423 37.074423 0 0 1 0 52.64568 35.591446 35.591446 0 0 1-23.727631 15.571258z" p-id="1736" fill="#707070"></path></svg>`;
-
-let seeStatus = 0;
-
-function MonthCost_getContainerDom() {
-    return document.getElementsByClassName("month-cost")[0];
-}
-
-function MonthCost_getMoneyDom() {
-    return document.getElementById("monthcost__money");
-}
-
-function MonthCost_getIconDom() {
-    return document.getElementsByClassName("monthcost__icon")[0];
-}
-
-function MonthCost_renderSeeStatus() {
-    const iconDom = MonthCost_getIconDom();
-    const moneyDom = MonthCost_getMoneyDom();
-    if (!iconDom || !moneyDom) return;
-    if (1 === seeStatus) iconDom.innerHTML = svg_see; else {
-        moneyDom.innerText = "***";
-        iconDom.innerHTML = svg_unsee;
-    }
-    MonthCost_ContentAttrTitle();
-}
-
-function initPkg_MonthCost() {
-    initPkg_MonthCost_Dom();
-    initPkg_MonthCost_Func();
-    seeStatus = MonthCost_getSeeStatus();
-    MonthCost_renderSeeStatus();
-    if (1 === seeStatus) MonthCost_updateCost();
-}
-
-function initPkg_MonthCost_Dom() {
-    MonthCost_insertIcon();
-}
-
-function MonthCost_insertIcon() {
-    let a = document.createElement("span");
-    a.className = "month-cost";
-    a.innerHTML = `
-	本月消费 <span id="monthcost__money">***</span> 元
-	<span class="monthcost__icon"></span>
-	`;
-    a.title = "数据每日更新，根据个人中心消费数据统计";
-    let b = getValidDom([ "#js-backpack-enter" ]);
-    if (b) {
-        b = b.parentElement;
-        b && b.insertBefore(a, b.childNodes[0]);
-    }
-}
-
-function initPkg_MonthCost_Func() {
-    const iconDom = MonthCost_getIconDom();
-    if (!iconDom) return;
-    iconDom.addEventListener("click", () => {
-        seeStatus = 1 === seeStatus ? 0 : 1;
-        MonthCost_saveSeeStatus();
-        MonthCost_renderSeeStatus();
-        if (1 === seeStatus) MonthCost_updateCost();
-    });
-}
-
-function MonthCost_saveSeeStatus() {
-    localStorage.setItem(MONTH_COST_SEE_STATUS_KEY, String(seeStatus));
-}
-
-function MonthCost_getSeeStatus() {
-    let storage = localStorage.getItem(MONTH_COST_SEE_STATUS_KEY);
-    if (null == storage) return 0;
-    return 1 === Number(storage) ? 1 : 0;
-}
-
-function MonthCost_queryData(url) {
-    return new Promise(resolve => {
-        fetch(url, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include"
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(() => {
-            resolve({
-                error: -1,
-                data: []
-            });
-        });
-    });
-}
-
-async function getMonthCost_gift() {
-    const [ start, end ] = getMonthTimeRange();
-    const [ formattedStart, formattedEnd ] = getFormattedMonthTimeRange();
-    const direction = 1;
-    let data = [];
-    let hasMoreData = true;
-    let id = 0;
-    while (hasMoreData) {
-        let url = `https://www.douyu.com/wjapi/nc/exchange/consume/giftList?queryType=0&consumeType=0&startDate=${start}&endDate=${end}&tradeStartDate=${formattedStart}&tradeEndDate=${formattedEnd}&direction=` + direction;
-        if (0 !== id) url += `&id=` + id;
-        let ret = await MonthCost_queryData(url);
-        if (1e3 == ret.error) await new Promise(resolve => setTimeout(resolve, 2e3)); else {
-            let nextData = ret && ret.data || [];
-            data = data.concat(nextData);
-            if (nextData.length < 20) hasMoreData = false; else id = nextData[nextData.length - 1].id;
-        }
-    }
-    let categorizedData = {};
-    for (var item of data) {
-        let money = Math.abs(item.amount);
-        totalMonthCost += money;
-        let key = item.consumeTypeDesc || "其他";
-        if (!categorizedData[key]) categorizedData[key] = 0;
-        categorizedData[key] += money;
-    }
-    for (var title in categorizedData) typeDetail.push({
-        title: title,
-        money: categorizedData[title]
-    });
-}
-
-async function getMonthCost_diamondFans() {
-    let type = 0;
-    let page = 1;
-    let data = [];
-    let hasMoreData = true;
-    let now = new Date();
-    let nowMonth = now.getMonth();
-    let nowYear = now.getFullYear();
-    while (hasMoreData) {
-        let url = `https://www.douyu.com/japi/interactnc/web/dFansbadge/myLogs?type=${type}&page=` + page;
-        let ret = await MonthCost_queryData(url);
-        let list = ((ret || {}).data || {}).list || [];
-        for (var item of list) {
-            let consumeDate = new Date(1e3 * item.consumeTime);
-            if (consumeDate.getMonth() === nowMonth && consumeDate.getFullYear() === nowYear) data.push(item);
-        }
-        if (!list[list.length - 1]) break;
-        let lastItemDate = new Date(1e3 * list[list.length - 1].consumeTime);
-        if (list.length < 20 || lastItemDate.getMonth() !== nowMonth || lastItemDate.getFullYear() !== nowYear) hasMoreData = false; else page++;
-    }
-    let diamondFansMoney = 0;
-    for (const item of data) diamondFansMoney += Math.abs(item.consumeMoney);
-    if (diamondFansMoney > 0) typeDetail.push({
-        title: "钻粉充值/续费",
-        money: diamondFansMoney
-    });
-    totalMonthCost += diamondFansMoney;
-}
-
-async function getMonthCost() {
-    totalMonthCost = 0;
-    typeDetail = [];
-    await getMonthCost_gift();
-    await getMonthCost_diamondFans();
-    MonthCost_saveData();
-    MonthCost_ContentAttrTitle();
-    let moneyDom = MonthCost_getMoneyDom();
-    if (moneyDom) moneyDom.innerText = String(totalMonthCost / 100);
-}
-
-function MonthCost_ContentAttrTitle() {
-    let containerDom = MonthCost_getContainerDom();
-    if (!containerDom) return;
-    if (1 === seeStatus && typeDetail.length > 0) {
-        let titleContent = "数据每日更新，根据个人中心消费数据统计。\n--- ---\n";
-        typeDetail.forEach(detail => {
-            titleContent += `${detail.title}: ${String(detail.money / 100)} 元\n`;
-        });
-        containerDom.title = titleContent;
-    } else containerDom.title = "数据每日更新，根据个人中心消费数据统计。";
-}
-
-function getFormattedMonthTimeRange() {
-    let now = new Date();
-    let nowMonth = now.getMonth();
-    let nowYear = now.getFullYear();
-    let monthStartDate = new Date(nowYear, nowMonth, 1);
-    let formatDate = date => {
-        let year = date.getFullYear();
-        let month = (date.getMonth() + 1).toString().padStart(2, "0");
-        let day = date.getDate().toString().padStart(2, "0");
-        return `${year}-${month}-` + day;
-    };
-    return [ formatDate(monthStartDate), formatDate(now) ];
-}
-
-function getMonthTimeRange() {
-    let now = new Date();
-    let nowMonth = now.getMonth();
-    let nowYear = now.getFullYear();
-    let monthStartDate = new Date(nowYear, nowMonth, 1);
-    return [ Math.round(new Date(monthStartDate).getTime() / 1e3).toString(), Math.round(now.getTime() / 1e3).toString() ];
-}
-
-function MonthCost_saveData() {
-    let data = {
-        monthCost: totalMonthCost,
-        updateTime: new Date().getTime(),
-        typeDetail: typeDetail
-    };
-    let storage = localStorage.getItem(MONTH_COST_CACHE_KEY);
-    if (null !== storage) try {
-        storage = JSON.parse(storage);
-    } catch (e) {
-        storage = {};
-    } else storage = {};
-    storage[my_uid] = data;
-    localStorage.setItem(MONTH_COST_CACHE_KEY, JSON.stringify(storage));
-}
-
-function MonthCost_getData() {
-    let storage = localStorage.getItem(MONTH_COST_CACHE_KEY);
-    if (null !== storage) try {
-        storage = JSON.parse(storage);
-    } catch (e) {
-        storage = {};
-    } else storage = {};
-    return storage;
-}
-
-function MonthCost_updateCost() {
-    if (1 !== seeStatus) return;
-    let timeDiff = 1;
-    let tmpCost = 0;
-    let tmpTypeDetail = [];
-    let now = new Date().getDate();
-    let storage = MonthCost_getData();
-    if (my_uid in storage) {
-        let item = storage[my_uid];
-        timeDiff = Math.abs(now - new Date(item.updateTime).getDate());
-        tmpCost = item.monthCost;
-        tmpTypeDetail = item.typeDetail || [];
-        let moneyDom = MonthCost_getMoneyDom();
-        if (moneyDom) moneyDom.innerText = String(tmpCost / 100);
-        typeDetail = tmpTypeDetail;
-        MonthCost_ContentAttrTitle();
-    } else {
-        let moneyDom = MonthCost_getMoneyDom();
-        if (moneyDom) moneyDom.innerHTML = `<span class="PlayerToolbar-dataLoadding"></span>`;
-    }
-    if (timeDiff >= 1) getMonthCost();
 }
 
 let svg_night = '<svg t="1587640254282" class="icon" viewBox="0 0 1055 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5670" width="26" height="26"><path d="M388.06497 594.013091c-96.566303-167.253333-39.067152-381.889939 128.217212-478.487273a348.656485 348.656485 0 0 1 256.248242-36.864C623.491879-5.306182 435.417212-11.170909 276.542061 80.616727 37.236364 218.763636-44.776727 524.815515 93.401212 764.152242c138.146909 239.305697 444.198788 321.318788 683.535515 183.140849 158.875152-91.725576 247.870061-257.520485 249.669818-428.559515a348.656485 348.656485 0 0 1-160.085333 203.496727c-167.253333 96.566303-381.889939 39.036121-478.487273-128.217212" p-id="5671" fill="#8a8a8a"></path></svg>';
@@ -6206,7 +2968,10 @@ function initPkg_Night_Set_Fast() {
     if (null != ret) {
         let retJson = JSON.parse(ret);
         if ("mode" in retJson == false) retJson.mode = 0;
-        if (1 == retJson.mode) setNightMode();
+        if (1 == retJson.mode) {
+            currentMode = 1;
+            setNightMode();
+        }
     }
 }
 
@@ -6466,17 +3231,81 @@ function getUserLevelNightModeStyle() {
     return ret;
 }
 
+const Night_parentOrigins = [ "https://www.douyu.com", "https://douyu.com" ];
+
+const Night_yubaOrigin = "https://yuba.douyu.com";
+
+const Night_boundFrames = new WeakSet();
+
+let Night_frameHook = null;
+
+let Night_embeddedStarted = false;
+
 function watchBottomIframe() {
-    new DomHook(".BottomGroup", true, m => {
-        if (0 == currentMode) return;
-        if (1 == m.length) setNightModeIframe();
+    if (Night_frameHook) return;
+    window.addEventListener("message", event => {
+        if (event.origin !== Night_yubaOrigin || "douyuex:night-ready" !== event.data?.type) return;
+        const iframe = Night_getBottomIframe();
+        if (iframe && event.source === iframe.contentWindow) Night_sendFrameMode(iframe);
     });
+    Night_frameHook = new DomHook(".BottomGroup", true, () => Night_syncBottomIframe());
+    Night_syncBottomIframe();
+}
+
+function Night_getBottomIframe() {
+    const iframe = document.querySelector(".BottomGroup iframe");
+    if (!iframe) return null;
+    try {
+        const src = new URL(iframe.getAttribute("src") || "", location.href);
+        return src.origin === Night_yubaOrigin ? iframe : null;
+    } catch (_) {
+        return null;
+    }
+}
+
+function Night_sendFrameMode(iframe) {
+    if (iframe !== Night_getBottomIframe()) return;
+    iframe.contentWindow?.postMessage({
+        type: "douyuex:night-mode",
+        mode: 1 === currentMode ? 1 : 0
+    }, Night_yubaOrigin);
+}
+
+function Night_syncBottomIframe(force = false) {
+    const iframe = Night_getBottomIframe();
+    if (!iframe) return;
+    const fresh = !Night_boundFrames.has(iframe);
+    if (fresh) {
+        Night_boundFrames.add(iframe);
+        iframe.addEventListener("load", () => Night_sendFrameMode(iframe));
+    }
+    if (fresh || force) Night_sendFrameMode(iframe);
 }
 
 function setNightModeIframe() {
-    let dom = document.getElementsByClassName("BottomGroup")[0].getElementsByTagName("iframe")[0];
-    if (void 0 == dom) return;
-    StyleHook_setIframe(dom.contentWindow.document, "Ex_Style_NightModeIframe", `
+    Night_syncBottomIframe(true);
+}
+
+function cancelNightModeIframe() {
+    Night_syncBottomIframe(true);
+}
+
+function initPkg_Night_EmbeddedYuba() {
+    if (Night_embeddedStarted || window.parent === window || location.origin !== Night_yubaOrigin) return;
+    Night_embeddedStarted = true;
+    window.addEventListener("message", event => {
+        if (event.source !== window.parent || !Night_parentOrigins.includes(event.origin)) return;
+        const data = event.data;
+        if ("douyuex:night-mode" !== data?.type || 0 !== data.mode && 1 !== data.mode) return;
+        if (1 === data.mode) StyleHook_set("Ex_Style_NightModeIframe", Night_getIframeStyles()); else StyleHook_remove("Ex_Style_NightModeIframe");
+    });
+    for (var origin of Night_parentOrigins) window.parent.postMessage({
+        type: "douyuex:night-ready"
+    }, origin);
+}
+
+function Night_getIframeStyles() {
+    return `
     body,#groupListBox,.mainbg,.wb_card-wbCardDetail-1wzCV,.video-imgWrap-3Mf6v{background: rgb(35,36,39) !important;}
     .wb_card-wbCardWrap-22KrE,.wb_card-topListItemBox-1ui_g{border-bottom: 1px solid rgb(47,48,53) !important;}
     .wb_card-wbInfo-19JiQ a,.wb_card-wbText-2fk2Y{color: rgb(204,204,204) !important;}
@@ -6558,11 +3387,7 @@ function setNightModeIframe() {
     .wb_card-groupnameAndGrouplevel-EbL7t{background: rgb(47,48,53)!important;color: rgb(125,125,125)!important;}
     .wb_handle-wbRowLine-6D3SZ a{background: rgb(47,48,53)!important;color: rgb(125,125,125)!important;}
     .wb_handle-line-Dd0zJ{color: rgb(125,125,125)!important;}
-    `);
-}
-
-function cancelNightModeIframe() {
-    StyleHook_removeIframe(document.getElementsByClassName("BottomGroup")[0].getElementsByTagName("iframe")[0].contentWindow.document, "Ex_Style_NightModeIframe");
+    `;
 }
 
 function NoLogin_applyDouyuRateRecord() {
@@ -6584,94 +3409,82 @@ function initPkg_NoLogin() {
 var videoPlayerArr = [];
 
 function initPkg_PopupPlayer() {
-    initPkg_PopupPlayer_Dom();
+    if (document.getElementById("popup-player__prompt")) return;
+    PopupPlayer_insertPrompt();
     initPkg_PopupPlayer_Func();
 }
 
-function initPkg_PopupPlayer_Dom() {
-    PopupPlayer_insertIcon();
-    PopupPlayer_insertPrompt();
+function PopupPlayer_openPrompt() {
+    initPkg_PopupPlayer();
+    const prompt = document.getElementById("popup-player__prompt");
+    prompt.style.display = "block";
+    document.getElementById("popup-player__url").focus();
 }
 
-function PopupPlayer_insertIcon() {
-    let a = document.createElement("div");
-    a.className = "popup-player";
-    a.innerHTML = '<a class="ex-panel__icon" title="同屏播放"><svg style="display:block;" t="1579448049771" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1804" width="30" height="30"><path d="M353.024 900.416H109.952c-57.856 0-109.952-46.336-109.952-98.432V153.6c0-52.096 52.096-98.432 109.952-98.432h810.176c57.856 0 104.192 46.336 104.192 98.496v185.472c0 28.928-23.168 52.096-46.336 52.096s-46.272-23.168-46.272-52.096V159.36H98.368V807.68h248.896c34.688 0 52.032 17.408 52.032 46.336 0 28.928-17.344 46.272-46.272 46.272" fill="#f26b1f" p-id="1805"></path><path d="M619.2 631.488c-5.76 0-5.76 5.76-5.76 11.52v223.04c0 5.76 5.76 11.52 5.76 11.52h289.344c5.76 0 11.584-5.76 11.584-11.52v-222.976c0-5.824-5.76-11.584-11.52-11.584H619.136z m289.344 338.688h-289.28a103.68 103.68 0 0 1-104.192-104.128v-222.976c0-57.92 46.272-109.952 104.128-109.952h289.344c57.856 0 104.128 46.272 104.128 109.952v222.976c5.824 57.856-40.448 104.128-104.128 104.128z" fill="#f26b1f" p-id="1806"></path></svg><i id="popup-player__tip" class="ex-panel__tip"></i></a>';
-    let b = document.getElementsByClassName("ex-panel__wrap")[0];
-    b.insertBefore(a, b.childNodes[0]);
+function PopupPlayer_roomUrl(value) {
+    const text = String(value).trim();
+    if (/^\d+$/.test(text)) return "https://www.douyu.com/" + text;
+    try {
+        const url = new URL(text);
+        if (!/^https?:$/.test(url.protocol) || ![ "douyu.com", "www.douyu.com" ].includes(url.hostname) || url.port || url.username || url.password) return "";
+        if (!/^\/[a-zA-Z0-9_-]+\/?$/.test(url.pathname)) return "";
+        return "https://www.douyu.com" + url.pathname;
+    } catch (error) {
+        return "";
+    }
 }
 
 function PopupPlayer_insertPrompt() {
-    let a = document.createElement("div");
-    let html = "";
-    a.className = "postbird-box-container";
-    a.id = "popup-player__prompt";
-    html += '<div class="postbird-box-dialog">';
-    html += '<div style="min-height:170px" class="postbird-box-content">';
-    html += '<div class="postbird-box-header">';
-    html += '<span class="postbird-box-title"><span>请输入直播间/直播流地址：</span><a style="float:right;color:royalblue;" href="http://live.douyuex.com/" target="_blank">DouyuEx联播</a></span>';
-    html += "</div>";
-    html += '<div class="postbird-box-text">';
-    html += '<input id="popup-player__url" value="https://www.douyu.com/4042402" style="height:30px;box-sizing:border-box" type="text" class="postbird-prompt-input" autofocus="true">';
-    html += '<label style="margin-right:30px" title="【直播流模式】&#10;1. 速度快&#10;2. 延迟低&#10;3. 占用少&#10;4. 不会进入直播间&#10;5. 支持斗鱼/虎牙/Bilibili"><input id="popup-player__noiframe" type="radio" name="sex" value="无弹幕" checked="checked">无弹幕(推荐)</label>';
-    html += '<label title="【框架模式】&#10;1. 速度慢&#10;2. 占用高&#10;3. 会进入直播间&#10;4. 仅支持斗鱼&#10;此模式拖动不是很灵活，请尽量在标题栏小幅度拖动&#10;若拖动无反应请点击页面任意处触发移动"><input id="popup-player__iframe" type="radio" name="sex" value="有弹幕">有弹幕</label>';
-    html += "</div>";
-    html += '<div class="postbird-box-footer"><button id="popup-player__cancel" class="btn-footer btn-left-footer btn-footer-cancel" style="color:undefined;">取消</button><button id="popup-player__ok" class="btn-footer btn-right-footer btn-footer-ok" style="color:#0e90d2;">确定</button></div></div>';
-    a.innerHTML = html;
-    let b = getValidDom([ ".layout-Main", ".playerWrap__8wGvw", ".live-next-body" ]);
-    b.insertBefore(a, b.childNodes[0]);
+    const prompt = document.createElement("div");
+    prompt.className = "postbird-box-container";
+    prompt.id = "popup-player__prompt";
+    prompt.innerHTML = `
+        <div class="postbird-box-dialog"><div class="postbird-box-content" style="min-height:170px">
+            <div class="postbird-box-header"><span class="postbird-box-title">斗鱼同屏播放</span></div>
+            <div class="postbird-box-text">
+                <input id="popup-player__url" placeholder="斗鱼房间号或直播间地址" style="height:30px;box-sizing:border-box" type="text" class="postbird-prompt-input">
+                <label style="margin-right:30px" title="播放斗鱼直播流"><input id="popup-player__noiframe" type="radio" name="ex-popup-mode" checked>无弹幕</label>
+                <label title="在小窗打开斗鱼直播间"><input id="popup-player__iframe" type="radio" name="ex-popup-mode">有弹幕</label>
+            </div>
+            <div class="postbird-box-footer"><button id="popup-player__cancel" class="btn-footer btn-left-footer btn-footer-cancel">取消</button><button id="popup-player__ok" class="btn-footer btn-right-footer btn-footer-ok">确定</button></div>
+        </div></div>`;
+    const host = getValidDom([ ".layout-Main", ".playerWrap__8wGvw", ".live-next-body" ]) || document.body;
+    host.insertBefore(prompt, host.firstChild);
 }
 
 function initPkg_PopupPlayer_Func() {
-    document.getElementsByClassName("popup-player")[0].addEventListener("click", function() {
-        document.getElementById("popup-player__prompt").style.display = "block";
+    const prompt = document.getElementById("popup-player__prompt");
+    document.getElementById("popup-player__cancel").addEventListener("click", () => {
+        prompt.style.display = "none";
     });
-    document.getElementById("popup-player__cancel").addEventListener("click", function() {
-        document.getElementById("popup-player__prompt").style.display = "none";
+    document.getElementById("popup-player__ok").addEventListener("click", () => {
+        const roomUrl = PopupPlayer_roomUrl(document.getElementById("popup-player__url").value);
+        if (!roomUrl) {
+            showMessage("请输入斗鱼房间号或直播间地址", "error");
+            return;
+        }
+        if (document.getElementById("popup-player__noiframe").checked) {
+            const room = new URL(roomUrl).pathname.replace(/\//g, "");
+            if (/^\d+$/.test(room)) createNewVideo(videoPlayerArr.length, room, "Douyu"); else getRealRid_Douyu(roomUrl, roomId => createNewVideo(videoPlayerArr.length, roomId, "Douyu"));
+        } else createNewVideo_iframe(videoPlayerArr.length, roomUrl);
+        prompt.style.display = "none";
     });
-    document.getElementById("popup-player__ok").addEventListener("click", function() {
-        let roomUrl = document.getElementById("popup-player__url").value;
-        if ("" != roomUrl) {
-            let isIframe = document.getElementById("popup-player__noiframe").checked;
-            let isStream = false;
-            if (roomUrl.length > 150) {
-                let confirm = window.confirm("你输入的是直播流吗？");
-                if (true == confirm) isStream = true;
-            }
-            if (isStream) createNewVideo_Stream(videoPlayerArr.length, roomUrl); else if (true == isIframe) if (-1 != roomUrl.indexOf("douyu.com")) getRealRid_Douyu(roomUrl, rid => {
-                createNewVideo(videoPlayerArr.length, rid, "Douyu");
-            }); else if (-1 != roomUrl.indexOf("bilibili.com")) getRealRid_Bilibili(roomUrl, rid => {
-                createNewVideo(videoPlayerArr.length, rid, "Bilibili");
-            }); else if (-1 != roomUrl.indexOf("huya.com")) createNewVideo(videoPlayerArr.length, roomUrl, "Huya"); else createNewVideo_Stream(videoPlayerArr.length, roomUrl); else createNewVideo_iframe(videoPlayerArr.length, roomUrl);
-        } else showMessage("请输入地址", "error");
-        document.getElementById("popup-player__prompt").style.display = "none";
-    });
-    document.getElementById("popup-player__prompt").addEventListener("keydown", function(event) {
-        let theEvent = window.event || e;
-        let code = theEvent.keyCode || theEvent.which || theEvent.charCode;
-        if (13 == code) document.getElementById("popup-player__ok").click();
+    prompt.addEventListener("keydown", event => {
+        if ("Enter" === event.key) document.getElementById("popup-player__ok").click();
+        if ("Escape" === event.key) prompt.style.display = "none";
     });
 }
 
-function createNewVideo(id, rid, platform) {
-    switch (platform) {
-      case "Douyu":
-        createNewVideo_Douyu(id, rid);
-        break;
+function createNewVideo(id, roomId, platform) {
+    if (platform && "Douyu" !== platform) return;
+    if (!/^\d+$/.test(String(roomId))) return;
+    createNewVideo_Douyu(id, roomId);
+}
 
-      case "Bilibili":
-        createNewVideo_Bilibili(id, rid);
-        break;
-
-      case "Huya":
-        let a = String(rid).split("/");
-        createNewVideo_Huya(id, a[a.length - 1], a[a.length - 1]);
-        break;
-
-      default:
-        createNewVideo_Douyu(id, rid);
-        break;
-    }
+function PopupPlayer_destroy(id) {
+    const player = videoPlayerArr[id];
+    if (player && "function" === typeof player.destroy) player.destroy();
+    videoPlayerArr[id] = null;
 }
 
 function setElementVideo(id, l) {
@@ -6748,7 +3561,7 @@ function setElementDrag(id) {
 
 function createNewVideo_Douyu(id, rid) {
     getRealLive_Douyu(rid, true, false, "1", lurl => {
-        if ("" != lurl || null != lurl) {
+        if (lurl && "None" !== lurl) {
             if ("None" == lurl) {
                 showMessage("房间未开播或其他错误", "error");
                 return;
@@ -6810,19 +3623,19 @@ function setElementFunc_Douyu(id, rid) {
     let exVideoClose = document.getElementById("exVideoClose" + String(id));
     exVideoQn.onchange = function() {
         getRealLive_Douyu(rid, true, false, exVideoQn.value, lurl => {
-            videoPlayerArr[id].destroy();
+            PopupPlayer_destroy(id);
             setElementVideo(id, lurl);
         });
     };
     exVideoCDN.onchange = function() {
         getRealLive_Douyu(rid, true, false, exVideoQn.value, lurl => {
-            videoPlayerArr[id].destroy();
+            PopupPlayer_destroy(id);
             setElementVideo(id, lurl);
         });
     };
     exVideoClose.onclick = function() {
-        originVideo.style.display = "block";
-        videoPlayerArr[id].destroy();
+        if (originVideo) originVideo.style.display = "block";
+        PopupPlayer_destroy(id);
         exVideoPlayer.remove();
         box.remove();
     };
@@ -6834,14 +3647,15 @@ function setElementFunc_Douyu(id, rid) {
         });
     };
     if (exVideoEmbed) exVideoEmbed.onclick = function() {
+        if (!originVideo) return;
         originVideo.style.display = "none";
         exVideoEmbed.style.display = "none";
         exVideoUnEmbed.style.display = "inline";
         box.style.height = "0px";
         originVideo.parentElement.insertBefore(exVideoPlayer, originVideo);
     };
-    if (exVideoUnEmbed) exVideoUnEmbed.onclick = function() {
-        originVideo.style.display = "block";
+    if (exVideoUnEmbed && originVideo) exVideoUnEmbed.onclick = function() {
+        if (originVideo) originVideo.style.display = "block";
         exVideoUnEmbed.style.display = "none";
         exVideoEmbed.style.display = "inline";
         box.style.height = "250px";
@@ -6851,7 +3665,7 @@ function setElementFunc_Douyu(id, rid) {
 
 function createNewAudio_Douyu(id, rid) {
     getRealLive_Douyu(rid, false, true, "1", lurl => {
-        if ("" != lurl || null != lurl) {
+        if (lurl && "None" !== lurl) {
             if ("None" == lurl) {
                 showMessage("房间未开播或其他错误", "error");
                 return;
@@ -6882,202 +3696,9 @@ function createNewAudio_Douyu(id, rid) {
     });
 }
 
-function createNewVideo_Bilibili(id, rid) {
-    getRealLive_Bilibili(rid, "1", "1", lurl => {
-        if ("" != lurl || null != lurl) {
-            let a = document.createElement("div");
-            let html = "";
-            a.id = "exVideoDiv" + String(id);
-            a.rid = rid;
-            a.className = "exVideoDiv";
-            html += "<div class='exVideoInfo' id='exVideoInfo" + String(id) + "'><a title='进入直播间' target='_blank' href='https://live.bilibili.com/" + rid + "'><span class='exVideoRID' id='exVideoRID" + String(id) + "' style='color:white'>" + "Bilibili - " + rid + "</span></a>";
-            html += "<select class='exVideoQn' id='exVideoQn" + String(id) + "'><option value='1'>流畅</option><option value='2'>高清</option><option value='3'>超清</option><option value='4'>蓝光</option><option value='5'>原画</option></select>";
-            html += "<select class='exVideoCDN' id='exVideoCDN" + String(id) + "'><option value='1'>主线路</option><option value='2'>备用线路1</option><option value='3'>备用线路2</option><option value='4'>备用线路3</option></select>";
-            html += `<input id='exVideoEmbed${String(id)}' type='button' value='    ' style='height:30px;'>`;
-            html += `<input id='exVideoUnEmbed${String(id)}' type='button' value='恢复视频' style='height:30px;display:none;'>`;
-            html += `<input id='exVideoCopy${String(id)}' type='button' value='复制直播流' style='height:30px;'>`;
-            html += "<a><div class='exVideoClose' id='exVideoClose" + String(id) + "'>X</div></a>";
-            html += "</div>";
-            html += "<video controls='controls' class='exVideoPlayer' id='exVideoPlayer" + String(id) + "'></video><div class='exVideoScale' id='exVideoScale" + String(id) + "'></div>";
-            a.innerHTML = html;
-            let b = getValidDom([ ".layout-Main", ".playerWrap__8wGvw", ".live-next-body" ]);
-            b.insertBefore(a, b.childNodes[0]);
-            setElementDrag(id);
-            setElementResize(id);
-            setElementFunc_Bilibili(id, rid);
-            setElementVideo(id, lurl);
-        }
-    });
-}
-
-function setElementFunc_Bilibili(id, rid) {
-    let box = document.getElementById("exVideoDiv" + String(id));
-    let exVideoPlayer = document.getElementById("exVideoPlayer" + String(id));
-    let info = document.getElementById("exVideoInfo" + String(id));
-    let scale = document.getElementById("exVideoScale" + String(id));
-    exVideoPlayer.onclick = function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        if ("block" != scale.style.display) {
-            scale.style.display = "block";
-            info.style.display = "block";
-        } else {
-            scale.style.display = "none";
-            info.style.display = "none";
-        }
-        for (let i = 0; i < videoPlayerArr.length; i++) {
-            let box = document.getElementById("exVideoDiv" + String(i));
-            if (null != box) if (i == id) box.style.zIndex = 1016; else box.style.zIndex = 1428;
-        }
-    };
-    let exVideoQn = document.getElementById("exVideoQn" + String(id));
-    let exVideoCDN = document.getElementById("exVideoCDN" + String(id));
-    let exVideoClose = document.getElementById("exVideoClose" + String(id));
-    let exVideoEmbed = document.getElementById("exVideoEmbed" + String(id));
-    let exVideoUnEmbed = document.getElementById("exVideoUnEmbed" + String(id));
-    let originVideo = document.getElementById("__video2");
-    exVideoQn.onchange = function() {
-        getRealLive_Bilibili(rid, exVideoQn.value, exVideoCDN.value, lurl => {
-            videoPlayerArr[id].destroy();
-            setElementVideo(id, lurl);
-        });
-    };
-    exVideoCDN.onchange = function() {
-        getRealLive_Bilibili(rid, exVideoQn.value, exVideoCDN.value, lurl => {
-            videoPlayerArr[id].destroy();
-            setElementVideo(id, lurl);
-        });
-    };
-    exVideoClose.onclick = function() {
-        originVideo.style.display = "block";
-        videoPlayerArr[id].destroy();
-        exVideoPlayer.remove();
-        box.remove();
-    };
-    exVideoEmbed.onclick = function() {
-        originVideo.style.display = "none";
-        exVideoEmbed.style.display = "none";
-        exVideoUnEmbed.style.display = "inline";
-        box.style.height = "0px";
-        originVideo.parentElement.insertBefore(exVideoPlayer, originVideo);
-    };
-    exVideoUnEmbed.onclick = function() {
-        originVideo.style.display = "block";
-        exVideoUnEmbed.style.display = "none";
-        exVideoEmbed.style.display = "inline";
-        box.style.height = "250px";
-        box.insertBefore(exVideoPlayer, box.childNodes[box.childNodes.length - 1]);
-    };
-    let exVideoCopy = document.getElementById("exVideoCopy" + String(id));
-    exVideoCopy.onclick = function() {
-        getRealLive_Bilibili(rid, exVideoQn.value, exVideoCDN.value, lurl => {
-            GM_setClipboard(lurl);
-            showMessage("复制成功", "success");
-        });
-    };
-}
-
-function createNewVideo_Huya(id, rid, rname) {
-    getRealLive_Huya(rid, "1", (lurl, msg) => {
-        if ("" != lurl || null != lurl) {
-            if ("" != msg) {
-                showMessage(msg, "error");
-                return;
-            }
-            let a = document.createElement("div");
-            let html = "";
-            a.id = "exVideoDiv" + String(id);
-            a.rid = rid;
-            a.className = "exVideoDiv";
-            html += "<div class='exVideoInfo' id='exVideoInfo" + String(id) + "'><a title='进入直播间' target='_blank' href='" + rid + "'><span class='exVideoRID' id='exVideoRID" + String(id) + "' style='color:white'>" + "Huya - " + rname + "</span></a>";
-            html += "<select class='exVideoQn' id='exVideoQn" + String(id) + "'><option value='1'>流畅</option><option value='2'>超清</option><option value='3'>蓝光4M</option><option value='4'>原画</option></select>";
-            html += `<input id='exVideoEmbed${String(id)}' type='button' value='嵌入视频' style='height:30px;'>`;
-            html += `<input id='exVideoUnEmbed${String(id)}' type='button' value='恢复视频' style='height:30px;display:none;'>`;
-            html += `<input id='exVideoCopy${String(id)}' type='button' value='复制直播流' style='height:30px;'>`;
-            html += "<a><div class='exVideoClose' id='exVideoClose" + String(id) + "'>X</div></a>";
-            html += "</div>";
-            html += "<video controls='controls' class='exVideoPlayer' id='exVideoPlayer" + String(id) + "'></video><div class='exVideoScale' id='exVideoScale" + String(id) + "'></div>";
-            a.innerHTML = html;
-            let b = getValidDom([ ".layout-Main", ".playerWrap__8wGvw", ".live-next-body" ]);
-            b.insertBefore(a, b.childNodes[0]);
-            setElementDrag(id);
-            setElementResize(id);
-            setElementFunc_Huya(id, rid);
-            setElementVideo(id, lurl);
-        }
-    });
-}
-
-function setElementFunc_Huya(id, rid) {
-    let box = document.getElementById("exVideoDiv" + String(id));
-    let exVideoPlayer = document.getElementById("exVideoPlayer" + String(id));
-    let info = document.getElementById("exVideoInfo" + String(id));
-    let scale = document.getElementById("exVideoScale" + String(id));
-    let exVideoEmbed = document.getElementById("exVideoEmbed" + String(id));
-    let exVideoUnEmbed = document.getElementById("exVideoUnEmbed" + String(id));
-    exVideoPlayer.onclick = function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        if ("block" != scale.style.display) {
-            scale.style.display = "block";
-            info.style.display = "block";
-        } else {
-            scale.style.display = "none";
-            info.style.display = "none";
-        }
-        for (let i = 0; i < videoPlayerArr.length; i++) {
-            let box = document.getElementById("exVideoDiv" + String(i));
-            if (null != box) if (i == id) box.style.zIndex = 1016; else box.style.zIndex = 1428;
-        }
-    };
-    let exVideoQn = document.getElementById("exVideoQn" + String(id));
-    let exVideoClose = document.getElementById("exVideoClose" + String(id));
-    let originVideo = document.getElementById("__video2");
-    exVideoQn.onchange = function() {
-        getRealLive_Huya(rid, exVideoQn.value, (lurl, msg) => {
-            if ("" != msg) {
-                showMessage(msg, "error");
-                return;
-            }
-            videoPlayerArr[id].destroy();
-            setElementVideo(id, lurl);
-        });
-    };
-    exVideoClose.onclick = function() {
-        originVideo.style.display = "block";
-        videoPlayerArr[id].destroy();
-        exVideoPlayer.remove();
-        box.remove();
-    };
-    let exVideoCopy = document.getElementById("exVideoCopy" + String(id));
-    exVideoCopy.onclick = function() {
-        getRealLive_Huya(rid, exVideoQn.value, (lurl, msg) => {
-            if ("" != msg) {
-                showMessage(msg, "error");
-                return;
-            }
-            GM_setClipboard(lurl);
-            showMessage("复制成功", "success");
-        });
-    };
-    exVideoEmbed.onclick = function() {
-        originVideo.style.display = "none";
-        exVideoEmbed.style.display = "none";
-        exVideoUnEmbed.style.display = "inline";
-        box.style.height = "0px";
-        originVideo.parentElement.insertBefore(exVideoPlayer, originVideo);
-    };
-    exVideoUnEmbed.onclick = function() {
-        originVideo.style.display = "block";
-        exVideoUnEmbed.style.display = "none";
-        exVideoEmbed.style.display = "inline";
-        box.style.height = "250px";
-        box.insertBefore(exVideoPlayer, box.childNodes[box.childNodes.length - 1]);
-    };
-}
-
 function createNewVideo_iframe(id, url) {
-    if (-1 == String(url).indexOf("douyu.com")) {
+    url = PopupPlayer_roomUrl(url);
+    if (!url) {
         showMessage("有弹幕模式仅支持斗鱼直播", "error");
         return;
     }
@@ -7091,7 +3712,7 @@ function createNewVideo_iframe(id, url) {
     html += "<div class='exVideoInfo' id='exVideoInfo" + String(id) + "'><span class='exVideoRID' id='exVideoRID" + String(id) + "' style='color:white'>" + "斗鱼 - " + rid + "</span>";
     html += "<a><div class='exVideoClose' id='exVideoClose" + String(id) + "'>X</div></a>";
     html += "</div>";
-    html += "<iframe class='exVideoPlayer' id='exVideoPlayer" + String(id) + "' src=" + url + "?exid=chun></iframe>";
+    html += "<iframe class='exVideoPlayer' id='exVideoPlayer" + String(id) + "' src=\"" + url + '?exid=chun"></iframe>';
     html += "<div class='exVideoScale' id='exVideoScale" + String(id) + "'></div>";
     a.innerHTML = html;
     let b = getValidDom([ ".layout-Main", ".playerWrap__8wGvw", ".live-next-body" ]);
@@ -7106,7 +3727,7 @@ function setElementFunc_iframe(id) {
     let box = document.getElementById("exVideoDiv" + String(id));
     let exVideoClose = document.getElementById("exVideoClose" + String(id));
     exVideoClose.onclick = function() {
-        videoPlayerArr[id].destroy();
+        PopupPlayer_destroy(id);
         box.remove();
     };
     box.onclick = function(e) {
@@ -7119,325 +3740,220 @@ function setElementFunc_iframe(id) {
     };
 }
 
-function createNewVideo_Stream(id, lurl) {
-    if ("" == lurl || null == lurl) return;
-    let a = document.createElement("div");
-    let html = "";
-    a.id = "exVideoDiv" + String(id);
-    a.rid = rid;
-    a.className = "exVideoDiv";
-    html += "<div class='exVideoInfo' id='exVideoInfo" + String(id) + `'><span class='exVideoRID' id='exVideoRID" + String(id) + "' style='color:white'>直播流${id}</span>`;
-    html += `<input id='exVideoEmbed${String(id)}' type='button' value='嵌入视频' style='height:30px;'>`;
-    html += `<input id='exVideoUnEmbed${String(id)}' type='button' value='恢复视频' style='height:30px;display:none;'>`;
-    html += `<input id='exVideoCopy${String(id)}' type='button' value='复制直播流' style='height:30px;'>`;
-    html += "<a><div class='exVideoClose' id='exVideoClose" + String(id) + "'>X</div></a>";
-    html += "</div>";
-    html += "<video controls='controls' class='exVideoPlayer' id='exVideoPlayer" + String(id) + "'></video><div class='exVideoScale' id='exVideoScale" + String(id) + "'></div>";
-    a.innerHTML = html;
-    let b = getValidDom([ ".layout-Main", ".playerWrap__8wGvw", ".live-next-body" ]);
-    b.insertBefore(a, b.childNodes[0]);
-    setElementDrag(id);
-    setElementResize(id);
-    setElementVideo(id, lurl);
-    setElementFunc_Stream(id);
-}
-
-function setElementFunc_Stream(id) {
-    let box = document.getElementById("exVideoDiv" + String(id));
-    let exVideoPlayer = document.getElementById("exVideoPlayer" + String(id));
-    let info = document.getElementById("exVideoInfo" + String(id));
-    let scale = document.getElementById("exVideoScale" + String(id));
-    let exVideoEmbed = document.getElementById("exVideoEmbed" + String(id));
-    let exVideoUnEmbed = document.getElementById("exVideoUnEmbed" + String(id));
-    exVideoPlayer.onclick = function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        if ("block" != scale.style.display) {
-            scale.style.display = "block";
-            info.style.display = "block";
-        } else {
-            scale.style.display = "none";
-            info.style.display = "none";
-        }
-        for (let i = 0; i < videoPlayerArr.length; i++) {
-            let box = document.getElementById("exVideoDiv" + String(i));
-            if (null != box) if (i == id) box.style.zIndex = 1016; else box.style.zIndex = 1428;
-        }
-    };
-    let exVideoClose = document.getElementById("exVideoClose" + String(id));
-    let originVideo = document.getElementById("__video2");
-    exVideoClose.onclick = function() {
-        originVideo.style.display = "block";
-        videoPlayerArr[id].destroy();
-        exVideoPlayer.remove();
-        box.remove();
-    };
-    exVideoEmbed.onclick = function() {
-        originVideo.style.display = "none";
-        exVideoEmbed.style.display = "none";
-        exVideoUnEmbed.style.display = "inline";
-        box.style.height = "0px";
-        originVideo.parentElement.insertBefore(exVideoPlayer, originVideo);
-    };
-    exVideoUnEmbed.onclick = function() {
-        originVideo.style.display = "block";
-        exVideoUnEmbed.style.display = "none";
-        exVideoEmbed.style.display = "inline";
-        box.style.height = "250px";
-        box.insertBefore(exVideoPlayer, box.childNodes[box.childNodes.length - 1]);
-    };
-}
-
 let real_info = {
-    view: "",
-    showtime: 1428,
-    danmu_person_count: "",
-    gift_person_count: "",
-    paid_person_count: "",
+    showtime: null,
     isShow: 2,
-    money_yc: 0,
-    money_bag: 0,
-    money_total: 0,
+    todayWatch: null,
     noble_count: ""
 };
 
-let hasAvatarBottom = false;
+let realAudienceRefreshTimer = null;
 
-function formatNobleCount(vn) {
-    const n = Number(vn);
-    if (isNaN(n)) return vn;
-    if (n >= 1e4) {
-        const wan = n / 1e4;
-        if (Number.isInteger(wan)) return wan + "万";
-        return parseFloat(wan.toFixed(1)) + "万";
-    }
+let realAudienceSwitchTimer = null;
+
+let realAudienceRefreshing = false;
+
+function formatNobleCount(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return "--";
+    if (n >= 1e4) return parseFloat((n / 1e4).toFixed(1)) + "万";
     return String(n);
 }
 
 function initPkg_RealAudience() {
-    initPkg_RealAudience_StyleHook();
+    StyleHook_set("Ex_Style_RealAudience", ".layout-Player-rank{top:34px !important;}");
     initPkg_RealAudience_Dom();
-    initPkg_RealAudience_Func();
     setAvatarVideo();
-    fetch("https://www.douyu.com/swf_api/h5room/" + rid, {
-        method: "GET",
-        mode: "no-cors",
-        credentials: "include"
-    }).then(res => res.json()).then(retData => {
-        real_info.showtime = retData.data.show_time;
-        real_info.isShow = retData.data.show_status;
-        setRealViewer();
-        setInterval(setRealViewer, 15e4);
-        setInterval(switchRealAndTodayWatch, 5e3);
-    }).catch(err => {
-        console.log("请求失败!", err);
-    });
-}
-
-function initPkg_RealAudience_StyleHook() {
-    StyleHook_set("Ex_Style_RealAudience", `
-    .VideoEntry{display:none !important;}
-	.layout-Player-rank{top:34px !important;}
-    `);
+    if (null !== realAudienceRefreshTimer) return;
+    setRealViewer();
+    realAudienceRefreshTimer = setInterval(setRealViewer, 15e4);
+    realAudienceSwitchTimer = setInterval(switchRealAndTodayWatch, 5e3);
 }
 
 function initPkg_RealAudience_Dom() {
-    let real_viewIcon = '<svg style="width:16px;height:16px" t="1566119680547" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3494" width="128" height="128"><path d="M712.820909 595.224609C807.907642 536.686746 870.40537 437.74751 870.40537 325.549212 870.400378 145.753547 709.943392 0 511.997503 0 314.055363 0 153.599626 145.753547 153.599626 325.549212 153.599626 437.74751 216.092361 536.686746 311.179092 595.219615 149.961841 657.72608 31.268214 793.205446 5.334335 955.968198 1.926253 962.195123 0 969.212275 0 976.638899 0 1002.324352 22.919038 1023.151098 51.198627 1023.151098 79.476967 1023.151098 102.396005 1002.324352 102.396005 976.638899L102.396005 1023.151098C102.396005 817.669984 285.787009 651.099674 511.997503 651.099674 738.212992 651.099674 921.602746 817.669984 921.602746 1023.151098L921.602746 976.638899C921.602746 1002.324352 944.523034 1023.151098 972.801376 1023.151098 1001.07472 1023.151098 1024 1002.324352 1024 976.638899 1024 969.212275 1022.073747 962.195123 1018.659424 955.968198 992.731789 793.205446 874.038157 657.72608 712.820909 595.224609ZM511.997503 558.080262C370.618285 558.080262 256.000624 453.967732 256.000624 325.545467 256.000624 197.121954 370.618285 93.009424 511.997503 93.009424 653.386707 93.009424 767.993133 197.121954 767.993133 325.545467 767.993133 453.972726 653.386707 558.080262 511.997503 558.080262L511.997503 558.080262Z" p-id="3495"></path></svg>';
-    let real_danmuIcon = '<svg t="1587796804183" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20780" width="16" height="16"><path d="M811.8272 62.6176H212.1728c-79.9232 0-149.8624 69.9392-149.8624 149.9136v599.6032a150.3232 150.3232 0 0 0 149.8624 149.9136h599.6544a150.3232 150.3232 0 0 0 149.8624-149.9136V212.5312c0-79.9744-69.9392-149.9136-149.8624-149.9136zM263.5264 367.104c30.0032 0 49.9712 19.968 49.9712 49.9712s-19.968 49.92-49.9712 49.92-49.9712-19.968-49.9712-49.92 20.0192-49.9712 49.9712-49.9712z m449.6896 294.8096H263.5264c-24.9856 0-49.9712-24.9856-49.9712-49.9712s24.9856-49.9712 49.9712-49.9712h449.6896c24.9856 0 49.9712 24.9856 49.9712 49.9712s-24.9856 49.9712-49.9712 49.9712z m99.9424-199.68H463.4112c-24.9856 0-49.9712-24.9856-49.9712-49.9712s24.9856-49.9712 49.9712-49.9712h349.7472c24.9856 0 49.9712 24.9856 49.9712 49.9712s-24.9856 49.7664-49.9712 49.7664z" p-id="20781" fill="#1296db"></path></svg>';
-    let real_money_yc = '<svg t="1579155265981" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6949" width="16" height="16"><path d="M136.96 67.413h181.76L512 452.693l193.28-385.28h181.76l-245.76 445.44h163.84v84.48h-211.2l-1.28 1.28v106.24h212.48v84.48H592.64v192H431.36v-192h-211.2v-84.48h211.2v-106.24l-1.28-1.28H220.16v-84.48h162.56z" fill="#F54330" p-id="6950"></path></svg>';
-    let real_nobleIcon = '<svg t="1779268394045" class="icon" viewBox="0 0 1170 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5245" width="16" height="16"><path d="M270.579175 30.138897S391.031549-36.125391 427.208548 36.176998c36.125391 18.062695 114.46588 463.798407 132.528575 548.176999 18.062695 90.365084 60.226187 120.452374 84.326983 84.326983s114.46588-126.490475 174.692068-265.057152-18.062695-156.629372-42.163492-150.591271c-24.100796 6.038101-150.591271 12.024594-108.427779-42.163491 48.201593-54.188086 156.629372-150.591271 186.716661-162.615866 54.188086-36.125391 138.566677-84.326983 210.817458-6.038101 42.163492 30.138897 144.55317 150.591271 48.201593 319.245238-96.403185 174.692067-475.874609 614.389678-475.87461 614.389678s-138.566677 90.365084-192.754762 0c-54.188086-84.326983-240.956355-554.163492-246.994456-614.389678 0-60.226187-18.062695-72.302389-48.201593-60.226187-30.138897 18.062695-90.365084 102.389678-96.403185 78.288882-5.986493-24.100796-60.174579-60.277795-24.049189-114.465881 30.138897-48.201593 216.855559-216.855559 240.956355-234.918254z" fill="#CCB88F" p-id="5246"></path></svg>';
-    const videoEntry = document.getElementsByClassName("VideoEntry")[0];
-    if (videoEntry) videoEntry.style.display = "none";
-    let html = "";
-    let a = document.createElement("div");
-    a.className = "real-audience";
-    html += "<div style='flex: 1;white-space: nowrap'>";
-    html += "<div id='real-audience__t' style='display: inline-block;margin-right:3px;' title='今日累计观看人数'>" + real_viewIcon + '<span id="real-audience__total" style="color:#ed5a65">****</span></div>';
-    html += "<div style='display: inline-block;margin-right:3px;' title='弹幕人数'>" + real_danmuIcon + '<span id="real-audience__barrage">****</span></div>';
-    html += "<div id='real-audience__noble-wrap' style='display: inline-block;margin-right:3px;' title='贵宾数'>" + real_nobleIcon + '<span id="real-audience__noble">****</span></div>';
-    html += "<div id='real-audience__money' style='display: inline-block;margin-right:3px;' title='今日累计礼物价值'>" + real_money_yc + '<span id="real-audience__money_yc">****</span></div>';
-    html += "</div>";
-    html += '<span id="real-audience__time" style="white-space: nowrap;display: block;">' + "已播:" + "****" + "</span>";
-    html += '<span id="real-audience__watchtime" style="white-space: nowrap;display: none;">' + "已观看:" + "****" + "</span>";
-    a.innerHTML = html;
-    let b = getValidDom([ ".layout-Player-announce", ".layout-Player-rankAll" ]);
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function initPkg_RealAudience_Func() {
-    document.getElementsByClassName("real-audience")[0].addEventListener("click", function() {
-        openPage(`https://www.doseeing.com/room/` + rid, true);
-    });
+    if (document.querySelector(".real-audience")) return;
+    const host = getValidDom([ ".layout-Player-announce", ".layout-Player-rankAll" ]);
+    if (!host) return;
+    const panel = document.createElement("div");
+    panel.className = "real-audience";
+    panel.innerHTML = `
+        <span style="flex:1;white-space:nowrap" title="斗鱼弹幕消息提供的贵宾数">贵宾:<span id="real-audience__noble">--</span></span>
+        <span id="real-audience__time" style="white-space:nowrap;display:block">已播:--</span>
+        <span id="real-audience__watchtime" style="white-space:nowrap;display:none">已观看:--</span>`;
+    host.insertBefore(panel, host.firstChild);
 }
 
 async function setRealViewer() {
-    if (null != document.querySelector(".MatchSystemChatRoomEntry")) document.querySelector(".MatchSystemChatRoomEntry").style.display = "none";
-    let retData = await getRealViewer(rid);
-    let todayWatchData = await getTodayWatch(rid);
-    let showedTime = 0;
-    if (2 == real_info.isShow) showedTime = 0; else if (1428 == real_info.showtime) showedTime = 0; else showedTime = Math.floor(Date.now() / 1e3) - Number(real_info.showtime);
-    real_info.view = retData.data["active.uv"] || 0;
-    real_info.danmu_person_count = retData.data["chat.uv"] || 0;
-    real_info.gift_person_count = retData.data["gift.all.uv"] || 0;
-    real_info.paid_person_count = retData.data["gift.paid.uv"] || 0;
-    real_info.money_yc = Number(retData.data["gift.paid.price"] / 100 || 0).toFixed(2);
-    real_info.money_total = Number(retData.data["gift.all.price"] / 100 || 0).toFixed(2);
-    document.getElementById("real-audience__total").innerText = real_info.view;
-    document.getElementById("real-audience__t").title = "今日累计活跃人数:" + real_info.view + " 弹幕人数:" + real_info.danmu_person_count + " 送礼人数:" + real_info.gift_person_count + " 付费人数:" + real_info.paid_person_count;
-    document.getElementById("real-audience__barrage").innerText = real_info.danmu_person_count;
-    document.getElementById("real-audience__money_yc").innerText = real_info.money_yc;
-    document.getElementById("real-audience__money").title = "总礼物价值:" + real_info.money_total + " 鱼翅礼物:" + real_info.money_yc;
-    if ("" !== real_info.noble_count) document.getElementById("real-audience__noble").innerText = formatNobleCount(real_info.noble_count);
-    document.getElementById("real-audience__time").innerText = "已播:" + formatSeconds(showedTime);
-    document.getElementById("real-audience__time").title = "开播时间:" + String(dateFormat("yyyy年MM月dd日hh时mm分ss秒 ", new Date(Number(real_info.showtime + "000")))) + "\n已观看:" + formatSeconds(todayWatchData.data.todayWatch);
-    if (0 == todayWatchData.error) {
-        document.getElementById("real-audience__watchtime").innerText = "已观看:" + formatSeconds(todayWatchData.data.todayWatch);
-        document.getElementById("real-audience__watchtime").title = "开播时间:" + String(dateFormat("yyyy年MM月dd日hh时mm分ss秒 ", new Date(Number(real_info.showtime + "000")))) + "\n已观看:" + formatSeconds(todayWatchData.data.todayWatch);
+    if (realAudienceRefreshing) return;
+    realAudienceRefreshing = true;
+    try {
+        initPkg_RealAudience_Dom();
+        setAvatarVideo();
+        const [ roomResult, watchResult ] = await Promise.allSettled([ RealAudience_fetchJSON("https://www.douyu.com/swf_api/h5room/" + rid), getTodayWatch(rid) ]);
+        if ("fulfilled" === roomResult.status && roomResult.value.data) {
+            const data = roomResult.value.data;
+            const showtime = Number(data.show_time);
+            if (Number.isFinite(showtime) && showtime > 0) real_info.showtime = showtime;
+            real_info.isShow = data.show_status;
+        }
+        if ("fulfilled" === watchResult.status && 0 == watchResult.value.error && watchResult.value.data) {
+            const watched = Number(watchResult.value.data.todayWatch);
+            if (Number.isFinite(watched) && watched >= 0) real_info.todayWatch = watched;
+        }
+        RealAudience_render();
+    } catch (error) {
+        console.log("观看信息刷新失败", error);
+    } finally {
+        realAudienceRefreshing = false;
     }
+}
+
+function RealAudience_render() {
+    const time = document.getElementById("real-audience__time");
+    const watch = document.getElementById("real-audience__watchtime");
+    const noble = document.getElementById("real-audience__noble");
+    const elapsed = 2 == real_info.isShow ? 0 : Math.max(0, Math.floor(Date.now() / 1e3) - real_info.showtime);
+    const title = real_info.showtime ? "开播时间:" + dateFormat("yyyy年MM月dd日hh时mm分ss秒", new Date(1e3 * real_info.showtime)) : "";
+    if (time) {
+        time.innerText = "已播:" + (real_info.showtime ? formatSeconds(elapsed) : "--");
+        time.title = title;
+    }
+    if (watch) {
+        watch.innerText = "已观看:" + (null === real_info.todayWatch ? "--" : formatSeconds(real_info.todayWatch));
+        watch.title = title;
+    }
+    if (noble && "" !== real_info.noble_count) noble.innerText = formatNobleCount(real_info.noble_count);
 }
 
 function setAvatarVideo() {
-    let homeDom = document.querySelectorAll(".VideoEntry-tabItem>a")[0];
-    if (void 0 == homeDom) return;
-    let videoUrl = homeDom.href + "?type=video";
-    let videoReplayUrl = homeDom.href + "?type=liveReplay";
-    setAvatarVideo_Dom();
-    setAvatarYuba_Dom();
-    setAvatarVideo_Func(videoUrl, videoReplayUrl);
-    document.getElementsByClassName("Title-anchorPic-bottom")[0].style.display = "none";
-    document.getElementsByClassName("Title-anchorPic-bottom")[0].style.height = hasAvatarBottom ? "66px" : "22px";
-    document.getElementsByClassName("Title-anchorPicBack")[0].addEventListener("mouseenter", () => {
-        document.getElementsByClassName("Title-anchorPic-bottom")[0].style.display = "block";
+    if (document.getElementById("Ex_VideoReview")) return;
+    const home = document.querySelector(".VideoEntry-tabItem>a");
+    const avatar = document.getElementsByClassName("Title-anchorPicBack")[0];
+    if (!home || !avatar) return;
+    let videoUrl;
+    try {
+        videoUrl = new URL(home.href);
+        if (!/^https?:$/.test(videoUrl.protocol) || !/(^|\.)douyu\.com$/.test(videoUrl.hostname)) return;
+    } catch (error) {
+        return;
+    }
+    const existing = document.getElementsByClassName("Title-anchorPic-bottom")[0];
+    const panel = existing || document.createElement("div");
+    if (!existing) {
+        panel.className = "Title-anchorPic-bottom";
+        avatar.appendChild(panel);
+    }
+    const links = document.createElement("div");
+    links.innerHTML = '<div id="Ex_VideoReview" class="Title-anchorPic-bottomItem"><span>回看</span></div><div id="Ex_VideoSubmit" class="Title-anchorPic-bottomItem"><span>投稿</span></div>';
+    panel.insertBefore(links, panel.firstChild);
+    panel.style.display = "none";
+    panel.style.height = "auto";
+    avatar.addEventListener("mouseenter", () => {
+        panel.style.display = "block";
     });
-    document.getElementsByClassName("Title-anchorPicBack")[0].addEventListener("mouseleave", () => {
-        document.getElementsByClassName("Title-anchorPic-bottom")[0].style.display = "none";
+    avatar.addEventListener("mouseleave", () => {
+        panel.style.display = "none";
     });
+    for (const [ id, type ] of [ [ "Ex_VideoReview", "liveReplay" ], [ "Ex_VideoSubmit", "video" ] ]) document.getElementById(id).addEventListener("click", () => {
+        const url = new URL(videoUrl.href);
+        url.searchParams.set("type", type);
+        openPage(url.href, true);
+    });
+    const entry = document.getElementsByClassName("VideoEntry")[0];
+    if (entry) entry.style.display = "none";
 }
 
-function setAvatarVideo_Dom() {
-    let a = document.createElement("div");
-    hasAvatarBottom = !!document.getElementsByClassName("Title-anchorPic-bottom")[0];
-    a.className = hasAvatarBottom ? "" : "Title-anchorPic-bottom";
-    a.innerHTML = `
-	<div id="Ex_VideoReview" class="Title-anchorPic-bottomItem"><span>回看</span></div>
-	<i style="top: 28px"></i>
-	<div id="Ex_VideoSubmit" class="Title-anchorPic-bottomItem"><span>投稿</span></div>
-	`;
-    let b = document.getElementsByClassName("Title-anchorPic-bottom")[0] || document.getElementsByClassName("Title-anchorPicBack")[0];
-    b.insertBefore(a, b.childNodes[0]);
+function getTodayWatch(roomId) {
+    return RealAudience_fetchJSON("https://www.douyu.com/japi/interactnc/web/fsjk/getCardTaskInfo?rid=" + roomId);
 }
 
-function setAvatarYuba_Dom() {
-    let a = document.createElement("div");
-    hasAvatarBottom = !!document.getElementsByClassName("Title-anchorPic-bottom")[0];
-    a.className = hasAvatarBottom ? "" : "Title-anchorPic-bottom";
-    a.innerHTML = `
-	<div id="Ex_EnterYuba" class="Title-anchorPic-bottomItem"><span>打开鱼吧</span></div>
-	`;
-    let b = document.getElementsByClassName("Title-anchorPic-bottom")[0] || document.getElementsByClassName("Title-anchorPicBack")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function setAvatarVideo_Func(videoUrl, videoReplayUrl) {
-    document.getElementById("Ex_VideoSubmit").addEventListener("click", () => {
-        openPage(videoUrl, true);
-    });
-    document.getElementById("Ex_VideoReview").addEventListener("click", () => {
-        openPage(videoReplayUrl, true);
-    });
-    document.getElementById("Ex_EnterYuba").addEventListener("click", async () => {
-        const data = await getBindYuba(rid);
-        const url = data.data.group_url;
-        openPage(url, true);
-    });
-}
-
-function getBindYuba(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/wgapi/yubanc/api/group/getBindGroup?room_id=" + rid).then(response => response.json()).then(data => {
-            resolve(data);
-        }).catch(error => {
-            reject(error);
+async function RealAudience_fetchJSON(url) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15e3);
+    try {
+        const response = await fetch(url, {
+            credentials: "include",
+            signal: controller.signal
         });
-    });
-}
-
-function getTodayWatch(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/interactnc/web/fsjk/getCardTaskInfo?rid=" + rid, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include"
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            reject(err);
-        });
-    });
-}
-
-function getRealViewer(rid) {
-    return new Promise((resolve, reject) => {
-        GM_xmlhttpRequest({
-            method: "POST",
-            url: `https://www.doseeing.com/xeee/room/aggr`,
-            headers: {
-                Connection: "keep-alive",
-                "Content-Type": "application/json;charset=UTF-8",
-                Origin: "https://www.doseeing.com",
-                Referer: "https://www.doseeing.com/room/" + rid,
-                "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/91.0.4472.114"
-            },
-            data: `{"m":"${window.btoa(`rid=${rid}&dt=0`).split("").reverse().join("")}"}`,
-            responseType: "json",
-            onload: response => {
-                resolve(response.response);
-            },
-            onerror: err => {
-                reject(err);
-            }
-        });
-    });
-}
-
-function initPkg_RealAudience_Handle(ret) {
-    if ("oni" != getType(ret)) return;
-    let vn = getStrMiddle(ret, "vn@=", "/");
-    if (!vn) return;
-    real_info.noble_count = vn;
-    let el = document.getElementById("real-audience__noble");
-    if (el) el.innerText = formatNobleCount(vn);
-}
-
-function switchRealAndTodayWatch() {
-    let realDom = document.getElementById("real-audience__time");
-    let watchDom = document.getElementById("real-audience__watchtime");
-    if ("none" == realDom.style.display) {
-        realDom.style.display = "block";
-        watchDom.style.display = "none";
-    } else {
-        realDom.style.display = "none";
-        watchDom.style.display = "block";
+        return await response.json();
+    } finally {
+        clearTimeout(timeout);
     }
 }
 
+function initPkg_RealAudience_Handle(ret) {
+    if ("oni" !== getType(ret)) return;
+    const count = getStrMiddle(ret, "vn@=", "/");
+    if ("" === count || !Number.isFinite(Number(count))) return;
+    real_info.noble_count = count;
+    const element = document.getElementById("real-audience__noble");
+    if (element) element.innerText = formatNobleCount(count);
+}
+
+function switchRealAndTodayWatch() {
+    const time = document.getElementById("real-audience__time");
+    const watch = document.getElementById("real-audience__watchtime");
+    if (!time || !watch) return;
+    const showTime = "none" === time.style.display;
+    time.style.display = showTime ? "block" : "none";
+    watch.style.display = showTime ? "none" : "block";
+}
+
+let refreshToolbarTimer = null;
+
 function initPkg_Refresh() {
-    initPkg_Refresh_BarrageFrame();
     initPkg_Refresh_Video();
-    initPkg_Refresh_Barrage();
+    if (null !== refreshToolbarTimer) return;
+    let attempts = 0;
+    const mount = () => {
+        if (document.getElementsByClassName("Barrage-toolbar")[0]) {
+            initPkg_Refresh_BarrageFrame();
+            initPkg_Refresh_Barrage();
+            clearInterval(refreshToolbarTimer);
+            refreshToolbarTimer = null;
+            return true;
+        }
+        return false;
+    };
+    if (mount()) return;
+    refreshToolbarTimer = setInterval(() => {
+        if (mount()) return;
+        if (++attempts >= 100) {
+            clearInterval(refreshToolbarTimer);
+            refreshToolbarTimer = null;
+        }
+    }, 1500);
+}
+
+function Refresh_getSaved() {
+    try {
+        const data = JSON.parse(localStorage.getItem("ExSave_Refresh"));
+        return data && "object" === typeof data ? data : {};
+    } catch (_) {
+        return {};
+    }
+}
+
+function Refresh_setButtonState(id, enabled) {
+    const button = document.getElementById(id);
+    if (button) button.classList.toggle("ex-active", !!enabled);
+    const text = document.getElementById(id + "__text");
+    if (text) text.style.color = enabled ? "#fff" : "";
+    const svg = document.getElementById(id + "__svg");
+    const path = svg && svg.getElementsByTagName("path")[0];
+    if (path) path.setAttribute("fill", enabled ? "#ffffff" : "#AFAFAF");
 }
 
 function saveData_Refresh() {
-    let data = {
-        barrageFrame: {
-            status: refresh_BarrageFrame_getStatus()
-        },
-        video: {
-            status: refresh_Video_getStatus()
-        },
-        barrage: {
-            status: refresh_Barrage_getStatus()
-        }
+    const data = Refresh_getSaved();
+    data.barrageFrame = {
+        status: document.getElementById("refresh-barrage-frame") ? refresh_BarrageFrame_getStatus() : !!data.barrageFrame?.status
+    };
+    data.video = {
+        status: refresh_Video_getStatus()
+    };
+    data.barrage = {
+        status: document.getElementById("refresh-barrage") ? refresh_Barrage_getStatus() : !!data.barrage?.status
     };
     localStorage.setItem("ExSave_Refresh", JSON.stringify(data));
 }
@@ -7445,6 +3961,7 @@ function saveData_Refresh() {
 let current_barrage_status = 0;
 
 function initPkg_Refresh_Barrage() {
+    if (document.getElementById("refresh-barrage")) return;
     initPkg_Refresh_Barrage_Dom();
     initPkg_Refresh_Barrage_Func();
     initPkg_Refresh_Barrage_Set();
@@ -7465,17 +3982,10 @@ function Refresh_Barrage_insertIcon() {
 
 function initPkg_Refresh_Barrage_Func() {
     document.getElementById("refresh-barrage").addEventListener("click", function() {
-        if (0 == current_barrage_status) PostbirdAlertBox.confirm({
-            title: "提示",
-            content: "是否屏蔽弹幕前缀（如粉丝牌、钻粉、贵族等标志）",
-            okBtn: "确定",
-            cancelBtn: "取消",
-            onConfirm: function() {
-                setRefreshBarrage();
-                saveData_Refresh();
-            },
-            onCancel: function() {}
-        }); else {
+        if (0 == current_barrage_status) {
+            setRefreshBarrage();
+            saveData_Refresh();
+        } else {
             cancelRefreshBarrage();
             saveData_Refresh();
         }
@@ -7487,14 +3997,7 @@ function refresh_Barrage_getStatus() {
 }
 
 function initPkg_Refresh_Barrage_Set() {
-    let ret = localStorage.getItem("ExSave_Refresh");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("barrage" in retJson == false) retJson.barrage = {
-            status: false
-        };
-        if (true == retJson.barrage.status) setRefreshBarrage();
-    }
+    if (Refresh_getSaved().barrage?.status) setRefreshBarrage();
 }
 
 function setRefreshBarrage() {
@@ -7506,132 +4009,83 @@ function setRefreshBarrage() {
     `;
     StyleHook_set("Ex_Style_RefreshBarrage", cssText);
     current_barrage_status = 1;
-    document.getElementById("refresh-barrage").classList.add("ex-active");
-    document.getElementById("refresh-barrage__text").style.color = "#fff";
-    document.getElementById("refresh-barrage__text").innerText = "前缀";
-    let svg = document.getElementById("refresh-barrage__svg");
-    if (svg) {
-        let p = svg.getElementsByTagName("path")[0];
-        if (p) p.setAttribute("fill", "#ffffff");
-    }
+    Refresh_setButtonState("refresh-barrage", true);
 }
 
 function cancelRefreshBarrage() {
     StyleHook_remove("Ex_Style_RefreshBarrage");
     current_barrage_status = 0;
-    document.getElementById("refresh-barrage").classList.remove("ex-active");
-    document.getElementById("refresh-barrage__text").style.color = "";
-    document.getElementById("refresh-barrage__text").innerText = "前缀";
-    let svg = document.getElementById("refresh-barrage__svg");
-    if (svg) {
-        let p = svg.getElementsByTagName("path")[0];
-        if (p) p.setAttribute("fill", "#AFAFAF");
-    }
+    Refresh_setButtonState("refresh-barrage", false);
 }
 
+let current_barrage_frame_status = false;
+
 function initPkg_Refresh_BarrageFrame() {
-    initPkg_Refresh_BarrageFrame_Dom();
+    if (document.getElementById("refresh-barrage-frame")) return;
+    Refresh_BarrageFrame_insertIcon();
     initPkg_Refresh_BarrageFrame_Func();
     initPkg_Refresh_BarrageFrame_Set();
 }
 
-function initPkg_Refresh_BarrageFrame_Dom() {
-    Refresh_BarrageFrame_insertIcon();
-}
-
 function Refresh_BarrageFrame_insertIcon() {
-    let a = document.createElement("a");
-    a.className = "refresh-barrage";
-    a.id = "refresh-barrage-frame";
-    a.innerHTML = '<svg t="1588051109604" id="refresh-barrage-frame__svg" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3095" width="16" height="16"><path d="M512 128 192 448h192v448h256V448h192L512 128z" fill="#AFAFAF" p-id="3096"></path></svg><i class="Barrage-toolbarIcon"></i><span id="refresh-barrage-frame__text" class="Barrage-toolbarText">拉高</span>';
-    let b = document.getElementsByClassName("Barrage-toolbar")[0];
-    b.insertBefore(a, b.childNodes[0]);
+    const toolbar = document.getElementsByClassName("Barrage-toolbar")[0];
+    if (!toolbar) return;
+    const button = document.createElement("a");
+    button.className = "refresh-barrage";
+    button.id = "refresh-barrage-frame";
+    button.innerHTML = '<svg id="refresh-barrage-frame__svg" class="icon" viewBox="0 0 1024 1024" width="16" height="16"><path d="M512 128 192 448h192v448h256V448h192L512 128z" fill="#AFAFAF"></path></svg><i class="Barrage-toolbarIcon"></i><span id="refresh-barrage-frame__text" class="Barrage-toolbarText">拉高</span>';
+    toolbar.insertBefore(button, toolbar.childNodes[0]);
 }
 
 function initPkg_Refresh_BarrageFrame_Func() {
-    document.getElementById("refresh-barrage-frame").addEventListener("click", function() {
-        let dom_rank = document.getElementsByClassName("layout-Player-rank")[0];
-        let dom_activity = document.getElementById("js-room-activity");
-        let dom_topBarrage = document.getElementsByClassName("Barrage")[0];
-        if ("none" == dom_rank.style.display) {
-            dom_rank.style.display = "block";
-            dom_activity.style.display = "block";
-            dom_topBarrage.className = "Barrage";
-            document.getElementById("refresh-barrage-frame__text").innerText = "拉高";
-            document.getElementById("refresh-barrage-frame").classList.remove("ex-active");
-            document.getElementById("refresh-barrage-frame__text").style.color = "";
-            let svg = document.getElementById("refresh-barrage-frame__svg");
-            if (svg) {
-                let p = svg.getElementsByTagName("path")[0];
-                if (p) p.setAttribute("fill", "#AFAFAF");
-            }
-            saveData_Refresh();
-        } else PostbirdAlertBox.confirm({
-            title: "提示",
-            content: "是否拉高弹幕框，隐藏日榜周榜",
-            okBtn: "确定",
-            cancelBtn: "取消",
-            onConfirm: function() {
-                dom_rank.style.display = "none";
-                dom_activity.style.display = "none";
-                dom_topBarrage.className = "Barrage top-0-important";
-                document.getElementById("refresh-barrage-frame__text").innerText = "拉高";
-                document.getElementById("refresh-barrage-frame").classList.add("ex-active");
-                document.getElementById("refresh-barrage-frame__text").style.color = "#fff";
-                let svg = document.getElementById("refresh-barrage-frame__svg");
-                if (svg) {
-                    let p = svg.getElementsByTagName("path")[0];
-                    if (p) p.setAttribute("fill", "#ffffff");
-                }
-                saveData_Refresh();
-            },
-            onCancel: function() {}
-        });
+    const button = document.getElementById("refresh-barrage-frame");
+    if (!button) return;
+    button.addEventListener("click", () => {
+        setRefreshBarrageFrame(!current_barrage_frame_status);
+        saveData_Refresh();
     });
 }
 
+function setRefreshBarrageFrame(enabled) {
+    current_barrage_frame_status = !!enabled;
+    if (enabled) StyleHook_set("Ex_Style_RefreshBarrageFrame", ".layout-Player-rank,#js-room-activity{display:none !important;}.Barrage{top:0 !important;}"); else StyleHook_remove("Ex_Style_RefreshBarrageFrame");
+    const barrage = document.getElementsByClassName("Barrage")[0];
+    if (barrage) barrage.classList.toggle("top-0-important", !!enabled);
+    Refresh_setButtonState("refresh-barrage-frame", enabled);
+}
+
 function refresh_BarrageFrame_getStatus() {
-    let dom_rank = document.getElementsByClassName("layout-Player-rank")[0];
-    if ("none" == dom_rank.style.display) return true; else return false;
+    return current_barrage_frame_status;
 }
 
 function initPkg_Refresh_BarrageFrame_Set() {
-    let ret = localStorage.getItem("ExSave_Refresh");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("barrageFrame" in retJson == false) retJson.barrageFrame = {
-            status: false
-        };
-        if (true == retJson.barrageFrame.status) {
-            let dom_rank = document.getElementsByClassName("layout-Player-rank")[0];
-            let dom_activity = document.getElementById("js-room-activity");
-            dom_rank.style.display = "none";
-            dom_activity.style.display = "none";
-            document.getElementById("refresh-barrage-frame__text").innerText = "拉高";
-            document.getElementById("refresh-barrage-frame").classList.add("ex-active");
-            document.getElementById("refresh-barrage-frame__text").style.color = "#fff";
-            let svg = document.getElementById("refresh-barrage-frame__svg");
-            if (svg) {
-                let p = svg.getElementsByTagName("path")[0];
-                if (p) p.setAttribute("fill", "#ffffff");
-            }
-        }
-    }
+    setRefreshBarrageFrame(!!Refresh_getSaved().barrageFrame?.status);
 }
 
 let video_num = 0;
 
+let refreshVideoTimer = null;
+
+let refreshVideoReady = false;
+
 function initPkg_Refresh_Video() {
-    let timer = setInterval(() => {
+    if (null !== refreshVideoTimer || refreshVideoReady) return;
+    video_num = 0;
+    let timer = refreshVideoTimer = setInterval(() => {
         const controlbar = getValidDom([ ".right-e7ea5d", ".right-17e251" ]);
         if (controlbar) {
             clearInterval(timer);
+            refreshVideoTimer = null;
             initPkg_Refresh_Video_Dom();
             initPkg_Refresh_Video_Func();
             initPkg_Refresh_Video_Set();
+            refreshVideoReady = true;
         }
         video_num++;
-        if (video_num >= 100) clearInterval(timer);
+        if (video_num >= 100) {
+            clearInterval(timer);
+            refreshVideoTimer = null;
+        }
     }, 1500);
 }
 
@@ -7644,7 +4098,7 @@ function Refresh_Video_insertIcon() {
     a.id = "refresh-video";
     a.innerText = "隐藏礼物栏";
     let b = document.getElementsByClassName("menu-da2a9e")[0];
-    b.insertBefore(a, b.childNodes[b.childNodes.length - 1]);
+    if (b) b.insertBefore(a, b.childNodes[b.childNodes.length - 1]);
     if (!document.getElementById("refresh-video3")) {
         a = document.createElement("div");
         a.id = "refresh-video3";
@@ -7678,6 +4132,7 @@ function initPkg_Refresh_Video_Func() {
         if (document.querySelector(".wfs-2a8e83.removed-9d4c42")) video_fullPage = true; else if (document.querySelector(".toggle__P8TKM")) video_fullPage = true;
         if (document.querySelector(".shrink__Sd0uK")) chatPanel_isHidden = true;
         const dom_player_toolbar = document.getElementById("js-player-toolbar");
+        if (!dom_player_toolbar) return;
         dom_player_toolbar.style = video_fullPage ? "z-index:20" : "z-index:30";
         const dom_casebar = document.getElementsByClassName("case__f4yex")[0];
         if (dom_casebar) dom_casebar.style = (video_fullScreen || video_fullPage && chatPanel_isHidden) && refresh_Video_getStatus() ? "bottom: -84px;" : "bottom: 0;";
@@ -7742,7 +4197,7 @@ function initPkg_Refresh_Video_Func() {
         let dom_video = getValidDom([ ".layout-Player-video", ".stream__T55I3" ]);
         let dom_refresh = document.getElementById("refresh-video");
         let dom_refresh3 = document.getElementById("refresh-video3");
-        if (!dom_toolbar || !dom_video || !dom_refresh) return;
+        if (!dom_toolbar || !dom_video) return;
         if ("hidden" == dom_toolbar.style.visibility) {
             dom_toolbar.style.visibility = "visible";
             if ("function" === typeof ExPanel_onGiftBarShow) ExPanel_onGiftBarShow();
@@ -7753,14 +4208,14 @@ function initPkg_Refresh_Video_Func() {
                 dom_refresh3.style.pointerEvents = "none";
                 dom_refresh3.title = "点击隐藏礼物栏";
             }
-            dom_refresh.innerText = "隐藏礼物栏";
+            if (dom_refresh) dom_refresh.innerText = "隐藏礼物栏";
             updateRefreshSwitchUI(false);
             refresh_Video_removeStyle();
         } else {
             dom_toolbar.style.visibility = "hidden";
             if ("function" === typeof ExPanel_onGiftBarHide) ExPanel_onGiftBarHide();
             dom_video.style = "bottom:0;z-index:25";
-            dom_refresh.innerText = "✓ 隐藏礼物栏";
+            if (dom_refresh) dom_refresh.innerText = "✓ 隐藏礼物栏";
             if (dom_refresh3) dom_refresh3.title = "点击显示礼物栏";
             updateRefreshSwitchUI(true);
             if (dom_refresh3) {
@@ -7787,7 +4242,8 @@ function initPkg_Refresh_Video_Func() {
         saveData_Refresh();
         resizeWindow();
     }
-    document.getElementById("refresh-video").addEventListener("click", e => {
+    const menuEntry = document.getElementById("refresh-video");
+    if (menuEntry) menuEntry.addEventListener("click", e => {
         toggleRefreshVideo();
     });
     if (refresh_video3) refresh_video3.addEventListener("click", e => {
@@ -7810,46 +4266,38 @@ function updateRefreshSwitchUI(isSimpleMode) {
 
 function refresh_Video_getStatus() {
     let dom_toolbar = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
+    if (!dom_toolbar || !refreshVideoReady) return !!Refresh_getSaved().video?.status;
     if ("hidden" == dom_toolbar.style.visibility) return true; else return false;
 }
 
 function initPkg_Refresh_Video_Set() {
-    let ret = localStorage.getItem("ExSave_Refresh");
-    if (null != ret) {
-        let retJson = JSON.parse(ret);
-        if ("video" in retJson == false) retJson.video = {
-            status: false
-        };
-        if (true == retJson.video.status) {
-            let dom_toolbar = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
-            let dom_video = getValidDom([ ".layout-Player-video", ".stream__T55I3" ]);
-            let dom_refresh = document.getElementById("refresh-video");
-            let dom_refresh3 = document.getElementById("refresh-video3");
-            let dom_player_toolbar = document.getElementById("js-player-toolbar");
-            dom_toolbar.style.visibility = "hidden";
-            dom_video.style = "bottom:0;z-index:25";
-            dom_player_toolbar.style = "z-index:30";
-            let ret = localStorage.getItem("ExSave_FullScreen");
-            if (null != ret) {
-                let retJson = JSON.parse(ret);
-                if (retJson.isFullScreen) dom_player_toolbar.style = "z-index:20";
-            }
-            const isBeta = !!document.getElementsByClassName("live-next-body")[0];
-            if (isBeta) dom_player_toolbar.parentElement.style = "z-index:20";
-            if (dom_refresh3) {
-                dom_refresh3.style.opacity = "0";
-                dom_refresh3.style.transform = "scale(.9)";
-                dom_refresh3.style.pointerEvents = "none";
-                dom_refresh3.title = "点击显示礼物栏";
-            }
-            dom_refresh.innerText = "✓ 隐藏礼物栏";
-            refresh_Video_setStyle();
-            resizeWindow();
-            setTimeout(() => {
-                updateRefreshSwitchUI(true);
-            }, 500);
-        }
+    if (!Refresh_getSaved().video?.status) return;
+    const toolbar = document.getElementsByClassName("PlayerToolbar-ContentRow")[0];
+    const video = getValidDom([ ".layout-Player-video", ".stream__T55I3" ]);
+    if (!toolbar || !video) return;
+    const menuEntry = document.getElementById("refresh-video");
+    const floatingEntry = document.getElementById("refresh-video3");
+    const playerToolbar = document.getElementById("js-player-toolbar");
+    toolbar.style.visibility = "hidden";
+    video.style = "bottom:0;z-index:25";
+    if (playerToolbar) {
+        playerToolbar.style = "z-index:30";
+        try {
+            if (JSON.parse(localStorage.getItem("ExSave_FullScreen"))?.isFullScreen) playerToolbar.style = "z-index:20";
+        } catch (_) {}
+        const isBeta = !!document.getElementsByClassName("live-next-body")[0];
+        if (isBeta && playerToolbar.parentElement) playerToolbar.parentElement.style = "z-index:20";
     }
+    if (floatingEntry) {
+        floatingEntry.style.opacity = "0";
+        floatingEntry.style.transform = "scale(.9)";
+        floatingEntry.style.pointerEvents = "none";
+        floatingEntry.title = "点击显示礼物栏";
+    }
+    if (menuEntry) menuEntry.innerText = "✓ 隐藏礼物栏";
+    refresh_Video_setStyle();
+    resizeWindow();
+    setTimeout(() => updateRefreshSwitchUI(true), 500);
 }
 
 function refresh_Video_setStyle() {
@@ -8084,183 +4532,6 @@ async function Reset_run() {
     await Reset_clearGMStorage();
     Reset_clearPluginLocalStorage();
     alert("已清空。请刷新斗鱼页面以使界面与功能恢复默认状态。");
-}
-
-function initPkg_RestoreYuba() {
-    responseHook((url, text) => {
-        if (-1 !== url.indexOf("group/getBindGroup")) return text.replace('"group_status":4', '"group_status":0');
-        return text;
-    });
-}
-
-function initPkg_RestoreYuba_restore() {
-    let oldId = null;
-    let newId = null;
-    oldId = RestoreYuba_getYubaId(window.location.href);
-    const urlParams = new URLSearchParams(window.location.search);
-    const exRestore = urlParams.get("exRestore");
-    if (!exRestore) return;
-    newId = Number(exRestore);
-    if (oldId === newId) return;
-    RestoreYuba_initHook(oldId, newId);
-    RestoreYuba_changeDom(oldId, newId);
-}
-
-function RestoreYuba_checkRedirect() {
-    const oldId = RestoreYuba_getYubaId(window.location.href);
-    if (!oldId) return;
-    getYubaStatus(oldId).then(data => {
-        if (3002 == data.status_code) {
-            const url = "https://yuba.douyu.com/discussion/4815048/posts?exRestore=" + oldId;
-            window.location.href = url;
-        }
-    });
-}
-
-function RestoreYuba_getYubaId(url) {
-    const match = url.match(/\/discussion\/(\d+)/);
-    if (match && match[1]) return match[1];
-    return null;
-}
-
-function RestoreYuba_initHook(oldId, newId) {
-    const excludeUrl = [ "web/group/head", "/follow/topic", "group/unfollowGroup" ];
-    function shouldExcludeUrl(url) {
-        if ("string" !== typeof url) return false;
-        return excludeUrl.some(keyword => url.includes(keyword));
-    }
-    const originalOpen = unsafeWindow.XMLHttpRequest.prototype.open;
-    const originalSend = unsafeWindow.XMLHttpRequest.prototype.send;
-    unsafeWindow.XMLHttpRequest.prototype.open = function(method, url, async, user, password) {
-        if ("string" === typeof url && url.includes(oldId) && !shouldExcludeUrl(url)) url = url.replace(new RegExp(oldId, "g"), newId);
-        return originalOpen.call(this, method, url, async, user, password);
-    };
-    unsafeWindow.XMLHttpRequest.prototype.send = function(body) {
-        const url = this.responseURL || this._url || "";
-        if (shouldExcludeUrl(url)) return originalSend.call(this, body);
-        if (body && "string" === typeof body && body.includes(oldId)) body = body.replace(new RegExp(oldId, "g"), newId); else if (body && body instanceof FormData) {
-            const newFormData = new FormData();
-            for (var pair of body.entries()) {
-                const key = pair[0];
-                let value = pair[1];
-                if ("string" === typeof value && value.includes(oldId)) value = value.replace(new RegExp(oldId, "g"), newId);
-                newFormData.append(key, value);
-            }
-            body = newFormData;
-        }
-        return originalSend.call(this, body);
-    };
-    const originalFetch = unsafeWindow.fetch;
-    unsafeWindow.fetch = function(input, init) {
-        let url = "";
-        if ("string" === typeof input) {
-            url = input;
-            if (input.includes(oldId) && !shouldExcludeUrl(input)) input = input.replace(new RegExp(oldId, "g"), newId);
-        } else if (input instanceof Request) {
-            url = input.url;
-            if (url.includes(oldId) && !shouldExcludeUrl(url)) input = new Request(url.replace(new RegExp(oldId, "g"), newId), input);
-        }
-        if (shouldExcludeUrl(url)) return originalFetch.call(unsafeWindow, input, init);
-        if (init && init.body) if ("string" === typeof init.body && init.body.includes(oldId)) init.body = init.body.replace(new RegExp(oldId, "g"), newId); else if (init.body instanceof FormData) {
-            const newFormData = new FormData();
-            for (var pair of init.body.entries()) {
-                const key = pair[0];
-                let value = pair[1];
-                if ("string" === typeof value && value.includes(oldId)) value = value.replace(new RegExp(oldId, "g"), newId);
-                newFormData.append(key, value);
-            }
-            init.body = newFormData;
-        }
-        return originalFetch.call(unsafeWindow, input, init);
-    };
-}
-
-async function RestoreYuba_changeDom(oldId, newId) {
-    const anchorInfo = await getYubaAnchorInfo(newId);
-    if (anchorInfo) {
-        const info = anchorInfo.data.generalOP[0];
-        const avatar = info.avatar;
-        const nickname = info.nick_name;
-        function changeTitle() {
-            document.querySelector(".groupavatar__9mD1S .image__GNnZC").src = avatar;
-            document.getElementsByClassName("groupname__BUzOM")[0].innerText = nickname;
-            document.getElementsByClassName("groupdesc__b8-53")[0].innerText = nickname + `的鱼吧`;
-            document.title = nickname + `的鱼吧`;
-        }
-        changeTitle();
-        new DomHook(".groupavatar__9mD1S", false, () => {
-            changeTitle();
-        });
-    }
-}
-
-function getYubaAnchorInfo(groupId) {
-    return new Promise(resolve => {
-        fetch("https://yuba.douyu.com/wbapi/web/group/managersdetail?group_id=" + groupId).then(response => response.json()).then(data => {
-            resolve(data);
-        }).catch(() => {
-            resolve(null);
-        });
-    });
-}
-
-function getYubaStatus(groupId) {
-    return new Promise((resolve, reject) => {
-        fetch("https://yuba.douyu.com/wbapi/web/group/head?group_id=" + groupId).then(response => response.json()).then(data => {
-            resolve(data);
-        }).catch(error => {
-            reject(error);
-        });
-    });
-}
-
-const roomVipExpireDayLimit = 5;
-
-function initPkg_RoomVip() {
-    setRoomVipExpireDays();
-}
-
-function initPkg_RoomVip_Dom() {
-    let a = document.createElement("span");
-    a.className = "room-vip";
-    a.innerHTML = `
-	距VIP到期 <span id="room-vip-expire-days">**</span> 天
-	`;
-    let b = getValidDom([ "#js-backpack-enter" ]);
-    if (b) {
-        b = b.parentElement;
-        b && b.insertBefore(a, b.childNodes[0]);
-    }
-}
-
-function setRoomVipExpireDays() {
-    fetch("https://www.douyu.com/member/platform_task/effect_list", {
-        method: "GET",
-        mode: "no-cors",
-        cache: "default",
-        credentials: "include"
-    }).then(res => res.text()).then(async doc => {
-        doc = new DOMParser().parseFromString(doc, "text/html");
-        const enterEffectDom = doc.getElementsByClassName("enter-wraper is-effect");
-        if (!enterEffectDom) return;
-        if (0 == enterEffectDom.length) return;
-        const showEffectMoreDom = enterEffectDom[0].getElementsByClassName("show-effect-more");
-        if (!showEffectMoreDom) return;
-        if (0 == showEffectMoreDom.length) return;
-        for (let i = 0; i < showEffectMoreDom.length; i++) {
-            const detail = JSON.parse(showEffectMoreDom[i].getAttribute("data-detail"));
-            if ("1646" !== String(detail.property_id)) continue;
-            if (String(detail.show_id_list) !== String(rid)) continue;
-            const expireTime = 1e3 * detail.expire_time;
-            const days = Math.floor((expireTime - Date.now()) / (1e3 * 60 * 60 * 24));
-            if (days <= roomVipExpireDayLimit) {
-                initPkg_RoomVip_Dom();
-                document.getElementById("room-vip-expire-days").innerText = days;
-            }
-        }
-    }).catch(err => {
-        console.log("请求失败!", err);
-    });
 }
 
 let isRemoveDanmakuBackground = getLocalIsRemoveDanmakuBackground();
@@ -8718,6 +4989,7 @@ function initPkg_ShowDanmaku() {
 }
 
 function initPkg_Sign() {
+    if (document.querySelector(".ex-sign")) return;
     initPkg_Sign_Dom();
     initPkg_Sign_Func();
 }
@@ -8739,464 +5011,222 @@ function initPkg_Sign_Dom() {
 function Sign_insertIcon() {
     let a = document.createElement("div");
     a.className = "ex-sign";
-    a.innerHTML = '<a class="ex-panel__icon" title="一键签到(所有关注的直播间/鱼吧/客户端/车队/活动)"><svg style="display: block;" t="1578566545259" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12959" width="32" height="32"><path d="M698.368 80.896v114.688c0 23.552 19.968 43.008 44.032 43.008s44.032-19.456 44.032-43.008V80.896c0-23.552-19.968-43.008-44.032-43.008s-44.032 18.944-44.032 43.008zM227.328 80.896v114.688c0 23.552 19.968 43.008 44.032 43.008 24.576 0 44.032-19.456 44.032-43.008V80.896c0-23.552-19.968-43.008-44.032-43.008-24.576 0-44.032 18.944-44.032 43.008z" fill="#F96C5D" p-id="12960"></path><path d="M977.92 195.584c0-23.552-19.968-43.008-44.032-43.008h-88.576v43.008c0 55.296-46.08 100.352-102.912 100.352s-102.912-45.056-102.912-100.352v-43.008H374.272v43.008c0 55.296-46.08 100.352-102.912 100.352-56.832 0-102.912-45.056-102.912-100.352v-43.008H79.872c-24.576 0-44.032 19.456-44.032 43.008v611.328l252.928-145.92-8.192-8.192c-10.24-9.728-16.384-23.552-16.384-38.4 0-29.696 25.088-54.272 55.808-54.272 15.36 0 29.184 6.144 39.424 15.872l28.16 27.648L977.92 263.168V195.584z" fill="#F96C5D" p-id="12961"></path><path d="M329.216 278.528c-5.632 3.584-11.264 6.656-17.408 9.216 5.632-2.56 11.776-5.632 17.408-9.216zM344.064 266.24c4.608-4.608 8.704-9.728 12.8-14.848-3.584 5.632-8.192 10.24-12.8 14.848zM329.216 278.528c5.632-3.584 10.752-7.68 15.36-12.288-5.12 4.608-10.24 8.704-15.36 12.288zM449.536 664.064l220.16-214.016c10.24-9.728 24.064-15.872 39.424-15.872 30.72 0 55.808 24.064 55.808 54.272 0 14.848-6.144 28.672-16.384 38.4l-259.072 252.416c-10.24 9.728-24.064 15.872-39.424 15.872s-29.184-6.144-39.424-15.872l-121.344-118.272L35.84 806.912v104.96c0 23.552 19.968 43.008 44.032 43.008h854.016c24.576 0 44.032-19.456 44.032-43.008V263.168L387.584 603.648l61.952 60.416zM350.72 569.856c-4.608-3.072-9.216-5.12-14.336-6.656 5.12 1.024 10.24 3.584 14.336 6.656zM271.36 295.936c14.336 0 27.648-2.56 39.936-7.68-12.288 4.608-25.6 7.68-39.936 7.68z" fill="#F15A4A" p-id="12962"></path></svg><i id="ex-sign__tip" class="ex-panel__tip"></i></a>';
+    a.innerHTML = '<a class="ex-panel__icon" title="一键签到（单击：开播关注房间；长按：全部关注房间；含鱼吧/客户端/活动）"><svg style="display: block;" t="1578566545259" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12959" width="32" height="32"><path d="M698.368 80.896v114.688c0 23.552 19.968 43.008 44.032 43.008s44.032-19.456 44.032-43.008V80.896c0-23.552-19.968-43.008-44.032-43.008s-44.032 18.944-44.032 43.008zM227.328 80.896v114.688c0 23.552 19.968 43.008 44.032 43.008 24.576 0 44.032-19.456 44.032-43.008V80.896c0-23.552-19.968-43.008-44.032-43.008-24.576 0-44.032 18.944-44.032 43.008z" fill="#F96C5D" p-id="12960"></path><path d="M977.92 195.584c0-23.552-19.968-43.008-44.032-43.008h-88.576v43.008c0 55.296-46.08 100.352-102.912 100.352s-102.912-45.056-102.912-100.352v-43.008H374.272v43.008c0 55.296-46.08 100.352-102.912 100.352-56.832 0-102.912-45.056-102.912-100.352v-43.008H79.872c-24.576 0-44.032 19.456-44.032 43.008v611.328l252.928-145.92-8.192-8.192c-10.24-9.728-16.384-23.552-16.384-38.4 0-29.696 25.088-54.272 55.808-54.272 15.36 0 29.184 6.144 39.424 15.872l28.16 27.648L977.92 263.168V195.584z" fill="#F96C5D" p-id="12961"></path><path d="M329.216 278.528c-5.632 3.584-11.264 6.656-17.408 9.216 5.632-2.56 11.776-5.632 17.408-9.216zM344.064 266.24c4.608-4.608 8.704-9.728 12.8-14.848-3.584 5.632-8.192 10.24-12.8 14.848zM329.216 278.528c5.632-3.584 10.752-7.68 15.36-12.288-5.12 4.608-10.24 8.704-15.36 12.288zM449.536 664.064l220.16-214.016c10.24-9.728 24.064-15.872 39.424-15.872 30.72 0 55.808 24.064 55.808 54.272 0 14.848-6.144 28.672-16.384 38.4l-259.072 252.416c-10.24 9.728-24.064 15.872-39.424 15.872s-29.184-6.144-39.424-15.872l-121.344-118.272L35.84 806.912v104.96c0 23.552 19.968 43.008 44.032 43.008h854.016c24.576 0 44.032-19.456 44.032-43.008V263.168L387.584 603.648l61.952 60.416zM350.72 569.856c-4.608-3.072-9.216-5.12-14.336-6.656 5.12 1.024 10.24 3.584 14.336 6.656zM271.36 295.936c14.336 0 27.648-2.56 39.936-7.68-12.288 4.608-25.6 7.68-39.936 7.68z" fill="#F15A4A" p-id="12962"></path></svg><i id="ex-sign__tip" class="ex-panel__tip"></i></a>';
     let b = document.getElementsByClassName("ex-panel__wrap")[0];
     b.insertBefore(a, b.childNodes[0]);
 }
 
-function initPkg_Sign_Main(isAll) {
-    initPkg_Sign_Yuba();
-    initPkg_Sign_Client();
-    initPkg_Sign_Room(isAll);
-    initPkg_Sign_Act();
-    initPkg_Sign_ActqzsUserTask();
-    initPkg_Sign_ReadPosts();
-    initPkg_Sign_Follow();
-    initPkg_Sign_FansTree();
-    initPkg_Sign_SuperFans();
-    initPkg_Sign_OPFOY();
-    initPkg_Sign_AnchorStar();
-}
+let signBatchRunning = false;
 
-let actList = {};
-
-function initPkg_Sign_Act() {
-    getAct();
-}
-
-async function getAct() {
-    if ("data" in actList == false) return;
-    for (let i = 0; i < actList.data.length; i++) {
-        let eachAct = actList.data[i];
-        let name = eachAct.name;
-        for (let j = 0; j < eachAct.script.length; j++) {
-            let script = eachAct.script[j];
-            let value = script.value;
-            let ret;
-            let ret2;
-            switch (script.name) {
-              case "signAct":
-                ret = await signAct(value);
-                if ("0" == ret.error) showMessage(`【${name}】签到完毕`, "success"); else showMessage(`【${name}】` + ret.msg, "error");
-                break;
-
-              case "userStatus":
-                ret = await userStatus(value);
-                if (0 == ret.error) for (var key in ret.data) {
-                    let item = ret.data[key];
-                    let cnt = item.curCompleteNum - item.curDeliverNum;
-                    let name2 = name + "-" + item.taskName;
-                    for (let i = 0; i < cnt; i++) {
-                        let ret2 = await takeActPrize(key);
-                        if ("0" == ret2.error) showMessage(`【${name2}】获得` + ret2.data.sendRes.items[0].prizeName + "*" + ret2.data.sendRes.items[0].prizeNum, "success"); else showMessage(`【${name2}】` + ret2.msg, "error");
-                    }
-                }
-                break;
-
-              case "addFollowRoom":
-                await addFollowRoom(value);
-                break;
-
-              case "removeFollowRoom":
-                await removeFollowRoom(value);
-                break;
-
-              case "shareAct":
-                await shareAct(value);
-                break;
-
-              case "doSign":
-                await doSign(value);
-                break;
-
-              case "getActRemaining":
-                ret = await getActRemaining(value);
-                if ("0" == ret.error) for (let i = 0; i < ret.data.freeCount; i++) {
-                    ret2 = await getJackpot(value);
-                    if ("0" == ret2.error) showMessage(`【${name}】礼盒开启：` + ret2.data.giftName, "success");
-                }
-
-              default:
-                break;
+async function initPkg_Sign_Main(isAll) {
+    if (signBatchRunning) {
+        showMessage("【一键签到】上一轮仍在执行，请稍候", "info");
+        return;
+    }
+    signBatchRunning = true;
+    const tasks = [ [ "鱼吧", () => initPkg_Sign_Yuba() ], [ "客户端", () => initPkg_Sign_Client() ], [ "房间", () => initPkg_Sign_Room(isAll) ], [ "月度活动", () => initPkg_Sign_ActqzsUserTask() ], [ "阅读", () => initPkg_Sign_ReadPosts() ], [ "关注", () => initPkg_Sign_Follow() ], [ "粉丝家园", () => initPkg_Sign_FansTree() ], [ "钻粉联赛", () => initPkg_Sign_SuperFans() ], [ "积分任务", () => initPkg_Sign_OPFOY() ], [ "星推", () => initPkg_Sign_AnchorStar() ] ];
+    try {
+        await Promise.all(tasks.map(async ([ name, run ]) => {
+            try {
+                await run();
+            } catch (error) {
+                showMessage(`【一键签到】${name}失败：` + (error.message || "请求失败"), "error");
+                console.warn(`【一键签到】` + name, error);
             }
-        }
+        }));
+    } finally {
+        signBatchRunning = false;
     }
 }
 
 async function initPkg_Sign_ActqzsUserTask() {
-    const rids = [ "5189167", "290935", "6979222", "5132174", "4042402" ];
-    let activityId = await getActivityId(dateFormat("yyyyMM", new Date()));
-    if (!activityId) {
-        const currentDate = new Date();
-        const nextMonth = currentDate.getMonth() + 1;
-        const prevMonth = currentDate.getMonth() - 1;
-        const prevMonthDate = new Date(currentDate.getFullYear(), prevMonth, 1);
-        const nextMonthDate = new Date(currentDate.getFullYear(), nextMonth, 1);
-        activityId = await getActivityId(dateFormat("yyyyMM", prevMonthDate));
-        if (!activityId) activityId = await getActivityId(dateFormat("yyyyMM", nextMonthDate));
+    const rooms = [ "5189167", "290935", "6979222", "5132174", "4042402" ];
+    const activityId = await getMonthlySignActivity(getActivityId);
+    const cardArenaId = await getMonthlySignActivity(getCardArenaId);
+    const ids = [ ...new Set([ activityId, cardArenaId ].filter(Boolean)) ];
+    if (!ids.length) {
+        showMessage("【一键签到】当前没有可用的月度活动", "info");
+        return;
     }
-    let cardArenaId = await getCardArenaId(dateFormat("yyyyMM", new Date()));
-    if (!cardArenaId) {
-        const currentDate = new Date();
-        const nextMonth = currentDate.getMonth() + 1;
-        const prevMonth = currentDate.getMonth() - 1;
-        const prevMonthDate = new Date(currentDate.getFullYear(), prevMonth, 1);
-        const nextMonthDate = new Date(currentDate.getFullYear(), nextMonth, 1);
-        cardArenaId = await getCardArenaId(dateFormat("yyyyMM", prevMonthDate));
-        if (!cardArenaId) cardArenaId = await getCardArenaId(dateFormat("yyyyMM", nextMonthDate));
-    }
-    const actIds = [ activityId, cardArenaId ];
-    for (var actId of actIds) for (var rid of rids) {
-        const signinActRet = await signinAct(actId, rid);
-        if (0 == signinActRet.error) {
-            let gift = signinActRet.data.awards.map(item => item.name + `x` + item.num).join("、");
-            showMessage("【一键签到】右侧活动直播间已签到，获得" + gift, "success");
-        }
-        const signinCardArenaRet = await signinCardArena(actId, rid);
-        if (0 == signinCardArenaRet.error) {
-            let gift = signinCardArenaRet.data.awards.map(item => item.name + `x` + item.num).join("、");
-            showMessage("【一键签到】右侧活动直播间已签到，获得" + gift, "success");
-        }
+    for (const activityId of ids) for (var roomId of rooms) for (var sign of [ signinAct, signinCardArena ]) try {
+        const ret = await sign(activityId, roomId);
+        if (0 == ret.error) {
+            const gift = (ret.data?.awards || []).map(item => item.name + `x` + item.num).join("、");
+            showMessage("【一键签到】右侧活动直播间已签到" + (gift ? "，获得" + gift : ""), "success");
+        } else if (ret.msg) showMessage(`【一键签到】${roomId} ` + ret.msg, "info");
+    } catch (error) {
+        console.warn("【月度活动】请求失败，继续其他任务", error);
     }
 }
 
-function getActivityId(dateStr) {
-    return new Promise(resolve => {
-        fetch(`https://webconf.douyucdn.cn/resource/common/activity/actqzs${dateStr}_w.json`).then(res => res.text()).then(ret => {
-            let json = ret.substring(String("DYConfigCallback(").length, ret.length);
-            json = json.substring(0, json.lastIndexOf(")"));
-            try {
-                json = JSON.parse(json);
-                resolve(json.data.activity_setting.activity_id);
-            } catch (err) {
-                resolve(null);
-            }
-        }).catch(err => {
-            resolve(null);
-        });
+async function getMonthlySignActivity(load) {
+    const now = new Date();
+    for (var offset of [ 0, -1, 1 ]) {
+        const date = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+        const id = await load(dateFormat("yyyyMM", date));
+        if (id) return id;
+    }
+    return null;
+}
+
+async function getSignActivityConfig(prefix, month) {
+    try {
+        const text = await signFetch(`https://webconf.douyucdn.cn/resource/common/activity/${prefix}${month}_w.json`, {
+            credentials: "omit"
+        }, "text");
+        const start = text.indexOf("(");
+        const end = text.lastIndexOf(")");
+        const config = JSON.parse(start >= 0 ? text.slice(start + 1, end) : text);
+        return config?.data?.activity_setting?.activity_id || null;
+    } catch (error) {
+        return null;
+    }
+}
+
+function getActivityId(month) {
+    return getSignActivityConfig("actqzs", month);
+}
+
+function getCardArenaId(month) {
+    return getSignActivityConfig("cardArena", month);
+}
+
+function signinCardArena(activityId, roomId) {
+    return signFetch("https://www.douyu.com/japi/revenuenc/web/cardArena/userTask/signIn", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&activity_id=${activityId}&rid=` + roomId
     });
 }
 
-function getCardArenaId(dateStr) {
-    return new Promise(resolve => {
-        fetch(`https://webconf.douyucdn.cn/resource/common/activity/cardArena${dateStr}_w.json`).then(res => res.text()).then(ret => {
-            let json = ret.substring(String("DYConfigCallback(").length, ret.length);
-            json = json.substring(0, json.lastIndexOf(")"));
-            try {
-                json = JSON.parse(json);
-                resolve(json.data.activity_setting.activity_id);
-            } catch (err) {
-                resolve(null);
-            }
-        }).catch(err => {
-            resolve(null);
-        });
-    });
-}
-
-function signinCardArena(activityId, rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/revenuenc/web/cardArena/userTask/signIn", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&activity_id=${activityId}&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
-    });
-}
-
-function signinAct(activityId, rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/revenuenc/web/actqzs/userTask/signIn", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&activity_id=${activityId}&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
+function signinAct(activityId, roomId) {
+    return signFetch("https://www.douyu.com/japi/revenuenc/web/actqzs/userTask/signIn", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&activity_id=${activityId}&rid=` + roomId
     });
 }
 
 async function initPkg_Sign_AnchorStar() {
-    const roomListRes = await getAnchorStarRoomList().catch(() => {});
-    const roomList = roomListRes.data.rankItemList;
-    if (!roomList || roomList && 0 == roomList.length) return;
-    for (let i = 0; i < 3; i++) {
-        const rid = roomList[i].rid;
-        if (!rid) continue;
-        await signAnchorStar(rid);
+    const result = await getAnchorStarRoomList();
+    const rooms = result?.data?.rankItemList;
+    if (!Array.isArray(rooms) || !rooms.length) return;
+    for (var room of rooms.slice(0, 3)) {
+        if (!room?.rid) continue;
+        try {
+            const ret = await signAnchorStar(room.rid);
+            if (null != ret.error && 0 != ret.error) showMessage(`【星推】${room.rid} ` + (ret.msg || "签到未成功"), "warning");
+        } catch (error) {
+            showMessage(`【星推】${room.rid}签到请求失败`, "error");
+        }
         await sleep(500);
     }
-    showMessage("【星推】签到任务完成", "success");
-    for (let i = 0; i < 5; i++) {
-        const rid = roomList[i].rid;
-        if (!rid) continue;
-        const res = await addFollowRoom(rid);
-        await sleep(500);
-        if (1 == res.error) {
-            await removeFollowRoom(rid);
+    showMessage("【星推】签到任务处理完成", "info");
+    for (const room of rooms.slice(0, 5)) {
+        if (!room?.rid) continue;
+        try {
+            const ret = await followRoom(room.rid);
             await sleep(500);
-            await addFollowRoom(rid);
-        } else await removeFollowRoom(rid);
+            if (1 == ret.error) {
+                await unfollowRoom(room.rid);
+                await sleep(500);
+                await followRoom(room.rid);
+            } else await unfollowRoom(room.rid);
+        } catch (error) {
+            showMessage(`【星推】${room.rid}关注任务请求失败`, "error");
+        }
         await sleep(500);
     }
-    showMessage("【星推】关注任务完成", "success");
+    showMessage("【星推】关注任务处理完成", "info");
 }
 
 function getAnchorStarRoomList() {
-    return new Promise((resolve, reject) => {
-        fetch(`https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/rank/info?rid=${rid}&type=5&track=3`, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include"
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
-    });
+    return signFetch(`https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/rank/info?rid=${rid}&type=5&track=3`);
 }
 
-function signAnchorStar(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/user/task/report", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&type=5&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
+function signAnchorStar(roomId) {
+    return signFetch("https://www.douyu.com/japi/livebiznc/web/anchorstardiscover/user/task/report", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&type=5&rid=` + roomId
     });
 }
 
 function initPkg_Sign_Client() {
-    signClient();
+    return signClient();
 }
 
-function signClient() {
-    GM_xmlhttpRequest({
+async function signClient() {
+    const ret = await signRequest({
         method: "POST",
         url: "https://apiv2.douyucdn.cn/h5nc/sign/sendSign",
         data: "token=" + dyToken,
         responseType: "json",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
-        },
-        onload: function(response) {
-            let ret = response.response;
-            if (0 == ret.data.length) showMessage("【客户端】今日已签到", "warning"); else if (0 != ret.data.sign_pl.length) {
-                let recv = "";
-                for (let i = 0; i < ret.data.sign_pl.length; i++) recv = recv + ret.data.sign_pl[i].cnt + "个" + ret.data.sign_pl[i].name + ",";
-                showMessage("【客户端】签到成功! 获得物品:" + recv, "success");
-            } else showMessage("【客户端】签到成功! 可惜没有获得东西", "success");
         }
     });
+    if (null != ret.error && 0 != ret.error) throw new Error(ret.msg || "客户端签到失败");
+    if (!ret.data) throw new Error(ret.msg || "客户端签到未返回有效数据");
+    if (Array.isArray(ret.data) && 0 === ret.data.length) {
+        showMessage("【客户端】今日已签到", "warning");
+        return;
+    }
+    const gifts = ret.data.sign_pl;
+    if (Array.isArray(gifts) && gifts.length) showMessage("【客户端】签到成功！获得物品：" + gifts.map(gift => gift.cnt + `个` + gift.name).join("，"), "success"); else showMessage("【客户端】签到成功，未获得物品", "success");
 }
 
 async function initPkg_Sign_FansTree() {
-    for (let i = 0; i < myFansBadgeList.length; i++) {
-        const roomId = myFansBadgeList[i];
-        let ret = await signRoomTree(roomId);
-        if (0 !== ret.error) showMessage(`【粉丝家园】` + roomId + ret.msg, "error"); else showMessage(`【粉丝家园】${roomId}签到成功！`, "success");
+    const rooms = await getFansBadgeRooms();
+    for (var roomId of rooms) try {
+        const ret = await signRoomTree(roomId);
+        if (0 != ret.error) showMessage(`【粉丝家园】` + roomId + (ret.msg || "签到未成功"), "error"); else showMessage(`【粉丝家园】${roomId}签到成功！`, "success");
+    } catch (error) {
+        showMessage(`【粉丝家园】${roomId}请求失败，继续其他房间`, "error");
     }
 }
 
 function signRoomTree(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/interactnc/web/fanshome/sign", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
+    return signFetch("https://www.douyu.com/japi/interactnc/web/fanshome/sign", {
+        method: "POST",
+        mode: "no-cors",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&rid=` + rid
     });
 }
 
 async function initPkg_Sign_Follow() {
-    const room_id = "3186571";
-    await followRoom(room_id);
-    await unfollowRoom(room_id);
+    const roomId = "3186571";
+    await followRoom(roomId);
+    await unfollowRoom(roomId);
 }
 
-function unfollowRoom(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/rm", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
-    });
-}
-
-function followRoom(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/add", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
-    });
-}
-
-function getCookie(cookieName) {
-    let csrfToken = "";
-    let strCookie = document.cookie;
-    let arrCookie = strCookie.split("; ");
-    for (let i = 0; i < arrCookie.length; i++) {
-        let arr = arrCookie[i].split("=");
-        if (cookieName == arr[0]) csrfToken = arr[1];
-    }
-    if ("" == csrfToken) {
-        csrfToken = Math.random().toString(36).substr(2);
-        document.cookie = "post-csrfToken=" + escape(csrfToken) + ";path=/";
-    }
-    return csrfToken;
-}
-
-async function signMotorcade_Sign() {
-    let retConnect = await motorcadeConnect();
-    let retConnect2 = await motorcadeConnect2(retConnect.data.uid, retConnect.data.sig);
-    let mid = await getMotorcadeID(retConnect2.TinyId, retConnect2.A2Key, retConnect.data.uid);
-    if (!mid || "" == mid) {
-        closePage();
-        return;
-    }
-    console.log("mid是：", mid);
-    mid = encodeURIComponent(mid);
-    GM_xmlhttpRequest({
-        method: "GET",
-        url: "https://msg.douyu.com/v3/motorcade/signs/weekly?mid=" + mid + "&timestamp=" + Math.random().toFixed(17),
-        responseType: "json",
+function unfollowRoom(roomId) {
+    return signFetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/rm", {
+        method: "POST",
         headers: {
-            "dy-device-id": "-",
-            "dy-client": "web",
-            "dy-csrf-token": getCookie("post-csrfToken"),
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        onload: function(response) {
-            let ret = response.response;
-            console.log("weekly:", ret);
-            if ("1" == ret.data.is_sign) closePage(); else GM_xmlhttpRequest({
-                method: "POST",
-                url: "https://msg.douyu.com/v3/msign/add?timestamp=" + Math.random().toFixed(17),
-                data: "to_mid=" + mid + "&expression=" + String(Number(ret.data.total) + 1),
-                responseType: "json",
-                headers: {
-                    "dy-device-id": "-",
-                    "dy-client": "web",
-                    "dy-csrf-token": getCookie("post-csrfToken"),
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                onload: function(response) {
-                    if (2 == Math.floor(response.response.status_code / 100)) console.log("【车队】签到成功"); else console.log(response.response.message);
-                    closePage();
-                }
-            });
-        }
+        body: `ctn=${getCCN()}&rid=` + roomId
     });
 }
 
-function motorcadeConnect() {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "https://msg.douyu.com/v3/login/getusersig?t=" + String(new Date().getTime()) + "&timestamp=" + Math.random().toFixed(17),
-            data: '{"State":"Online"}',
-            responseType: "json",
-            headers: {
-                "dy-device-id": "-",
-                "dy-client": "web",
-                "dy-csrf-token": getCookie("post-csrfToken"),
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            onload: function(response) {
-                resolve(response.response);
-            }
-        });
-    });
-}
-
-function motorcadeConnect2(identifier, sig) {
-    let url = "https://webim.tim.qq.com/v4/openim/login?identifier=" + identifier + "&usersig=" + sig + "&contenttype=json&sdkappid=1400029396";
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "POST",
-            url: url,
-            data: '{"State":"Online"}',
-            responseType: "json",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            onload: function(response) {
-                resolve(response.response);
-            }
-        });
-    });
-}
-
-function getMotorcadeID(tinyid, a2, identifier) {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "POST",
-            url: "https://webim.tim.qq.com/v4/group_open_http_svc/get_joined_group_list?tinyid=" + tinyid + "&a2=" + a2 + "&contenttype=json&sdkappid=1400029396",
-            data: '{"Member_Account":"' + identifier + '"}',
-            responseType: "json",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            onload: function(response) {
-                if (response.response.GroupIdList && response.response.GroupIdList.length > 0) resolve(response.response.GroupIdList[0].GroupId); else resolve("");
-            }
-        });
+function followRoom(roomId) {
+    return signFetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/add", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&rid=` + roomId
     });
 }
 
@@ -9207,204 +5237,211 @@ async function initPkg_Sign_OPFOY() {
 }
 
 function signOPFOY(csrfToken) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/carnivalApi/sign/doSign", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `csrfToken=${csrfToken}&signAlias=20250521OPFOY_qd2&useJiYan=false`
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
+    return signFetch("https://www.douyu.com/japi/carnivalApi/sign/doSign", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `csrfToken=${csrfToken}&signAlias=20250521OPFOY_qd2&useJiYan=false`
     });
 }
 
+let opfoyViewTimer = null;
+
+let opfoyViewChecking = false;
+
 function initPkg_Sign_OPFOY_Timer() {
-    checkOPFOYViewStatus();
-    setInterval(checkOPFOYViewStatus, 5 * 60 * 1e3);
+    if (null !== opfoyViewTimer) return;
+    opfoyViewTimer = setInterval(checkOPFOYViewStatus, 5 * 60 * 1e3);
+    return checkOPFOYViewStatus();
 }
 
 async function checkOPFOYViewStatus() {
-    const status = await getOPFOYViewStatus();
-    const taskList = status.data.taskList;
-    const startTime = status.data.startTime;
-    if (!taskList) return;
-    for (var id in taskList) {
-        const task = taskList[id];
-        if (2 !== task.status) continue;
-        const ret = await getOPFOYGift(id, startTime);
-        if (0 == ret.error) showMessage(`【积分任务】观时积分领取成功`, "success"); else showMessage(`【积分任务】` + ret.msg, "error");
+    if (opfoyViewChecking) return;
+    opfoyViewChecking = true;
+    try {
+        const status = await getOPFOYViewStatus();
+        const taskList = status?.data?.taskList;
+        const startTime = status?.data?.startTime;
+        if (!taskList || null == startTime) return;
+        for (var id of Object.keys(taskList)) {
+            if (2 !== taskList[id]?.status) continue;
+            try {
+                const ret = await getOPFOYGift(id, startTime);
+                if (0 == ret.error) showMessage("【积分任务】观时积分领取成功", "success"); else showMessage(`【积分任务】` + (ret.msg || "暂时无法领取"), "error");
+            } catch (error) {
+                console.warn("【积分任务】领取失败，下轮继续检查", error);
+            }
+        }
+    } catch (error) {
+        console.warn("【积分任务】检查失败，下轮重试", error);
+    } finally {
+        opfoyViewChecking = false;
     }
 }
 
 function getOPFOYViewStatus() {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/wgapi/activitync/gametask/viewStatus", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&actAlias=20250521OPFOY`
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
+    return signFetch("https://www.douyu.com/wgapi/activitync/gametask/viewStatus", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&actAlias=20250521OPFOY`
     });
 }
 
 function getOPFOYGift(id, startTime) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/wgapi/activitync/gametask/takeGift", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&id=${id}&actAlias=20250521OPFOY&startTime=` + startTime
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
+    return signFetch("https://www.douyu.com/wgapi/activitync/gametask/takeGift", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&id=${id}&actAlias=20250521OPFOY&startTime=` + startTime
     });
 }
 
 async function initPkg_Sign_ReadPosts() {
-    const counts = 5;
-    for (let i = 0; i < counts; i++) {
-        await readPosts();
+    for (let i = 0; i < 5; i++) {
+        try {
+            await readPosts();
+        } catch (error) {
+            console.warn("【阅读任务】请求失败", error);
+        }
         await sleep(2e3);
     }
 }
 
 function readPosts() {
-    GM_xmlhttpRequest({
+    return signRequest({
         method: "GET",
-        url: "https://yuba.douyu.com/wbapi/web/post/detail/555691541586843641?cid=&timestamp=" + new Date().getTime(),
+        url: "https://yuba.douyu.com/wbapi/web/post/detail/555691541586843641?cid=&timestamp=" + Date.now(),
         responseType: "json",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             "dy-token": dyToken,
             "dy-client": "pc"
-        },
-        onload: function(response) {}
+        }
+    });
+}
+
+async function signFetch(url, options = {}, responseType = "json") {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 3e4);
+    try {
+        const response = await fetch(url, {
+            credentials: "include",
+            ...options,
+            signal: controller.signal
+        });
+        if (false === response.ok) throw new Error(`请求失败 (${response.status})`);
+        return await response[responseType]();
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+function signRequest(options) {
+    return new Promise((resolve, reject) => {
+        GM_xmlhttpRequest({
+            ...options,
+            timeout: 3e4,
+            onload: response => {
+                if (response.status >= 400) reject(new Error(`请求失败 (${response.status})`)); else if (null == response.response) reject(new Error("接口未返回有效数据")); else resolve(response.response);
+            },
+            onerror: () => reject(new Error("网络请求失败")),
+            ontimeout: () => reject(new Error("网络请求超时")),
+            onabort: () => reject(new Error("网络请求已取消"))
+        });
     });
 }
 
 function initPkg_Sign_Room(isAll) {
-    signAllRoom(isAll);
+    return signAllRoom(isAll);
 }
 
-function signAllRoom(isAll) {
-    let pageCount = 0;
-    let signedCount = 0;
-    let count = 0;
-    fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/list?page=1428", {
-        method: "GET",
-        mode: "no-cors",
-        cache: "default",
-        credentials: "include"
-    }).then(res => res.json()).then(ret => {
-        pageCount = Number(ret.data.pageCount);
-        for (let nowPage = 1; nowPage <= pageCount; nowPage++) fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/list?page=" + String(nowPage), {
-            method: "GET",
-            mode: "no-cors",
-            cache: "default",
-            credentials: "include"
-        }).then(res => res.json()).then(ret1 => {
-            let roomCount = Number(ret1.data.list.length);
-            for (let i = 0; i < roomCount; i++) {
-                if (false == isAll) {
-                    if ("1" == ret1.data.list[i].show_status) {
-                        signRoom(ret1.data.list[i].room_id);
-                        signedCount++;
-                    }
-                } else {
-                    signRoom(ret1.data.list[i].room_id);
-                    signedCount++;
-                }
-                count++;
-                if (count == ret1.data.total && i == roomCount - 1) {
-                    let rest = Number(ret1.data.total) - signedCount;
-                    showMessage("【房间签到】" + String(signedCount) + "个房间签到已完成，" + String(rest) + "个房间未签到", "success");
-                }
+async function signAllRoom(isAll) {
+    const base = "https://www.douyu.com/wgapi/livenc/liveweb/follow/list?page=";
+    const summary = await signFetch(base + "1428");
+    const pageCount = Number(summary?.data?.pageCount);
+    if (!Number.isSafeInteger(pageCount) || pageCount < 0) throw new Error(summary?.msg || "无法获取关注房间");
+    let signed = 0;
+    let skipped = 0;
+    let failed = 0;
+    let failedPages = 0;
+    for (let page = 1; page <= pageCount; page++) {
+        let rooms;
+        try {
+            const result = await signFetch(base + page);
+            rooms = result?.data?.list;
+            if (!Array.isArray(rooms)) throw new Error("关注房间列表无效");
+        } catch (error) {
+            failedPages++;
+            showMessage(`【房间签到】第${page}页获取失败，继续其他页`, "error");
+            console.warn("【房间签到】分页请求失败", page, error);
+            continue;
+        }
+        for (var room of rooms) {
+            if (!isAll && "1" != room.show_status) {
+                skipped++;
+                continue;
             }
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-        showMessage("【房间签到】" + ret.data.total + "个房间正在签到中...", "info");
-    }).catch(err => {
-        console.log("请求失败!", err);
-    });
+            try {
+                const ret = await signRoom(room.room_id);
+                if (null != ret.error && 0 != ret.error) {
+                    failed++;
+                    showMessage(`【房间签到】${room.room_id} ` + (ret.msg || "未能签到"), "warning");
+                } else signed++;
+            } catch (error) {
+                failed++;
+                console.warn("【房间签到】请求失败", room.room_id, error);
+            }
+        }
+    }
+    showMessage(`【房间签到】${signed}个房间已处理，${skipped}个未开播跳过，${failed}个失败` + (failedPages ? `，${failedPages}页未能获取` : ""), failed || failedPages ? "warning" : "success");
 }
 
-function signRoom(r) {
-    GM_xmlhttpRequest({
+function signRoom(roomId) {
+    return signRequest({
         method: "POST",
         url: "https://apiv2.douyucdn.cn/japi/roomuserlevel/apinc/checkIn?client_sys=android",
-        data: "rid=" + r,
+        data: "rid=" + roomId,
         responseType: "json",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             token: dyToken,
             aid: "android1"
-        },
-        onload: function(response) {}
+        }
     });
 }
 
 async function initPkg_Sign_SuperFans() {
-    for (let i = 0; i < myFansBadgeList.length; i++) {
-        const roomId = myFansBadgeList[i];
-        let ret = await signSuperFans(roomId);
-        if (0 !== ret.error); else showMessage(`【钻粉联赛签到】${roomId}签到成功！`, "success");
+    const rooms = await getFansBadgeRooms();
+    for (var roomId of rooms) try {
+        const ret = await signSuperFans(roomId);
+        if (0 == ret.error) showMessage(`【钻粉联赛签到】${roomId}签到成功！`, "success"); else if (ret.msg) showMessage(`【钻粉联赛签到】` + roomId + ret.msg, "info");
+    } catch (error) {
+        showMessage(`【钻粉联赛签到】${roomId}请求失败，继续其他房间`, "error");
     }
 }
 
 function signSuperFans(rid) {
-    return new Promise((resolve, reject) => {
-        fetch("https://www.douyu.com/japi/interactnc/web/dfansact/userSign", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `ctn=${getCCN()}&rid=` + rid
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-            reject(err);
-        });
+    return signFetch("https://www.douyu.com/japi/interactnc/web/dfansact/userSign", {
+        method: "POST",
+        mode: "no-cors",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `ctn=${getCCN()}&rid=` + rid
     });
 }
 
-let signedYuba = 0;
-
-let totalYuba = 0;
-
-let doneYuba = 0;
-
-let signCountMap = {};
-
 function initPkg_Sign_Yuba() {
-    signYubaList();
+    return signYubaList();
 }
 
 function signYubaFast() {
-    GM_xmlhttpRequest({
+    return signRequest({
         method: "POST",
         url: "https://mapi-yuba.douyu.com/wb/v3/fastSign",
         responseType: "json",
@@ -9412,179 +5449,102 @@ function signYubaFast() {
             "Content-Type": "application/x-www-form-urlencoded",
             client: "android",
             token: dyToken
-        },
-        onload: function(response) {
-            if ("" == response.response.message && 0 != response.response.data); else if (0 == response.response.data);
         }
     });
 }
 
-async function signYuba(group_id, t) {
-    GM_xmlhttpRequest({
-        method: "POST",
-        url: "https://yuba.douyu.com/ybapi/topic/sign",
-        data: "group_id=" + group_id,
-        responseType: "json",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "dy-client": "pc",
-            "dy-token": t,
-            Referer: "https://yuba.douyu.com/group/" + group_id
-        },
-        onload: async function(response) {
-            if (signCountMap[group_id] >= 10) return;
-            if ("签到失败" == response.response.message) {
-                await sleep(2e3);
-                signYuba(group_id, t);
-                return;
-            }
-            if (signCountMap[group_id]) signCountMap[group_id]++; else signCountMap[group_id] = 1;
-            doneYuba++;
-            if ("" == response.response.message) signedYuba++;
-            signYubaSupplementary(group_id);
-            if (doneYuba == totalYuba) {
-                if (signedYuba > 0) if (totalYuba - signedYuba == 0) showMessage("【鱼吧】" + String(signedYuba) + "个鱼吧签到完成", "success"); else showMessage("【鱼吧】" + String(signedYuba) + "个鱼吧签到完成，" + String(totalYuba - signedYuba) + "个鱼吧已签到", "success"); else showMessage("【鱼吧】" + String(totalYuba) + "个鱼吧已签到", "warning");
-                signedYuba = null;
-                totalYuba = null;
-                doneYuba = null;
-            }
-        }
-    });
-}
-
-async function signYubaSupplementary(group_id) {
-    let result = await signSupplementary(group_id);
-    for (let i = 0; i < result.data.supplementary_cards; i++) await signSupplementary(group_id);
-}
-
-async function signYubaList() {
-    let yubaList = [];
-    let ret = await getYubaPage(1);
-    yubaList = yubaList.concat(ret.list);
-    let pageNum = Number(ret.count_page) - 1;
-    if (pageNum >= 1) for (let i = 0; i < pageNum; i++) {
-        let curPage = 2 + i;
-        ret = await getYubaPage(curPage);
-        yubaList = yubaList.concat(ret.list);
-    }
-    totalYuba = yubaList.length;
-    signYubaFast();
-    for (let i = 0; i < yubaList.length; i++) signYuba(yubaList[i].group_id, dyToken);
-}
-
-function getYubaPage(page) {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: "https://yuba.douyu.com/wbapi/web/group/myFollow?page=" + String(page) + "&limit=30",
+async function signYuba(groupId, token) {
+    for (let attempt = 0; attempt < 10; attempt++) {
+        const result = await signRequest({
+            method: "POST",
+            url: "https://yuba.douyu.com/ybapi/topic/sign",
+            data: "group_id=" + groupId,
             responseType: "json",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
                 "dy-client": "pc",
-                "dy-token": dyToken
-            },
-            onload: function(response) {
-                resolve(response.response.data);
+                "dy-token": token,
+                Referer: "https://yuba.douyu.com/group/" + groupId
             }
         });
+        if ("签到失败" !== result.message) {
+            await signYubaSupplementary(groupId);
+            return result;
+        }
+        if (attempt < 9) await sleep(2e3);
+    }
+    throw new Error("鱼吧签到重试失败，请稍后重试");
+}
+
+async function signYubaSupplementary(groupId) {
+    let result = await signSupplementary(groupId);
+    let remaining = Number(result?.data?.supplementary_cards) || 0;
+    for (let i = 0; i < remaining; i++) {
+        result = await signSupplementary(groupId);
+        const next = Number(result?.data?.supplementary_cards);
+        if (!Number.isFinite(next) || next <= 0 || next >= remaining - i) break;
+    }
+}
+
+async function signYubaList() {
+    const first = await getYubaPage(1);
+    if (!Array.isArray(first?.list)) throw new Error("无法获取关注鱼吧，请确认已登录");
+    let groups = [ ...first.list ];
+    const pages = Number(first.count_page) || 1;
+    for (let page = 2; page <= pages; page++) {
+        const result = await getYubaPage(page);
+        if (!Array.isArray(result?.list)) throw new Error("鱼吧分页数据无效");
+        groups.push(...result.list);
+    }
+    groups = [ ...new Map(groups.filter(group => null != group?.group_id).map(group => [ String(group.group_id), group ])).values() ];
+    try {
+        await signYubaFast();
+    } catch (error) {
+        console.warn("【鱼吧】极速签到失败，继续逐项签到", error);
+    }
+    let signed = 0;
+    let failed = 0;
+    await Promise.all(groups.map(async group => {
+        try {
+            const result = await signYuba(group.group_id, dyToken);
+            if ("" === result.message) signed++; else if (result.message) showMessage(`【鱼吧】${group.group_id} ` + result.message, "info");
+        } catch (error) {
+            failed++;
+            console.warn("【鱼吧】签到失败", group.group_id, error);
+        }
+    }));
+    showMessage(`【鱼吧】${groups.length}个鱼吧处理完成，${signed}个新签到，${failed}个失败`, failed ? "warning" : "success");
+}
+
+async function getYubaPage(page) {
+    const result = await signRequest({
+        method: "GET",
+        url: "https://yuba.douyu.com/wbapi/web/group/myFollow?page=" + page + "&limit=30",
+        responseType: "json",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "dy-client": "pc",
+            "dy-token": dyToken
+        }
+    });
+    return result.data;
+}
+
+function signSupplementary(groupId) {
+    return signRequest({
+        method: "POST",
+        url: "https://mapi-yuba.douyu.com/wb/v3/supplement",
+        responseType: "json",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            client: "android",
+            token: dyToken
+        },
+        data: "group_id=" + groupId
     });
 }
 
-function signSupplementary(group_id) {
-    return new Promise(resolve => {
-        GM_xmlhttpRequest({
-            method: "POST",
-            url: "https://mapi-yuba.douyu.com/wb/v3/supplement",
-            responseType: "json",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                client: "android",
-                token: dyToken
-            },
-            data: "group_id=" + group_id,
-            onload: function(response) {
-                resolve(response.response);
-            }
-        });
-    });
-}
-
-function initPkg_Statistics() {
-    let hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?4dc4fb0549a56fe03ba53c022b1ff455";
-    let s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-}
-
-var curVersion = "2026.08.07.01";
-
-var isNeedUpdate = false;
-
-var lastestVersion = "";
-
-function initPkg_Update() {
-    initPkg_Update_Dom();
-    initPkg_Update_Func();
-}
-
-function initPkg_Update_Dom() {
-    Update_insertIcon();
-}
-
-function Update_insertIcon() {
-    let a = document.createElement("div");
-    a.className = "ex-update";
-    a.innerHTML = '<a class="ex-panel__icon" title="版本更新，当前版本' + curVersion + '"><svg t="1578767541873" style="display:block;" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="23715" width="32" height="32"><path d="M768 810.7H512c-23.6 0-42.7-19.1-42.7-42.7s19.1-42.7 42.7-42.7h256c94.1 0 170.7-76.6 170.7-170.7 0-89.6-70.1-164.3-159.5-170.1L754 383l-10.7-22.7c-42.2-89.3-133-147-231.3-147s-189.1 57.7-231.3 147L270 383l-25.1 1.6c-89.5 5.8-159.5 80.5-159.5 170.1 0 94.1 76.6 170.7 170.7 170.7 23.6 0 42.7 19.1 42.7 42.7s-19.1 42.7-42.7 42.7c-141.2 0-256-114.8-256-256 0-126.1 92.5-232.5 214.7-252.4C274.8 195.7 388.9 128 512 128s237.2 67.7 297.3 174.2C931.5 322.1 1024 428.6 1024 554.7c0 141.1-114.8 256-256 256z" fill="#3688FF" p-id="23716"></path><path d="M554.7 938.7c-10.9 0-21.8-4.2-30.2-12.5l-128-128c-16.7-16.7-16.7-43.7 0-60.3l128-128c16.6-16.7 43.7-16.7 60.3 0 16.7 16.7 16.7 43.7 0 60.3L487 768l97.8 97.8c16.7 16.7 16.7 43.7 0 60.3-8.3 8.4-19.2 12.6-30.1 12.6z" fill="#5F6379" p-id="23717"></path></svg></a>';
-    let b = document.getElementsByClassName("ex-panel__wrap")[0];
-    b.insertBefore(a, b.childNodes[0]);
-}
-
-function initPkg_Update_Func() {
-    document.getElementsByClassName("ex-update")[0].addEventListener("click", Update_openUpdatePage);
-}
-
-function checkUpdate_Src() {
-    return new Promise((resolve, reject) => {
-        GM_xmlhttpRequest({
-            method: "GET",
-            url: `https://src.douyuex.com/src/douyuex_version.txt?t=` + new Date().getTime(),
-            responseType: "text",
-            onload: function(response) {
-                const txt = response.response;
-                if (void 0 != txt) if (txt != curVersion) resolve([ true, txt ]);
-                resolve(false);
-            },
-            onerror: function(err) {
-                console.error("请求失败", err);
-                reject();
-            }
-        });
-    });
-}
-
-async function Update_checkVersion(isShowNotUpdate = false) {
-    let tmp = [];
-    tmp = await checkUpdate_Src().catch(err => {
-        tmp = [ false, curVersion ];
-        isNeedUpdate = tmp[0];
-        lastestVersion = tmp[1];
-        if (isNeedUpdate) Update_showMessage(); else if (isShowNotUpdate) showMessage(`【版本更新】当前版本${curVersion}已为最新，<a href="https://html.douyuex.com/update/" target="_blank">点击查看更新内容</a>`, "success");
-    });
-    isNeedUpdate = tmp[0];
-    lastestVersion = tmp[1];
-    if (isNeedUpdate) Update_showMessage(); else if (isShowNotUpdate) showMessage(`【版本更新】当前版本${curVersion}已为最新，<a href="https://html.douyuex.com/update/" target="_blank">点击查看更新内容</a>`, "success");
-}
-
-function Update_openUpdatePage() {
-    openPage("https://html.douyuex.com/install/web.html", true);
-}
-
-function Update_showMessage() {
-    let msg = `【版本更新】最新版本：${lastestVersion}，点击<a href="https://html.douyuex.com/install/web.html" target="_blank">官方源</a>或者<a href="https://greasyfork.org/zh-CN/scripts/394497" target="_blank">GreasyFork源</a>更新，<a href="https://html.douyuex.com/update/" target="_blank">点击查看更新内容</a>`;
-    showMessage(msg, "error", {
-        timeout: 50
-    });
-}
+var curVersion = "2026.11.18.01";
 
 let videoStartTime = 0;
 
@@ -9612,8 +5572,8 @@ function initPkg_VideoTime() {
         let demandVideo = document.getElementsByTagName("demand-video")[0];
         if (!demandVideo || !demandVideo.shadowRoot) return;
         let videoDom = demandVideo.shadowRoot.getElementById("__video");
-        let showtimeDom = demandVideo.shadowRoot.getElementById("demandcontroller-bar").shadowRoot.querySelector("demand-video-controller-progress").shadowRoot.querySelector("demand-video-controller-preview");
-        let shareHoverDom = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover");
+        let showtimeDom = demandVideo.shadowRoot.getElementById("demandcontroller-bar")?.shadowRoot?.querySelector("demand-video-controller-progress")?.shadowRoot?.querySelector("demand-video-controller-preview");
+        let shareHoverDom = document.getElementsByTagName("demand-video-toolbar")[0]?.shadowRoot?.querySelector("share-hover");
         if (void 0 !== videoDom && null !== videoDom && showtimeDom && shareHoverDom) {
             clearInterval(timer);
             VideoTime_setData();
@@ -9641,13 +5601,13 @@ function initPkg_VideoTime() {
                     let item = mutations[i];
                     if ("showtime" == item.attributeName) {
                         let showtime = Number(VideoTime_getShowTime());
-                        VideoTime_setShowTime(String(dateFormat("yyyy-MM-dd hh:mm:ss", new Date(Number(videoStartTime + 1e3 * showtime)))) + "<br/>" + formatSeconds2(showtime));
+                        VideoTime_setShowTime(VideoTime_formatPreview(showtime));
                         break;
                     } else if ("isshow" == item.attributeName) {
                         clearTimeout(videoTime_timeout);
                         let showtime = Number(VideoTime_getShowTime());
                         videoTime_timeout = setTimeout(() => {
-                            VideoTime_setShowTime(String(dateFormat("yyyy-MM-dd hh:mm:ss", new Date(Number(videoStartTime + 1e3 * showtime)))) + "<br/>" + formatSeconds2(showtime));
+                            VideoTime_setShowTime(VideoTime_formatPreview(showtime));
                         }, 0);
                         break;
                     }
@@ -9665,6 +5625,7 @@ function initPkg_VideoTime() {
 function VideoTime_setData() {
     let videoId = VideoTime_getVideoId();
     if (!videoId) return;
+    if (videoTime_currentVid !== videoId) videoStartTime = 0;
     videoTime_currentVid = videoId;
     let requestVid = videoId;
     fetch("https://v.douyu.com/video/video/getVideoUrl?vid=" + videoId, {
@@ -9676,12 +5637,20 @@ function VideoTime_setData() {
         }
     }).then(res => res.json()).then(ret => {
         if (requestVid !== videoTime_currentVid) return;
-        let imgUrl = ret.data.viewthumb[0].url;
+        let imgUrl = ret.data?.viewthumb?.[0]?.url;
+        if (!imgUrl) return;
         let timeStr = getStrMiddle(imgUrl, "--", "/");
-        videoStartTime = new Date(timeStr.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/, "$1-$2-$3 $4:$5:$6")).getTime();
+        const start = new Date(timeStr.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/, "$1-$2-$3 $4:$5:$6")).getTime();
+        if (Number.isFinite(start)) videoStartTime = start;
     }).catch(err => {
         console.log("请求失败!", err);
     });
+}
+
+function VideoTime_formatPreview(showtime) {
+    const relative = formatSeconds2(showtime);
+    if (!videoStartTime) return relative;
+    return dateFormat("yyyy-MM-dd hh:mm:ss", new Date(videoStartTime + 1e3 * showtime)) + "<br/>" + relative;
 }
 
 function VideoTime_getShowTime() {
@@ -9697,32 +5666,6 @@ function VideoTime_setShowTime(timeStr) {
         dom.style.backgroundColor = "rgba(0,0,0,0.4)";
         dom.innerHTML = timeStr;
     }
-}
-
-url = `(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){var NeuQuant=require("./TypedNeuQuant.js");var LZWEncoder=require("./LZWEncoder.js");function ByteArray(){this.page=-1;this.pages=[];this.newPage()}ByteArray.pageSize=4096;ByteArray.charMap={};for(var i=0;i<256;i++)ByteArray.charMap[i]=String.fromCharCode(i);ByteArray.prototype.newPage=function(){this.pages[++this.page]=new Uint8Array(ByteArray.pageSize);this.cursor=0};ByteArray.prototype.getData=function(){var rv="";for(var p=0;p<this.pages.length;p++){for(var i=0;i<ByteArray.pageSize;i++){rv+=ByteArray.charMap[this.pages[p][i]]}}return rv};ByteArray.prototype.writeByte=function(val){if(this.cursor>=ByteArray.pageSize)this.newPage();this.pages[this.page][this.cursor++]=val};ByteArray.prototype.writeUTFBytes=function(string){for(var l=string.length,i=0;i<l;i++)this.writeByte(string.charCodeAt(i))};ByteArray.prototype.writeBytes=function(array,offset,length){for(var l=length||array.length,i=offset||0;i<l;i++)this.writeByte(array[i])};function GIFEncoder(width,height){this.width=~~width;this.height=~~height;this.transparent=null;this.transIndex=0;this.repeat=-1;this.delay=0;this.image=null;this.pixels=null;this.indexedPixels=null;this.colorDepth=null;this.colorTab=null;this.neuQuant=null;this.usedEntry=new Array;this.palSize=7;this.dispose=-1;this.firstFrame=true;this.sample=10;this.dither=false;this.globalPavarte=false;this.out=new ByteArray}GIFEncoder.prototype.setDelay=function(milliseconds){this.delay=Math.round(milliseconds/10)};GIFEncoder.prototype.setFrameRate=function(fps){this.delay=Math.round(100/fps)};GIFEncoder.prototype.setDispose=function(disposalCode){if(disposalCode>=0)this.dispose=disposalCode};GIFEncoder.prototype.setRepeat=function(repeat){this.repeat=repeat};GIFEncoder.prototype.setTransparent=function(color){this.transparent=color};GIFEncoder.prototype.addFrame=function(imageData){this.image=imageData;this.colorTab=this.globalPavarte&&this.globalPavarte.slice?this.globalPavarte:null;this.getImagePixels();this.analyzePixels();if(this.globalPavarte===true)this.globalPavarte=this.colorTab;if(this.firstFrame){this.writeLSD();this.writePavarte();if(this.repeat>=0){this.writeNetscapeExt()}}this.writeGraphicCtrlExt();this.writeImageDesc();if(!this.firstFrame&&!this.globalPavarte)this.writePavarte();this.writePixels();this.firstFrame=false};GIFEncoder.prototype.finish=function(){this.out.writeByte(59)};GIFEncoder.prototype.setQuality=function(quality){if(quality<1)quality=1;this.sample=quality};GIFEncoder.prototype.setDither=function(dither){if(dither===true)dither="FloydSteinberg";this.dither=dither};GIFEncoder.prototype.setGlobalPavarte=function(pavarte){this.globalPavarte=pavarte};GIFEncoder.prototype.getGlobalPavarte=function(){return this.globalPavarte&&this.globalPavarte.slice&&this.globalPavarte.slice(0)||this.globalPavarte};GIFEncoder.prototype.writeHeader=function(){this.out.writeUTFBytes("GIF89a")};GIFEncoder.prototype.analyzePixels=function(){if(!this.colorTab){this.neuQuant=new NeuQuant(this.pixels,this.sample);this.neuQuant.buildColormap();this.colorTab=this.neuQuant.getColormap()}if(this.dither){this.ditherPixels(this.dither.replace("-serpentine",""),this.dither.match(/-serpentine/)!==null)}else{this.indexPixels()}this.pixels=null;this.colorDepth=8;this.palSize=7;if(this.transparent!==null){this.transIndex=this.findClosest(this.transparent,true)}};GIFEncoder.prototype.indexPixels=function(imgq){var nPix=this.pixels.length/3;this.indexedPixels=new Uint8Array(nPix);var k=0;for(var j=0;j<nPix;j++){var index=this.findClosestRGB(this.pixels[k++]&255,this.pixels[k++]&255,this.pixels[k++]&255);this.usedEntry[index]=true;this.indexedPixels[j]=index}};GIFEncoder.prototype.ditherPixels=function(kernel,serpentine){var kernels={FalseFloydSteinberg:[[3/8,1,0],[3/8,0,1],[2/8,1,1]],FloydSteinberg:[[7/16,1,0],[3/16,-1,1],[5/16,0,1],[1/16,1,1]],Stucki:[[8/42,1,0],[4/42,2,0],[2/42,-2,1],[4/42,-1,1],[8/42,0,1],[4/42,1,1],[2/42,2,1],[1/42,-2,2],[2/42,-1,2],[4/42,0,2],[2/42,1,2],[1/42,2,2]],Atkinson:[[1/8,1,0],[1/8,2,0],[1/8,-1,1],[1/8,0,1],[1/8,1,1],[1/8,0,2]]};if(!kernel||!kernels[kernel]){throw"Unknown dithering kernel: "+kernel}var ds=kernels[kernel];var index=0,height=this.height,width=this.width,data=this.pixels;var direction=serpentine?-1:1;this.indexedPixels=new Uint8Array(this.pixels.length/3);for(var y=0;y<height;y++){if(serpentine)direction=direction*-1;for(var x=direction==1?0:width-1,xend=direction==1?width:0;x!==xend;x+=direction){index=y*width+x;var idx=index*3;var r1=data[idx];var g1=data[idx+1];var b1=data[idx+2];idx=this.findClosestRGB(r1,g1,b1);this.usedEntry[idx]=true;this.indexedPixels[index]=idx;idx*=3;var r2=this.colorTab[idx];var g2=this.colorTab[idx+1];var b2=this.colorTab[idx+2];var er=r1-r2;var eg=g1-g2;var eb=b1-b2;for(var i=direction==1?0:ds.length-1,end=direction==1?ds.length:0;i!==end;i+=direction){var x1=ds[i][1];var y1=ds[i][2];if(x1+x>=0&&x1+x<width&&y1+y>=0&&y1+y<height){var d=ds[i][0];idx=index+x1+y1*width;idx*=3;data[idx]=Math.max(0,Math.min(255,data[idx]+er*d));data[idx+1]=Math.max(0,Math.min(255,data[idx+1]+eg*d));data[idx+2]=Math.max(0,Math.min(255,data[idx+2]+eb*d))}}}}};GIFEncoder.prototype.findClosest=function(c,used){return this.findClosestRGB((c&16711680)>>16,(c&65280)>>8,c&255,used)};GIFEncoder.prototype.findClosestRGB=function(r,g,b,used){if(this.colorTab===null)return-1;if(this.neuQuant&&!used){return this.neuQuant.lookupRGB(r,g,b)}var c=b|g<<8|r<<16;var minpos=0;var dmin=256*256*256;var len=this.colorTab.length;for(var i=0,index=0;i<len;index++){var dr=r-(this.colorTab[i++]&255);var dg=g-(this.colorTab[i++]&255);var db=b-(this.colorTab[i++]&255);var d=dr*dr+dg*dg+db*db;if((!used||this.usedEntry[index])&&d<dmin){dmin=d;minpos=index}}return minpos};GIFEncoder.prototype.getImagePixels=function(){var w=this.width;var h=this.height;this.pixels=new Uint8Array(w*h*3);var data=this.image;var srcPos=0;var count=0;for(var i=0;i<h;i++){for(var j=0;j<w;j++){this.pixels[count++]=data[srcPos++];this.pixels[count++]=data[srcPos++];this.pixels[count++]=data[srcPos++];srcPos++}}};GIFEncoder.prototype.writeGraphicCtrlExt=function(){this.out.writeByte(33);this.out.writeByte(249);this.out.writeByte(4);var transp,disp;if(this.transparent===null){transp=0;disp=0}else{transp=1;disp=2}if(this.dispose>=0){disp=dispose&7}disp<<=2;this.out.writeByte(0|disp|0|transp);this.writeShort(this.delay);this.out.writeByte(this.transIndex);this.out.writeByte(0)};GIFEncoder.prototype.writeImageDesc=function(){this.out.writeByte(44);this.writeShort(0);this.writeShort(0);this.writeShort(this.width);this.writeShort(this.height);if(this.firstFrame||this.globalPavarte){this.out.writeByte(0)}else{this.out.writeByte(128|0|0|0|this.palSize)}};GIFEncoder.prototype.writeLSD=function(){this.writeShort(this.width);this.writeShort(this.height);this.out.writeByte(128|112|0|this.palSize);this.out.writeByte(0);this.out.writeByte(0)};GIFEncoder.prototype.writeNetscapeExt=function(){this.out.writeByte(33);this.out.writeByte(255);this.out.writeByte(11);this.out.writeUTFBytes("NETSCAPE2.0");this.out.writeByte(3);this.out.writeByte(1);this.writeShort(this.repeat);this.out.writeByte(0)};GIFEncoder.prototype.writePavarte=function(){this.out.writeBytes(this.colorTab);var n=3*256-this.colorTab.length;for(var i=0;i<n;i++)this.out.writeByte(0)};GIFEncoder.prototype.writeShort=function(pValue){this.out.writeByte(pValue&255);this.out.writeByte(pValue>>8&255)};GIFEncoder.prototype.writePixels=function(){var enc=new LZWEncoder(this.width,this.height,this.indexedPixels,this.colorDepth);enc.encode(this.out)};GIFEncoder.prototype.stream=function(){return this.out};module.exports=GIFEncoder},{"./LZWEncoder.js":2,"./TypedNeuQuant.js":3}],2:[function(require,module,exports){var EOF=-1;var BITS=12;var HSIZE=5003;var masks=[0,1,3,7,15,31,63,127,255,511,1023,2047,4095,8191,16383,32767,65535];function LZWEncoder(width,height,pixels,colorDepth){var initCodeSize=Math.max(2,colorDepth);var accum=new Uint8Array(256);var htab=new Int32Array(HSIZE);var codetab=new Int32Array(HSIZE);var cur_accum,cur_bits=0;var a_count;var free_ent=0;var maxcode;var clear_flg=false;var g_init_bits,ClearCode,EOFCode;function char_out(c,outs){accum[a_count++]=c;if(a_count>=254)flush_char(outs)}function cl_block(outs){cl_hash(HSIZE);free_ent=ClearCode+2;clear_flg=true;output(ClearCode,outs)}function cl_hash(hsize){for(var i=0;i<hsize;++i)htab[i]=-1}function compress(init_bits,outs){var fcode,c,i,ent,disp,hsize_reg,hshift;g_init_bits=init_bits;clear_flg=false;n_bits=g_init_bits;maxcode=MAXCODE(n_bits);ClearCode=1<<init_bits-1;EOFCode=ClearCode+1;free_ent=ClearCode+2;a_count=0;ent=nextPixel();hshift=0;for(fcode=HSIZE;fcode<65536;fcode*=2)++hshift;hshift=8-hshift;hsize_reg=HSIZE;cl_hash(hsize_reg);output(ClearCode,outs);outer_loop:while((c=nextPixel())!=EOF){fcode=(c<<BITS)+ent;i=c<<hshift^ent;if(htab[i]===fcode){ent=codetab[i];continue}else if(htab[i]>=0){disp=hsize_reg-i;if(i===0)disp=1;do{if((i-=disp)<0)i+=hsize_reg;if(htab[i]===fcode){ent=codetab[i];continue outer_loop}}while(htab[i]>=0)}output(ent,outs);ent=c;if(free_ent<1<<BITS){codetab[i]=free_ent++;htab[i]=fcode}else{cl_block(outs)}}output(ent,outs);output(EOFCode,outs)}function encode(outs){outs.writeByte(initCodeSize);remaining=width*height;curPixel=0;compress(initCodeSize+1,outs);outs.writeByte(0)}function flush_char(outs){if(a_count>0){outs.writeByte(a_count);outs.writeBytes(accum,0,a_count);a_count=0}}function MAXCODE(n_bits){return(1<<n_bits)-1}function nextPixel(){if(remaining===0)return EOF;--remaining;var pix=pixels[curPixel++];return pix&255}function output(code,outs){cur_accum&=masks[cur_bits];if(cur_bits>0)cur_accum|=code<<cur_bits;else cur_accum=code;cur_bits+=n_bits;while(cur_bits>=8){char_out(cur_accum&255,outs);cur_accum>>=8;cur_bits-=8}if(free_ent>maxcode||clear_flg){if(clear_flg){maxcode=MAXCODE(n_bits=g_init_bits);clear_flg=false}else{++n_bits;if(n_bits==BITS)maxcode=1<<BITS;else maxcode=MAXCODE(n_bits)}}if(code==EOFCode){while(cur_bits>0){char_out(cur_accum&255,outs);cur_accum>>=8;cur_bits-=8}flush_char(outs)}}this.encode=encode}module.exports=LZWEncoder},{}],3:[function(require,module,exports){var ncycles=100;var netsize=256;var maxnetpos=netsize-1;var netbiasshift=4;var intbiasshift=16;var intbias=1<<intbiasshift;var gammashift=10;var gamma=1<<gammashift;var betashift=10;var beta=intbias>>betashift;var betagamma=intbias<<gammashift-betashift;var initrad=netsize>>3;var radiusbiasshift=6;var radiusbias=1<<radiusbiasshift;var initradius=initrad*radiusbias;var radiusdec=30;var alphabiasshift=10;var initalpha=1<<alphabiasshift;var alphadec;var radbiasshift=8;var radbias=1<<radbiasshift;var alpharadbshift=alphabiasshift+radbiasshift;var alpharadbias=1<<alpharadbshift;var prime1=499;var prime2=491;var prime3=487;var prime4=503;var minpicturebytes=3*prime4;function NeuQuant(pixels,samplefac){var network;var netindex;var bias;var freq;var radpower;function init(){network=[];netindex=new Int32Array(256);bias=new Int32Array(netsize);freq=new Int32Array(netsize);radpower=new Int32Array(netsize>>3);var i,v;for(i=0;i<netsize;i++){v=(i<<netbiasshift+8)/netsize;network[i]=new Float64Array([v,v,v,0]);freq[i]=intbias/netsize;bias[i]=0}}function unbiasnet(){for(var i=0;i<netsize;i++){network[i][0]>>=netbiasshift;network[i][1]>>=netbiasshift;network[i][2]>>=netbiasshift;network[i][3]=i}}function altersingle(alpha,i,b,g,r){network[i][0]-=alpha*(network[i][0]-b)/initalpha;network[i][1]-=alpha*(network[i][1]-g)/initalpha;network[i][2]-=alpha*(network[i][2]-r)/initalpha}function alterneigh(radius,i,b,g,r){var lo=Math.abs(i-radius);var hi=Math.min(i+radius,netsize);var j=i+1;var k=i-1;var m=1;var p,a;while(j<hi||k>lo){a=radpower[m++];if(j<hi){p=network[j++];p[0]-=a*(p[0]-b)/alpharadbias;p[1]-=a*(p[1]-g)/alpharadbias;p[2]-=a*(p[2]-r)/alpharadbias}if(k>lo){p=network[k--];p[0]-=a*(p[0]-b)/alpharadbias;p[1]-=a*(p[1]-g)/alpharadbias;p[2]-=a*(p[2]-r)/alpharadbias}}}function contest(b,g,r){var bestd=~(1<<31);var bestbiasd=bestd;var bestpos=-1;var bestbiaspos=bestpos;var i,n,dist,biasdist,betafreq;for(i=0;i<netsize;i++){n=network[i];dist=Math.abs(n[0]-b)+Math.abs(n[1]-g)+Math.abs(n[2]-r);if(dist<bestd){bestd=dist;bestpos=i}biasdist=dist-(bias[i]>>intbiasshift-netbiasshift);if(biasdist<bestbiasd){bestbiasd=biasdist;bestbiaspos=i}betafreq=freq[i]>>betashift;freq[i]-=betafreq;bias[i]+=betafreq<<gammashift}freq[bestpos]+=beta;bias[bestpos]-=betagamma;return bestbiaspos}function inxbuild(){var i,j,p,q,smallpos,smallval,previouscol=0,startpos=0;for(i=0;i<netsize;i++){p=network[i];smallpos=i;smallval=p[1];for(j=i+1;j<netsize;j++){q=network[j];if(q[1]<smallval){smallpos=j;smallval=q[1]}}q=network[smallpos];if(i!=smallpos){j=q[0];q[0]=p[0];p[0]=j;j=q[1];q[1]=p[1];p[1]=j;j=q[2];q[2]=p[2];p[2]=j;j=q[3];q[3]=p[3];p[3]=j}if(smallval!=previouscol){netindex[previouscol]=startpos+i>>1;for(j=previouscol+1;j<smallval;j++)netindex[j]=i;previouscol=smallval;startpos=i}}netindex[previouscol]=startpos+maxnetpos>>1;for(j=previouscol+1;j<256;j++)netindex[j]=maxnetpos}function inxsearch(b,g,r){var a,p,dist;var bestd=1e3;var best=-1;var i=netindex[g];var j=i-1;while(i<netsize||j>=0){if(i<netsize){p=network[i];dist=p[1]-g;if(dist>=bestd)i=netsize;else{i++;if(dist<0)dist=-dist;a=p[0]-b;if(a<0)a=-a;dist+=a;if(dist<bestd){a=p[2]-r;if(a<0)a=-a;dist+=a;if(dist<bestd){bestd=dist;best=p[3]}}}}if(j>=0){p=network[j];dist=g-p[1];if(dist>=bestd)j=-1;else{j--;if(dist<0)dist=-dist;a=p[0]-b;if(a<0)a=-a;dist+=a;if(dist<bestd){a=p[2]-r;if(a<0)a=-a;dist+=a;if(dist<bestd){bestd=dist;best=p[3]}}}}}return best}function learn(){var i;var lengthcount=pixels.length;var alphadec=30+(samplefac-1)/3;var samplepixels=lengthcount/(3*samplefac);var delta=~~(samplepixels/ncycles);var alpha=initalpha;var radius=initradius;var rad=radius>>radiusbiasshift;if(rad<=1)rad=0;for(i=0;i<rad;i++)radpower[i]=alpha*((rad*rad-i*i)*radbias/(rad*rad));var step;if(lengthcount<minpicturebytes){samplefac=1;step=3}else if(lengthcount%prime1!==0){step=3*prime1}else if(lengthcount%prime2!==0){step=3*prime2}else if(lengthcount%prime3!==0){step=3*prime3}else{step=3*prime4}var b,g,r,j;var pix=0;i=0;while(i<samplepixels){b=(pixels[pix]&255)<<netbiasshift;g=(pixels[pix+1]&255)<<netbiasshift;r=(pixels[pix+2]&255)<<netbiasshift;j=contest(b,g,r);altersingle(alpha,j,b,g,r);if(rad!==0)alterneigh(rad,j,b,g,r);pix+=step;if(pix>=lengthcount)pix-=lengthcount;i++;if(delta===0)delta=1;if(i%delta===0){alpha-=alpha/alphadec;radius-=radius/radiusdec;rad=radius>>radiusbiasshift;if(rad<=1)rad=0;for(j=0;j<rad;j++)radpower[j]=alpha*((rad*rad-j*j)*radbias/(rad*rad))}}}function buildColormap(){init();learn();unbiasnet();inxbuild()}this.buildColormap=buildColormap;function getColormap(){var map=[];var index=[];for(var i=0;i<netsize;i++)index[network[i][3]]=i;var k=0;for(var l=0;l<netsize;l++){var j=index[l];map[k++]=network[j][0];map[k++]=network[j][1];map[k++]=network[j][2]}return map}this.getColormap=getColormap;this.lookupRGB=inxsearch}module.exports=NeuQuant},{}],4:[function(require,module,exports){var GIFEncoder,renderFrame;GIFEncoder=require("./GIFEncoder.js");renderFrame=function(frame){var encoder,page,stream,transfer;encoder=new GIFEncoder(frame.width,frame.height);if(frame.index===0){encoder.writeHeader()}else{encoder.firstFrame=false}encoder.setTransparent(frame.transparent);encoder.setRepeat(frame.repeat);encoder.setDelay(frame.delay);encoder.setQuality(frame.quality);encoder.setDither(frame.dither);encoder.setGlobalPavarte(frame.globalPavarte);encoder.addFrame(frame.data);if(frame.last){encoder.finish()}if(frame.globalPavarte===true){frame.globalPavarte=encoder.getGlobalPavarte()}stream=encoder.stream();frame.data=stream.pages;frame.cursor=stream.cursor;frame.pageSize=stream.constructor.pageSize;if(frame.canTransfer){transfer=function(){var i,len,ref,results;ref=frame.data;results=[];for(i=0,len=ref.length;i<len;i++){page=ref[i];results.push(page.buffer)}return results}();return self.postMessage(frame,transfer)}else{return self.postMessage(frame)}};self.onmessage=function(event){return renderFrame(event.data)}},{"./GIFEncoder.js":1}]},{},[4]);`;
-
-var gifworkerBlob = URL.createObjectURL(new Blob([ url ], {
-    type: "application/javascript"
-}));
-
-var camera_canvas;
-
-var camera_canvas_img;
-
-var camera_width;
-
-var camera_height;
-
-var camera_anchorName;
-
-const camera_fps = 83;
-
-function cameraAddFrame(node, camera_canvas, gif, fps) {
-    camera_canvas.getContext("2d").drawImage(node, 0, 0, camera_canvas.width, camera_canvas.height);
-    gif.addFrame(camera_canvas, {
-        copy: true,
-        delay: fps
-    });
 }
 
 function initPkg_VideoTools_Camera() {
@@ -9773,8 +5716,20 @@ function initPkg_VideoTools_Camera_Func() {
     let imgBase64;
     let timer_timeout = 0;
     let isClosed = false;
+    let recording = false;
+    const cancelCapture = () => {
+        recording = false;
+        clearInterval(timer);
+        if (gif && "function" === typeof gif.abort) try {
+            gif.abort();
+        } catch (error) {}
+        gif = null;
+    };
+    window.addEventListener("blur", cancelCapture);
+    window.addEventListener("pagehide", cancelCapture);
     closeBtn.addEventListener("click", e => {
         e.stopPropagation();
+        cancelCapture();
         if (confirm("是否7天内不再显示？")) localStorage.setItem("ExSave_Camera_Hidden", Date.now() + 7 * 24 * 60 * 60 * 1e3); else isClosed = true;
         camera.style.display = "none";
     });
@@ -9786,7 +5741,7 @@ function initPkg_VideoTools_Camera_Func() {
             camera.style.display = "none";
         }, 2e3);
     });
-    dom_video.addEventListener("mousemove", () => {
+    if (dom_video) dom_video.addEventListener("mousemove", () => {
         if (isClosed || Camera_isHidden()) return;
         camera.style.display = "flex";
         clearTimeout(timer_timeout);
@@ -9803,12 +5758,13 @@ function initPkg_VideoTools_Camera_Func() {
         camera.style.display = "none";
         clearTimeout(timer_timeout);
     });
-    dom_video.addEventListener("mouseleave", () => {
+    if (dom_video) dom_video.addEventListener("mouseleave", () => {
         camera.style.display = "none";
         clearTimeout(timer_timeout);
     });
     camera.addEventListener("mousedown", e => {
-        if ("ex-camera-close" === e.target.id) return;
+        if ("ex-camera-close" === e.target.id || null != e.button && 0 !== e.button) return;
+        recording = true;
         clearInterval(timer);
         if (gif && "function" === typeof gif.abort) try {
             gif.abort();
@@ -9831,8 +5787,9 @@ function initPkg_VideoTools_Camera_Func() {
             cameraAddFrame(liveVideoNode, camera_canvas, gif, camera_fps);
         }, camera_fps);
     });
-    camera.addEventListener("mouseup", e => {
-        if ("ex-camera-close" === e.target.id) return;
+    document.addEventListener("mouseup", e => {
+        if (!recording) return;
+        recording = false;
         let upTime = new Date().getTime();
         clearInterval(timer);
         if (upTime - downTime >= 800) {
@@ -9925,8 +5882,20 @@ function initPkg_VideoTools_Camera_Video_Func() {
     let imgBase64;
     let timer_timeout = 0;
     let isClosed = false;
+    let recording = false;
+    const cancelCapture = () => {
+        recording = false;
+        clearInterval(timer);
+        if (gif && "function" === typeof gif.abort) try {
+            gif.abort();
+        } catch (error) {}
+        gif = null;
+    };
+    window.addEventListener("blur", cancelCapture);
+    window.addEventListener("pagehide", cancelCapture);
     closeBtn.addEventListener("click", e => {
         e.stopPropagation();
+        cancelCapture();
         if (confirm("是否7天内不再显示？")) localStorage.setItem("ExSave_Camera_Hidden", Date.now() + 7 * 24 * 60 * 60 * 1e3); else isClosed = true;
         camera.style.display = "none";
     });
@@ -9955,12 +5924,13 @@ function initPkg_VideoTools_Camera_Video_Func() {
         camera.style.display = "none";
         clearTimeout(timer_timeout);
     });
-    if (dom_video) dom_video.addEventListener("mouseleave", () => {
+    if (dom_video) if (dom_video) dom_video.addEventListener("mouseleave", () => {
         camera.style.display = "none";
         clearTimeout(timer_timeout);
     });
     camera.addEventListener("mousedown", e => {
-        if ("ex-camera-close" === e.target.id) return;
+        if ("ex-camera-close" === e.target.id || null != e.button && 0 !== e.button) return;
+        recording = true;
         clearInterval(timer);
         if (gif && "function" === typeof gif.abort) try {
             gif.abort();
@@ -9983,8 +5953,9 @@ function initPkg_VideoTools_Camera_Video_Func() {
             cameraAddFrame(liveVideoNode, camera_canvas, gif, camera_fps);
         }, camera_fps);
     });
-    camera.addEventListener("mouseup", e => {
-        if ("ex-camera-close" === e.target.id) return;
+    document.addEventListener("mouseup", e => {
+        if (!recording) return;
+        recording = false;
         let upTime = new Date().getTime();
         clearInterval(timer);
         if (upTime - downTime >= 800) {
@@ -10023,9 +5994,40 @@ function initPkg_VideoTools_Camera_Video_Func() {
     });
 }
 
+url = `(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){var NeuQuant=require("./TypedNeuQuant.js");var LZWEncoder=require("./LZWEncoder.js");function ByteArray(){this.page=-1;this.pages=[];this.newPage()}ByteArray.pageSize=4096;ByteArray.charMap={};for(var i=0;i<256;i++)ByteArray.charMap[i]=String.fromCharCode(i);ByteArray.prototype.newPage=function(){this.pages[++this.page]=new Uint8Array(ByteArray.pageSize);this.cursor=0};ByteArray.prototype.getData=function(){var rv="";for(var p=0;p<this.pages.length;p++){for(var i=0;i<ByteArray.pageSize;i++){rv+=ByteArray.charMap[this.pages[p][i]]}}return rv};ByteArray.prototype.writeByte=function(val){if(this.cursor>=ByteArray.pageSize)this.newPage();this.pages[this.page][this.cursor++]=val};ByteArray.prototype.writeUTFBytes=function(string){for(var l=string.length,i=0;i<l;i++)this.writeByte(string.charCodeAt(i))};ByteArray.prototype.writeBytes=function(array,offset,length){for(var l=length||array.length,i=offset||0;i<l;i++)this.writeByte(array[i])};function GIFEncoder(width,height){this.width=~~width;this.height=~~height;this.transparent=null;this.transIndex=0;this.repeat=-1;this.delay=0;this.image=null;this.pixels=null;this.indexedPixels=null;this.colorDepth=null;this.colorTab=null;this.neuQuant=null;this.usedEntry=new Array;this.palSize=7;this.dispose=-1;this.firstFrame=true;this.sample=10;this.dither=false;this.globalPavarte=false;this.out=new ByteArray}GIFEncoder.prototype.setDelay=function(milliseconds){this.delay=Math.round(milliseconds/10)};GIFEncoder.prototype.setFrameRate=function(fps){this.delay=Math.round(100/fps)};GIFEncoder.prototype.setDispose=function(disposalCode){if(disposalCode>=0)this.dispose=disposalCode};GIFEncoder.prototype.setRepeat=function(repeat){this.repeat=repeat};GIFEncoder.prototype.setTransparent=function(color){this.transparent=color};GIFEncoder.prototype.addFrame=function(imageData){this.image=imageData;this.colorTab=this.globalPavarte&&this.globalPavarte.slice?this.globalPavarte:null;this.getImagePixels();this.analyzePixels();if(this.globalPavarte===true)this.globalPavarte=this.colorTab;if(this.firstFrame){this.writeLSD();this.writePavarte();if(this.repeat>=0){this.writeNetscapeExt()}}this.writeGraphicCtrlExt();this.writeImageDesc();if(!this.firstFrame&&!this.globalPavarte)this.writePavarte();this.writePixels();this.firstFrame=false};GIFEncoder.prototype.finish=function(){this.out.writeByte(59)};GIFEncoder.prototype.setQuality=function(quality){if(quality<1)quality=1;this.sample=quality};GIFEncoder.prototype.setDither=function(dither){if(dither===true)dither="FloydSteinberg";this.dither=dither};GIFEncoder.prototype.setGlobalPavarte=function(pavarte){this.globalPavarte=pavarte};GIFEncoder.prototype.getGlobalPavarte=function(){return this.globalPavarte&&this.globalPavarte.slice&&this.globalPavarte.slice(0)||this.globalPavarte};GIFEncoder.prototype.writeHeader=function(){this.out.writeUTFBytes("GIF89a")};GIFEncoder.prototype.analyzePixels=function(){if(!this.colorTab){this.neuQuant=new NeuQuant(this.pixels,this.sample);this.neuQuant.buildColormap();this.colorTab=this.neuQuant.getColormap()}if(this.dither){this.ditherPixels(this.dither.replace("-serpentine",""),this.dither.match(/-serpentine/)!==null)}else{this.indexPixels()}this.pixels=null;this.colorDepth=8;this.palSize=7;if(this.transparent!==null){this.transIndex=this.findClosest(this.transparent,true)}};GIFEncoder.prototype.indexPixels=function(imgq){var nPix=this.pixels.length/3;this.indexedPixels=new Uint8Array(nPix);var k=0;for(var j=0;j<nPix;j++){var index=this.findClosestRGB(this.pixels[k++]&255,this.pixels[k++]&255,this.pixels[k++]&255);this.usedEntry[index]=true;this.indexedPixels[j]=index}};GIFEncoder.prototype.ditherPixels=function(kernel,serpentine){var kernels={FalseFloydSteinberg:[[3/8,1,0],[3/8,0,1],[2/8,1,1]],FloydSteinberg:[[7/16,1,0],[3/16,-1,1],[5/16,0,1],[1/16,1,1]],Stucki:[[8/42,1,0],[4/42,2,0],[2/42,-2,1],[4/42,-1,1],[8/42,0,1],[4/42,1,1],[2/42,2,1],[1/42,-2,2],[2/42,-1,2],[4/42,0,2],[2/42,1,2],[1/42,2,2]],Atkinson:[[1/8,1,0],[1/8,2,0],[1/8,-1,1],[1/8,0,1],[1/8,1,1],[1/8,0,2]]};if(!kernel||!kernels[kernel]){throw"Unknown dithering kernel: "+kernel}var ds=kernels[kernel];var index=0,height=this.height,width=this.width,data=this.pixels;var direction=serpentine?-1:1;this.indexedPixels=new Uint8Array(this.pixels.length/3);for(var y=0;y<height;y++){if(serpentine)direction=direction*-1;for(var x=direction==1?0:width-1,xend=direction==1?width:0;x!==xend;x+=direction){index=y*width+x;var idx=index*3;var r1=data[idx];var g1=data[idx+1];var b1=data[idx+2];idx=this.findClosestRGB(r1,g1,b1);this.usedEntry[idx]=true;this.indexedPixels[index]=idx;idx*=3;var r2=this.colorTab[idx];var g2=this.colorTab[idx+1];var b2=this.colorTab[idx+2];var er=r1-r2;var eg=g1-g2;var eb=b1-b2;for(var i=direction==1?0:ds.length-1,end=direction==1?ds.length:0;i!==end;i+=direction){var x1=ds[i][1];var y1=ds[i][2];if(x1+x>=0&&x1+x<width&&y1+y>=0&&y1+y<height){var d=ds[i][0];idx=index+x1+y1*width;idx*=3;data[idx]=Math.max(0,Math.min(255,data[idx]+er*d));data[idx+1]=Math.max(0,Math.min(255,data[idx+1]+eg*d));data[idx+2]=Math.max(0,Math.min(255,data[idx+2]+eb*d))}}}}};GIFEncoder.prototype.findClosest=function(c,used){return this.findClosestRGB((c&16711680)>>16,(c&65280)>>8,c&255,used)};GIFEncoder.prototype.findClosestRGB=function(r,g,b,used){if(this.colorTab===null)return-1;if(this.neuQuant&&!used){return this.neuQuant.lookupRGB(r,g,b)}var c=b|g<<8|r<<16;var minpos=0;var dmin=256*256*256;var len=this.colorTab.length;for(var i=0,index=0;i<len;index++){var dr=r-(this.colorTab[i++]&255);var dg=g-(this.colorTab[i++]&255);var db=b-(this.colorTab[i++]&255);var d=dr*dr+dg*dg+db*db;if((!used||this.usedEntry[index])&&d<dmin){dmin=d;minpos=index}}return minpos};GIFEncoder.prototype.getImagePixels=function(){var w=this.width;var h=this.height;this.pixels=new Uint8Array(w*h*3);var data=this.image;var srcPos=0;var count=0;for(var i=0;i<h;i++){for(var j=0;j<w;j++){this.pixels[count++]=data[srcPos++];this.pixels[count++]=data[srcPos++];this.pixels[count++]=data[srcPos++];srcPos++}}};GIFEncoder.prototype.writeGraphicCtrlExt=function(){this.out.writeByte(33);this.out.writeByte(249);this.out.writeByte(4);var transp,disp;if(this.transparent===null){transp=0;disp=0}else{transp=1;disp=2}if(this.dispose>=0){disp=dispose&7}disp<<=2;this.out.writeByte(0|disp|0|transp);this.writeShort(this.delay);this.out.writeByte(this.transIndex);this.out.writeByte(0)};GIFEncoder.prototype.writeImageDesc=function(){this.out.writeByte(44);this.writeShort(0);this.writeShort(0);this.writeShort(this.width);this.writeShort(this.height);if(this.firstFrame||this.globalPavarte){this.out.writeByte(0)}else{this.out.writeByte(128|0|0|0|this.palSize)}};GIFEncoder.prototype.writeLSD=function(){this.writeShort(this.width);this.writeShort(this.height);this.out.writeByte(128|112|0|this.palSize);this.out.writeByte(0);this.out.writeByte(0)};GIFEncoder.prototype.writeNetscapeExt=function(){this.out.writeByte(33);this.out.writeByte(255);this.out.writeByte(11);this.out.writeUTFBytes("NETSCAPE2.0");this.out.writeByte(3);this.out.writeByte(1);this.writeShort(this.repeat);this.out.writeByte(0)};GIFEncoder.prototype.writePavarte=function(){this.out.writeBytes(this.colorTab);var n=3*256-this.colorTab.length;for(var i=0;i<n;i++)this.out.writeByte(0)};GIFEncoder.prototype.writeShort=function(pValue){this.out.writeByte(pValue&255);this.out.writeByte(pValue>>8&255)};GIFEncoder.prototype.writePixels=function(){var enc=new LZWEncoder(this.width,this.height,this.indexedPixels,this.colorDepth);enc.encode(this.out)};GIFEncoder.prototype.stream=function(){return this.out};module.exports=GIFEncoder},{"./LZWEncoder.js":2,"./TypedNeuQuant.js":3}],2:[function(require,module,exports){var EOF=-1;var BITS=12;var HSIZE=5003;var masks=[0,1,3,7,15,31,63,127,255,511,1023,2047,4095,8191,16383,32767,65535];function LZWEncoder(width,height,pixels,colorDepth){var initCodeSize=Math.max(2,colorDepth);var accum=new Uint8Array(256);var htab=new Int32Array(HSIZE);var codetab=new Int32Array(HSIZE);var cur_accum,cur_bits=0;var a_count;var free_ent=0;var maxcode;var clear_flg=false;var g_init_bits,ClearCode,EOFCode;function char_out(c,outs){accum[a_count++]=c;if(a_count>=254)flush_char(outs)}function cl_block(outs){cl_hash(HSIZE);free_ent=ClearCode+2;clear_flg=true;output(ClearCode,outs)}function cl_hash(hsize){for(var i=0;i<hsize;++i)htab[i]=-1}function compress(init_bits,outs){var fcode,c,i,ent,disp,hsize_reg,hshift;g_init_bits=init_bits;clear_flg=false;n_bits=g_init_bits;maxcode=MAXCODE(n_bits);ClearCode=1<<init_bits-1;EOFCode=ClearCode+1;free_ent=ClearCode+2;a_count=0;ent=nextPixel();hshift=0;for(fcode=HSIZE;fcode<65536;fcode*=2)++hshift;hshift=8-hshift;hsize_reg=HSIZE;cl_hash(hsize_reg);output(ClearCode,outs);outer_loop:while((c=nextPixel())!=EOF){fcode=(c<<BITS)+ent;i=c<<hshift^ent;if(htab[i]===fcode){ent=codetab[i];continue}else if(htab[i]>=0){disp=hsize_reg-i;if(i===0)disp=1;do{if((i-=disp)<0)i+=hsize_reg;if(htab[i]===fcode){ent=codetab[i];continue outer_loop}}while(htab[i]>=0)}output(ent,outs);ent=c;if(free_ent<1<<BITS){codetab[i]=free_ent++;htab[i]=fcode}else{cl_block(outs)}}output(ent,outs);output(EOFCode,outs)}function encode(outs){outs.writeByte(initCodeSize);remaining=width*height;curPixel=0;compress(initCodeSize+1,outs);outs.writeByte(0)}function flush_char(outs){if(a_count>0){outs.writeByte(a_count);outs.writeBytes(accum,0,a_count);a_count=0}}function MAXCODE(n_bits){return(1<<n_bits)-1}function nextPixel(){if(remaining===0)return EOF;--remaining;var pix=pixels[curPixel++];return pix&255}function output(code,outs){cur_accum&=masks[cur_bits];if(cur_bits>0)cur_accum|=code<<cur_bits;else cur_accum=code;cur_bits+=n_bits;while(cur_bits>=8){char_out(cur_accum&255,outs);cur_accum>>=8;cur_bits-=8}if(free_ent>maxcode||clear_flg){if(clear_flg){maxcode=MAXCODE(n_bits=g_init_bits);clear_flg=false}else{++n_bits;if(n_bits==BITS)maxcode=1<<BITS;else maxcode=MAXCODE(n_bits)}}if(code==EOFCode){while(cur_bits>0){char_out(cur_accum&255,outs);cur_accum>>=8;cur_bits-=8}flush_char(outs)}}this.encode=encode}module.exports=LZWEncoder},{}],3:[function(require,module,exports){var ncycles=100;var netsize=256;var maxnetpos=netsize-1;var netbiasshift=4;var intbiasshift=16;var intbias=1<<intbiasshift;var gammashift=10;var gamma=1<<gammashift;var betashift=10;var beta=intbias>>betashift;var betagamma=intbias<<gammashift-betashift;var initrad=netsize>>3;var radiusbiasshift=6;var radiusbias=1<<radiusbiasshift;var initradius=initrad*radiusbias;var radiusdec=30;var alphabiasshift=10;var initalpha=1<<alphabiasshift;var alphadec;var radbiasshift=8;var radbias=1<<radbiasshift;var alpharadbshift=alphabiasshift+radbiasshift;var alpharadbias=1<<alpharadbshift;var prime1=499;var prime2=491;var prime3=487;var prime4=503;var minpicturebytes=3*prime4;function NeuQuant(pixels,samplefac){var network;var netindex;var bias;var freq;var radpower;function init(){network=[];netindex=new Int32Array(256);bias=new Int32Array(netsize);freq=new Int32Array(netsize);radpower=new Int32Array(netsize>>3);var i,v;for(i=0;i<netsize;i++){v=(i<<netbiasshift+8)/netsize;network[i]=new Float64Array([v,v,v,0]);freq[i]=intbias/netsize;bias[i]=0}}function unbiasnet(){for(var i=0;i<netsize;i++){network[i][0]>>=netbiasshift;network[i][1]>>=netbiasshift;network[i][2]>>=netbiasshift;network[i][3]=i}}function altersingle(alpha,i,b,g,r){network[i][0]-=alpha*(network[i][0]-b)/initalpha;network[i][1]-=alpha*(network[i][1]-g)/initalpha;network[i][2]-=alpha*(network[i][2]-r)/initalpha}function alterneigh(radius,i,b,g,r){var lo=Math.abs(i-radius);var hi=Math.min(i+radius,netsize);var j=i+1;var k=i-1;var m=1;var p,a;while(j<hi||k>lo){a=radpower[m++];if(j<hi){p=network[j++];p[0]-=a*(p[0]-b)/alpharadbias;p[1]-=a*(p[1]-g)/alpharadbias;p[2]-=a*(p[2]-r)/alpharadbias}if(k>lo){p=network[k--];p[0]-=a*(p[0]-b)/alpharadbias;p[1]-=a*(p[1]-g)/alpharadbias;p[2]-=a*(p[2]-r)/alpharadbias}}}function contest(b,g,r){var bestd=~(1<<31);var bestbiasd=bestd;var bestpos=-1;var bestbiaspos=bestpos;var i,n,dist,biasdist,betafreq;for(i=0;i<netsize;i++){n=network[i];dist=Math.abs(n[0]-b)+Math.abs(n[1]-g)+Math.abs(n[2]-r);if(dist<bestd){bestd=dist;bestpos=i}biasdist=dist-(bias[i]>>intbiasshift-netbiasshift);if(biasdist<bestbiasd){bestbiasd=biasdist;bestbiaspos=i}betafreq=freq[i]>>betashift;freq[i]-=betafreq;bias[i]+=betafreq<<gammashift}freq[bestpos]+=beta;bias[bestpos]-=betagamma;return bestbiaspos}function inxbuild(){var i,j,p,q,smallpos,smallval,previouscol=0,startpos=0;for(i=0;i<netsize;i++){p=network[i];smallpos=i;smallval=p[1];for(j=i+1;j<netsize;j++){q=network[j];if(q[1]<smallval){smallpos=j;smallval=q[1]}}q=network[smallpos];if(i!=smallpos){j=q[0];q[0]=p[0];p[0]=j;j=q[1];q[1]=p[1];p[1]=j;j=q[2];q[2]=p[2];p[2]=j;j=q[3];q[3]=p[3];p[3]=j}if(smallval!=previouscol){netindex[previouscol]=startpos+i>>1;for(j=previouscol+1;j<smallval;j++)netindex[j]=i;previouscol=smallval;startpos=i}}netindex[previouscol]=startpos+maxnetpos>>1;for(j=previouscol+1;j<256;j++)netindex[j]=maxnetpos}function inxsearch(b,g,r){var a,p,dist;var bestd=1e3;var best=-1;var i=netindex[g];var j=i-1;while(i<netsize||j>=0){if(i<netsize){p=network[i];dist=p[1]-g;if(dist>=bestd)i=netsize;else{i++;if(dist<0)dist=-dist;a=p[0]-b;if(a<0)a=-a;dist+=a;if(dist<bestd){a=p[2]-r;if(a<0)a=-a;dist+=a;if(dist<bestd){bestd=dist;best=p[3]}}}}if(j>=0){p=network[j];dist=g-p[1];if(dist>=bestd)j=-1;else{j--;if(dist<0)dist=-dist;a=p[0]-b;if(a<0)a=-a;dist+=a;if(dist<bestd){a=p[2]-r;if(a<0)a=-a;dist+=a;if(dist<bestd){bestd=dist;best=p[3]}}}}}return best}function learn(){var i;var lengthcount=pixels.length;var alphadec=30+(samplefac-1)/3;var samplepixels=lengthcount/(3*samplefac);var delta=~~(samplepixels/ncycles);var alpha=initalpha;var radius=initradius;var rad=radius>>radiusbiasshift;if(rad<=1)rad=0;for(i=0;i<rad;i++)radpower[i]=alpha*((rad*rad-i*i)*radbias/(rad*rad));var step;if(lengthcount<minpicturebytes){samplefac=1;step=3}else if(lengthcount%prime1!==0){step=3*prime1}else if(lengthcount%prime2!==0){step=3*prime2}else if(lengthcount%prime3!==0){step=3*prime3}else{step=3*prime4}var b,g,r,j;var pix=0;i=0;while(i<samplepixels){b=(pixels[pix]&255)<<netbiasshift;g=(pixels[pix+1]&255)<<netbiasshift;r=(pixels[pix+2]&255)<<netbiasshift;j=contest(b,g,r);altersingle(alpha,j,b,g,r);if(rad!==0)alterneigh(rad,j,b,g,r);pix+=step;if(pix>=lengthcount)pix-=lengthcount;i++;if(delta===0)delta=1;if(i%delta===0){alpha-=alpha/alphadec;radius-=radius/radiusdec;rad=radius>>radiusbiasshift;if(rad<=1)rad=0;for(j=0;j<rad;j++)radpower[j]=alpha*((rad*rad-j*j)*radbias/(rad*rad))}}}function buildColormap(){init();learn();unbiasnet();inxbuild()}this.buildColormap=buildColormap;function getColormap(){var map=[];var index=[];for(var i=0;i<netsize;i++)index[network[i][3]]=i;var k=0;for(var l=0;l<netsize;l++){var j=index[l];map[k++]=network[j][0];map[k++]=network[j][1];map[k++]=network[j][2]}return map}this.getColormap=getColormap;this.lookupRGB=inxsearch}module.exports=NeuQuant},{}],4:[function(require,module,exports){var GIFEncoder,renderFrame;GIFEncoder=require("./GIFEncoder.js");renderFrame=function(frame){var encoder,page,stream,transfer;encoder=new GIFEncoder(frame.width,frame.height);if(frame.index===0){encoder.writeHeader()}else{encoder.firstFrame=false}encoder.setTransparent(frame.transparent);encoder.setRepeat(frame.repeat);encoder.setDelay(frame.delay);encoder.setQuality(frame.quality);encoder.setDither(frame.dither);encoder.setGlobalPavarte(frame.globalPavarte);encoder.addFrame(frame.data);if(frame.last){encoder.finish()}if(frame.globalPavarte===true){frame.globalPavarte=encoder.getGlobalPavarte()}stream=encoder.stream();frame.data=stream.pages;frame.cursor=stream.cursor;frame.pageSize=stream.constructor.pageSize;if(frame.canTransfer){transfer=function(){var i,len,ref,results;ref=frame.data;results=[];for(i=0,len=ref.length;i<len;i++){page=ref[i];results.push(page.buffer)}return results}();return self.postMessage(frame,transfer)}else{return self.postMessage(frame)}};self.onmessage=function(event){return renderFrame(event.data)}},{"./GIFEncoder.js":1}]},{},[4]);`;
+
+var gifworkerBlob = URL.createObjectURL(new Blob([ url ], {
+    type: "application/javascript"
+}));
+
+var camera_canvas;
+
+var camera_canvas_img;
+
+var camera_width;
+
+var camera_height;
+
+var camera_anchorName;
+
+const camera_fps = 83;
+
+function cameraAddFrame(node, camera_canvas, gif, fps) {
+    camera_canvas.getContext("2d").drawImage(node, 0, 0, camera_canvas.width, camera_canvas.height);
+    gif.addFrame(camera_canvas, {
+        copy: true,
+        delay: fps
+    });
+}
+
 function initPkg_VideoTools_Cinema() {
-    initPkg_VideoTools_Cinema_Dom();
-    initPkg_VideoTools_Cinema_Func();
+    const mount = () => {
+        if (!document.querySelector(".menu-da2a9e") || document.getElementById("ex-cinema")) return;
+        initPkg_VideoTools_Cinema_Dom();
+        initPkg_VideoTools_Cinema_Func();
+    };
+    new DomHook(".menu-da2a9e", false, mount);
+    mount();
 }
 
 function initPkg_VideoTools_Cinema_Dom() {
@@ -10068,56 +6070,15 @@ function setVideoCinemaMode(fit) {
     StyleHook_set("Ex_Style_Cinema", style);
 }
 
-let icon_joysound_on = `<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjJweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjIgMjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+am95c291bmQvc2VsZWN0ZWQ8L3RpdGxlPgogICAgPGRlZnM+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IHgxPSI1MCUiIHkxPSIwJSIgeDI9IjUwJSIgeTI9IjEwMCUiIGlkPSJsaW5lYXJHcmFkaWVudC0xIj4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iI0YwQ0I5NSIgb2Zmc2V0PSIwJSI+PC9zdG9wPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjRTlCRTgwIiBvZmZzZXQ9IjEwMCUiPjwvc3RvcD4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPGcgaWQ9ImpveXNvdW5kL3NlbGVjdGVkIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0i57yW57uEIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyLjc4NTc1MCwgMC43MTQyMjUpIiBmaWxsPSJ1cmwoI2xpbmVhckdyYWRpZW50LTEpIiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICA8cGF0aCBkPSJNMTYuNDI4NiwwIEwxNi40Mjg2LDkuNjQzIEMxNi40Mjg2LDE0LjEzNDU1MjcgMTIuODIzMzY2NywxNy43ODQyODggOC4zNDg5MzYxOCwxNy44NTYxNjk2IEw4LjE4NzE4MTUzLDE3Ljg1NzI1NjEgTDguMTg3MTgxNTMsMTcuODU3MjU2MSBMNy44NTcxLDE3Ljg1NzI1NjEgTDcuODU3MTM4OTYsMTcuODQ5NjQxIEMzLjQ5MjM4MDEzLDE3LjY2MjA3NDQgMCwxNC4wNTMxMzQxIDAsOS42NDMwNSBDMCw1LjExMzExNTA1IDMuNjg0NDAwMiwxLjQyODU1IDguMjE0MjUsMS40Mjg1NSBDOS43MDA3OTkxMywxLjQyODU1IDExLjA5NjI5ODUsMS44MjUzNTUwMiAxMi4zMDA0MTUxLDIuNTE4NjIzMzEgQzEyLjc0OTU2ODcsMS4wNjAxNjYwMSAxNC4xMDgyMjM2LDAgMTUuNzE0MzUsMCBMMTYuNDI4NiwwIFogTTguMjE0MjUsMi40Mjg1NSBDNC4yMzY2OTQ5NiwyLjQyODU1IDEsNS42NjUzODk3OCAxLDkuNjQzMDUgQzEsMTMuNTAwNzUwOCA0LjA0NDc3MzgsMTYuNjYxNzMzMyA3Ljg1NzA4ODk5LDE2Ljg0ODU2NjggTDcuODU3MDYyNTQsMTQuNTc1MDE3IEM2Ljc3Mjk4NjcxLDE0LjQ5NzMxMDMgNS43ODQ2MTcxOSwxNC4wNjg3NDc3IDUuMDA1MTgzMTEsMTMuNDAyNTU3OCBMNC45MjI0NzY5NywxMy4zMzAyNzYyIEw0LjgwNDkyNDY4LDEzLjIyMTc5NDEgQzMuODU5Mjk3NTksMTIuMzIwNjI4MyAzLjI2OTI1LDExLjA0OTU0OTYgMy4yNjkyNSw5LjY0MzAyNSBDMy4yNjkyNSw2LjkxNTg4MjYzIDUuNDg3MTA3NjMsNC42OTgwMjUgOC4yMTQyNSw0LjY5ODAyNSBDOS44MTQwMDc1Niw0LjY5ODAyNSAxMS4yMzg0NTI3LDUuNDYxMjEyMzMgMTIuMTQyNzY0NSw2LjY0MjcxMjE1IEwxMi4xNDI3NjQ1LDMuNTk0NjQ0OTEgQzExLjAxMTU4OTYsMi44NTczNjc2NSA5LjY2MTk5NDQ5LDIuNDI4NTUgOC4yMTQyNSwyLjQyODU1IFogTTguMjE0MjUsNS42OTgwMjUgQzYuMDM5MzkyMzcsNS42OTgwMjUgNC4yNjkyNSw3LjQ2ODE2NzM3IDQuMjY5MjUsOS42NDMwMjUgQzQuMjY5MjUsMTEuNjY5NTM3MyA1LjgwNjQ4MjY0LDEzLjM0NDc0OTggNy43NzU4ODgxNSwxMy41NjM1NjcyIEw3Ljg1NzEsMTMuNTcxNSBMOC4yMTQzNSwxMy41NzE1IEMxMC4zNDk2LDEzLjU3MTUgMTIuMDg2ODUsMTEuODY4IDEyLjE0MTYsOS43NDYgTDEyLjE0MjY0NjgsOS42NDMgTDEyLjE0MjY0NjgsOS4yODIzMzIzMyBDMTEuOTU5ODU4NSw3LjI3NTc1MDI2IDEwLjI2NzQ4MjMsNS42OTgwMjUgOC4yMTQyNSw1LjY5ODAyNSBaIE04LjIxNDI1LDcuNTAwMDI1IEM5LjM5NjE5Mjg0LDcuNTAwMDI1IDEwLjM1Nyw4LjQ2MDkzMzA5IDEwLjM1Nyw5LjY0MzAyNSBDMTAuMzU3LDEwLjgyNDkxNzQgOS4zOTYxNDIzNywxMS43ODU3NzUgOC4yMTQyNSwxMS43ODU3NzUgQzcuMDMyMTgyMTUsMTEuNzg1Nzc1IDYuMDcxNSwxMC44MjQ5OTE5IDYuMDcxNSw5LjY0MzAyNSBDNi4wNzE1LDguNDYwODU4NTUgNy4wMzIxMzE2OSw3LjUwMDAyNSA4LjIxNDI1LDcuNTAwMDI1IFogTTguMjE0MjUsOC41MDAwMjUgQzcuNTg0NDYzNDgsOC41MDAwMjUgNy4wNzE1LDkuMDEzMDk2MjcgNy4wNzE1LDkuNjQzMDI1IEM3LjA3MTUsMTAuMjcyNzMwNyA3LjU4NDQ5MDQyLDEwLjc4NTc3NSA4LjIxNDI1LDEwLjc4NTc3NSBDOC44NDM4NTc2MywxMC43ODU3NzUgOS4zNTcsMTAuMjcyNjMyNiA5LjM1Nyw5LjY0MzAyNSBDOS4zNTcsOS4wMTMxOTQzMyA4Ljg0Mzg4NDU3LDguNTAwMDI1IDguMjE0MjUsOC41MDAwMjUgWiIgaWQ9IuW9oueKtiI+PC9wYXRoPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+" alt="joysound-on"/>`;
-
-let icon_joysound_off = `<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjJweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjIgMjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+am95c291bmQvbm9ybWFsPC90aXRsZT4KICAgIDxnIGlkPSJqb3lzb3VuZC9ub3JtYWwiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSLnvJbnu4QiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIuNzg1NzUwLCAwLjcxNDIyNSkiIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0xNi40Mjg2LDAgTDE2LjQyODYsOS42NDMgQzE2LjQyODYsMTQuMTM0NTUyNyAxMi44MjMzNjY3LDE3Ljc4NDI4OCA4LjM0ODkzNjE4LDE3Ljg1NjE2OTYgTDguMTg3MTgxNTMsMTcuODU3MjU2MSBMOC4xODcxODE1MywxNy44NTcyNTYxIEw3Ljg1NzEsMTcuODU3MjU2MSBMNy44NTcxMzg5NiwxNy44NDk2NDEgQzMuNDkyMzgwMTMsMTcuNjYyMDc0NCAwLDE0LjA1MzEzNDEgMCw5LjY0MzA1IEMwLDUuMTEzMTE1MDUgMy42ODQ0MDAyLDEuNDI4NTUgOC4yMTQyNSwxLjQyODU1IEM5LjcwMDc5OTEzLDEuNDI4NTUgMTEuMDk2Mjk4NSwxLjgyNTM1NTAyIDEyLjMwMDQxNTEsMi41MTg2MjMzMSBDMTIuNzQ5NTY4NywxLjA2MDE2NjAxIDE0LjEwODIyMzYsMCAxNS43MTQzNSwwIEwxNi40Mjg2LDAgWiBNOC4yMTQyNSwyLjQyODU1IEM0LjIzNjY5NDk2LDIuNDI4NTUgMSw1LjY2NTM4OTc4IDEsOS42NDMwNSBDMSwxMy41MDA3NTA4IDQuMDQ0NzczOCwxNi42NjE3MzMzIDcuODU3MDg4OTksMTYuODQ4NTY2OCBMNy44NTcwNjI1NCwxNC41NzUwMTcgQzYuNzcyOTg2NzEsMTQuNDk3MzEwMyA1Ljc4NDYxNzE5LDE0LjA2ODc0NzcgNS4wMDUxODMxMSwxMy40MDI1NTc4IEw0LjkyMjQ3Njk3LDEzLjMzMDI3NjIgTDQuODA0OTI0NjgsMTMuMjIxNzk0MSBDMy44NTkyOTc1OSwxMi4zMjA2MjgzIDMuMjY5MjUsMTEuMDQ5NTQ5NiAzLjI2OTI1LDkuNjQzMDI1IEMzLjI2OTI1LDYuOTE1ODgyNjMgNS40ODcxMDc2Myw0LjY5ODAyNSA4LjIxNDI1LDQuNjk4MDI1IEM5LjgxNDAwNzU2LDQuNjk4MDI1IDExLjIzODQ1MjcsNS40NjEyMTIzMyAxMi4xNDI3NjQ1LDYuNjQyNzEyMTUgTDEyLjE0Mjc2NDUsMy41OTQ2NDQ5MSBDMTEuMDExNTg5NiwyLjg1NzM2NzY1IDkuNjYxOTk0NDksMi40Mjg1NSA4LjIxNDI1LDIuNDI4NTUgWiBNOC4yMTQyNSw1LjY5ODAyNSBDNi4wMzkzOTIzNyw1LjY5ODAyNSA0LjI2OTI1LDcuNDY4MTY3MzcgNC4yNjkyNSw5LjY0MzAyNSBDNC4yNjkyNSwxMS42Njk1MzczIDUuODA2NDgyNjQsMTMuMzQ0NzQ5OCA3Ljc3NTg4ODE1LDEzLjU2MzU2NzIgTDcuODU3MSwxMy41NzE1IEw4LjIxNDM1LDEzLjU3MTUgQzEwLjM0OTYsMTMuNTcxNSAxMi4wODY4NSwxMS44NjggMTIuMTQxNiw5Ljc0NiBMMTIuMTQyNjQ2OCw5LjY0MyBMMTIuMTQyNjQ2OCw5LjI4MjMzMjMzIEMxMS45NTk4NTg1LDcuMjc1NzUwMjYgMTAuMjY3NDgyMyw1LjY5ODAyNSA4LjIxNDI1LDUuNjk4MDI1IFogTTguMjE0MjUsNy41MDAwMjUgQzkuMzk2MTkyODQsNy41MDAwMjUgMTAuMzU3LDguNDYwOTMzMDkgMTAuMzU3LDkuNjQzMDI1IEMxMC4zNTcsMTAuODI0OTE3NCA5LjM5NjE0MjM3LDExLjc4NTc3NSA4LjIxNDI1LDExLjc4NTc3NSBDNy4wMzIxODIxNSwxMS43ODU3NzUgNi4wNzE1LDEwLjgyNDk5MTkgNi4wNzE1LDkuNjQzMDI1IEM2LjA3MTUsOC40NjA4NTg1NSA3LjAzMjEzMTY5LDcuNTAwMDI1IDguMjE0MjUsNy41MDAwMjUgWiBNOC4yMTQyNSw4LjUwMDAyNSBDNy41ODQ0NjM0OCw4LjUwMDAyNSA3LjA3MTUsOS4wMTMwOTYyNyA3LjA3MTUsOS42NDMwMjUgQzcuMDcxNSwxMC4yNzI3MzA3IDcuNTg0NDkwNDIsMTAuNzg1Nzc1IDguMjE0MjUsMTAuNzg1Nzc1IEM4Ljg0Mzg1NzYzLDEwLjc4NTc3NSA5LjM1NywxMC4yNzI2MzI2IDkuMzU3LDkuNjQzMDI1IEM5LjM1Nyw5LjAxMzE5NDMzIDguODQzODg0NTcsOC41MDAwMjUgOC4yMTQyNSw4LjUwMDAyNSBaIiBpZD0i5b2i54q2Ij48L3BhdGg+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=" alt="joysound-off"/>`;
-
-function initPkg_VideoTools_Joysound() {
-    initPkg_VideoTools_Joysound_Menu();
-    initPkg_VideoTools_Joysound_Func();
-}
-
-function Joysound_isEnabled() {
-    return unsafeWindow.hasInstalledJoysound && 1 == localStorage.getItem("Ex_isJoysound");
-}
-
-function Joysound_updateMenuUI() {
-    const switchEl = document.getElementById("vtoolbar-joysound-switch");
-    const iconEl = document.getElementById("vtoolbar-joysound-icon");
-    if (!switchEl) return;
-    const enabled = Joysound_isEnabled();
-    if (enabled) {
-        switchEl.classList.add("is-on");
-        if (iconEl) iconEl.innerHTML = icon_joysound_on;
-    } else {
-        switchEl.classList.remove("is-on");
-        if (iconEl) iconEl.innerHTML = icon_joysound_off;
-    }
-}
-
-function initPkg_VideoTools_Joysound_Menu() {
-    Joysound_updateMenuUI();
-}
-
-function initPkg_VideoTools_Joysound_Func() {
-    const menuBtn = document.getElementById("vtoolbar-menu-joysound");
-    if (!menuBtn) return;
-    menuBtn.addEventListener("click", e => {
-        e.stopPropagation();
-        if (unsafeWindow.hasInstalledJoysound) {
-            if (1 == localStorage.getItem("Ex_isJoysound")) unsafeWindow.disableJoysound(); else unsafeWindow.enableJoysound();
-            Joysound_updateMenuUI();
-        } else openPage("https://src.douyuex.com/src/joysound.user.js");
-    });
-}
-
 let videoMetaData = null;
 
 function initPkg_VideoTools_MetaData() {
+    new DomHook(".menu-da2a9e", false, initPkg_VideoTools_MetaData_Dom);
     MetaData_init();
 }
 
 function initPkg_VideoTools_MetaData_Dom() {
+    if (!document.querySelector(".menu-da2a9e") || document.getElementById("ex-metadata")) return;
     if (!videoMetaData) return;
     if (!videoMetaData.dy_cpu_model && !videoMetaData.dy_gpu_model && !videoMetaData.dy_device_model && !videoMetaData.dy_os_version && !videoMetaData.z_canvas_code) return;
     let a = document.createElement("li");
@@ -10138,7 +6099,7 @@ function initPkg_VideoTools_MetaData_Dom() {
 
 function MetaData_init() {
     getRealLive_Douyu(rid, true, false, "1", lurl => {
-        if ("" != lurl || null != lurl) {
+        if ("" != lurl && null != lurl) {
             if ("None" == lurl) {
                 showMessage("房间未开播或其他错误", "error");
                 return;
@@ -10223,6 +6184,12 @@ let pipVisRecoverHandler = null;
 
 let pipFrameStallTimer = null;
 
+let pipFrameWatchVideo = null;
+
+let pipFrameWatchHandle = null;
+
+let pipFrameWatchGeneration = 0;
+
 let pipFullscreenListenerBound = false;
 
 const PIP_MENU_SVG_NATIVE = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>`;
@@ -10283,9 +6250,22 @@ function PictureInPictureControl_initPipUiText(pipWindow) {
 }
 
 function PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo) {
+    if (window.__pip_window__ && pipWindow && window.__pip_window__ !== pipWindow) return;
     if (!window.__pip_is_active__) return;
     window.__pip_is_active__ = false;
     window.__pip_window__ = null;
+    if (null != pipWindow?.__pip_close_timer__) {
+        clearInterval(pipWindow.__pip_close_timer__);
+        pipWindow.__pip_close_timer__ = null;
+    }
+    if (pipWindow?.__pip_cleanup_handler__) {
+        pipWindow.removeEventListener("pagehide", pipWindow.__pip_cleanup_handler__);
+        pipWindow.__pip_cleanup_handler__ = null;
+    }
+    if (pipVideo?.__pip_unbind_sync__) {
+        pipVideo.__pip_unbind_sync__();
+        pipVideo.__pip_unbind_sync__ = null;
+    }
     if (pipWindow?.__pip_keydown_handler__) {
         pipWindow.document.removeEventListener("keydown", pipWindow.__pip_keydown_handler__);
         pipWindow.__pip_keydown_handler__ = null;
@@ -10302,7 +6282,11 @@ function PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo) {
     }
     comboMap.clear();
     try {
-        if (pipVideo) pipVideo.srcObject = null;
+        if (pipVideo) {
+            const stream = pipVideo.srcObject;
+            if (stream) stream.getTracks().forEach(track => track.stop());
+            pipVideo.srcObject = null;
+        }
     } catch (e) {}
     if (pipWindow && !pipWindow.closed) try {
         pipWindow.close();
@@ -10312,6 +6296,7 @@ function PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo) {
 function PictureInPictureControl_returnToOpener(pipWindow, exitPip = true) {
     const win = pipWindow || window.__pip_window__;
     const sourceVideo = win?.__pip_source_video__ || document.getElementById("__video2");
+    const wasPaused = sourceVideo?.paused;
     if (exitPip && window.__pip_is_active__) {
         const pipVideo = win?.document?.getElementById("pip-video");
         PictureInPictureControl_cleanupEnhancedPip(win, pipVideo);
@@ -10326,7 +6311,7 @@ function PictureInPictureControl_returnToOpener(pipWindow, exitPip = true) {
                 behavior: "smooth"
             });
         } catch (e) {}
-        if (!exitPip && window.__pip_is_active__) PictureInPictureControl_wakeSourceVideo(sourceVideo).catch(() => {}); else if (exitPip) sourceVideo.play().catch(() => {});
+        if (!exitPip && window.__pip_is_active__) PictureInPictureControl_wakeSourceVideo(sourceVideo).catch(() => {}); else if (exitPip && !wasPaused) sourceVideo.play().catch(() => {});
     }
 }
 
@@ -10399,6 +6384,7 @@ async function PictureInPictureControl_reloadPipVideo(pipWindow, pipVideo) {
     const sourceVideo = pipWindow?.__pip_source_video__ || document.getElementById("__video2");
     if (!sourceVideo || !pipVideo) return false;
     await PictureInPictureControl_wakeSourceVideo(sourceVideo);
+    if (!window.__pip_is_active__ || pipWindow?.closed) return false;
     try {
         const oldStream = pipVideo.srcObject;
         if (oldStream) oldStream.getTracks().forEach(track => track.stop());
@@ -10430,6 +6416,10 @@ function PictureInPictureControl_startTabAntiFreeze(video, pipWindow, pipVideo) 
 
 function PictureInPictureControl_stopTabAntiFreeze() {
     PictureInPictureControl_stopSourceVideoKeepAlive();
+    pipFrameWatchGeneration++;
+    if (pipFrameWatchVideo && null != pipFrameWatchHandle && "function" === typeof pipFrameWatchVideo.cancelVideoFrameCallback) pipFrameWatchVideo.cancelVideoFrameCallback(pipFrameWatchHandle);
+    pipFrameWatchVideo = null;
+    pipFrameWatchHandle = null;
     if (pipVisRecoverHandler) {
         document.removeEventListener("visibilitychange", pipVisRecoverHandler);
         pipVisRecoverHandler = null;
@@ -10453,6 +6443,10 @@ function PictureInPictureControl_bindVisibilityRecover(video, pipWindow, pipVide
 }
 
 function PictureInPictureControl_startFrameStallWatch(video, pipWindow, pipVideo) {
+    const generation = ++pipFrameWatchGeneration;
+    if (pipFrameWatchVideo && null != pipFrameWatchHandle && "function" === typeof pipFrameWatchVideo.cancelVideoFrameCallback) pipFrameWatchVideo.cancelVideoFrameCallback(pipFrameWatchHandle);
+    pipFrameWatchVideo = video;
+    pipFrameWatchHandle = null;
     if (pipFrameStallTimer) {
         clearTimeout(pipFrameStallTimer);
         pipFrameStallTimer = null;
@@ -10461,13 +6455,13 @@ function PictureInPictureControl_startFrameStallWatch(video, pipWindow, pipVideo
     let lastFrameMs = performance.now();
     let recovering = false;
     const onFrame = () => {
-        if (!window.__pip_is_active__) return;
+        if (!window.__pip_is_active__ || generation !== pipFrameWatchGeneration) return;
         lastFrameMs = performance.now();
-        video.requestVideoFrameCallback(onFrame);
+        pipFrameWatchHandle = video.requestVideoFrameCallback(onFrame);
     };
-    video.requestVideoFrameCallback(onFrame);
+    pipFrameWatchHandle = video.requestVideoFrameCallback(onFrame);
     const checkStall = () => {
-        if (!window.__pip_is_active__) return;
+        if (!window.__pip_is_active__ || generation !== pipFrameWatchGeneration) return;
         pipFrameStallTimer = setTimeout(checkStall, 2500);
         if (recovering || video.paused || video.readyState < 2) return;
         if (performance.now() - lastFrameMs < 4500) return;
@@ -10985,22 +6979,27 @@ async function PictureInPictureControl_handle() {
 }
 
 function PictureInPictureControl_bindVideoSync(video, pipVideo) {
+    if (pipVideo.__pip_unbind_sync__) pipVideo.__pip_unbind_sync__();
     function syncVideo() {
         if (video.paused) pipVideo.pause(); else pipVideo.play().catch(() => {});
     }
     video.addEventListener("play", syncVideo);
     video.addEventListener("pause", syncVideo);
+    pipVideo.__pip_unbind_sync__ = () => {
+        video.removeEventListener("play", syncVideo);
+        video.removeEventListener("pause", syncVideo);
+    };
 }
 
 function PictureInPictureControl_bindCleanup(video, pipWindow, pipVideo) {
     window.__pip_is_active__ = true;
     const cleanup = () => PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo);
+    if (pipWindow.__pip_cleanup_handler__) pipWindow.removeEventListener("pagehide", pipWindow.__pip_cleanup_handler__);
+    if (null != pipWindow.__pip_close_timer__) clearInterval(pipWindow.__pip_close_timer__);
+    pipWindow.__pip_cleanup_handler__ = cleanup;
     pipWindow.addEventListener("pagehide", cleanup);
-    const timer = setInterval(() => {
-        if (pipWindow.closed) {
-            clearInterval(timer);
-            cleanup();
-        }
+    pipWindow.__pip_close_timer__ = setInterval(() => {
+        if (pipWindow.closed) cleanup();
     }, 2e3);
 }
 
@@ -12053,6 +8052,8 @@ let transformCss = {
 
 let panorama = null;
 
+let panoramaFrame = null;
+
 function isEdgeBrowser() {
     return /Edg/i.test(navigator.userAgent);
 }
@@ -12132,14 +8133,21 @@ function Filter_getPanelHtml() {
     `;
 }
 
+let filterContextMenuHook = null;
+
 function Filter_insertPanel() {
     const host = "function" === typeof VideoToolbarMenu_getFilterHost ? VideoToolbarMenu_getFilterHost() : null;
     if (!host) return;
     const wrap = document.createElement("div");
     wrap.innerHTML = Filter_getPanelHtml();
     host.appendChild(wrap.firstElementChild);
+    Filter_mountContextActions();
+    if (!filterContextMenuHook) filterContextMenuHook = new DomHook(".menu-da2a9e", false, Filter_mountContextActions);
+}
+
+function Filter_mountContextActions() {
     let b = document.getElementsByClassName("menu-da2a9e")[0];
-    if (!b) return;
+    if (!b || b.querySelector("#filter__reset")) return;
     let domPanorama = document.createElement("li");
     domPanorama.id = "filter__panorama";
     domPanorama.innerText = "全景";
@@ -12161,6 +8169,13 @@ function Filter_insertPanel() {
     b.insertBefore(domDivider, b.childNodes[1]);
 }
 
+function Filter_bindAction(id, callback) {
+    document.addEventListener("click", event => {
+        const element = document.getElementById(id);
+        if (element && element.contains(event.target)) callback(event);
+    });
+}
+
 function Filter_insertEnhanceModal() {
     let modal = document.createElement("div");
     modal.className = "enhance-modal__panel-wrap";
@@ -12174,7 +8189,7 @@ function Filter_insertEnhanceModal() {
                     <br />
                     完成后，再<b>刷新</b>以恢复弹幕飘屏，该功能会<b>自动保存</b>
                     <br />
-                    <a style="color: #ff7700;" href="https://www.microsoft.com/zh-cn/edge/features/enhance-video?form=MT0160" target="_blank">没有增强图标？</a>
+                    <span>没有增强图标时，请检查浏览器的视频增强设置及设备支持情况。</span>
                 </div>
             </div>
         </div>
@@ -12228,13 +8243,13 @@ function initPkg_VideoTools_Filter_Func() {
         currentSaturate = `saturate(${data}%)`;
         liveVideoNode.style.filter = `${currentBrightness} ${currentContrast} ` + currentSaturate;
     });
-    document.getElementById("filter__reset").addEventListener("click", () => {
+    Filter_bindAction("filter__reset", () => {
         resetVideoFilter();
     });
     document.getElementById("filter__reset2").addEventListener("click", () => {
         resetVideoFilter();
     });
-    document.getElementById("filter__mirror").addEventListener("click", () => {
+    Filter_bindAction("filter__mirror", () => {
         if (!isMirror) {
             isMirror = true;
             transformCss.rotateY = "rotateY(180deg)";
@@ -12245,7 +8260,7 @@ function initPkg_VideoTools_Filter_Func() {
         liveVideoNode.parentNode.style.transition = "all .5s";
         liveVideoNode.parentNode.style.transform = transformCss.rotateY + " " + transformCss.rotate + " " + transformCss.scale;
     });
-    document.getElementById("filter__rotate").addEventListener("click", () => {
+    Filter_bindAction("filter__rotate", () => {
         rotateAngle += 90;
         transformCss.rotate = `rotate(${String(rotateAngle)}deg)`;
         liveVideoNode.parentNode.style.transition = "all .5s";
@@ -12340,12 +8355,9 @@ function initPkg_VideoTools_Filter_Func() {
             break;
         }
     };
-    document.getElementById("filter__panorama").addEventListener("click", () => {
+    Filter_bindAction("filter__panorama", () => {
         let tmp = document.getElementById("ex-panorama");
-        if (tmp) {
-            tmp.remove();
-            panorama = null;
-        } else {
+        if (tmp) stopPanorama(); else {
             let node = document.getElementById("__h5player");
             let dom = document.createElement("div");
             dom.id = "ex-panorama";
@@ -12371,6 +8383,10 @@ function resetVideoFilter() {
     StyleHook_remove("Ex_Style_Filter");
     document.getElementById("filter__select").selectedIndex = 0;
     liveVideoNode.style.filter = "";
+    currentBrightness = "";
+    currentContrast = "";
+    currentSaturate = "";
+    isMirror = false;
     rotateAngle = 0;
     transformCss = {
         rotateY: "",
@@ -12395,10 +8411,7 @@ function resetVideoFilter() {
         if (enhanceModal) enhanceModal.style.display = "none";
     }
     let domPanorama = document.getElementById("ex-panorama");
-    if (domPanorama) {
-        domPanorama.remove();
-        panorama = null;
-    }
+    if (domPanorama) stopPanorama();
     let domVideoWrap = document.getElementsByClassName("layout-Player-videoEntity")[0];
     domVideoWrap.style.transform = "";
     domVideoWrap.style.transformOrigin = "";
@@ -12407,11 +8420,23 @@ function resetVideoFilter() {
     liveVideoNode.playbackRate = 1;
 }
 
-function panoramaAnimation(panorama) {
-    requestAnimationFrame(() => {
-        panoramaAnimation(panorama);
-    });
-    panorama.update();
+function stopPanorama() {
+    if (null !== panoramaFrame) cancelAnimationFrame(panoramaFrame);
+    panoramaFrame = null;
+    if (panorama && "function" === typeof panorama.destroy) panorama.destroy();
+    panorama = null;
+    const container = document.getElementById("ex-panorama");
+    if (container) container.remove();
+}
+
+function panoramaAnimation(instance) {
+    if (panorama !== instance) return;
+    if (false === instance.domContainer.isConnected) {
+        stopPanorama();
+        return;
+    }
+    instance.update();
+    panoramaFrame = requestAnimationFrame(() => panoramaAnimation(instance));
 }
 
 function setVideoFilter(style) {
@@ -12462,8 +8487,13 @@ function initPkg_VideoTools_VideoRecall_Func() {
 }
 
 function initPkg_VideoTools_VideoSpeed() {
-    initPkg_VideoTools_VideoSpeed_Dom();
-    initPkg_VideoTools_VideoSpeed_Func();
+    const mount = () => {
+        if (!document.querySelector(".menu-da2a9e") || document.getElementById("ex-videospeed")) return;
+        initPkg_VideoTools_VideoSpeed_Dom();
+        initPkg_VideoTools_VideoSpeed_Func();
+    };
+    new DomHook(".menu-da2a9e", false, mount);
+    mount();
 }
 
 function initPkg_VideoTools_VideoSpeed_Dom() {
@@ -12510,8 +8540,13 @@ function initPkg_VideoTools_VideoSpeed_Func() {
 }
 
 function initPkg_VideoTools_VideoSync() {
-    initPkg_VideoTools_VideoSync_Dom();
-    initPkg_VideoTools_VideoSync_Func();
+    const mount = () => {
+        if (!getValidDom([ ".left-d3671e", ".left-bfab3b" ]) || document.getElementById("ex-videosync")) return;
+        initPkg_VideoTools_VideoSync_Dom();
+        initPkg_VideoTools_VideoSync_Func();
+    };
+    new DomHook(".left-d3671e, .left-bfab3b", false, mount);
+    mount();
 }
 
 function initPkg_VideoTools_VideoSync_Dom() {
@@ -12554,9 +8589,27 @@ let VideoToolbarMenu_filterExpanded = false;
 
 let VideoToolbarMenu_closeTimer = null;
 
+let VideoToolbarMenu_root = null;
+
+let VideoToolbarMenu_hostHook = null;
+
 function initPkg_VideoTools_VideoToolbarMenu() {
-    VideoToolbarMenu_insertDom();
-    VideoToolbarMenu_bindEvents();
+    VideoToolbarMenu_mount();
+    if (!VideoToolbarMenu_hostHook) VideoToolbarMenu_hostHook = new DomHook(".right-e7ea5d, .right-17e251", false, VideoToolbarMenu_mount);
+}
+
+function VideoToolbarMenu_mount() {
+    const toolbar = getValidDom([ ".right-e7ea5d", ".right-17e251" ]);
+    if (!toolbar) return;
+    const existing = VideoToolbarMenu_getRoot();
+    if (VideoToolbarMenu_root) {
+        if (existing && existing !== VideoToolbarMenu_root) existing.remove();
+        if (VideoToolbarMenu_root.parentNode !== toolbar) toolbar.insertBefore(VideoToolbarMenu_root, toolbar.firstChild);
+        return;
+    }
+    if (!existing) VideoToolbarMenu_insertDom();
+    VideoToolbarMenu_root = VideoToolbarMenu_getRoot();
+    if (VideoToolbarMenu_root) VideoToolbarMenu_bindEvents();
 }
 
 function VideoToolbarMenu_insertDom() {
@@ -12568,13 +8621,6 @@ function VideoToolbarMenu_insertDom() {
             ${VideoToolbarMenu_pokeballSvg}
         </button>
         <div class="vtoolbar-menu__dropdown" role="menu" aria-label="DouyuEx Ver${curVersion}">
-            <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-joysound" role="menuitem">
-                <span class="vtoolbar-menu__item-icon" id="vtoolbar-joysound-icon"></span>
-                <span class="vtoolbar-menu__item-label">Joysound 音效</span>
-                <span class="vtoolbar-menu__switch" id="vtoolbar-joysound-switch" aria-hidden="true">
-                    <span class="vtoolbar-menu__switch-thumb"></span>
-                </span>
-            </button>
             <button type="button" class="vtoolbar-menu__item vtoolbar-menu__item--filter" id="vtoolbar-menu-filter" role="menuitem" aria-expanded="false">
                 <span class="vtoolbar-menu__item-icon">${VideoToolbarMenu_iconFilter}</span>
                 <span class="vtoolbar-menu__item-label">画面滤镜</span>
@@ -12591,6 +8637,10 @@ function VideoToolbarMenu_insertDom() {
             <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-enhanced-pip" role="menuitem">
                 <span class="vtoolbar-menu__item-icon">${VideoToolbarMenu_iconEnhancedPip}</span>
                 <span class="vtoolbar-menu__item-label">加强版画中画</span>
+            </button>
+            <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-popup-player" role="menuitem">
+                <span class="vtoolbar-menu__item-icon">${VideoToolbarMenu_iconEnhancedPip}</span>
+                <span class="vtoolbar-menu__item-label">斗鱼同屏播放</span>
             </button>
             <div class="vtoolbar-menu__divider" role="separator"></div>
             <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-expanel" role="menuitem">
@@ -12651,6 +8701,7 @@ function VideoToolbarMenu_bindHoverTarget(el, isTrigger) {
 
 function VideoToolbarMenu_bindEvents() {
     const root = VideoToolbarMenu_getRoot();
+    if (!root) return;
     const trigger = root.querySelector(".vtoolbar-menu__trigger");
     const dropdown = root.querySelector(".vtoolbar-menu__dropdown");
     const filterHost = document.getElementById("ex-vtoolbar-filter-host");
@@ -12659,6 +8710,7 @@ function VideoToolbarMenu_bindEvents() {
     const audioLineBtn = document.getElementById("vtoolbar-menu-audio-line");
     const enhancedPipBtn = document.getElementById("vtoolbar-menu-enhanced-pip");
     const expanelBtn = document.getElementById("vtoolbar-menu-expanel");
+    const popupPlayerBtn = document.getElementById("vtoolbar-menu-popup-player");
     VideoToolbarMenu_bindHoverTarget(trigger, true);
     VideoToolbarMenu_bindHoverTarget(dropdown, false);
     VideoToolbarMenu_bindHoverTarget(filterHost, false);
@@ -12682,6 +8734,11 @@ function VideoToolbarMenu_bindEvents() {
     expanelBtn.addEventListener("click", e => {
         e.stopPropagation();
         if ("function" === typeof showExPanel) showExPanel();
+    });
+    popupPlayerBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        VideoToolbarMenu_close();
+        PopupPlayer_openPrompt();
     });
     document.addEventListener("keydown", VideoToolbarMenu_onKeydown);
 }
@@ -12764,50 +8821,60 @@ var isInput = false;
 
 let videotools_num = 0;
 
+let videoToolsTimer = null;
+
+let videoToolsInitialized = false;
+
+let videoToolsFocusBound = false;
+
 function initPkg_VideoTools() {
-    let timer = setInterval(() => {
+    if (null !== videoToolsTimer || videoToolsInitialized) return;
+    videoToolsTimer = setInterval(() => {
         const controlbar = getValidDom([ ".right-e7ea5d", ".right-17e251" ]);
-        if (controlbar) {
-            clearInterval(timer);
-            liveVideoNode = document.querySelector(".layout-Player-videoEntity video");
-            document.getElementsByClassName("disable-23f484")[0].innerHTML = `DouyuEx_` + curVersion;
+        const video = document.querySelector(".layout-Player-videoEntity video");
+        if (controlbar && video) {
+            clearInterval(videoToolsTimer);
+            videoToolsTimer = null;
+            videoToolsInitialized = true;
+            liveVideoNode = video;
+            const version = document.getElementsByClassName("disable-23f484")[0];
+            if (version) version.textContent = `DouyuEx Lite_` + curVersion;
             initPkg_VideoTools_Module();
             initPkg_VideoTools_Func();
         }
         videotools_num++;
-        if (videotools_num >= 100) clearInterval(timer);
+        if (videotools_num >= 100) {
+            clearInterval(videoToolsTimer);
+            videoToolsTimer = null;
+        }
     }, 1500);
 }
 
 function initPkg_VideoTools_Module() {
-    initPkg_VideoTools_VideoToolbarMenu();
-    initPkg_VideoTools_Joysound();
-    initPkg_VideoTools_VideoSpeed();
-    initPkg_VideoTools_Cinema();
-    initPkg_VideoTools_VideoSync();
-    initPkg_VideoTools_VideoRecall();
-    initPkg_VideoTools_Filter();
-    initPkg_VideoTools_Camera();
-    initPkg_VideoTools_VideoZoom();
-    initPkg_VideoTools_MetaData();
-    initPkg_PictureInPictureControl();
+    runInitializers([ initPkg_VideoTools_VideoToolbarMenu, initPkg_VideoTools_VideoSpeed, initPkg_VideoTools_Cinema, initPkg_VideoTools_VideoSync, initPkg_VideoTools_VideoRecall, initPkg_VideoTools_Filter, initPkg_VideoTools_Camera, initPkg_VideoTools_VideoZoom, initPkg_VideoTools_MetaData, initPkg_PictureInPictureControl ]);
 }
 
 function initPkg_VideoTools_Func() {
     const hideFilterOnLeave = () => {
         if ("function" === typeof VideoToolbarMenu_hideFilterPanel) VideoToolbarMenu_hideFilterPanel(); else if ("function" === typeof Filter_hidePanel) Filter_hidePanel();
     };
-    document.getElementById("js-player-toolbar").addEventListener("mouseover", hideFilterOnLeave);
-    document.getElementById("js-player-asideMain").addEventListener("mouseover", hideFilterOnLeave);
-    getValidDom([ ".inputView-2a65aa", ".inputView-620ab7" ]).addEventListener("focus", () => {
-        isInput = true;
-    });
-    getValidDom([ ".inputView-2a65aa", ".inputView-620ab7" ]).addEventListener("blur", () => {
-        isInput = false;
-    });
-    new DomHook(".app-f0f9c7", false, m => {
-        if (m.length > 0) if (m[0].addedNodes.length > 0) isInput = true; else if (m[0].removedNodes.length > 0) isInput = false;
-    });
+    const toolbar = document.getElementById("js-player-toolbar");
+    const aside = document.getElementById("js-player-asideMain");
+    if (toolbar) toolbar.addEventListener("mouseover", hideFilterOnLeave);
+    if (aside) aside.addEventListener("mouseover", hideFilterOnLeave);
+    if (!videoToolsFocusBound) {
+        videoToolsFocusBound = true;
+        document.addEventListener("focusin", VideoTools_updateInputFocus);
+        document.addEventListener("focusout", () => setTimeout(VideoTools_updateInputFocus, 0));
+        new DomHook(".app-f0f9c7", false, VideoTools_updateInputFocus);
+    }
+    VideoTools_updateInputFocus();
+}
+
+function VideoTools_updateInputFocus() {
+    let active = document.activeElement;
+    while (active && active.shadowRoot && active.shadowRoot.activeElement) active = active.shadowRoot.activeElement;
+    isInput = !!(active && (/^(?:INPUT|TEXTAREA|SELECT)$/.test(active.tagName) || active.isContentEditable));
 }
 
 let videoScale = 1;
@@ -12945,159 +9012,6 @@ function VolumeMouseScrolling_Handler(volume) {
     } catch (e) {}
 }
 
-function doSign(alias) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/carnival/nc/hostSnowSign/doSign", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `actAlias=${alias}&token=${dyToken}&ctn=` + getCCN()
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
-function signAct(alias) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/carnival/nc/signAct/signIn", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: "token=" + dyToken + "&signAlias=" + alias
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        });
-    });
-}
-
-function userStatus(tasks) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/carnival/nc/actTask/userStatus", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `tasks=${tasks}&token=` + dyToken
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
-function takeActPrize(name) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/carnival/nc/actTask/takePrize", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `token=${dyToken}&aid=android&taskAlias=` + name
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
-function addFollowRoom(rid) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/add", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `rid=${rid}&ctn=` + getCCN()
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
-function removeFollowRoom(rid) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/wgapi/livenc/liveweb/follow/rm", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `rid=${rid}&ctn=` + getCCN()
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
-function shareAct(name) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/carnival/common/share", {
-            method: "POST",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: `actAlias=${name}&token=` + dyToken
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        }).catch(err => {
-            console.log("请求失败!", err);
-        });
-    });
-}
-
-function getJackpot(id) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/carnival/nc/lottery/jackpot", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json;charset=UTF-8"
-            },
-            body: `{"activityId":"${id}","token":"${dyToken}"}`
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        });
-    });
-}
-
-function getActRemaining(id) {
-    return new Promise(resolve => {
-        fetch("https://www.douyu.com/japi/carnival/nc/lottery/remaining?activityId=" + id, {
-            method: "GET",
-            mode: "no-cors",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json;charset=UTF-8"
-            }
-        }).then(res => res.json()).then(ret => {
-            resolve(ret);
-        });
-    });
-}
-
 class ASS {
     constructor(options) {
         let defaultOptions = {
@@ -13169,6 +9083,15 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     }
 }
 
+function sendBarrage(text) {
+    const chat = document.getElementsByClassName("ChatSend-txt")[0];
+    const send = document.getElementsByClassName("ChatSend-button")[0];
+    if (!chat || !send) return false;
+    if ("TEXTAREA" === chat.tagName) chat.value = text; else chat.innerText = text;
+    send.click();
+    return true;
+}
+
 class CClick {
     constructor(element) {
         const CONST_LONG_TIME = 700;
@@ -13221,24 +9144,80 @@ class DomHook {
     constructor(selector, isSubtree, callback) {
         this.selector = selector;
         this.isSubtree = isSubtree;
-        let targetNode = document.querySelector(this.selector);
-        if (null == targetNode) return;
-        let observer = new MutationObserver(function(mutations) {
-            callback(mutations);
+        this.callback = callback;
+        this.target = null;
+        this.closed = false;
+        this.observer = new MutationObserver(mutations => {
+            if (!this.closed) this.callback(mutations);
         });
-        this.observer = observer;
-        this.observer.observe(targetNode, {
+        this.bindTarget(false);
+        this.rootObserver = new MutationObserver(mutations => {
+            const childrenChanged = mutations.some(mutation => "childList" === mutation.type);
+            const targetLost = !this.target || !this.target.isConnected || !this.target.matches(this.selector);
+            const candidateChanged = mutations.some(mutation => "attributes" === mutation.type && mutation.target.matches(this.selector));
+            if (childrenChanged || targetLost || candidateChanged) this.bindTarget(true);
+        });
+        this.rootObserver.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: [ "class", "id" ]
+        });
+    }
+    bindTarget(notify) {
+        if (this.closed) return;
+        const target = document.querySelector(this.selector);
+        if (target === this.target) return;
+        this.observer.disconnect();
+        this.target = target;
+        if (!target) return;
+        this.observer.observe(target, {
             attributes: true,
             childList: true,
             subtree: this.isSubtree
         });
+        if (notify) this.callback([ {
+            type: "childList",
+            target: target,
+            addedNodes: Array.from(target.childNodes),
+            removedNodes: []
+        } ]);
     }
     closeHook() {
-        if (this.observer) {
-            this.observer.disconnect();
-            this.observer = null;
-        }
+        this.closed = true;
+        this.observer.disconnect();
+        this.rootObserver.disconnect();
+        this.target = null;
     }
+}
+
+function getBagGifts(room_id, callback) {
+    return signFetch("https://www.douyu.com/japi/prop/backpack/web/v5?rid=" + encodeURIComponent(room_id), {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    }).then(ret => {
+        if (callback) callback(ret);
+        return ret;
+    });
+}
+
+let fansBadgeRoomsRequest = null;
+
+function getFansBadgeRooms() {
+    if (fansBadgeRoomsRequest) return fansBadgeRoomsRequest;
+    fansBadgeRoomsRequest = (async () => {
+        const html = await signFetch("https://www.douyu.com/member/cp/getFansBadgeList", {}, "text");
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const list = doc.querySelector(".fans-badge-list");
+        if (!list) throw new Error("未能获取粉丝牌列表，请确认已登录");
+        return [ ...new Set(Array.from(list.querySelectorAll("[data-fans-room]"), node => node.getAttribute("data-fans-room")).filter(roomId => /^\d+$/.test(roomId) && Number(roomId) > 0)) ];
+    })().finally(() => {
+        fansBadgeRoomsRequest = null;
+    });
+    return fansBadgeRoomsRequest;
 }
 
 class DyVideoSign {
@@ -13257,7 +9236,8 @@ class DyVideoSign {
         var e = Math.floor(t.length / 16) % 4, l = [], d = t.length % 8, c = Math.floor(t.length / 8);
         for (o = 0; o < c; o++) l[o] = 255 & parseInt(t.substr(8 * o, 2), 16) | parseInt(t.substr(8 * o + 2, 2), 16) << 8 & 65280 | parseInt(t.substr(8 * o + 4, 2), 16) << 24 >>> 8 | parseInt(t.substr(8 * o + 6, 2), 16) << 24;
         var p = [];
-        p = 0 == e ? e86500e2(l, i) : 1 == e ? this.c30070a4(l, i) : d831eb20(l, i);
+        if (1 !== e) throw new Error("Unsupported replay signature format");
+        p = this.c30070a4(l, i);
         var h = [];
         for (o = 0; o < p.length; o++) {
             var f = 255 & p[o], u = p[o] >>> 8 & 255, m = p[o] >>> 16 & 255, g = p[o] >>> 24 & 255;
@@ -14088,6 +10068,25 @@ class PanoramaVideo {
         this.camera.lookAt(this.camera.target);
         this.renderer.render(this.scene, this.camera);
     }
+    destroy() {
+        if (this.destroyed) return;
+        this.destroyed = true;
+        this.domContainer.removeEventListener("mousedown", this.onDocumentMouseDown, false);
+        this.domContainer.removeEventListener("mousemove", this.onDocumentMouseMove, false);
+        this.domContainer.removeEventListener("mouseup", this.onDocumentMouseUp, false);
+        this.domContainer.removeEventListener("wheel", this.onDocumentMouseWheel, false);
+        window.removeEventListener("resize", this.onWindowResize, false);
+        this.scene.traverse(object => {
+            if (object.geometry) object.geometry.dispose();
+            const materials = Array.isArray(object.material) ? object.material : [ object.material ];
+            for (var material of materials) {
+                if (!material) continue;
+                if (material.map) material.map.dispose();
+                material.dispose();
+            }
+        });
+        this.renderer.dispose();
+    }
 }
 
 var PostbirdAlertBox = {
@@ -14195,69 +10194,6 @@ var PostbirdAlertBox = {
     }
 };
 
-function getRealLive_Bilibili(room_id, qn, cdn, reallive_callback) {
-    let qn_data = "80";
-    switch (qn) {
-      case "1":
-        qn_data = "80";
-        break;
-
-      case "2":
-        qn_data = "150";
-        break;
-
-      case "3":
-        qn_data = "250";
-        break;
-
-      case "4":
-        qn_data = "400";
-        break;
-
-      case "5":
-        qn_data = "20000";
-        break;
-
-      default:
-        qn_data = "80";
-        break;
-    }
-    GM_xmlhttpRequest({
-        method: "GET",
-        url: `https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo?room_id=${room_id}&platform=web&qn=${qn_data}&protocol=0,1&format=0,1,2&codec=0,1`,
-        responseType: "json",
-        onload: function(response) {
-            let ret = response.response;
-            let rurl = "";
-            for (let i = 0; i < ret.data.playurl_info.playurl.stream.length; i++) {
-                const item = ret.data.playurl_info.playurl.stream[i];
-                if (String(item.protocol_name).includes("stream") && item.format.length > 0) {
-                    let url_info = item.format[0].codec[0].url_info[0];
-                    let base_url = item.format[0].codec[0].base_url;
-                    rurl = `` + url_info.host + base_url + url_info.extra;
-                }
-            }
-            let streamList = ret.data.durl;
-            if (streamList) rurl = streamList.length > 0 ? streamList[0].url : "";
-            reallive_callback(rurl);
-        }
-    });
-}
-
-function getRealRid_Bilibili(url, realrid_callback) {
-    let arr = url.split("/");
-    let rid = arr[arr.length - 1];
-    GM_xmlhttpRequest({
-        method: "GET",
-        url: "https://api.live.bilibili.com/room/v1/Room/room_init?id=" + rid,
-        responseType: "json",
-        onload: function(response) {
-            let ret = response.response;
-            realrid_callback(ret.data.room_id);
-        }
-    });
-}
-
 function getRealLive_Douyu(room_id, is_video, is_https, qn, reallive_callback) {
     let did = getCookieValue("dy_did") || "10000000000000000000000000001501";
     GM_xmlhttpRequest({
@@ -14329,44 +10265,6 @@ function getRealRid_Douyu(url, realrid_callback) {
     });
 }
 
-function getRealLive_Huya(rid, qn, reallive_callback) {
-    let qn_data = "500";
-    switch (qn) {
-      case "1":
-        qn_data = "500";
-        break;
-
-      case "2":
-        qn_data = "2500";
-        break;
-
-      case "3":
-        qn_data = "4500";
-        break;
-
-      case "4":
-        qn_data = "0";
-        break;
-
-      default:
-        qn_data = "500";
-        break;
-    }
-    GM_xmlhttpRequest({
-        method: "GET",
-        url: "https://mp.huya.com/cache.php?m=Live&do=profileRoom&roomid=" + rid,
-        responseType: "json",
-        onload: ret => {
-            let msg = "";
-            let liveUrl = "";
-            let multiLine = ret.response.data.stream.flv.multiLine;
-            if (multiLine.length && multiLine.length > 0) liveUrl = multiLine[0].url.replace("http", "https");
-            if (null == liveUrl || "" == liveUrl) msg = "房间暂未开播";
-            reallive_callback(liveUrl, msg);
-        }
-    });
-}
-
 let responseHookCallbackList = [];
 
 let requestBodyMap = new Map();
@@ -14395,6 +10293,21 @@ function initResponseHook() {
 
 function responseHook(callback) {
     responseHookCallbackList.push(callback);
+}
+
+function stt_unescape(v) {
+    if (!v) return;
+    return v.toString().replace(/@S/g, "/").replace(/@A/g, "@");
+}
+
+function stt_deserialize(raw) {
+    if (!raw) return;
+    if (raw.includes("//")) return raw.split("//").filter(e => "" !== e).map(item => stt_deserialize(item));
+    if (raw.includes("@=")) return raw.split("/").filter(e => "" !== e).reduce((o, s) => {
+        const [ k, v ] = s.split("@=");
+        o[k] = stt_deserialize(stt_unescape(v));
+        return o;
+    }, {}); else if (raw.includes("@A=")) return stt_deserialize(stt_unescape(raw)); else return raw.toString();
 }
 
 let scriptHookCallbackList = [];
@@ -14462,21 +10375,6 @@ function scriptHook(callback) {
     scriptHookCallbackList.push(callback);
 }
 
-function stt_unescape(v) {
-    if (!v) return;
-    return v.toString().replace(/@S/g, "/").replace(/@A/g, "@");
-}
-
-function stt_deserialize(raw) {
-    if (!raw) return;
-    if (raw.includes("//")) return raw.split("//").filter(e => "" !== e).map(item => stt_deserialize(item));
-    if (raw.includes("@=")) return raw.split("/").filter(e => "" !== e).reduce((o, s) => {
-        const [ k, v ] = s.split("@=");
-        o[k] = stt_deserialize(stt_unescape(v));
-        return o;
-    }, {}); else if (raw.includes("@A=")) return stt_deserialize(stt_unescape(raw)); else return raw.toString();
-}
-
 function StyleHook_set(styleName, styleText) {
     if (null == document.getElementById(styleName)) {
         let styleElement = document.createElement("style");
@@ -14489,20 +10387,6 @@ function StyleHook_set(styleName, styleText) {
 function StyleHook_remove(styleName) {
     let e = document.getElementById(styleName);
     if (null !== e) document.getElementById(styleName).remove();
-}
-
-function StyleHook_setIframe(dom, styleName, styleText) {
-    if (null == dom.getElementById(styleName)) {
-        let styleElement = dom.createElement("style");
-        styleElement.id = styleName;
-        styleElement.innerHTML = styleText;
-        dom.body.append(styleElement);
-    }
-}
-
-function StyleHook_removeIframe(dom, styleName) {
-    let e = dom.getElementById(styleName);
-    if (null !== e) dom.getElementById(styleName).remove();
 }
 
 function WebSocket_Packet(str) {
@@ -14614,129 +10498,79 @@ class Ex_WebSocket_UnLogin {
     }
 }
 
-function initRouter(href) {
-    if (-1 !== String(href).indexOf("yuba.douyu.com")) if (-1 !== String(href).indexOf("?exRestore")) initPkg_RestoreYuba_restore(); else if (-1 !== String(href).indexOf("?exClean")) initRouter_CleanYuba(); else initRouter_Yuba(); else if (-1 !== String(href).indexOf("passport.douyu.com") && -1 !== String(href).indexOf("exid=chun")) initRouter_Passport(); else if (-1 !== String(href).indexOf("msg.douyu.com")) if (-1 !== href.indexOf("?exClean")) initRouter_CleanMsg(); else initRouter_Motorcade(); else if (-1 !== String(href).indexOf("v.douyu.com")) {
-        if (-1 !== String(href).indexOf("?exClean")) initRouter_CleanVideo(); else if (-1 !== String(href).indexOf("show/")) initRouter_Video();
-    } else if (-1 !== String(href).indexOf("cz.douyu.com")) {
-        if (-1 !== String(href).indexOf("?exClean")) initRouter_CleanCz();
-    } else if (-1 !== String(href).indexOf("getFansBadgeList")) initRouter_FansBadgeList(); else if (-1 !== String(href).indexOf("exid=chun")) initRouter_DouyuRoom_Popup(); else {
-        if (-1 !== String(href).indexOf("template/") || -1 !== String(href).indexOf("h5/")) return;
-        initRouter_DouyuRoom_Main();
-    }
-}
+let liteRoomReadyTimer = null;
 
-function initRouter_Motorcade() {
-    if ("chun" == getQueryString("exid")) signMotorcade_Sign();
+let liteRoomReadyScheduled = false;
+
+let liteReplayReadyTimer = null;
+
+let liteReplayInitialized = false;
+
+function initRouter(href) {
+    const page = new URL(href);
+    if ("yuba.douyu.com" === page.hostname) {
+        if ("https://yuba.douyu.com" === page.origin && window.parent !== window) if (document.body) initPkg_Night_EmbeddedYuba(); else document.addEventListener("DOMContentLoaded", initPkg_Night_EmbeddedYuba, {
+            once: true
+        });
+        return;
+    }
+    if ("v.douyu.com" === page.hostname) {
+        if (page.pathname.startsWith("/show/")) initRouter_Video();
+        return;
+    }
+    if ("www.douyu.com" !== page.hostname && "douyu.com" !== page.hostname) return;
+    if (/^\/(?:template|h5|member)\//.test(page.pathname)) return;
+    if ("chun" === page.searchParams.get("exid")) initRouter_DouyuRoom_Popup(); else initRouter_DouyuRoom_Main();
 }
 
 function initRouter_DouyuRoom_Popup() {
     removeAD();
-    let intID = setInterval(() => {
-        if ("undefined" !== typeof document.querySelector("div.wfs-2a8e83")) {
-            document.querySelector("div.wfs-2a8e83").click();
-            document.querySelector("label.layout-Player-asidetoggleButton").click();
-            let l = document.querySelectorAll(".tip-e3420a > ul > li").length;
-            document.querySelectorAll(".tip-e3420a > ul > li")[l - 1].click();
-            clearInterval(intID);
-        }
+    const timer = setInterval(() => {
+        const fullscreen = document.querySelector("div.wfs-2a8e83");
+        if (!fullscreen) return;
+        fullscreen.click();
+        const aside = document.querySelector("label.layout-Player-asidetoggleButton");
+        if (aside) aside.click();
+        const qualities = document.querySelectorAll(".tip-e3420a > ul > li");
+        if (qualities.length) qualities[qualities.length - 1].click();
+        clearInterval(timer);
     }, 1e3);
 }
 
 function initRouter_DouyuRoom_Main() {
-    document.domain = "douyu.com";
     init();
-    let intID = setInterval(() => {
-        let dom1 = document.getElementsByClassName("BackpackButton")[0];
-        let dom2 = document.getElementsByClassName("Barrage-main")[0];
-        let dom3 = document.querySelector("#js-backpack-enter");
-        if (!dom2 || !dom1 && !dom3) return;
+    if (null !== liteRoomReadyTimer || liteRoomReadyScheduled) return;
+    liteRoomReadyTimer = setInterval(() => {
+        const barrage = document.getElementsByClassName("Barrage-main")[0];
+        if (!barrage) return;
+        clearInterval(liteRoomReadyTimer);
+        liteRoomReadyTimer = null;
+        liteRoomReadyScheduled = true;
         setTimeout(() => {
             initStyles();
             initPkg();
-            initPkgSpecial();
             initTimer();
         }, 1500);
-        clearInterval(intID);
     }, 1e3);
 }
 
-function initPkgSpecial() {}
-
-function initRouter_Yuba() {
-    document.domain = "douyu.com";
-    RestoreYuba_checkRedirect();
-}
-
-function initRouter_Passport() {
-    let cmd = getStrMiddle(window.location.href, "cmd=", "&");
-    let uid = getStrMiddle(window.location.href, "uid=", "&");
-    let domain = getStrMiddle(window.location.href, "domain=", "&");
-    if ("clean" !== cmd) addAccountPassport(uid);
-    switch (cmd) {
-      case "clean":
-        cleanCookie(() => {
-            window.parent.postMessage("cleanOver", decodeURIComponent(domain));
-        });
-        break;
-
-      case "switch":
-        switchAccountPassport(uid, () => {
-            window.parent.postMessage("switchOver", decodeURIComponent(domain));
-        });
-        break;
-
-      case "delete":
-        deleteAccountPassport(uid, () => {
-            window.parent.postMessage("deleteOver", decodeURIComponent(domain));
-        });
-        break;
-
-      default:
-        break;
-    }
-    return;
-}
-
-function initRouter_CleanMsg() {
-    let domain = getStrMiddle(window.location.href, "domain=", "&");
-    cleanCookie(() => {
-        window.parent.postMessage("msgCleanOver", decodeURIComponent(domain));
-    });
-}
-
-function initRouter_CleanYuba() {
-    let domain = getStrMiddle(window.location.href, "domain=", "&");
-    cleanCookie(() => {
-        window.parent.postMessage("yubaCleanOver", decodeURIComponent(domain));
-    });
-}
-
-function initRouter_CleanVideo() {
-    let domain = getStrMiddle(window.location.href, "domain=", "&");
-    cleanCookie(() => {
-        window.parent.postMessage("videoCleanOver", decodeURIComponent(domain));
-    });
-}
-
-function initRouter_CleanCz() {
-    let domain = getStrMiddle(window.location.href, "domain=", "&");
-    cleanCookie(() => {
-        window.parent.postMessage("czCleanOver", decodeURIComponent(domain));
-    });
-}
-
 function initRouter_Video() {
-    if (unsafeWindow.$DATA && "ROOM" in unsafeWindow.$DATA) {
+    if (liteReplayInitialized || null !== liteReplayReadyTimer) return;
+    const initialize = () => {
+        if (!unsafeWindow.$DATA || !("ROOM" in unsafeWindow.$DATA)) return false;
+        liteReplayInitialized = true;
         initStyles();
-        initPkg_VideoTime();
-        initPkg_VideoTools_Camera_Video();
-        initPkg_DyVideoDownload();
-        initPkg_DyVideoBarrageLine();
-    }
-}
-
-function initRouter_FansBadgeList() {
-    initPkg_FansBadgeList();
+        runInitializers([ initPkg_VideoTime, initPkg_VideoTools_Camera_Video, initPkg_DyVideoDownload, initPkg_DyVideoBarrageLine ]);
+        return true;
+    };
+    if (initialize()) return;
+    let attempts = 0;
+    liteReplayReadyTimer = setInterval(() => {
+        if (initialize() || ++attempts >= 100) {
+            clearInterval(liteReplayReadyTimer);
+            liteReplayReadyTimer = null;
+        }
+    }, 500);
 }
 
 (async () => {

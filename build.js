@@ -7,15 +7,15 @@ let js = "";
 
 function handleFolder(folderPath, excludingFileName) {
   // 读取文件夹中的所有文件和子文件夹
-  fs.readdirSync(folderPath).forEach((item) => {
+  fs.readdirSync(folderPath).sort().forEach((item) => {
     const itemPath = path.join(folderPath, item);
     if (fs.statSync(itemPath).isDirectory()) {
       handleFolder(itemPath, excludingFileName);
     } else {
       if (item !== excludingFileName) {
         const fileContent = fs.readFileSync(itemPath, "utf8");
-        if (item.includes(".css")) css += fileContent + "\r\n";
-        if (item.includes(".js")) js += fileContent + "\r\n";
+        if (item.endsWith(".css")) css += fileContent + "\r\n";
+        if (item.endsWith(".js")) js += fileContent + "\r\n";
       }
     }
   });
@@ -70,8 +70,7 @@ function treeShake(code) {
     round++;
     const result = treeShakeOnce(current);
     if (result.error) {
-      console.error(`[Tree Shake] 第 ${round} 轮错误:`, result.error);
-      return current;
+      throw result.error;
     }
     const prevSize = Buffer.byteLength(current);
     const newSize = Buffer.byteLength(result.code);
@@ -100,13 +99,16 @@ function extractHeader(code) {
 }
 
 function build() {
+  css = "";
+  js = "";
+  if (!fs.existsSync("./dist")) fs.mkdirSync("./dist");
   generateVersion();
   handleFolder("./src", "main.js");
   css = css.replace(/\r\n/g, "");
   let template = fs.readFileSync("./src/main.js", "utf8");
-  template = template.replace("/*编译器标记 勿删*/", css).replace("// 编译器标记 勿删", js);
-
-  if (!fs.existsSync("./dist")) fs.mkdirSync("./dist");
+  template = template.replace("/*编译器标记 勿删*/", () => css).replace("// 编译器标记 勿删", () => js);
+  const version = fs.readFileSync("./dist/douyuex_version.txt", "utf8");
+  template = template.replace(/(\/\/ @version\s+)\S+/, (_, prefix) => prefix + version);
 
   const { header, body } = extractHeader(template);
   const shakenBody = treeShake(body);
@@ -114,7 +116,9 @@ function build() {
   fs.writeFileSync("./dist/douyuex.js", header + shakenBody);
 
   const result = uglifyjs.minify(shakenBody, { toplevel: true });
+  if (result.error) throw result.error;
   fs.writeFileSync("./dist/douyuex.user.js", header + result.code);
 }
 
-build();
+if (require.main === module) build();
+module.exports = { build, extractHeader };

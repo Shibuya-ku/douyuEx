@@ -1,10 +1,16 @@
 let ExPanel_anchorParent = null;
 let ExPanel_anchorNextSibling = null;
+let ExPanel_root = null;
+let ExPanel_hostHooks = [];
 
 function initPkg_ExPanel() {
+    if (ExPanel_root) {
+        ExPanel_syncHost();
+        return;
+    }
     initPkg_ExPanel_insertDom();
 
-    let exPanelDOM = document.querySelector(`.ex-panel`);
+    let exPanelDOM = ExPanel_root;
     exPanelDOM.addEventListener(`mouseenter`, () => {
         clearTimeout(exPanelTimer);
     });
@@ -19,11 +25,19 @@ function initPkg_ExPanel() {
             hideExPanel();
         });
     }
+    [".PlayerToolbar-ContentCell .PlayerToolbar-Wealth", ".PlayerToolbar-ContentRow, .ToolbarGiftArea-container", "#js-player-dialog", ".room-Player-Box"].forEach((selector) => {
+        ExPanel_hostHooks.push(new DomHook(selector, false, ExPanel_syncHost));
+    });
 }
 
 function ExPanel_getGiftBarAnchor() {
     return document.querySelector(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth")
-        || document.querySelector(".PlayerToolbar-ContentRow");
+        || document.querySelector(".PlayerToolbar-ContentRow")
+        || document.querySelector(".ToolbarGiftArea-container");
+}
+
+function ExPanel_getPanel() {
+    return ExPanel_root || document.querySelector(".ex-panel");
 }
 
 function ExPanel_isGiftBarHidden() {
@@ -81,33 +95,52 @@ function ExPanel_updateFloatingPosition() {
 }
 
 function ExPanel_attachToFloatingHost() {
-    const panel = document.querySelector(".ex-panel");
-    if (!panel || panel.classList.contains("ex-panel--floating")) {
-        ExPanel_updateFloatingPosition();
-        return;
-    }
+    const panel = ExPanel_getPanel();
+    if (!panel) return;
     ExPanel_saveAnchor(panel);
-    ExPanel_getFloatingHost().appendChild(panel);
+    const host = ExPanel_getFloatingHost();
+    if (panel.parentNode !== host) host.appendChild(panel);
     panel.classList.add("ex-panel--floating");
     ExPanel_updateFloatingPosition();
 }
 
 function ExPanel_restoreToGiftBar() {
-    const panel = document.querySelector(".ex-panel");
+    const panel = ExPanel_getPanel();
     const anchor = ExPanel_getGiftBarAnchor();
-    if (!panel || !anchor || !panel.classList.contains("ex-panel--floating")) {
+    if (!panel || !anchor) {
         return;
     }
-    if (ExPanel_anchorNextSibling && ExPanel_anchorNextSibling.parentNode === anchor) {
-        anchor.insertBefore(panel, ExPanel_anchorNextSibling);
-    } else {
-        anchor.insertBefore(panel, anchor.childNodes[0]);
+    const duplicate = anchor.querySelector(".ex-panel");
+    if (duplicate && duplicate !== panel) duplicate.remove();
+    if (panel.parentNode !== anchor) {
+        if (ExPanel_anchorNextSibling && ExPanel_anchorNextSibling.parentNode === anchor) {
+            anchor.insertBefore(panel, ExPanel_anchorNextSibling);
+        } else {
+            anchor.insertBefore(panel, anchor.childNodes[0]);
+        }
     }
+    ExPanel_anchorParent = anchor;
+    ExPanel_anchorNextSibling = panel.nextSibling;
     panel.classList.remove("ex-panel--floating");
+    panel.style.position = "";
+    panel.style.top = "";
+    panel.style.left = "";
+    panel.style.right = "";
+    const toolbar = document.querySelector(".PlayerToolbar");
+    panel.style.bottom = toolbar ? toolbar.offsetHeight + "px" : "76px";
+}
+
+function ExPanel_orderLiteTools() {
+    const wrap = document.querySelector(".ex-panel__wrap");
+    if (!wrap) return;
+    [".ex-sign", ".fans-continue", ".extool-icon", ".ex-monitor"].forEach((selector) => {
+        const item = wrap.querySelector(selector);
+        if (item) wrap.appendChild(item);
+    });
 }
 
 function ExPanel_syncHost() {
-    if (ExPanel_isGiftBarHidden()) {
+    if (ExPanel_isGiftBarHidden() || !ExPanel_getGiftBarAnchor()) {
         ExPanel_attachToFloatingHost();
     } else {
         ExPanel_restoreToGiftBar();
@@ -130,7 +163,7 @@ function initPkg_ExPanel_insertDom() {
 	let a = document.createElement("div");
 	a.className = "ex-panel";
 	a.innerHTML = `<button type="button" class="ex-panel__close" title="关闭工具条" aria-label="关闭 DouyuEx 工具条">×</button><div class="ex-panel__wrap"></div>`;
-	
+	ExPanel_root = a;
     let b = ExPanel_getGiftBarAnchor();
     if (!b) {
         b = ExPanel_getFloatingHost();
@@ -165,7 +198,7 @@ function autoCloseExPanelHandle() {
 }
 
 function showExPanel() {
-	let a = document.getElementsByClassName("ex-panel")[0];
+	let a = ExPanel_getPanel();
     if (!a) {
         return;
     }

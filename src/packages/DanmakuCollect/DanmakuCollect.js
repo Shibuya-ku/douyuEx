@@ -56,11 +56,7 @@ function initPkg_DanmakuCollect_Dom() {
       clearInterval(timer);
       new DomHook(".ChatBarrageCollect", false, (m) => {
         const titleDom = document.getElementsByClassName("ChatBarrageCollectPop-title");
-        if (!titleDom) {
-          document.getElementById("ex-danmaku-collect-search").removeEventListener("input", searchCollectDanmaku);
-          return;
-        }
-        if (titleDom.length === 0) return;
+        if (titleDom.length === 0 || document.getElementById("ex-danmaku-collect-search")) return;
         let inputDom = document.createElement("input");
         inputDom.id = "ex-danmaku-collect-search";
         inputDom.placeholder = "搜索弹幕";
@@ -75,7 +71,9 @@ function initPkg_DanmakuCollect_Dom() {
 
 function searchCollectDanmaku(e) {
   const searchText = e.target.value;
-  let parentDom = document.getElementsByClassName("ChatBarrageCollectPop-barrageContent")[0].parentElement;
+  const content = document.getElementsByClassName("ChatBarrageCollectPop-barrageContent")[0];
+  if (!content || !content.parentElement) return;
+  let parentDom = content.parentElement;
   let danmakuDoms = parentDom.getElementsByClassName("TagItem");
   // 找出所有doms里面包含searchText的dom，其他全部display为none，如果searchText为空，则全部显示
   for (let i = 0; i < danmakuDoms.length; i++) {

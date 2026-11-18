@@ -23,8 +23,8 @@ function initPkg_VideoTime() {
             return;
         }
         let videoDom = demandVideo.shadowRoot.getElementById("__video");
-        let showtimeDom = demandVideo.shadowRoot.getElementById("demandcontroller-bar").shadowRoot.querySelector("demand-video-controller-progress").shadowRoot.querySelector("demand-video-controller-preview");
-        let shareHoverDom = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover");
+        let showtimeDom = demandVideo.shadowRoot.getElementById("demandcontroller-bar")?.shadowRoot?.querySelector("demand-video-controller-progress")?.shadowRoot?.querySelector("demand-video-controller-preview");
+        let shareHoverDom = document.getElementsByTagName("demand-video-toolbar")[0]?.shadowRoot?.querySelector("share-hover");
         if (videoDom !== undefined && videoDom !== null && showtimeDom && shareHoverDom) {
             clearInterval(timer);
             VideoTime_setData();
@@ -49,14 +49,14 @@ function initPkg_VideoTime() {
                     if (item.attributeName == "showtime") {
                         // 此时修改时间
                         let showtime = Number(VideoTime_getShowTime());
-                        VideoTime_setShowTime(String(dateFormat("yyyy-MM-dd hh:mm:ss", new Date(Number(videoStartTime + showtime * 1000)))) + "<br/>" + formatSeconds2(showtime));
+                        VideoTime_setShowTime(VideoTime_formatPreview(showtime));
                         break;
                     } else if (item.attributeName == "isshow") {
                         clearTimeout(videoTime_timeout);
                         let showtime = Number(VideoTime_getShowTime());
                         // 宏任务 模拟nextTick
                         videoTime_timeout = setTimeout(() => {
-                            VideoTime_setShowTime(String(dateFormat("yyyy-MM-dd hh:mm:ss", new Date(Number(videoStartTime + showtime * 1000)))) + "<br/>" + formatSeconds2(showtime));
+                            VideoTime_setShowTime(VideoTime_formatPreview(showtime));
                         }, 0);
                         break;
                     }
@@ -72,6 +72,7 @@ function VideoTime_setData() {
     if (!videoId) {
         return;
     }
+    if (videoTime_currentVid !== videoId) videoStartTime = 0;
     videoTime_currentVid = videoId;
     let requestVid = videoId;
     fetch("https://v.douyu.com/video/video/getVideoUrl?vid=" + videoId, {
@@ -85,12 +86,20 @@ function VideoTime_setData() {
         if (requestVid !== videoTime_currentVid) {
             return;
         }
-        let imgUrl = ret.data.viewthumb[0].url;
+        let imgUrl = ret.data?.viewthumb?.[0]?.url;
+        if (!imgUrl) return;
         let timeStr = getStrMiddle(imgUrl, "--", "/");
-        videoStartTime = new Date(timeStr.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/, "$1-$2-$3 $4:$5:$6")).getTime();
+        const start = new Date(timeStr.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/, "$1-$2-$3 $4:$5:$6")).getTime();
+        if (Number.isFinite(start)) videoStartTime = start;
     }).catch(err => {
         console.log("请求失败!", err);
     })
+}
+
+function VideoTime_formatPreview(showtime) {
+    const relative = formatSeconds2(showtime);
+    if (!videoStartTime) return relative;
+    return dateFormat("yyyy-MM-dd hh:mm:ss", new Date(videoStartTime + showtime * 1000)) + "<br/>" + relative;
 }
 
 function VideoTime_getShowTime() {

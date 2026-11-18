@@ -1,132 +1,73 @@
 async function initPkg_Sign_ActqzsUserTask() {
-  const rids = ["5189167", "290935", "6979222", "5132174", "4042402"];
-  let activityId = await getActivityId(dateFormat("yyyyMM", new Date()));
-  if (!activityId) {
-    const currentDate = new Date();
-    const nextMonth = currentDate.getMonth() + 1;
-    const prevMonth = currentDate.getMonth() - 1;
-    const prevMonthDate = new Date(currentDate.getFullYear(), prevMonth, 1);
-    const nextMonthDate = new Date(currentDate.getFullYear(), nextMonth, 1);
-    activityId = await getActivityId(dateFormat("yyyyMM", prevMonthDate));
-    if (!activityId) {
-      activityId = await getActivityId(dateFormat("yyyyMM", nextMonthDate));
-    }
+  const rooms = ["5189167", "290935", "6979222", "5132174", "4042402"];
+  const activityId = await getMonthlySignActivity(getActivityId);
+  const cardArenaId = await getMonthlySignActivity(getCardArenaId);
+  const ids = [...new Set([activityId, cardArenaId].filter(Boolean))];
+  if (!ids.length) {
+    showMessage("【一键签到】当前没有可用的月度活动", "info");
+    return;
   }
-  let cardArenaId = await getCardArenaId(dateFormat("yyyyMM", new Date()));
-  if (!cardArenaId) {
-    const currentDate = new Date();
-    const nextMonth = currentDate.getMonth() + 1;
-    const prevMonth = currentDate.getMonth() - 1;
-    const prevMonthDate = new Date(currentDate.getFullYear(), prevMonth, 1);
-    const nextMonthDate = new Date(currentDate.getFullYear(), nextMonth, 1);
-    cardArenaId = await getCardArenaId(dateFormat("yyyyMM", prevMonthDate));
-    if (!cardArenaId) {
-      cardArenaId = await getCardArenaId(dateFormat("yyyyMM", nextMonthDate));
-    }
-  }
-  const actIds = [activityId, cardArenaId];
-
-  for (const actId of actIds) {
-    for (const rid of rids) {
-      const signinActRet = await signinAct(actId, rid);
-      if (signinActRet.error == 0) {
-        let gift = signinActRet.data.awards.map(item => `${item.name}x${item.num}`).join("、");
-        showMessage("【一键签到】右侧活动直播间已签到，获得" + gift, "success");
-      }
-      const signinCardArenaRet = await signinCardArena(actId, rid);
-      if (signinCardArenaRet.error == 0) {
-        let gift = signinCardArenaRet.data.awards.map(item => `${item.name}x${item.num}`).join("、");
-        showMessage("【一键签到】右侧活动直播间已签到，获得" + gift, "success");
+  for (const activityId of ids) {
+    for (const roomId of rooms) {
+      for (const sign of [signinAct, signinCardArena]) {
+        try {
+          const ret = await sign(activityId, roomId);
+          if (ret.error == 0) {
+            const gift = (ret.data?.awards || []).map(item => `${item.name}x${item.num}`).join("、");
+            showMessage("【一键签到】右侧活动直播间已签到" + (gift ? "，获得" + gift : ""), "success");
+          } else if (ret.msg) {
+            showMessage(`【一键签到】${roomId} ${ret.msg}`, "info");
+          }
+        } catch (error) {
+          console.warn("【月度活动】请求失败，继续其他任务", error);
+        }
       }
     }
   }
 }
 
-function getActivityId(dateStr) {
-  return new Promise((resolve) => {
-    fetch(`https://webconf.douyucdn.cn/resource/common/activity/actqzs${dateStr}_w.json`)
-      .then((res) => {
-        return res.text();
-      })
-      .then((ret) => {
-        let json = ret.substring(
-          String("DYConfigCallback(").length,
-          ret.length
-        );
-        json = json.substring(0, json.lastIndexOf(")"));
-        try {
-          json = JSON.parse(json);
-          resolve(json.data.activity_setting.activity_id);
-        } catch (err) {
-          resolve(null);
-        }
-      })
-      .catch((err) => {
-        resolve(null);
-      });
+async function getMonthlySignActivity(load) {
+  const now = new Date();
+  for (const offset of [0, -1, 1]) {
+    const date = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+    const id = await load(dateFormat("yyyyMM", date));
+    if (id) return id;
+  }
+  return null;
+}
+
+async function getSignActivityConfig(prefix, month) {
+  try {
+    const text = await signFetch(`https://webconf.douyucdn.cn/resource/common/activity/${prefix}${month}_w.json`, { credentials: "omit" }, "text");
+    const start = text.indexOf("(");
+    const end = text.lastIndexOf(")");
+    const config = JSON.parse(start >= 0 ? text.slice(start + 1, end) : text);
+    return config?.data?.activity_setting?.activity_id || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function getActivityId(month) {
+  return getSignActivityConfig("actqzs", month);
+}
+
+function getCardArenaId(month) {
+  return getSignActivityConfig("cardArena", month);
+}
+
+function signinCardArena(activityId, roomId) {
+  return signFetch("https://www.douyu.com/japi/revenuenc/web/cardArena/userTask/signIn", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `ctn=${getCCN()}&activity_id=${activityId}&rid=${roomId}`
   });
 }
 
-function getCardArenaId(dateStr) {
-  return new Promise((resolve) => {
-    fetch(`https://webconf.douyucdn.cn/resource/common/activity/cardArena${dateStr}_w.json`)
-      .then((res) => {
-        return res.text();
-      })
-      .then((ret) => {
-        let json = ret.substring(
-          String("DYConfigCallback(").length,
-          ret.length
-        );
-        json = json.substring(0, json.lastIndexOf(")"));
-        try {
-          json = JSON.parse(json);
-          resolve(json.data.activity_setting.activity_id);
-        } catch (err) {
-          resolve(null);
-        }
-      })
-      .catch((err) => {
-        resolve(null);
-      });
+function signinAct(activityId, roomId) {
+  return signFetch("https://www.douyu.com/japi/revenuenc/web/actqzs/userTask/signIn", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `ctn=${getCCN()}&activity_id=${activityId}&rid=${roomId}`
   });
-}
-
-
-function signinCardArena(activityId, rid) {
-  return new Promise((resolve, reject) => {
-    fetch("https://www.douyu.com/japi/revenuenc/web/cardArena/userTask/signIn", {
-        method: 'POST',
-        mode: 'no-cors',
-        credentials: 'include',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `ctn=${getCCN()}&activity_id=${activityId}&rid=${rid}`
-    }).then(res => {
-        return res.json();
-    }).then(ret => {
-        resolve(ret);
-    }).catch(err => {
-        console.log("请求失败!", err);
-        reject(err);
-    })
-  })
-}
-
-function signinAct(activityId, rid) {
-  return new Promise((resolve, reject) => {
-    fetch("https://www.douyu.com/japi/revenuenc/web/actqzs/userTask/signIn", {
-        method: 'POST',
-        mode: 'no-cors',
-        credentials: 'include',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `ctn=${getCCN()}&activity_id=${activityId}&rid=${rid}`
-    }).then(res => {
-        return res.json();
-    }).then(ret => {
-        resolve(ret);
-    }).catch(err => {
-        console.log("请求失败!", err);
-        reject(err);
-    })
-  })
 }

@@ -137,4 +137,24 @@ class PanoramaVideo {
 		this.camera.lookAt(this.camera.target)
 		this.renderer.render(this.scene, this.camera)
 	}
+
+	destroy() {
+		if (this.destroyed) return;
+		this.destroyed = true;
+		this.domContainer.removeEventListener('mousedown', this.onDocumentMouseDown, false);
+		this.domContainer.removeEventListener('mousemove', this.onDocumentMouseMove, false);
+		this.domContainer.removeEventListener('mouseup', this.onDocumentMouseUp, false);
+		this.domContainer.removeEventListener('wheel', this.onDocumentMouseWheel, false);
+		window.removeEventListener('resize', this.onWindowResize, false);
+		this.scene.traverse((object) => {
+			if (object.geometry) object.geometry.dispose();
+			const materials = Array.isArray(object.material) ? object.material : [object.material];
+			for (const material of materials) {
+				if (!material) continue;
+				if (material.map) material.map.dispose();
+				material.dispose();
+			}
+		});
+		this.renderer.dispose();
+	}
 }

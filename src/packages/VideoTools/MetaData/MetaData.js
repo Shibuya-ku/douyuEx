@@ -1,9 +1,11 @@
 let videoMetaData = null;
 function initPkg_VideoTools_MetaData() {
+  new DomHook(".menu-da2a9e", false, initPkg_VideoTools_MetaData_Dom);
   MetaData_init();
 }
 
 function initPkg_VideoTools_MetaData_Dom() {
+  if (!document.querySelector(".menu-da2a9e") || document.getElementById("ex-metadata")) return;
   if (!videoMetaData) return;
   if (!videoMetaData.dy_cpu_model && !videoMetaData.dy_gpu_model && !videoMetaData.dy_device_model && !videoMetaData.dy_os_version && !videoMetaData.z_canvas_code) return;
   let a = document.createElement("li");
@@ -25,7 +27,7 @@ function initPkg_VideoTools_MetaData_Dom() {
 
 function MetaData_init() {
   getRealLive_Douyu(rid, true, false, "1", (lurl) => {
-    if (lurl != "" || lurl != null) {
+    if (lurl != "" && lurl != null) {
       if (lurl == "None") {
         showMessage("房间未开播或其他错误", "error");
         return;

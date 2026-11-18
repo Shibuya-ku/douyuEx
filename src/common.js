@@ -288,22 +288,21 @@ function showMessageWindow(title, content, callback){
     }   
 }
 
-function getUserName() {
-	return new Promise(resovle => {
-		fetch('https://www.douyu.com/member/cp',{
-			method: 'GET',
-			mode: 'no-cors',
-			credentials: 'include',
-		}).then(res => {
-			return res.text();
-		}).then(txt => {
-			txt = (new DOMParser()).parseFromString(txt, 'text/html');
-			let ret = txt.getElementsByClassName("uname_con")[0].title;
-			resovle(ret);
-		}).catch(err => {
-			console.error('请求失败', err);
-		})
-	})
+async function getUserName() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+        const response = await fetch('https://www.douyu.com/member/cp', {
+            credentials: 'include', signal: controller.signal,
+        });
+        const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+        const name = doc.getElementsByClassName("uname_con")[0];
+        return name ? name.title : "";
+    } catch (_) {
+        return "";
+    } finally {
+        clearTimeout(timeout);
+    }
 }
 
 function getTextareaPosition(element) {
@@ -344,20 +343,8 @@ function getTextareaPosition(element) {
 function showExRightPanel(name) {
 	let panels = [
 		{
-			name: "弹幕发送小助手",
-			className: "bloop",
-		},
-		{
 			name: "扩展功能",
 			className: "extool",
-		},
-		{
-			name: "直播间工具",
-			className: "livetool",
-		},
-		{
-			name: "全站抽奖信息",
-			className: "exlottery"
 		},
 		{
 			name: "弹幕小尾巴",
@@ -528,23 +515,24 @@ function getCsrfToken() {
       },
       anonymous: false,
       withCredentials: true,
+      timeout: 30000,
       onload: function(response) {
-        // 获取 Set-Cookie
-        const setCookie = response.responseHeaders.match(/set-cookie:[^\n\r]+/gi);
-				// 从set-cookie中获取csrfToken
-				let csrfToken = "";
-				for (const line of setCookie) {
-					const match = line.match(/cvl_csrf_token=([^;]+)/);
-					if (match) {
-						csrfToken = match[1]; // 返回提取到的 token
-						break;
-					}
-				}
-				resolve(csrfToken);
+        const setCookie = String(response.responseHeaders || "").match(/set-cookie:[^\n\r]+/gi) || [];
+        let csrfToken = "";
+        for (const line of setCookie) {
+          const match = line.match(/cvl_csrf_token=([^;]+)/);
+          if (match) {
+            csrfToken = match[1];
+            break;
+          }
+        }
+        resolve(csrfToken);
       },
       onerror: function(err) {
         resolve("");
-      }
+      },
+      ontimeout: () => resolve(""),
+      onabort: () => resolve("")
     });
   });
 }

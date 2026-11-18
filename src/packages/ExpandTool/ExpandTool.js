@@ -1,21 +1,15 @@
 
 function initPkg_ExpandTool() {
+	if (document.querySelector(".extool")) return;
 	initPkg_ExpandTool_Dom();
     initPkg_ExpandTool_Func();
 	initPkg_ExpandTool_Module();
 }
 
 function initPkg_ExpandTool_Module() {
-	// initPkg_ExpandTool_RedPacket_Motorcade();
-	initPkg_ExpandTool_Treasure();
-	initPkg_ExpandTool_Gold();
-	initPkg_ExpandTool_RedPacket_Room();
 	initPkg_ExpandTool_AutoFish();
-	initPkg_ExpandTool_ClearBag();
-    initPkg_ExpandTool_SendGift();
-    // initPkg_ExpandTool_BarrageSize();
-	initPkg_ExpandTool_TabSwitch();
 	initPkg_ExpandTool_P2P();
+	initPkg_ExpandTool_TabSwitch();
 	initPkg_ExpandTool_FullScreen();
 	initPkg_ExpandTool_AutoBarrageColor();
 }
@@ -31,7 +25,7 @@ function ExpandTool_insertModal() {
 	a.className = "extool";
     a.innerHTML = `<div class="extool__close" title="关闭">×</div>`;
 	
-	let b = document.getElementsByClassName("layout-Player-chat")[0];
+	let b = document.getElementsByClassName("layout-Player-chat")[0] || document.body;
 	b.insertBefore(a, b.childNodes[0]);
 }
 function ExpandTool_insertIcon() {

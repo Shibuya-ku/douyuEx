@@ -13,30 +13,49 @@ const PokeballIcon_svg = `<svg class="icon" width="24" height="24" viewBox="0 0 
     </g>
 </svg>`;
 
+let ExIcon_root = null;
+let ExIcon_hostHooks = [];
+
 function initPkg_ExIcon() {
-	initPkg_ExIcon_insertDom();
-	initPkg_ExIcon_Func();
+	if (!ExIcon_root) {
+		initPkg_ExIcon_insertDom();
+		initPkg_ExIcon_Func();
+	}
+	ExIcon_mount();
+	if (!ExIcon_hostHooks.length) {
+		ExIcon_hostHooks = [
+			new DomHook(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth", false, ExIcon_mount),
+			new DomHook(".ToolbarGiftArea-container, .PlayerToolbar-ContentRow, .room-Player-Box", false, ExIcon_mount),
+		];
+	}
 }
 function initPkg_ExIcon_insertDom() {
 	let a = document.createElement("div");
 	a.className = "ex-icon";
 	a.innerHTML = `<a title="DouyuEx ver.${curVersion}">${PokeballIcon_svg}<i id="ex-icon__tip" class="ex-panel__tip"></i></a>`;
-	let b = document.querySelector(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth");
-	if (b) {
-		b.insertBefore(a, b.childNodes[0]);
-	} else {
-		a.className += " ToolbarGiftArea-backpack";
-		a.style.width = "52px";
-		b = document.querySelector(".ToolbarGiftArea-container");
-		b.appendChild(a);
-	}
+	ExIcon_root = a;
+}
+function ExIcon_mount() {
+	const primary = document.querySelector(".PlayerToolbar-ContentCell .PlayerToolbar-Wealth");
+	const host = primary
+		|| document.querySelector(".ToolbarGiftArea-container")
+		|| document.querySelector(".PlayerToolbar-ContentRow")
+		|| document.querySelector(".room-Player-Box");
+	if (!ExIcon_root || !host) return;
+	ExIcon_root.classList.toggle("ToolbarGiftArea-backpack", !primary);
+	ExIcon_root.style.width = primary ? "" : "52px";
+	const duplicate = host.querySelector(".ex-icon");
+	if (duplicate && duplicate !== ExIcon_root) duplicate.remove();
+	if (ExIcon_root.parentNode !== host) host.insertBefore(ExIcon_root, host.childNodes[0]);
 }
 function initPkg_ExIcon_Func() {
-	document.getElementsByClassName("ex-icon")[0].addEventListener("click", showExPanel);
+	ExIcon_root.addEventListener("click", showExPanel);
 }
 
 function ExIcon_showTip(a) {
 	let d = document.getElementById("ex-icon__tip");
+	if (!d && ExIcon_root) d = ExIcon_root.querySelector("#ex-icon__tip");
+	if (!d) return;
 	if (a == true) {
 		d.style.display = "block";
 	} else {

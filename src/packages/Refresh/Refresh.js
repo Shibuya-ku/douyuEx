@@ -1,25 +1,54 @@
+let refreshToolbarTimer = null;
+
 function initPkg_Refresh() {
-	initPkg_Refresh_BarrageFrame();
-	initPkg_Refresh_Video();
-	initPkg_Refresh_Barrage();
+    initPkg_Refresh_Video();
+    if (refreshToolbarTimer !== null) return;
+    let attempts = 0;
+    const mount = () => {
+        if (document.getElementsByClassName("Barrage-toolbar")[0]) {
+            initPkg_Refresh_BarrageFrame();
+            initPkg_Refresh_Barrage();
+            clearInterval(refreshToolbarTimer);
+            refreshToolbarTimer = null;
+            return true;
+        }
+        return false;
+    };
+    if (mount()) return;
+    refreshToolbarTimer = setInterval(() => {
+        if (mount()) return;
+        if (++attempts >= 100) {
+            clearInterval(refreshToolbarTimer);
+            refreshToolbarTimer = null;
+        }
+    }, 1500);
+}
+
+function Refresh_getSaved() {
+    try {
+        const data = JSON.parse(localStorage.getItem("ExSave_Refresh"));
+        return data && typeof data === "object" ? data : {};
+    } catch (_) {
+        return {};
+    }
+}
+
+function Refresh_setButtonState(id, enabled) {
+    const button = document.getElementById(id);
+    if (button) button.classList.toggle("ex-active", !!enabled);
+    const text = document.getElementById(id + "__text");
+    if (text) text.style.color = enabled ? "#fff" : "";
+    const svg = document.getElementById(id + "__svg");
+    const path = svg && svg.getElementsByTagName("path")[0];
+    if (path) path.setAttribute("fill", enabled ? "#ffffff" : "#AFAFAF");
 }
 
 function saveData_Refresh() {
-	// 此处为保存简洁模式的数据，请在每次操作后都调用这个函数以保存状态
-	// 数据结构
-	// {功能1:{子功能1:{}}}
-	// 每个子模块需要提供相应的返回数据函数
-	let data = {
-		barrageFrame: {
-			status: refresh_BarrageFrame_getStatus(),
-		},
-		video: {
-			status: refresh_Video_getStatus(),
-		},
-		barrage: {
-			status: refresh_Barrage_getStatus(),
-		}
-	}
-	
-	localStorage.setItem("ExSave_Refresh", JSON.stringify(data)); // 存储弹幕列表
+    const data = Refresh_getSaved();
+    data.barrageFrame = { status: document.getElementById("refresh-barrage-frame")
+        ? refresh_BarrageFrame_getStatus() : !!data.barrageFrame?.status };
+    data.video = { status: refresh_Video_getStatus() };
+    data.barrage = { status: document.getElementById("refresh-barrage")
+        ? refresh_Barrage_getStatus() : !!data.barrage?.status };
+    localStorage.setItem("ExSave_Refresh", JSON.stringify(data));
 }

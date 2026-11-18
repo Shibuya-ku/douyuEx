@@ -1,36 +1,40 @@
 var liveVideoNode; // 直播video标签节点
 var isInput = false;
 let videotools_num = 0;
+let videoToolsTimer = null;
+let videoToolsInitialized = false;
+let videoToolsFocusBound = false;
 function initPkg_VideoTools() {
-    let timer = setInterval(() => {
+    if (videoToolsTimer !== null || videoToolsInitialized) return;
+    videoToolsTimer = setInterval(() => {
         const controlbar = getValidDom([".right-e7ea5d", ".right-17e251"]);
-        if (controlbar) {
-            clearInterval(timer);
-            liveVideoNode = document.querySelector(".layout-Player-videoEntity video");
-            document.getElementsByClassName("disable-23f484")[0].innerHTML = `DouyuEx_${curVersion}`;
+        const video = document.querySelector(".layout-Player-videoEntity video");
+        if (controlbar && video) {
+            clearInterval(videoToolsTimer);
+            videoToolsTimer = null;
+            videoToolsInitialized = true;
+            liveVideoNode = video;
+            const version = document.getElementsByClassName("disable-23f484")[0];
+            if (version) version.textContent = `DouyuEx Lite_${curVersion}`;
             initPkg_VideoTools_Module();
             initPkg_VideoTools_Func();
         }
         videotools_num++;
         if (videotools_num >= 100) {
-            clearInterval(timer);
+            clearInterval(videoToolsTimer);
+            videoToolsTimer = null;
         }
     }, 1500);
 }
 
 function initPkg_VideoTools_Module() {
-    // 添加模块
-    initPkg_VideoTools_VideoToolbarMenu();
-    initPkg_VideoTools_Joysound();
-    initPkg_VideoTools_VideoSpeed();
-    initPkg_VideoTools_Cinema();
-    initPkg_VideoTools_VideoSync();
-    initPkg_VideoTools_VideoRecall();
-    initPkg_VideoTools_Filter();
-    initPkg_VideoTools_Camera();
-    initPkg_VideoTools_VideoZoom();
-    initPkg_VideoTools_MetaData();
-    initPkg_PictureInPictureControl();
+    runInitializers([
+        initPkg_VideoTools_VideoToolbarMenu, initPkg_VideoTools_VideoSpeed,
+        initPkg_VideoTools_Cinema, initPkg_VideoTools_VideoSync,
+        initPkg_VideoTools_VideoRecall, initPkg_VideoTools_Filter,
+        initPkg_VideoTools_Camera, initPkg_VideoTools_VideoZoom,
+        initPkg_VideoTools_MetaData, initPkg_PictureInPictureControl,
+    ]);
 }
 
 function initPkg_VideoTools_Func() {
@@ -41,22 +45,24 @@ function initPkg_VideoTools_Func() {
             Filter_hidePanel();
         }
     };
-    document.getElementById("js-player-toolbar").addEventListener("mouseover", hideFilterOnLeave);
-    document.getElementById("js-player-asideMain").addEventListener("mouseover", hideFilterOnLeave);
-    getValidDom([".inputView-2a65aa", ".inputView-620ab7"]).addEventListener("focus", () => {
-        isInput = true;
-    });
-    
-    getValidDom([".inputView-2a65aa", ".inputView-620ab7"]).addEventListener("blur", () => {
-        isInput = false;
-    });
-    let m = new DomHook(".app-f0f9c7", false, (m) => {
-        if (m.length > 0) {
-            if (m[0].addedNodes.length > 0) {
-                isInput = true;
-            } else if (m[0].removedNodes.length > 0) {
-                isInput = false;
-            }
-        }
-    });
+    const toolbar = document.getElementById("js-player-toolbar");
+    const aside = document.getElementById("js-player-asideMain");
+    if (toolbar) toolbar.addEventListener("mouseover", hideFilterOnLeave);
+    if (aside) aside.addEventListener("mouseover", hideFilterOnLeave);
+    if (!videoToolsFocusBound) {
+        videoToolsFocusBound = true;
+        document.addEventListener("focusin", VideoTools_updateInputFocus);
+        document.addEventListener("focusout", () => setTimeout(VideoTools_updateInputFocus, 0));
+        new DomHook(".app-f0f9c7", false, VideoTools_updateInputFocus);
+    }
+    VideoTools_updateInputFocus();
+}
+
+function VideoTools_updateInputFocus() {
+    let active = document.activeElement;
+    while (active && active.shadowRoot && active.shadowRoot.activeElement) {
+        active = active.shadowRoot.activeElement;
+    }
+    isInput = !!(active && (/^(?:INPUT|TEXTAREA|SELECT)$/.test(active.tagName)
+        || active.isContentEditable));
 }

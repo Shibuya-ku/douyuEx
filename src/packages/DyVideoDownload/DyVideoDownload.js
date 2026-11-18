@@ -1,9 +1,9 @@
 function initPkg_DyVideoDownload() {
     let timer = setInterval(() => {
-        let toolBarShadow = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot;
-        if (toolBarShadow) {
+        let toolBarShadow = document.getElementsByTagName("demand-video-toolbar")[0]?.shadowRoot;
+        const toolbar = toolBarShadow?.querySelector(".ToolBar-positiveUl");
+        if (toolbar) {
             clearInterval(timer);
-            let toolbar = toolBarShadow.querySelector(".ToolBar-positiveUl");
             initPkg_DyVideoDownload_Style();
             initPkg_DyVideoDownload_Dom(toolbar);
             initPkg_DyVideoDownload_Func();
@@ -82,7 +82,7 @@ function initPkg_DyVideoDownload_Func() {
         }
     })
 
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__default").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__default", async () => {
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         let vid = $DATA.ROOM.vid;
         if (hashid !== vid) {
@@ -122,7 +122,7 @@ function initPkg_DyVideoDownload_Func() {
                 showMessage("视频下载完成", "success");
             }).on("error", message => {
                 domDownloadText.innerText = "下载失败";
-                showMessage(message, "success");
+                showMessage(message, "error");
             }).on("aborted", () => {
                 domDownloadText.innerText = "下载中止";
             });
@@ -133,7 +133,7 @@ function initPkg_DyVideoDownload_Func() {
         // domDownloadPanel.style.display = "none";
     })
 
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__copy").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__copy", async () => {
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         let vid = $DATA.ROOM.vid;
         if (hashid !== vid) {
@@ -169,46 +169,57 @@ function initPkg_DyVideoDownload_Func() {
         // domDownloadPanel.style.display = "none";
     })
 
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__barrage").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__barrage", async () => {
         let videoTitle = document.getElementsByTagName("demand-video-title")[0].shadowRoot.querySelector(".Title-Main").innerText;
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         showMessage("正在获取弹幕数据，请勿切换页面...", "info");
         
-        let pre = 0;
-        let header = ["vid", "hashid", "uid", "昵称", "弹幕", "时间", "发送时间"];
-        let body = [];
-        do {
-            let data = await getVideoBarrageByTime(hashid, pre);
-            pre = data.data.pre;
-            for (let i = 0; i < data.data.list.length; i++) {
-                let item = data.data.list[i];
-                body.push([item.vid, hashid, item.uid, item.nn, item.ctt, formatSeconds2(item.tl / 1000), dateFormat("yyyy-MM-dd hh:mm:ss", new Date(item.sts * 1000))]);
-            }
-        } while (pre >= 0);
-
+        const list = await DyVideoDownload_readBarrages(hashid);
+        const header = ["vid", "hashid", "uid", "昵称", "弹幕", "时间", "发送时间"];
+        const body = list.map(item => [item.vid, hashid, item.uid, item.nn, item.ctt, formatSeconds2(item.tl / 1000), dateFormat("yyyy-MM-dd hh:mm:ss", new Date(item.sts * 1000))]);
         exportJsonToExcel(header, body, `【${videoTitle}】弹幕数据.xlsx`);
     })
 
-    document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("#download__barrageass").addEventListener("click", async () => {
+    DyVideoDownload_bindAction("#download__barrageass", async () => {
         let videoTitle = document.getElementsByTagName("demand-video-title")[0].shadowRoot.querySelector(".Title-Main").innerText;
         let hashid = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector("share-hover").getAttribute("hashid");
         showMessage("正在获取弹幕数据，请勿切换页面...", "info");
-        let pre = 0;
-        let ass = new ASS({title: videoTitle});
-        let list = [];
-        do {
-            let data = await getVideoBarrageByTime(hashid, pre);
-            pre = data.data.pre;
-            for (let i = 0; i < data.data.list.length; i++) {
-                let item = data.data.list[i];
-                list.push({
-                    time: Number(item.tl),
-                    txt: item.ctt,
-                    color: item.col,
-                });
-            }
-        } while (pre >= 0);
+        const ass = new ASS({ title: videoTitle });
+        const rows = await DyVideoDownload_readBarrages(hashid);
+        const list = rows.map(item => ({ time: Number(item.tl), txt: item.ctt, color: item.col }));
         let result = ass.generate(list);
         downloadFile(`${videoTitle}.ass`, result);
     })
+}
+
+function DyVideoDownload_bindAction(selector, action) {
+    const button = document.getElementsByTagName("demand-video-toolbar")[0].shadowRoot.querySelector(selector);
+    let running = false;
+    button.addEventListener("click", async () => {
+        if (running) return;
+        running = true;
+        try {
+            await action();
+        } catch (error) {
+            showMessage("回放下载失败：" + (error.message || error), "error");
+        } finally {
+            running = false;
+        }
+    });
+}
+
+async function DyVideoDownload_readBarrages(hashid) {
+    const list = [];
+    const cursors = new Set();
+    let pre = 0;
+    do {
+        if (cursors.has(String(pre))) throw new Error("弹幕分页未前进，请稍后重试");
+        cursors.add(String(pre));
+        const result = await getVideoBarrageByTime(hashid, pre);
+        if (!result?.data || !Array.isArray(result.data.list)) throw new Error("弹幕数据不可用");
+        pre = Number(result.data.pre);
+        if (!Number.isFinite(pre)) throw new Error("弹幕分页无效");
+        list.push(...result.data.list);
+    } while (pre >= 0);
+    return list;
 }

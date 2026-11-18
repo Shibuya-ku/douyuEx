@@ -1,6 +1,11 @@
 function initPkg_VideoTools_Cinema() {
-    initPkg_VideoTools_Cinema_Dom();
-    initPkg_VideoTools_Cinema_Func();
+    const mount = () => {
+        if (!document.querySelector(".menu-da2a9e") || document.getElementById("ex-cinema")) return;
+        initPkg_VideoTools_Cinema_Dom();
+        initPkg_VideoTools_Cinema_Func();
+    };
+    new DomHook(".menu-da2a9e", false, mount);
+    mount();
 }
 
 function initPkg_VideoTools_Cinema_Dom() {

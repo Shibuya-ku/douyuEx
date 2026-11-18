@@ -25,6 +25,9 @@ let pipKeepAliveHandle = null;
 let pipKeepAliveCanvas = null;
 let pipVisRecoverHandler = null;
 let pipFrameStallTimer = null;
+let pipFrameWatchVideo = null;
+let pipFrameWatchHandle = null;
+let pipFrameWatchGeneration = 0;
 let pipFullscreenListenerBound = false;
 
 const PIP_MENU_SVG_NATIVE = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>`;
@@ -101,11 +104,25 @@ function PictureInPictureControl_initPipUiText(pipWindow) {
 }
 
 function PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo) {
+    if (window.__pip_window__ && pipWindow && window.__pip_window__ !== pipWindow) return;
     if (!window.__pip_is_active__) {
         return;
     }
     window.__pip_is_active__ = false;
     window.__pip_window__ = null;
+
+    if (pipWindow?.__pip_close_timer__ != null) {
+        clearInterval(pipWindow.__pip_close_timer__);
+        pipWindow.__pip_close_timer__ = null;
+    }
+    if (pipWindow?.__pip_cleanup_handler__) {
+        pipWindow.removeEventListener("pagehide", pipWindow.__pip_cleanup_handler__);
+        pipWindow.__pip_cleanup_handler__ = null;
+    }
+    if (pipVideo?.__pip_unbind_sync__) {
+        pipVideo.__pip_unbind_sync__();
+        pipVideo.__pip_unbind_sync__ = null;
+    }
 
     if (pipWindow?.__pip_keydown_handler__) {
         pipWindow.document.removeEventListener("keydown", pipWindow.__pip_keydown_handler__);
@@ -125,6 +142,8 @@ function PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo) {
     comboMap.clear();
     try {
         if (pipVideo) {
+            const stream = pipVideo.srcObject;
+            if (stream) stream.getTracks().forEach((track) => track.stop());
             pipVideo.srcObject = null;
         }
     } catch (e) { }
@@ -138,6 +157,7 @@ function PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo) {
 function PictureInPictureControl_returnToOpener(pipWindow, exitPip = true) {
     const win = pipWindow || window.__pip_window__;
     const sourceVideo = win?.__pip_source_video__ || document.getElementById("__video2");
+    const wasPaused = sourceVideo?.paused;
 
     if (exitPip && window.__pip_is_active__) {
         const pipVideo = win?.document?.getElementById("pip-video");
@@ -154,7 +174,7 @@ function PictureInPictureControl_returnToOpener(pipWindow, exitPip = true) {
         } catch (e) { }
         if (!exitPip && window.__pip_is_active__) {
             PictureInPictureControl_wakeSourceVideo(sourceVideo).catch(() => { });
-        } else if (exitPip) {
+        } else if (exitPip && !wasPaused) {
             sourceVideo.play().catch(() => { });
         }
     }
@@ -264,6 +284,7 @@ async function PictureInPictureControl_reloadPipVideo(pipWindow, pipVideo) {
     }
 
     await PictureInPictureControl_wakeSourceVideo(sourceVideo);
+    if (!window.__pip_is_active__ || pipWindow?.closed) return false;
 
     try {
         const oldStream = pipVideo.srcObject;
@@ -310,6 +331,12 @@ function PictureInPictureControl_startTabAntiFreeze(video, pipWindow, pipVideo) 
 
 function PictureInPictureControl_stopTabAntiFreeze() {
     PictureInPictureControl_stopSourceVideoKeepAlive();
+    pipFrameWatchGeneration++;
+    if (pipFrameWatchVideo && pipFrameWatchHandle != null && typeof pipFrameWatchVideo.cancelVideoFrameCallback === "function") {
+        pipFrameWatchVideo.cancelVideoFrameCallback(pipFrameWatchHandle);
+    }
+    pipFrameWatchVideo = null;
+    pipFrameWatchHandle = null;
     if (pipVisRecoverHandler) {
         document.removeEventListener("visibilitychange", pipVisRecoverHandler);
         pipVisRecoverHandler = null;
@@ -335,6 +362,12 @@ function PictureInPictureControl_bindVisibilityRecover(video, pipWindow, pipVide
 }
 
 function PictureInPictureControl_startFrameStallWatch(video, pipWindow, pipVideo) {
+    const generation = ++pipFrameWatchGeneration;
+    if (pipFrameWatchVideo && pipFrameWatchHandle != null && typeof pipFrameWatchVideo.cancelVideoFrameCallback === "function") {
+        pipFrameWatchVideo.cancelVideoFrameCallback(pipFrameWatchHandle);
+    }
+    pipFrameWatchVideo = video;
+    pipFrameWatchHandle = null;
     if (pipFrameStallTimer) {
         clearTimeout(pipFrameStallTimer);
         pipFrameStallTimer = null;
@@ -347,16 +380,16 @@ function PictureInPictureControl_startFrameStallWatch(video, pipWindow, pipVideo
     let recovering = false;
 
     const onFrame = () => {
-        if (!window.__pip_is_active__) {
+        if (!window.__pip_is_active__ || generation !== pipFrameWatchGeneration) {
             return;
         }
         lastFrameMs = performance.now();
-        video.requestVideoFrameCallback(onFrame);
+        pipFrameWatchHandle = video.requestVideoFrameCallback(onFrame);
     };
-    video.requestVideoFrameCallback(onFrame);
+    pipFrameWatchHandle = video.requestVideoFrameCallback(onFrame);
 
     const checkStall = () => {
-        if (!window.__pip_is_active__) {
+        if (!window.__pip_is_active__ || generation !== pipFrameWatchGeneration) {
             return;
         }
         pipFrameStallTimer = setTimeout(checkStall, 2500);
@@ -1062,12 +1095,17 @@ async function PictureInPictureControl_handle() {
 }
 
 function PictureInPictureControl_bindVideoSync(video, pipVideo) {
+    if (pipVideo.__pip_unbind_sync__) pipVideo.__pip_unbind_sync__();
     function syncVideo() {
         if (video.paused) pipVideo.pause();
         else pipVideo.play().catch(() => { });
     }
     video.addEventListener("play", syncVideo);
     video.addEventListener("pause", syncVideo);
+    pipVideo.__pip_unbind_sync__ = () => {
+        video.removeEventListener("play", syncVideo);
+        video.removeEventListener("pause", syncVideo);
+    };
 }
 
 function PictureInPictureControl_bindCleanup(video, pipWindow, pipVideo) {
@@ -1075,10 +1113,12 @@ function PictureInPictureControl_bindCleanup(video, pipWindow, pipVideo) {
 
     const cleanup = () => PictureInPictureControl_cleanupEnhancedPip(pipWindow, pipVideo);
 
+    if (pipWindow.__pip_cleanup_handler__) pipWindow.removeEventListener("pagehide", pipWindow.__pip_cleanup_handler__);
+    if (pipWindow.__pip_close_timer__ != null) clearInterval(pipWindow.__pip_close_timer__);
+    pipWindow.__pip_cleanup_handler__ = cleanup;
     pipWindow.addEventListener("pagehide", cleanup);
-    const timer = setInterval(() => {
+    pipWindow.__pip_close_timer__ = setInterval(() => {
         if (pipWindow.closed) {
-            clearInterval(timer);
             cleanup();
         }
     }, 2000);

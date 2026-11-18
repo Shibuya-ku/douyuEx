@@ -1,10 +1,32 @@
 let VideoToolbarMenu_isOpen = false;
 let VideoToolbarMenu_filterExpanded = false;
 let VideoToolbarMenu_closeTimer = null;
+let VideoToolbarMenu_root = null;
+let VideoToolbarMenu_hostHook = null;
 
 function initPkg_VideoTools_VideoToolbarMenu() {
-    VideoToolbarMenu_insertDom();
-    VideoToolbarMenu_bindEvents();
+    VideoToolbarMenu_mount();
+    if (!VideoToolbarMenu_hostHook) {
+        VideoToolbarMenu_hostHook = new DomHook(".right-e7ea5d, .right-17e251", false, VideoToolbarMenu_mount);
+    }
+}
+
+function VideoToolbarMenu_mount() {
+    const toolbar = getValidDom([".right-e7ea5d", ".right-17e251"]);
+    if (!toolbar) return;
+    const existing = VideoToolbarMenu_getRoot();
+    if (VideoToolbarMenu_root) {
+        // Keep the actual nodes: moving them also preserves filter values and
+        // listeners when the native player replaces its control bar.
+        if (existing && existing !== VideoToolbarMenu_root) existing.remove();
+        if (VideoToolbarMenu_root.parentNode !== toolbar) {
+            toolbar.insertBefore(VideoToolbarMenu_root, toolbar.firstChild);
+        }
+        return;
+    }
+    if (!existing) VideoToolbarMenu_insertDom();
+    VideoToolbarMenu_root = VideoToolbarMenu_getRoot();
+    if (VideoToolbarMenu_root) VideoToolbarMenu_bindEvents();
 }
 
 function VideoToolbarMenu_insertDom() {
@@ -16,13 +38,6 @@ function VideoToolbarMenu_insertDom() {
             ${VideoToolbarMenu_pokeballSvg}
         </button>
         <div class="vtoolbar-menu__dropdown" role="menu" aria-label="DouyuEx Ver${curVersion}">
-            <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-joysound" role="menuitem">
-                <span class="vtoolbar-menu__item-icon" id="vtoolbar-joysound-icon"></span>
-                <span class="vtoolbar-menu__item-label">Joysound 音效</span>
-                <span class="vtoolbar-menu__switch" id="vtoolbar-joysound-switch" aria-hidden="true">
-                    <span class="vtoolbar-menu__switch-thumb"></span>
-                </span>
-            </button>
             <button type="button" class="vtoolbar-menu__item vtoolbar-menu__item--filter" id="vtoolbar-menu-filter" role="menuitem" aria-expanded="false">
                 <span class="vtoolbar-menu__item-icon">${VideoToolbarMenu_iconFilter}</span>
                 <span class="vtoolbar-menu__item-label">画面滤镜</span>
@@ -39,6 +54,10 @@ function VideoToolbarMenu_insertDom() {
             <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-enhanced-pip" role="menuitem">
                 <span class="vtoolbar-menu__item-icon">${VideoToolbarMenu_iconEnhancedPip}</span>
                 <span class="vtoolbar-menu__item-label">加强版画中画</span>
+            </button>
+            <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-popup-player" role="menuitem">
+                <span class="vtoolbar-menu__item-icon">${VideoToolbarMenu_iconEnhancedPip}</span>
+                <span class="vtoolbar-menu__item-label">斗鱼同屏播放</span>
             </button>
             <div class="vtoolbar-menu__divider" role="separator"></div>
             <button type="button" class="vtoolbar-menu__item" id="vtoolbar-menu-expanel" role="menuitem">
@@ -107,6 +126,7 @@ function VideoToolbarMenu_bindHoverTarget(el, isTrigger) {
 
 function VideoToolbarMenu_bindEvents() {
     const root = VideoToolbarMenu_getRoot();
+    if (!root) return;
     const trigger = root.querySelector(".vtoolbar-menu__trigger");
     const dropdown = root.querySelector(".vtoolbar-menu__dropdown");
     const filterHost = document.getElementById("ex-vtoolbar-filter-host");
@@ -115,6 +135,7 @@ function VideoToolbarMenu_bindEvents() {
     const audioLineBtn = document.getElementById("vtoolbar-menu-audio-line");
     const enhancedPipBtn = document.getElementById("vtoolbar-menu-enhanced-pip");
     const expanelBtn = document.getElementById("vtoolbar-menu-expanel");
+    const popupPlayerBtn = document.getElementById("vtoolbar-menu-popup-player");
 
     VideoToolbarMenu_bindHoverTarget(trigger, true);
     VideoToolbarMenu_bindHoverTarget(dropdown, false);
@@ -152,6 +173,12 @@ function VideoToolbarMenu_bindEvents() {
         if (typeof showExPanel === "function") {
             showExPanel();
         }
+    });
+
+    popupPlayerBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        VideoToolbarMenu_close();
+        PopupPlayer_openPrompt();
     });
 
     document.addEventListener("keydown", VideoToolbarMenu_onKeydown);

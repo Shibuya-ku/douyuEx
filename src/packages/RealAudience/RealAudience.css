@@ -1,19 +1,15 @@
 .real-audience {
-    cursor: pointer;
     display: flex;
+    gap: 8px;
     padding: 0 7px;
     line-height: 33px;
     color: rgb(153, 153, 153);
 }
 
-#Ex_EnterYuba {
-    width: 100%;
-}
-
-.Title-anchorPic-bottom i{
+.Title-anchorPic-bottom i {
     display: none !important;
 }
 
-#real-audience__total, #real-audience__barrage, #real-audience__money_yc, #real-audience__noble {
+#real-audience__noble {
     margin-left: 2px;
 }
