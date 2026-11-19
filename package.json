@@ -3,6 +3,7 @@
   "scripts": {
     "build": "node build.js",
     "test": "node --test tests/*.test.cjs",
+    "test:automation": "node --test tests/automation*.test.cjs",
     "test:browser": "node tests/browser-regression.cjs"
   },
   "repository": {

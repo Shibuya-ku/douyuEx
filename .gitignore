@@ -5,3 +5,8 @@ rules.txt
 CICD.bat.lnk
 .cursor
 test-results/
+automation/chrome-profile/
+automation/logs/
+automation/state/
+automation/runtime.local.json
+automation/config.test.json

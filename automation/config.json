@@ -1,0 +1,12 @@
+{
+  "roomIds": ["6657", "12306", "3487376", "3168536"],
+  "schedule": "00:30",
+  "message": "嗯嗯对对",
+  "basePerRoom": 1,
+  "weightedCheckAt": "00:40",
+  "stayMinutes": 40,
+  "browser": "chrome",
+  "closeAfter": true,
+  "userDataDir": "./automation/chrome-profile",
+  "logDir": "./automation/logs"
+}
