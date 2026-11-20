@@ -96,6 +96,34 @@ function parseGiftBalance(json) {
   }).filter(g => g.count > 0);
 }
 
+function resolveFansBadgeFrameUrl({ frameUrl = "", src = "", baseUrl = "" } = {}) {
+  const candidates = [frameUrl, src].map(value => String(value || "").trim()).filter(Boolean);
+  for (const candidate of candidates) {
+    try {
+      const url = new URL(candidate, baseUrl || undefined);
+      if (!/^https?:$/.test(url.protocol)) continue;
+      if (url.searchParams.get("rid")) return url;
+    } catch {
+      // The iframe can expose an empty or incomplete URL while it starts navigating.
+    }
+  }
+  throw new Error("亲密度面板 iframe URL 尚未就绪或缺少 rid");
+}
+
+async function waitForFansBadgeFrameUrl(frame, src, baseUrl, timeout = 30000) {
+  const deadline = Date.now() + timeout;
+  let lastError;
+  while (Date.now() < deadline) {
+    try {
+      return resolveFansBadgeFrameUrl({ frameUrl: frame?.url(), src, baseUrl });
+    } catch (error) {
+      lastError = error;
+      await sleep(100);
+    }
+  }
+  throw lastError || new Error("亲密度面板 iframe URL 尚未就绪");
+}
+
 // Mark before a side effect. An interrupted/uncertain operation is never retried automatically.
 async function onceAction(stateDir, key, action) {
   fs.mkdirSync(stateDir, { recursive: true });
@@ -219,8 +247,12 @@ async function readRoomMultiplier(context, alias, logger) {
     await room.page.locator(".FansMedalPanel-enter").click({ timeout: 45000 });
     const selector = 'iframe[src*="vibe-lab-fansbadgejobchange"]';
     await room.page.locator(selector).waitFor({ state: "attached", timeout: 30000 });
-    const frame = await (await room.page.locator(selector).elementHandle()).contentFrame();
-    if (!frame || new URL(frame.url()).searchParams.get("rid") !== room.roomId) throw new Error("亲密度面板房间编号不匹配");
+    const iframe = room.page.locator(selector).first();
+    const iframeHandle = await iframe.elementHandle();
+    const frame = await iframeHandle?.contentFrame();
+    if (!frame) throw new Error("亲密度面板 iframe 尚未建立内容窗口");
+    const frameUrl = await waitForFansBadgeFrameUrl(frame, await iframe.getAttribute("src"), room.page.url());
+    if (frameUrl.searchParams.get("rid") !== room.roomId) throw new Error("亲密度面板房间编号不匹配");
     const label = frame.locator("small").filter({ hasText: /^今日亲密\s*\d+(?:\.\d+)?\s*倍提升$/ });
     await label.waitFor({ state: "attached", timeout: 30000 });
     // The real badge data must be populated, rather than an uninitialised placeholder.
@@ -356,4 +388,4 @@ if (require.main === module) {
   Promise.resolve().then(() => run(JSON.parse(fs.readFileSync(configPath, "utf8").replace(/^\uFEFF/, "")))).catch(error => { console.error(error.message); process.exitCode = 1; });
 }
 
-module.exports = { DEFAULT_CONFIG, normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, parseGiftBalance, onceAction, run, readRoomMultiplier, selectFirstLive };
+module.exports = { DEFAULT_CONFIG, normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, parseGiftBalance, resolveFansBadgeFrameUrl, waitForFansBadgeFrameUrl, onceAction, run, readRoomMultiplier, selectFirstLive };

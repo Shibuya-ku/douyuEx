@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const { normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, parseGiftBalance, onceAction } = require("../automation/daily-live-task.cjs");
+const { normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, parseGiftBalance, resolveFansBadgeFrameUrl, onceAction } = require("../automation/daily-live-task.cjs");
 
 test("confirmed config keeps two distinct gifting phases and full 40-minute stay", () => {
   const c = normalizeConfig({});
@@ -36,6 +36,14 @@ test("only room badge intimacy buff is accepted; gift adverts and caps are rejec
   assert.equal(detectIntimacyMultiplier("今日亲密1.5倍提升"), 1.5);
   assert.equal(detectIntimacyMultiplier("今日亲密1倍提升"), 1);
   for (const text of ["", "送限定礼物双倍亲密度", "2倍上限", "无限亲密度", "今日亲密0倍提升"]) assert.throws(() => detectIntimacyMultiplier(text));
+});
+
+test("fans badge iframe URL waits for navigation and accepts relative src", () => {
+  assert.equal(resolveFansBadgeFrameUrl({ frameUrl: "", src: "/pages/vibe-lab-fansbadgejobchange?rid=12306", baseUrl: "https://www.douyu.com/12306" }).searchParams.get("rid"), "12306");
+  assert.equal(resolveFansBadgeFrameUrl({ frameUrl: "about:blank", src: "https://www.douyu.com/pages/vibe-lab-fansbadgejobchange?rid=6979222", baseUrl: "https://www.douyu.com/6657" }).searchParams.get("rid"), "6979222");
+  assert.equal(resolveFansBadgeFrameUrl({ frameUrl: "https://www.douyu.com/pages/vibe-lab-fansbadgejobchange?rid=3168536", src: "", baseUrl: "https://www.douyu.com/3168536" }).searchParams.get("rid"), "3168536");
+  assert.throws(() => resolveFansBadgeFrameUrl({ frameUrl: "", src: "", baseUrl: "https://www.douyu.com/6657" }), /URL 尚未就绪/);
+  assert.throws(() => resolveFansBadgeFrameUrl({ frameUrl: "https://www.douyu.com/pages/vibe-lab-fansbadgejobchange", src: "about:blank", baseUrl: "https://www.douyu.com/6657" }), /URL 尚未就绪/);
 });
 
 test("remaining pool goes wholly to boosted rooms, or equally without boosts", () => {
