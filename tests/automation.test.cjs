@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const { normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, parseGiftBalance, resolveFansBadgeFrameUrl, onceAction } = require("../automation/daily-live-task.cjs");
+const { normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, formatChineseLog, parseGiftBalance, resolveFansBadgeFrameUrl, onceAction } = require("../automation/daily-live-task.cjs");
 
 test("confirmed config keeps two distinct gifting phases and full 40-minute stay", () => {
   const c = normalizeConfig({});
@@ -20,6 +20,13 @@ test("clock calculations use Shanghai time regardless of host time zone", () => 
   assert.equal(delayUntilClockTime("00:40", new Date("2026-11-18T16:30:00Z")), 600000);
   assert.equal(delayUntilClockTime("00:40", new Date("2026-11-18T16:45:00Z")), 0);
   assert.equal(shanghaiDay(new Date("2026-11-18T23:59:59Z")), "2026-11-19");
+});
+
+test("daily Chinese logs describe success and failure in Shanghai time", () => {
+  const now = new Date("2026-11-20T16:30:00.000Z");
+  assert.match(formatChineseLog({ event: "step_completed", step: "续牌" }, now), /^\[2026-11-21 00:30:00\] \[成功\] 续牌：完成。$/);
+  assert.match(formatChineseLog({ event: "step_error", step: "剩余荧光棒分配", error: "亲密度面板 iframe URL 尚未就绪" }, now), /\[失败\].*原因：亲密度面板 iframe URL 尚未就绪/);
+  assert.match(formatChineseLog({ event: "master_notices", notices: ["观时积分领取成功", "观看直播30分钟 获得经验值30"] }, now), /观时积分领取成功；观看直播30分钟 获得经验值30/);
 });
 
 test("room metadata resolves aliases and ignores unrelated live adverts", () => {

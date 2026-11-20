@@ -15,6 +15,81 @@ const DEFAULT_CONFIG = {
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const resolveRoot = value => path.resolve(ROOT, value);
 const shanghaiDay = (now = new Date()) => new Date(now.getTime() + 8 * 3600000).toISOString().slice(0, 10);
+const shanghaiDateTime = (now = new Date()) => new Date(now.getTime() + 8 * 3600000).toISOString().replace("T", " ").slice(0, 19);
+
+function formatChineseLog(entry, now = new Date()) {
+  const prefix = `[${shanghaiDateTime(now)}]`;
+  const stepNames = { sign: "一键签到", renew: "续牌", barrage: "弹幕", distribution: "剩余荧光棒分配" };
+  const stepName = stepNames[entry.step] || entry.step || "流程步骤";
+  const room = entry.roomId ? `房间 ${entry.roomId}` : "";
+  const error = entry.error ? `，原因：${entry.error}` : "";
+  const notices = Array.isArray(entry.notices) ? entry.notices.filter(Boolean).join("；") : "";
+  const allocation = Array.isArray(entry.allocation)
+    ? entry.allocation.map(item => `${item.roomId} ${item.amount} 根（${item.multiplier} 倍）`).join("，")
+    : "";
+  switch (entry.event) {
+    case "room_probe":
+      return `${prefix} [提示] 选房：检查别名 ${entry.alias}，真实房间 ${entry.roomId}，${entry.live ? "实时开播" : "未实时开播"}。`;
+    case "fallback_room":
+      return `${prefix} [提示] 选房：候选房间均未实时开播，按规则回退到别名 ${entry.alias}（${entry.roomId}）。`;
+    case "extension_warmup_reload":
+      return `${prefix} [提示] 浏览器：全量 DouyuEx 尚未及时加载，已刷新页面后继续。`;
+    case "run_start":
+      return `${prefix} [进行中] 任务：开始执行，${room}，预计观看 ${entry.deadline || "未记录"} 结束。`;
+    case "step_started":
+      return `${prefix} [进行中] ${stepName}：开始。`;
+    case "step_completed":
+      return `${prefix} [成功] ${stepName}：完成。`;
+    case "sign_clicked":
+      return `${prefix} [成功] 一键签到：已点击全量脚本入口，等待各签到子任务反馈。`;
+    case "renew_plan":
+      return `${prefix} [进行中] 续牌：计划给 ${entry.rooms?.length || 0} 个粉丝牌房间各赠送 1 根，当前可用 ${entry.available ?? "未知"} 根。`;
+    case "gift_response":
+      return entry.code === 0 && entry.message === "success"
+        ? `${prefix} [成功] 荧光棒赠送：${entry.roomId} 赠送 ${entry.amount} 根，接口确认成功。`
+        : `${prefix} [失败] 荧光棒赠送：${entry.roomId} 赠送 ${entry.amount} 根，接口未确认成功${entry.message ? `（${entry.message}）` : ""}。`;
+    case "renew_complete":
+      return `${prefix} [成功] 续牌：${entry.count} 个粉丝牌房间各赠送 1 根完成。`;
+    case "barrage_response":
+      return entry.result === "server_ack" || entry.result === "own_message_echo"
+        ? `${prefix} [成功] 弹幕：${entry.message || "嗯嗯对对"} 已收到斗鱼发送确认。`
+        : `${prefix} [失败] 弹幕：未收到明确发送确认。`;
+    case "watch_started":
+      return `${prefix} [进行中] 观看：开始保持直播播放。`;
+    case "watch_heartbeat": {
+      const video = Array.isArray(entry.playback) ? entry.playback.find(item => item.readyState > 0) : null;
+      return video && !video.paused && !video.ended
+        ? `${prefix} [进行中] 观看：视频正常播放，剩余约 ${entry.remainingSeconds} 秒。`
+        : `${prefix} [警告] 观看：未检测到正常播放，剩余约 ${entry.remainingSeconds} 秒。`;
+    }
+    case "master_notices":
+      return notices ? `${prefix} [成功] 斗鱼任务反馈：${notices}` : `${prefix} [提示] 斗鱼任务反馈：本次没有新增提示。`;
+    case "multiplier_probe":
+      return `${prefix} [成功] 亲密度倍数：${entry.alias}（${entry.roomId}）读取为 ${entry.multiplier} 倍。`;
+    case "allocation":
+      return `${prefix} [进行中] 剩余荧光棒分配：共 ${entry.total} 根，计划 ${allocation || "无可分配房间"}。`;
+    case "distribution_complete":
+      return `${prefix} [成功] 剩余荧光棒分配：共 ${entry.total} 根，全部赠送完成。`;
+    case "distribution_skipped":
+      return `${prefix} [失败] 剩余荧光棒分配：已跳过，原因：${entry.reason || "前置步骤未确认成功"}。`;
+    case "watch_only":
+      return `${prefix} [提示] 补充测试：仅观看，不重复签到、续牌、弹幕或荧光棒分配。`;
+    case "step_error":
+      return `${prefix} [失败] ${stepName}：执行失败${error}。`;
+    case "stay_complete":
+      return entry.failures?.length
+        ? `${prefix} [失败] 观看：已达到计划时长，但失败步骤为 ${entry.failures.join("、")}。`
+        : `${prefix} [成功] 观看：达到计划时长 ${entry.elapsedSeconds} 秒。`;
+    case "run_complete":
+      return `${prefix} [成功] 任务：全部流程完成。`;
+    case "run_error":
+      return `${prefix} [失败] 任务：执行终止${error}。`;
+    case "browser_closed":
+      return `${prefix} [成功] 浏览器：自动化 Chrome 已关闭。`;
+    default:
+      return `${prefix} [提示] 流程记录：${entry.event || "未知事件"}${error}。`;
+  }
+}
 
 function normalizeConfig(input) {
   const config = { ...DEFAULT_CONFIG, ...input };
@@ -304,8 +379,11 @@ async function run(config, options = {}) {
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const logFile = path.join(logDir, `${stamp}.jsonl`);
   const logger = entry => {
-    const line = JSON.stringify({ at: new Date().toISOString(), ...entry });
+    const loggedAt = new Date();
+    const line = JSON.stringify({ at: loggedAt.toISOString(), ...entry });
     fs.appendFileSync(logFile, line + "\n"); console.log(line);
+    const dailyLogFile = path.join(logDir, `${shanghaiDay(loggedAt)}.log`);
+    fs.appendFileSync(dailyLogFile, formatChineseLog(entry, loggedAt) + "\n", "utf8");
   };
   let context;
   const lockPath = path.join(stateDir, "run.lock");
@@ -352,8 +430,14 @@ async function run(config, options = {}) {
     const day = shanghaiDay();
     const failures = [];
     const step = async (name, action) => {
-      try { await onceAction(stateDir, `${day}-${name}`, action); }
-      catch (error) { failures.push(name); logger({ event: "step_error", step: name, error: error.message }); }
+      logger({ event: "step_started", step: name });
+      try {
+        await onceAction(stateDir, `${day}-${name}`, action);
+        logger({ event: "step_completed", step: name });
+      } catch (error) {
+        failures.push(name);
+        logger({ event: "step_error", step: name, error: error.message });
+      }
     };
     if (c.watchOnly) {
       logger({ event: "watch_only", reason: "仅补充连续观看和关闭测试，不重复签到、续牌、弹幕或剩余分配" });
@@ -361,6 +445,7 @@ async function run(config, options = {}) {
       await step("sign", () => clickSign(selected.page, logger));
       await step("renew", () => renewBadges(selected.page, selected.roomId, logger));
       await step("barrage", () => sendBarrage(selected.page, c.message, logger));
+      logger({ event: "watch_started" });
       await waitUntil(distributionAt, selected.page, logger);
       if (failures.includes("renew")) {
         failures.push("distribution"); logger({ event: "distribution_skipped", reason: "续牌未确认完成，避免重复或错误消耗" });
@@ -369,6 +454,7 @@ async function run(config, options = {}) {
         await selected.page.bringToFront();
       }
     }
+    if (c.watchOnly) logger({ event: "watch_started" });
     await waitUntil(deadline, selected.page, logger);
     const notices = await selected.page.evaluate(() => [...new Set(window.__dailyNotices || [])]);
     logger({ event: "master_notices", notices });
@@ -388,4 +474,4 @@ if (require.main === module) {
   Promise.resolve().then(() => run(JSON.parse(fs.readFileSync(configPath, "utf8").replace(/^\uFEFF/, "")))).catch(error => { console.error(error.message); process.exitCode = 1; });
 }
 
-module.exports = { DEFAULT_CONFIG, normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, parseGiftBalance, resolveFansBadgeFrameUrl, waitForFansBadgeFrameUrl, onceAction, run, readRoomMultiplier, selectFirstLive };
+module.exports = { DEFAULT_CONFIG, normalizeConfig, parseRoomInfo, detectIntimacyMultiplier, allocateSticks, delayUntilClockTime, shanghaiDay, shanghaiDateTime, formatChineseLog, parseGiftBalance, resolveFansBadgeFrameUrl, waitForFansBadgeFrameUrl, onceAction, run, readRoomMultiplier, selectFirstLive };
